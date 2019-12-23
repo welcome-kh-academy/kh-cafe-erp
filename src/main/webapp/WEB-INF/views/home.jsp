@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>KH-Cafe ERP 프로그램</title>
 </head>
 <body>
 <h1>
