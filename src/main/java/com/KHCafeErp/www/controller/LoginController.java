@@ -1,11 +1,11 @@
-package login;
+package com.KHCafeErp.www.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import login.dto.Staff;
+import com.KHCafeErp.www.dto.Staff;
 
 @Controller
 public class LoginController {
@@ -13,7 +13,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	
-	@RequestMapping(value="/login/login")
+	@RequestMapping(value="/login/main")
 	public void login() {
 		
 //		logger.info("로그인~");
