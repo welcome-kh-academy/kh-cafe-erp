@@ -48,7 +48,6 @@
         <a class="nav-link" href="#">로그아웃</a>
       </li>    
  	</ul>
-
 </nav>
 </div>
 
