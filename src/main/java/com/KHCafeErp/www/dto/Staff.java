@@ -1,4 +1,4 @@
-package login.dto;
+package com.KHCafeErp.www.dto;
 
 public class Staff {
 	
