@@ -15,7 +15,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/vendor/fontawesome-free/css/all.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/vendor/animate/animate.css">
 <!--===============================================================================================-->	
