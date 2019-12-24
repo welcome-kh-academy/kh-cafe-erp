@@ -10,8 +10,14 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>login page.....</h1>
+<h1><img src="..." class="img-responsive" alt="Responsive image"></h1>
 <form class="form-horizontal">
+  <div class="form-group">
+    <label for="shopcode" class="col-sm-2 control-label">shop code</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="shopcode" placeholder="지점번호를 입력하세요">
+    </div>
+  </div>
   <div class="form-group">
     <label for="id" class="col-sm-2 control-label">아이디</label>
     <div class="col-sm-10">
