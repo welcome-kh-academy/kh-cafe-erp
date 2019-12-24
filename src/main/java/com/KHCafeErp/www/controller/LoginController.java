@@ -23,6 +23,8 @@ public class LoginController {
 	@RequestMapping(value="/login/check")
 	public String loginCheck(Staff staff) {
 		
+		
+		
 		return "redirect:/login/login";
 	}
 	
