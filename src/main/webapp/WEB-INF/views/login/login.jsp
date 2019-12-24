@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1><img src="..." class="img-responsive" alt="Responsive image"></h1>
+<img src="/resources/img/logo3.png" width="300" height="100" class="img-responsive" alt="Responsive image" >
 <form class="form-horizontal">
   <div class="form-group">
     <label for="shopcode" class="col-sm-2 control-label">shop code</label>
