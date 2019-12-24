@@ -67,6 +67,6 @@
 	
 	<!-- 컴포넌트를 스캔해볼 패키지를 지정하는 태그 -->
 	<context:component-scan
-	 base-package="com.KHCafeErp.www" />
+	 base-package="com.KHCafeErp.www, login" />
 	
 </beans:beans>
