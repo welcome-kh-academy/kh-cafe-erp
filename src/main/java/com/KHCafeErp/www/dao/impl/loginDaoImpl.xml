@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.KHCafeErp.www.dao.face.LoginDao">
+	<select id="cntAccount" parameterType="com.KHCafeErp.www.dto.Staff" resultType="int">
+		SELECT COUNT(*) FROM staff WHERE staffNo = #{ staffNo } AND pw = #{ pw } AND shopNo = #{ shopNo }
+	</select>
+	
+	<select id="selectByStaffNo" parameterType="com.KHCafeErp.www.dto.Staff" resultType="com.KHCafeErp.www.dto.Staff">
+		SELECT * FROM staff WHERE staffNo = #{ staffNo }
+	</select>
+</mapper>
