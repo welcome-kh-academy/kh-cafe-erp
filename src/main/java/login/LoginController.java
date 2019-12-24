@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import login.dto.Staff;
+
 @Controller
 public class LoginController {
 	
@@ -14,7 +16,15 @@ public class LoginController {
 	@RequestMapping(value="/login/login")
 	public void login() {
 		
-		logger.info("로그인~");
+//		logger.info("로그인~");
+		
 	}
+	
+	@RequestMapping(value="/login/check")
+	public String loginCheck(Staff staff) {
+		
+		return "redirect:/login/login";
+	}
+	
 
 }
