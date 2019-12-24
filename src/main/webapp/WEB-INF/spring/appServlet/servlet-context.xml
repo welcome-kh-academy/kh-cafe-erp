@@ -67,17 +67,6 @@
 	
 	<!-- 컴포넌트를 스캔해볼 패키지를 지정하는 태그 -->
 	<context:component-scan
-	 base-package="
-	 login.controller,
-	 login.service,
-	 order.controller,
-	 order.service,
-	 payment.controller,
-	 payment.service,
-	 product.controller,
-	 product.service
-	 " />
-	
-	
+	 base-package="com.KHCafeErp.www" />
 	
 </beans:beans>
