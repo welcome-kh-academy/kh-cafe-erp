@@ -40,15 +40,14 @@
 		<!-- Mapper 파일 위치 설정 -->
 		<property name="mapperLocations">
 			<array>
-				<value>classpath:/login/dao/impl/**/*DaoImpl.xml</value>
+				<value>classpath:/com.KHCafeErp.www/dao/impl/**/*DaoMapper.xml</value>
 			</array>
 		</property>
 	</bean>
 	
 	<!-- 마이바티스 DAO인터페이스 설정 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="login.dao.face, order.dao.face,
-		 payment.dao.face, product.dao.face" />
+		<property name="basePackage" value="com.KHCafeErp.www.dao.face" />
 	</bean>
 		
 </beans>
