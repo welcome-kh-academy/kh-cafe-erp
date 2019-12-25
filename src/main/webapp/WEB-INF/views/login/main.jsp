@@ -96,7 +96,7 @@
 
 	
 <!--===============================================================================================-->	
-	<script src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/resources/vendor/jquery/jquery.js"></script>
 <!--===============================================================================================-->
 	<script src="/resources/vendor/bootstrap/js/popper.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>

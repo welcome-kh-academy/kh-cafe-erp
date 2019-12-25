@@ -17,6 +17,10 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 
+
+
+<!-- 제이쿼리 3.2.1 버전 사용 -->
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #wrapper{
