@@ -29,7 +29,7 @@ public class JoinStaffController {
 	public String join() { 
 		
 		logger.info("회원가입접속확인");
-		return "login/join";		
+		return "join/join";		
 	}
 	
 	//회원가입 폼 작성 처리
@@ -41,7 +41,7 @@ public class JoinStaffController {
 		//회원가입 처리
 		joinstaffService.join(staff);		
 		
-		return "redirect:/login/main";
+		return "redirect:/dashboard/main";
 	}
 	
 
