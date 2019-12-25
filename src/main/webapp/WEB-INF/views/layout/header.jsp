@@ -4,7 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- 헤더 -->
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template-->
+<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+<!-- Page level plugin CSS-->
+<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="/resources/css/sb-admin.css" rel="stylesheet">
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #wrapper{
@@ -25,7 +37,7 @@
 <body>
 
 <div id="header">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
   <a class="navbar-brand" href="/main.jsp" style="margin-top:5px"><img src="/resources/img/KH.png" style="height:40px; margin-bottom:5px"/>ERP 통합 관리 프로그램</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

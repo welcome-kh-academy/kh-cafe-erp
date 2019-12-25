@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <!--===============================================================================================-->
 
 </head>
@@ -110,7 +110,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/login.js"></script>
 
 </body>
 </html>
