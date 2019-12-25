@@ -15,7 +15,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/vendor/fontawesome-free/css/all.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/resources/vendor/animate/animate.css">
 <!--===============================================================================================-->	
@@ -37,12 +37,19 @@
 					<img src="/resources/images/khlogo.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="/login/check" method="post">
 					<span class="login100-form-title">
 						<h1>KH Cafe ERP</h1><br>
 						<h1>프로그램</h1>
 					</span>
 
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="shopNo" placeholder="shop code">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-o" aria-hidden="true"></i>
+						</span>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="staffNo" placeholder="id">
 						<span class="focus-input100"></span>

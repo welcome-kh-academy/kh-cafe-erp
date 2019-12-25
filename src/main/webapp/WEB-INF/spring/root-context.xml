@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- DB 접속 정보 -->
@@ -10,8 +11,8 @@
 	 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="scott" />
-		<property name="password" value="tiger" />
+		<property name="username" value="final" />
+		<property name="password" value="1234" />
 	</bean>
 	
 	<!-- JDBC Logger -->
@@ -40,11 +41,11 @@
 		<!-- Mapper 파일 위치 설정 -->
 		<property name="mapperLocations">
 			<array>
-				<value>classpath:/com.KHCafeErp.www/dao/impl/**/*DaoMapper.xml</value>
+				<value>classpath:/com/KHCafeErp/www/dao/impl/**/*Mapper.xml</value>
 			</array>
 		</property>
 	</bean>
-	
+
 	<!-- 마이바티스 DAO인터페이스 설정 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.KHCafeErp.www.dao.face" />
