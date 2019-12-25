@@ -26,7 +26,6 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <!--===============================================================================================-->
-
 </head>
 <body>
 	
@@ -82,7 +81,7 @@
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
+						<a class="txt2" href="/join/join">
 							회원가입하기
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -96,7 +95,7 @@
 
 	
 <!--===============================================================================================-->	
-	<script src="/resources/vendor/jquery/jquery.js"></script>
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
 <!--===============================================================================================-->
 	<script src="/resources/vendor/bootstrap/js/popper.js"></script>
 	<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
