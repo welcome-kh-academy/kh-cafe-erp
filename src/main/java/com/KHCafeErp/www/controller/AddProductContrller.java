@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.service.face.AddProductService;
@@ -20,20 +21,23 @@ public class AddProductContrller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddProductContrller.class);
 	
+	// 惑前 可记 格废 
 	@RequestMapping(value = "/product/option/list", method=RequestMethod.GET)
 	public String optionList(Model model) {
 		logger.info("optionList()");
-		
+
 		List<ProductOption> optionList = addProductService.selectOption();
-		
+
 		model.addAttribute("optionList", optionList);
+		
 		return "/product/productOption";
 	}
-	
+
+	// 惑前 可记 殿废
 	@RequestMapping(value = "/product/option/register")
-	public String getOption() {
+	public ModelAndView getOption(ModelAndView mav) {
 		
-		return "redirect:/product/option/list";
+		return mav;
 	}
 	
 }

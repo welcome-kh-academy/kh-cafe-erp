@@ -4,12 +4,12 @@ public class ProductOption {
 	private int productOptionNo;
 	private String productOptionName;
 	private int optionValue;
-	private int productCnt;
 	
 	@Override
 	public String toString() {
 		return "ProductOption [productOptionNo=" + productOptionNo + ", productOptionName=" + productOptionName
-				+ ", optionValue=" + optionValue + ", productCnt=" + productCnt + "]";
+				+ ", optionValue=" + optionValue + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 	public int getProductOptionNo() {
@@ -36,13 +36,8 @@ public class ProductOption {
 		this.optionValue = optionValue;
 	}
 
-	public int getProductCnt() {
-		return productCnt;
-	}
-
-	public void setProductCnt(int productCnt) {
-		this.productCnt = productCnt;
-	}
+	
+	
 	
 	
 }
