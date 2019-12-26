@@ -16,4 +16,8 @@
 		SELECT categoryNo, categoryName FROM categoryBase
 	</select>
 
+	<!-- 지점 목록 가져오기 -->
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT * FROM shop
+	</select>
 </mapper>
