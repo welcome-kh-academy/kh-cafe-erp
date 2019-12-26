@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.JoinStaffService;
 
-
-
 @Controller
 public class JoinStaffController {
 	
