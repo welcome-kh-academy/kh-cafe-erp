@@ -31,9 +31,23 @@ fieldset, #optionList, #product{
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#optionSubmit").click(function(){
-	
+		var categoryNo = $("#categoryNo").val();
+		$.ajax({
+			type : "POST",
+			url : "/product/option/register",
+			data : {
+				categoryNo : categoryNo
+			},
+			dataType : "json",
+			error : function(){
+				alert("오류");
+			},
+			success : function(res){
+				console.log(res)
+			}
+		});
 	});
-		
+
 });
 
 </script>
