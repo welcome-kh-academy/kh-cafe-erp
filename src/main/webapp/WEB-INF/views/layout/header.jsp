@@ -24,6 +24,10 @@
 <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" /> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> -->
 
+<!-- 폰트 어썸 4.7 버전 -->
+<script type="text/javascript" src="/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css"></script>
+<!-- <script type="text/javascript" src="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css"></script> -->
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #wrapper{

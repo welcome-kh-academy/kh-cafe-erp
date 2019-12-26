@@ -3,6 +3,7 @@ package com.KHCafeErp.www.service.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 
@@ -30,5 +31,13 @@ public interface AddProductService {
 	 * @return - Category 리스트
 	 */
 	public List<CategoryBase> getCategoryList();
+	
+	/**
+	 * 19-12-26 현석
+	 * 상품명으로 카테고리 불러오기
+	 * @param product
+	 * @return Category
+	 */
+	public CategoryBase getCategory(Product product);
 	
 }

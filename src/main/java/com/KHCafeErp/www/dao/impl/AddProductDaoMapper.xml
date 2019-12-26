@@ -24,4 +24,13 @@
 	<select id="selectProductOptionNo" parameterType="int" resultType="int">
 		SELECT MAX(rownum)+1 rnum FROM(SELECT productOptionNo, productOptionName, optionValue FROM productOption WHERE categoryNo=#{categoryNo} ORDER BY productOptionNo)
 	</select>
+	
+	<!-- 19-12-26 현석 : 카테고리 불러오기 -->
+	<select id="selectCategory" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.CategoryBase">
+		SELECT c.categoryName, d.categoryDetailName
+		FROM categoryBase c, categoryDetail d
+		WHERE 1=1
+		AND c.categoryNo = d.categoryNo
+		AND categoryMapNo = #{categoryMapNo}
+	</select>
 </mapper>

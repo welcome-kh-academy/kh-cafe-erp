@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
@@ -36,6 +37,15 @@ public class AddProductContrller {
 		List<CategoryBase> categoryList = addProductService.getCategoryList();
 	
 		model.addAttribute("categoryList", categoryList);
+	}
+	
+//	상품등록 1단계 - 카테고리등록 - 상품검색
+	@RequestMapping(value = "/product/addCategory", method=RequestMethod.POST)
+	public void addCategory(Model model, Product product) {
+		logger.info("카테고리 등록에서 상품검색");
+		CategoryBase category = addProductService.getCategory(product);
+			
+		model.addAttribute("category", category);
 	}
 	
 	// 상품 옵션 목록  
