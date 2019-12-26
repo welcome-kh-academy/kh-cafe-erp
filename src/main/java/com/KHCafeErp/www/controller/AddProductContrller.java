@@ -21,7 +21,12 @@ public class AddProductContrller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddProductContrller.class);
 	
-	// »óÇ° ¿É¼Ç ¸ñ·Ï 
+	@RequestMapping(value = "/product/index", method=RequestMethod.GET)
+	public void productIndex() {
+		logger.info("ìƒí’ˆë“±ë¡ ì²« í˜ì´ì§€");
+	}
+	
+	// ï¿½ï¿½Ç° ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ 
 	@RequestMapping(value = "/product/option/list", method=RequestMethod.GET)
 	public String optionList(Model model) {
 		logger.info("optionList()");
@@ -33,7 +38,7 @@ public class AddProductContrller {
 		return "/product/productOption";
 	}
 
-	// »óÇ° ¿É¼Ç µî·Ï
+	// ï¿½ï¿½Ç° ï¿½É¼ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/product/option/register")
 	public ModelAndView getOption(ModelAndView mav) {
 		

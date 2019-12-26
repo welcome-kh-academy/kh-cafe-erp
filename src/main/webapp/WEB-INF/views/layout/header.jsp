@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<!-- 헤더 -->
+<!-- 헤더 --> <!-- 부트스트랩 4.4.1 버전 -->
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 제이쿼리 3.2.1 버전 -->
