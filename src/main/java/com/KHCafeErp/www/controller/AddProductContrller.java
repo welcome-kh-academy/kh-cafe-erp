@@ -50,7 +50,7 @@ public class AddProductContrller {
 		model.addAttribute("category", category);
 	}
 	
-	//상품등록 1단계 - 카테고리등록 - 카테고리로 카테고리 상세목록 가져오기
+	//상품등록 1단계 - 카테고리등록 - 카테고리로 카테고리 상세목록 가져오기(Ajax)
 	@RequestMapping(value = "/product/getCategoryDetail", method=RequestMethod.GET)
 	public ModelAndView getCategoryDetail(@RequestParam(value = "value") int value, ModelAndView mav) {
 		
