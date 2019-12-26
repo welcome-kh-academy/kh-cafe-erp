@@ -4,12 +4,12 @@ public class ProductOption {
 	private int productOptionNo;
 	private String productOptionName;
 	private int optionValue;
-	
+	private int rnum;
+
 	@Override
 	public String toString() {
 		return "ProductOption [productOptionNo=" + productOptionNo + ", productOptionName=" + productOptionName
-				+ ", optionValue=" + optionValue + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", optionValue=" + optionValue + ", rnum=" + rnum + "]";
 	}
 
 	public int getProductOptionNo() {
@@ -34,6 +34,14 @@ public class ProductOption {
 
 	public void setOptionValue(int optionValue) {
 		this.optionValue = optionValue;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	

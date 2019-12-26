@@ -19,8 +19,13 @@ public class AddProductServiceImpl implements AddProductService {
 	private static final Logger logger = LoggerFactory.getLogger(AddProductServiceImpl.class);
 	
 	@Override
-	public List<ProductOption> selectOption() {
-		return addProductDao.selectOption();
+	public List<ProductOption> selectOption(int categoryNo) {
+		return addProductDao.selectOption(categoryNo);
+	}
+
+	@Override
+	public int getProductOptionNo(int categoryNo) {
+		return addProductDao.selectProductOptionNo(categoryNo);
 	}
 
 }
