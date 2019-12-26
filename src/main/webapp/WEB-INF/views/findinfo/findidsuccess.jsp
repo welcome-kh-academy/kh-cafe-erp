@@ -42,12 +42,12 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 
-				<h1>사원번호 찾기성공</h1>
+				<h2>사원번호 안내</h2>
 
-				
+				<br><br>
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
-						
+						사원번호는 ${id} 입니다.
 					</div>
 					
 

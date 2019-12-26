@@ -26,13 +26,22 @@ public class FindIdPwController {
 //		logger.info("테스트");
 
 		Staff findid = findidpwservice.findid(staff);
-		Staff id = findid;
 		
-		if(findid !=null) {
+		if( findid != null ) {
+			int id = findid.getStaffNo();
 			model.addAttribute("id" ,id);
 			return "/findinfo/findidsuccess";
 
 		}else 
 			return "/findinfo/findidfail";
+		
+		
+		
+		
+		
+		
+		
 	}
+	
+		
 }

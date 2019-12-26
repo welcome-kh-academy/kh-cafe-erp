@@ -50,7 +50,7 @@
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="shopNo"
-							placeholder="지점번호 입력"> <span class="focus-input100"></span>
+							placeholder="지점번호 입력" required> <span class="focus-input100"></span>
 						<span class="symbol-input100"> <i class="fa fa-user-o"
 							aria-hidden="true"></i>
 						</span>
@@ -58,9 +58,9 @@
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
 						<input class="input100" type="email" name="email"
-							placeholder="이메일 입력"> <span class="focus-input100"></span>
+							placeholder="이메일 입력" required> <span class="focus-input100"></span>
 						<span class="symbol-input100"> <i class="fa fa-user-o"
-							aria-hidden="true"></i>
+							aria-hidden="true" ></i>
 						</span>
 					</div>
 
