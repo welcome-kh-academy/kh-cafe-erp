@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.Option;
+import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface AddProductDao {
@@ -23,13 +25,25 @@ public interface AddProductDao {
 	public List<Option> selectOption(int categoryNo);
 
 	/**
-	 * 12-12-26 현석
+	 * 19-12-26 현석
 	 * 카테고리 목록 불러오기
 	 * @return - List<CategoryBase> 카테고리 목록
 	 */
 	public List<CategoryBase> selectCategoryList();
 
+
 	public void insertOption(Option option);
+	/**
+	 * 19-12-26 현석
+	 * 상품검색으로 카테고리 가져오기
+	 */
+	public CategoryBase selectCategory(Product product);
 
-
+	/**
+	 * 19-12-26 현석
+	 * 카테고리 넘버로 카테고리 상세목록 가져오기
+	 * @param categoryNo
+	 * @return
+	 */
+	public List<CategoryDetail> selectCategoryDetailList(int categoryNo);
 }

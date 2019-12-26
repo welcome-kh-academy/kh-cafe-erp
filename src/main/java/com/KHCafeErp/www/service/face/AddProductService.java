@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.Option;
+
+import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface AddProductService {
@@ -30,5 +33,21 @@ public interface AddProductService {
 	public List<CategoryBase> getCategoryList();
 
 	public void addOption(Option option);
+	
+	/**
+	 * 19-12-26 현석
+	 * 상품명으로 카테고리 불러오기
+	 * @param product
+	 * @return Category
+	 */
+	public CategoryBase getCategory(Product product);
+
+	/**
+	 * 19-12-27 현석
+	 * 카테고리 상세목록 가져오기
+	 * @param value
+	 * @return CategoryDetail List
+	 */
+	public List<CategoryDetail> getCategoryDetail(int categoryNo);
 	
 }
