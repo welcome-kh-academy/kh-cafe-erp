@@ -15,7 +15,7 @@ nav.nav {
   >
   <a class="nav-item nav-link" href="#">상품기초정보등록</a>
   >
-  <a class="nav-item nav-link active" href="/product/option/list">상품 옵션 등록</a>
+  <a class="nav-item nav-link active" href="/product/option">상품 옵션 등록</a>
   >
   <a class="nav-item nav-link" href="#">판매 방식 설정</a>
   >

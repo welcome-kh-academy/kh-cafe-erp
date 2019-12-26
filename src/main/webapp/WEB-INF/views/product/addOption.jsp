@@ -20,12 +20,12 @@ fieldset, #optionList, #product{
 .right{
 	float:right;
 	width : 50%;
-	border : 1px solid black;
+/* 	border : 1px solid black; */
 }
 .left{
 	float:left;
 	width : 45%;
-	border : 1px solid black;
+/* 	border : 1px solid black; */
 }
 </style>
 
@@ -118,7 +118,7 @@ $(document).ready(function(){
 <!-- 	</div> -->
 </div>
 
-<div id="product" class= "left" style="margin-top: 30px;">
+<div id="product" class= "left" style="margin-top:30px; overflow:auto; height:440px">
 	<fieldset>
 		<legend class="text-primary">상품 정보</legend>
 		<table class="table">
@@ -134,7 +134,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<th class="table-primary">사진</th>
-				<td colspan="4"></td>
+				<td colspan="4"><img src="/resources/img/GHBT.jpg" style="width:125px; height:125px"/></td>
 			</tr>
 			<tr>
 				<th class="table-primary" style="width:20%">원가</th>
@@ -144,7 +144,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<th class="table-primary">상품 소개</th>
-				<td colspan="4"></td>
+				<td colspan="4">새콤달콤한 자몽과 꿀이 깊고 그윽한 풍미의 스타벅스 티바나의 블랙 티와 만났습니다. <br>화려한 색감과 톡 쏘는 상큼함이 더해진 스타벅스의 새로운 티 음료입니다.</td>
 			</tr>
 		</table>
 	</fieldset>
@@ -171,4 +171,4 @@ $(document).ready(function(){
 		</table>
 	</fieldset>
 </div>
-<jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/product-footer.jsp"/>
