@@ -10,11 +10,21 @@ table{
 td div{
 	margin : 0px 20px;
 }
-fieldset, #optionList{
+fieldset, #optionList, #product{
 	margin : 20px 20px;
 }
 .form-check-input{
 	margin-left:10px;
+}
+.right{
+	float:right;
+	width : 50%;
+	border : 1px solid black;
+}
+.left{
+	float:left;
+	width : 45%;
+	border : 1px solid black;
 }
 </style>
 
@@ -51,7 +61,11 @@ fieldset, #optionList{
 	</form>
 </div>
 
-<div id="optionList">
+<div id="product" class= "left">
+
+</div>
+
+<div id="optionList" class="right">
 	<fieldset>
 		<legend class="text-info">상품 옵션 목록</legend>
 		<table class="table">
