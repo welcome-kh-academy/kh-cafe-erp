@@ -8,9 +8,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- 헤더 --> <!-- 부트스트랩 4.4.1 버전 -->
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- 제이쿼리 3.2.1 버전 -->
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
 
