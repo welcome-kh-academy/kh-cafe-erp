@@ -22,7 +22,7 @@
 	</select>
 	
 	<insert id="insertOption" parameterType="com.KHCafeErp.www.dto.Option">
-		INSERT INTO option(optionNo, optionName, optionValue, categoryNo) VALUES (optionNo_seq.nextval, #{optionName}, #{optionValue}, #{categoryNo})
+		INSERT INTO optionBase (optionNo, optionName, optionValue, categoryNo) VALUES (optionNo_seq.nextval, #{optionName}, #{optionValue}, #{categoryNo})
 	</insert>
 	
 </mapper>

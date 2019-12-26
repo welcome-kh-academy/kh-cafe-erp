@@ -34,15 +34,7 @@ $(document).ready(function(){
 	$("#optionSubmit").click(function(){
 		var categoryNo = $("#categoryNo").val();
 		var optionName = $("#optionName").val();
-		var optionValue = $("#optionValue").val();
-		$("#optionList .table").append("<tr>"
-				+"<td style='width:10%'></td>"
-				+"<td style='width:55%'>"+optionName+"</td>"
-				+"<td style='width:25%'>"+optionValue+"</td>"
-				+"<td style='width:10%'><button class='btn btn-primary btn-sm optionDelete'>삭제</button></td></tr>");
-		$("#optionName").val("");
-		$("#optionValue").val("");
-		
+		var optionValue = $("#optionValue").val();		
 		$.ajax({
 			type : "POST",
 			url : "/product/option/register",
@@ -56,14 +48,19 @@ $(document).ready(function(){
 				alert("오류오류")
 			},
 			success : function(res) {
-				alert("성공")
 				console.log(res)
+				$("#optionList .table").append("<tr>"
+						+"<td style='width:10%'></td>"
+						+"<td style='width:55%'>"+optionName+"</td>"
+						+"<td style='width:25%'>"+optionValue+"</td>"
+						+"<td style='width:10%'><button class='btn btn-primary btn-sm optionDelete'>삭제</button></td></tr>");
+				$("#optionName").val("");
+				$("#optionValue").val("");
 			}
 		});
 	});
 
 	$('#optionList .table').on("click",".optionDelete", function(){
-		console.log("11")
 		$(this).parent().parent().remove();
 	})
 });
