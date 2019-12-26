@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.AddProductDao;
 import com.KHCafeErp.www.dto.ProductOption;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
 
 @Service
@@ -17,6 +18,11 @@ public class AddProductServiceImpl implements AddProductService {
 	@Autowired AddProductDao addProductDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddProductServiceImpl.class);
+	
+	@Override
+	public List<Shop> getShopList() {
+		return addProductDao.selectShopList();
+	}
 	
 	@Override
 	public List<ProductOption> selectOption() {

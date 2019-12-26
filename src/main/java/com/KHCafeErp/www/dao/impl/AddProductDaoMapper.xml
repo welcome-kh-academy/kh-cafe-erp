@@ -10,5 +10,8 @@
 	<select id="selectOption" resultType="com.KHCafeErp.www.dto.ProductOption">
 		SELECT productOptionNo, productOptionName, optionValue FROM productOption ORDER BY productOptionNo
 	</select>
-
+	<!-- 지점 목록 가져오기 -->
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT * FROM shop
+	</select>
 </mapper>

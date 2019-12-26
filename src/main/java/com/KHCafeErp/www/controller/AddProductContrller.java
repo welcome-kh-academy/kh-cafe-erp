@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.ProductOption;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
 
 @Controller
@@ -47,7 +48,11 @@ public class AddProductContrller {
 	
 	//판매지점 등록
 	@RequestMapping(value="/product/addShop", method=RequestMethod.GET)
-	public void addShop() {
-
+	public void addShop(Model model) {
+//		logger.info("지점등록");
+		
+		List<Shop> shopList = addProductService.getShopList();
+		model.addAttribute("shopList", shopList);
+		
 	}
 }
