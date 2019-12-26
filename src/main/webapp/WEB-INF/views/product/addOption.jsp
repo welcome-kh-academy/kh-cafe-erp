@@ -10,9 +10,10 @@ table{
 }
 td div{
 	margin : 0px 20px;
+	margin-bottom:5px;
 }
 fieldset, #optionList, #product{
-	margin : 20px 20px;
+	margin : 18px 20px;
 }
 .form-check-input{
 	margin-left:10px;
