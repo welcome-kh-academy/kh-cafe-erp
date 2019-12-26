@@ -44,9 +44,4 @@ public class JoinStaffController {
 		return "redirect:/dashboard/main";
 	}
 	
-
-	
-	
-
-	
 }
