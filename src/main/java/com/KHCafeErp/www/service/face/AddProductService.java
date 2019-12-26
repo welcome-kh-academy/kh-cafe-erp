@@ -7,9 +7,9 @@ import com.KHCafeErp.www.dto.ProductOption;
 public interface AddProductService {
 
 	/**
-	 * 19-12-24 À¯Áø
-	 * µî·ÏµÇ¾î ÀÖ´Â Option Á¶È¸
-	 * @return - Option ¸®½ºÆ®
+	 * 19-12-24 ìœ ì§„
+	 * ìƒí’ˆ ì˜µì…˜ ì¡°íšŒ
+	 * @return - Option ë¦¬ìŠ¤íŠ¸
 	 */
 	public List<ProductOption> selectOption();
 
