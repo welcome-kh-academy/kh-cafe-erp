@@ -26,7 +26,7 @@ public class AddProductContrller {
 		logger.info("상품등록 첫 페이지");
 	}
 	
-	// ��ǰ �ɼ� ��� 
+	// 상품 옵션 목록  
 	@RequestMapping(value = "/product/option/list", method=RequestMethod.GET)
 	public String optionList(Model model) {
 		logger.info("optionList()");
@@ -38,11 +38,16 @@ public class AddProductContrller {
 		return "/product/productOption";
 	}
 
-	// ��ǰ �ɼ� ���
+	// 상품 옵션 등록
 	@RequestMapping(value = "/product/option/register")
 	public ModelAndView getOption(ModelAndView mav) {
 		
 		return mav;
 	}
 	
+	//판매지점 등록
+	@RequestMapping(value="/product/addshop", method=RequestMethod.GET)
+	public void addShop() {
+			
+	}
 }
