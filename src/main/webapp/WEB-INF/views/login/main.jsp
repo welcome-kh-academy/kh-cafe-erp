@@ -72,12 +72,14 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">
-							찾기
-						</span>
+						
 						<a class="txt2" href="/findinfo/findinfo">
-							아이디 / 패스워드
+							아이디 찾기
 						</a>
+						<a class="txt2" href="/findinfo/findinfopw">
+							패스워드 찾기
+						</a>
+						
 					</div>
 
 					<div class="text-center p-t-136">
