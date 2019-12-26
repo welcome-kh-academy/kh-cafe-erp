@@ -37,4 +37,4 @@ $(document).ready(function() {
 </div>
 
 
-<jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/product-footer.jsp"/>
