@@ -33,4 +33,12 @@
 		AND c.categoryNo = d.categoryNo
 		AND categoryMapNo = #{categoryMapNo}
 	</select>
+	
+	<!-- 19-12-26 현석 : 카테고리 상세목록 불러오기 -->
+	<select id="selectCategoryDetailList" parameterType="int" resultType="com.KHCafeErp.www.dto.CategoryDetail">
+		SELECT categoryMapNo, categoryDetailName, categoryNo
+		FROM categoryDetail
+		WHERE 1=1
+		AND categoryNo = #{categoryNo}
+	</select>
 </mapper>

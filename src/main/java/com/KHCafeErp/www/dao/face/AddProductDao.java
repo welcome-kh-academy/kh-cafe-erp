@@ -3,6 +3,7 @@ package com.KHCafeErp.www.dao.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
+import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
@@ -38,4 +39,11 @@ public interface AddProductDao {
 	 */
 	public CategoryBase selectCategory(Product product);
 
+	/**
+	 * 19-12-26 현석
+	 * 카테고리 넘버로 카테고리 상세목록 가져오기
+	 * @param categoryNo
+	 * @return
+	 */
+	public List<CategoryDetail> selectCategoryDetailList(int categoryNo);
 }

@@ -3,7 +3,7 @@
 
 <div class="product-bottom">
 <button type="button" class="btn btn-outline-danger">이전</button>
-<button type="button" class="btn btn-outline-primary">다음</button>
+<button type="button" id="next-stage" class="btn btn-outline-primary">다음</button>
 </div>
 
 <!-- Custom scripts for all pages-->
