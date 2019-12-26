@@ -94,6 +94,12 @@
 				</form>
 					<c:if test="${ login }">
 						<div class="container-login100-form-btn">
+						<a href="/dashboard/index">
+							<button class="login100-form-btn">
+								대쉬보드 시작하기
+							</button>
+						</a>
+						<br>
 						<a href="/login/logout">
 							<button class="login100-form-btn">
 								로그아웃
