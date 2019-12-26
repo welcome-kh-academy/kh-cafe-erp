@@ -16,17 +16,17 @@ public class FindIdPwController {
 	@Autowired FindIdPwService findidpwservice;
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
-	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.GET)
-	public void findIdPw() {
-//		logger.info("테스트");
+
+	@RequestMapping(value="/findinfo/findidinfo" ,method=RequestMethod.GET)
+	public void findId() {
+		//		logger.info("테스트");
 	}
-	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.POST)
-	public String findIdPwResult(Staff staff,Model model) {
-//		logger.info("테스트");
+	@RequestMapping(value="/findinfo/findidinfo" ,method=RequestMethod.POST)
+	public String findIdResult(Staff staff,Model model) {
+		//		logger.info("테스트");
 
 		Staff findid = findidpwservice.findid(staff);
-		
+
 		if( findid != null ) {
 			int id = findid.getStaffNo();
 			model.addAttribute("id" ,id);
@@ -34,14 +34,26 @@ public class FindIdPwController {
 
 		}else 
 			return "/findinfo/findidfail";
-		
-		
-		
-		
-		
-		
-		
+
 	}
-	
-		
+	@RequestMapping(value="/findinfo/findpwinfo" ,method=RequestMethod.GET)
+	public void findPw() {
+		//		logger.info("테스트");
+	}
+	@RequestMapping(value="/findinfo/findpwinfo" ,method=RequestMethod.POST)
+	public String findPwResult(Staff staff,Model model) {
+		//		logger.info("테스트");
+
+		Staff findid = findidpwservice.findid(staff);
+
+		if( findid != null ) {
+			int id = findid.getStaffNo();
+			model.addAttribute("id" ,id);
+			return "/findinfo/findidsuccess";
+
+		}else 
+			return "/findinfo/findidfail";
+
+	}
+
 }

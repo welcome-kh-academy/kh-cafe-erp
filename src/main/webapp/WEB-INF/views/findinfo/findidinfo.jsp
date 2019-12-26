@@ -44,7 +44,7 @@
 
 				<h1>사원번호 찾기</h1>
 
-				<form class="login100-form validate-form" action="/findinfo/findinfo"
+				<form class="login100-form validate-form" action="/findinfo/findidinfo"
 					method="post">
 
 					<div class="wrap-input100 validate-input"
