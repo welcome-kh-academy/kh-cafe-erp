@@ -57,7 +57,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<a href="/findinfo/findinfo"> <button class="login100-form-btn" type="submit"
+						<a href="/findinfo/findpwinfo"> <button class="login100-form-btn" type="submit"
 							name="gogologin">다시조회하기</button></a>
 					</div>
 
