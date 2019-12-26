@@ -46,8 +46,8 @@ public class AddProductContrller {
 	}
 	
 	//판매지점 등록
-	@RequestMapping(value="/product/addshop", method=RequestMethod.GET)
+	@RequestMapping(value="/product/addShop", method=RequestMethod.GET)
 	public void addShop() {
-			
+
 	}
 }
