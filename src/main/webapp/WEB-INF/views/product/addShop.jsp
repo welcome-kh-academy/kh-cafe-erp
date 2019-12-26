@@ -9,6 +9,12 @@ $(document).ready(function() {
 		$("#addShop > button").html( $(this).html() );
 	})
 	
+	$("#select").click(function() {
+		$f = $("<form>").attr({"action": "/product/addShop", "method": "post"})
+			.append( $("<input>").attr({"type": "hidden", "name": "shopName", "value": $("#addShop > button").html()}) )
+			.appendTo( $(document.body) );
+// 		$f.submit();
+	});
 })
 </script>
 <h1>판매지점 등록하기이이이이이</h1>
@@ -26,7 +32,7 @@ $(document).ready(function() {
   </div>
 </div>
 
-	<button type="button" class="btn btn-primary">등록</button>
+	<button id="select" type="button" class="btn btn-primary">등록</button>
 </div>
 
 
