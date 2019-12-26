@@ -7,8 +7,38 @@
   
 <mapper namespace="com.KHCafeErp.www.dao.face.AddProductDao">
 	<!-- 19-12-24 유진 : 상품 옵션 목록  -->
-	<select id="selectOption" resultType="com.KHCafeErp.www.dto.ProductOption">
-		SELECT productOptionNo, productOptionName, optionValue FROM productOption ORDER BY productOptionNo
+	<select id="selectOption" parameterType="int" resultType="com.KHCafeErp.www.dto.ProductOption">
+		SELECT rownum rnum, B.* FROM(SELECT productOptionNo, productOptionName, optionValue FROM productOption WHERE categoryNo=#{categoryNo} ORDER BY productOptionNo)B ORDER BY rnum
 	</select>
 
+	<!-- 19-12-26 현석 : 카테고리 목록 불러오기  -->
+	<select id="selectCategoryList" resultType="com.KHCafeErp.www.dto.CategoryBase">
+		SELECT categoryNo, categoryName FROM categoryBase
+	</select>
+
+	<!-- 지점 목록 가져오기 -->
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT * FROM shop
+	</select>
+	
+	<select id="selectProductOptionNo" parameterType="int" resultType="int">
+		SELECT MAX(rownum)+1 rnum FROM(SELECT productOptionNo, productOptionName, optionValue FROM productOption WHERE categoryNo=#{categoryNo} ORDER BY productOptionNo)
+	</select>
+	
+	<!-- 19-12-26 현석 : 카테고리 불러오기 -->
+	<select id="selectCategory" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.CategoryBase">
+		SELECT c.categoryName, d.categoryDetailName
+		FROM categoryBase c, categoryDetail d
+		WHERE 1=1
+		AND c.categoryNo = d.categoryNo
+		AND categoryMapNo = #{categoryMapNo}
+	</select>
+	
+	<!-- 19-12-26 현석 : 카테고리 상세목록 불러오기 -->
+	<select id="selectCategoryDetailList" parameterType="int" resultType="com.KHCafeErp.www.dto.CategoryDetail">
+		SELECT categoryMapNo, categoryDetailName, categoryNo
+		FROM categoryDetail
+		WHERE 1=1
+		AND categoryNo = #{categoryNo}
+	</select>
 </mapper>

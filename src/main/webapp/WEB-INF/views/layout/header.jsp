@@ -1,15 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 제이쿼리 3.2.1 버전 -->
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
 
 <!-- 헤더 -->
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<!-- 제이쿼리 3.2.1 버전 -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
+
+<!-- select2 4.0.5 버전 -->
+<link rel="stylesheet" href="/resources/vendor/select2/select2.min.css" />
+<script type="text/javascript" src="/resources/vendor/select2/select2.min.js"></script>
+
+<!-- select2 4.0.12 버전 -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" /> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> -->
+
+<!-- 폰트 어썸 4.7 버전 -->
+<script type="text/javascript" src="/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css"></script>
+<!-- <script type="text/javascript" src="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css"></script> -->
 
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
