@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.AddProductDao;
 import com.KHCafeErp.www.dto.CategoryBase;
+
+import com.KHCafeErp.www.dto.Option;
+
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.Product;
-import com.KHCafeErp.www.dto.ProductOption;
+
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
 
@@ -28,14 +31,10 @@ public class AddProductServiceImpl implements AddProductService {
 	}
 	
 	@Override
-	public List<ProductOption> selectOption(int categoryNo) {
+	public List<Option> selectOption(int categoryNo) {
 		return addProductDao.selectOption(categoryNo);
 	}
 
-	@Override
-	public int getProductOptionNo(int categoryNo) {
-		return addProductDao.selectProductOptionNo(categoryNo);
-	}
 
 	@Override
 	public List<CategoryBase> getCategoryList() {
@@ -43,6 +42,9 @@ public class AddProductServiceImpl implements AddProductService {
 	}
 
 	@Override
+	public void addOption(Option option) {
+		addProductDao.insertOption(option);
+	}
 	public CategoryBase getCategory(Product product) {
 		return addProductDao.selectCategory(product);
 	}
