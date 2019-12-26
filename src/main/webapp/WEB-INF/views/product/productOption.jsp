@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 <style type="text/css">
 table{
@@ -11,44 +13,16 @@ td div{
 fieldset, #optionList{
 	margin : 20px 20px;
 }
+.form-check-input{
+	margin-left:10px;
+}
 </style>
+
 <div id="manageOption" style="margin : 10px; height:230px">
 	<form action="/product/option/register" method="post">
 	<fieldset>
 		<legend class="text-info">상품 옵션 등록</legend>
 		<table>
-			<tr>
-				<td> 
-					<div id="selectBaseCategory">
-						<select name="categoryBase" class="form-control">
-							<option value="" selected disabled>카테고리</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-					</div>
-				</td>
-				<td> 
-					<div id="selectDetailCategory">
-						<select name="categoryDetail" class="form-control">
-							<option value="" selected>상세 카테고리</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-					</div>
-				</td>
-				<td> 
-					<div id="selectProduct">
-						<select name="product" class="form-control">
-							<option value="" selected>제품명</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-					</div>
-				</td>
-			</tr>
 			<tr style="height:10px"><td></td></tr>
 			<tr>
 				<td>
@@ -72,21 +46,29 @@ fieldset, #optionList{
 			</tr>
 		</table>
 	</fieldset>
+	<input type="button" id="resetOption" value="초기화"/>
+	<button>등록</button>
 	</form>
 </div>
 
 <div id="optionList">
 	<fieldset>
 		<legend class="text-info">상품 옵션 목록</legend>
-		<table>
-			<tr>
-				<th>카테고리</th>
-				<th>상세카테고리</th>
-				<th>제품명</th>
-				<th>옵션이름</th>
+		<table class="table">
+			<tr class="table-info">
+				<th><input class="form-check-input" type="checkbox" name="selectAll"/></th>
+				<th>옵션번호</th>
+				<th>옵션 이름</th>
 				<th>상품 사이즈</th>
-				<th>상품 수량</th>
 			</tr>
+			<c:forEach items="${optionList }" var="option">
+				<tr>
+					<td><input class="form-check-input" type="checkbox" name="selected" value="${option.productOptionNo }"/></td>
+					<td>${option.productOptionNo }</td>
+					<td>${option.productOptionName }</td>
+					<td>${option.optionValue }</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</fieldset>
 </div>
