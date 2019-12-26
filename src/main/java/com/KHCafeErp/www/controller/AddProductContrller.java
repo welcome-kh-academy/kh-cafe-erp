@@ -65,7 +65,7 @@ public class AddProductContrller {
 	}
 	
 	// 상품 옵션 목록  
-	@RequestMapping(value = "/product/option/list", method=RequestMethod.GET)
+	@RequestMapping(value = "/product/option", method=RequestMethod.GET)
 	public String optionList(Model model) {
 		logger.info("optionList()");
 		int categoryNo = 1;	// 나중에 수정 필요 - 앞에서 넘어오는 categoryNo로..!
@@ -75,7 +75,7 @@ public class AddProductContrller {
 
 		model.addAttribute("optionList", optionList);
 		
-		return "/product/productOption";
+		return "/product/addOption";
 	}
 
 
@@ -91,12 +91,13 @@ public class AddProductContrller {
 		option.setoptionName(optionName);
 		option.setOptionValue(optionValue);
 		
-		System.out.println(option);
+//		System.out.println(option);
 		
 		addProductService.addOption(option);
 		List<Option> optionList = addProductService.selectOption(categoryNo);
 		mav.addObject("optionList", optionList);
 		mav.setViewName("jsonView");
+		
 		return mav;
 	}
 	

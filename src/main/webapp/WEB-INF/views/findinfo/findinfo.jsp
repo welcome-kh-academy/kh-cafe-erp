@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<title>사원번호 찾기</title>
+<title>사원번호/비밀번호 찾기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -33,6 +33,17 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <!--===============================================================================================-->
 <script type="text/javascript">
+//체크 버튼에 따라 아이디/비밀번호 기능이 달라진다
+function search_check(num) {
+	if (num == '1') {
+		document.getElementById("searchP").style.display = "none";
+		document.getElementById("searchI").style.display = "";	
+	} else {
+		document.getElementById("searchI").style.display = "none";
+		document.getElementById("searchP").style.display = "";
+	}
+}
+
 </script>
 
 </head>
@@ -42,10 +53,31 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 
-				<h1>사원번호 찾기</h1>
+				<h1>사원번호/비밀번호 찾기</h1>
 
-				<form class="login100-form validate-form" action="/findinfo/findinfo"
+				<form class="login100-form validate-form" action="/findinfo/findidinfo"
 					method="post">
+
+					<div style="margin-bottom: 10px;"
+						class="custom-control custom-radio custom-control-inline">
+						<input type="radio" class="custom-control-input" id="search_1"
+							name="search_total" onclick="search_check(1)" checked="checked">
+						<label class="custom-control-label "
+							for="search_1">사원번호 찾기</label>
+					</div>
+
+
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" class="custom-control-input" id="search_2"
+							name="search_total" onclick="search_check(2)">
+							 <label class="custom-control-label "
+							for="search_2">비밀번호 찾기</label>
+					</div>
+
+
+
+
+
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
@@ -63,6 +95,27 @@
 							aria-hidden="true" ></i>
 						</span>
 					</div>
+					
+					
+					<div class="wrap-input100 validate-input"
+						data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="shopNo"
+							placeholder="사원번호 입력" required> <span class="focus-input100"></span>
+						<span class="symbol-input100"> <i class="fa fa-user-o"
+							aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input"
+						data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" type="email" name="email"
+							placeholder="이메일 입력" required> <span class="focus-input100"></span>
+						<span class="symbol-input100"> <i class="fa fa-user-o"
+							aria-hidden="true" ></i>
+						</span>
+					</div>
+					
+					
+					
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit"
