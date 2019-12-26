@@ -26,6 +26,8 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <!--===============================================================================================-->
+
+
 </head>
 <body>
 	
@@ -41,7 +43,7 @@
 						<h1>KH Cafe ERP</h1><br>
 						<h1>프로그램</h1>
 					</span>
-
+					<c:if test="${ !login }">
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="shopNo" placeholder="shop code">
 						<span class="focus-input100"></span>
@@ -66,7 +68,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" data-toggle="modal" data-target="#loginSuccess" >
 							로그인
 						</button>
 					</div>
@@ -86,12 +88,23 @@
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>
+					</c:if>
 				</form>
+					<c:if test="${ login }">
+						<div class="container-login100-form-btn">
+						<a href="/login/logout">
+							<button class="login100-form-btn">
+								로그아웃
+							</button>
+						</a>
+					</div>
+					</c:if>
 			</div>
 		</div>
 	</div>
 	
-	
+
+
 
 	
 <!--===============================================================================================-->	

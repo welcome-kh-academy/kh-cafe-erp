@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.KHCafeErp.www.dto.Staff;
@@ -25,7 +26,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login/check")
-	public String loginCheck(Staff staff, HttpSession session) {
+	public String loginCheck(Staff staff, HttpSession session, Model model) {
 		
 		logger.info(staff.toString());
 		
@@ -36,11 +37,20 @@ public class LoginController {
 			session.setAttribute("login", isLogin);
 			session.setAttribute("staffNo", staff.getStaffNo());
 			session.setAttribute("nick", staff.getNick());
+		} else {
+			model.addAttribute("login", false);
 		}
 		
 		
 		return "redirect:/login/main";
 	}
 	
+	@RequestMapping(value="/login/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/login/main";
+	}
 
 }
