@@ -3,7 +3,7 @@ package com.KHCafeErp.www.service.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
-import com.KHCafeErp.www.dto.ProductOption;
+import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface AddProductService {
@@ -20,9 +20,7 @@ public interface AddProductService {
 	 * @param categoryNo
 	 * @return
 	 */
-	public List<ProductOption> selectOption(int categoryNo);
-
-	public int getProductOptionNo(int categoryNo);
+	public List<Option> selectOption(int categoryNo);
 
 	/**
 	 * 19-12-26 현석
@@ -30,5 +28,7 @@ public interface AddProductService {
 	 * @return - Category 리스트
 	 */
 	public List<CategoryBase> getCategoryList();
+
+	public void addOption(Option option);
 	
 }

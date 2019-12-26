@@ -7,8 +7,8 @@
   
 <mapper namespace="com.KHCafeErp.www.dao.face.AddProductDao">
 	<!-- 19-12-24 유진 : 상품 옵션 목록  -->
-	<select id="selectOption" parameterType="int" resultType="com.KHCafeErp.www.dto.ProductOption">
-		SELECT rownum rnum, B.* FROM(SELECT productOptionNo, productOptionName, optionValue FROM productOption WHERE categoryNo=#{categoryNo} ORDER BY productOptionNo)B ORDER BY rnum
+	<select id="selectOption" parameterType="int" resultType="com.KHCafeErp.www.dto.Option">
+		SELECT rownum rnum, B.* FROM(SELECT optionNo, optionName, optionValue FROM optionBase WHERE categoryNo=#{categoryNo} ORDER BY optionNo)B ORDER BY rnum
 	</select>
 
 	<!-- 19-12-26 현석 : 카테고리 목록 불러오기  -->
@@ -21,7 +21,8 @@
 		SELECT * FROM shop
 	</select>
 	
-	<select id="selectProductOptionNo" parameterType="int" resultType="int">
-		SELECT MAX(rownum)+1 rnum FROM(SELECT productOptionNo, productOptionName, optionValue FROM productOption WHERE categoryNo=#{categoryNo} ORDER BY productOptionNo)
-	</select>
+	<insert id="insertOption" parameterType="com.KHCafeErp.www.dto.Option">
+		INSERT INTO option(optionNo, optionName, optionValue, categoryNo) VALUES (optionNo_seq.nextval, #{optionName}, #{optionValue}, #{categoryNo})
+	</insert>
+	
 </mapper>

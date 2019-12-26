@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
-import com.KHCafeErp.www.dto.ProductOption;
+import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
 
@@ -42,10 +42,10 @@ public class AddProductContrller {
 	@RequestMapping(value = "/product/option/list", method=RequestMethod.GET)
 	public String optionList(Model model) {
 		logger.info("optionList()");
-//		int categoryNo = 1;	// 나중에 수정 필요 - 앞에서 넘어오는 categoryNo로..!
-		int categoryNo = 2;	
+		int categoryNo = 1;	// 나중에 수정 필요 - 앞에서 넘어오는 categoryNo로..!
+//		int categoryNo = 2;	
 
-		List<ProductOption> optionList = addProductService.selectOption(categoryNo);
+		List<Option> optionList = addProductService.selectOption(categoryNo);
 
 		model.addAttribute("optionList", optionList);
 		
@@ -55,16 +55,22 @@ public class AddProductContrller {
 
 	// 상품 옵션 등록
 	@RequestMapping(value = "/product/option/register")
-	public ModelAndView getOption(@RequestParam(value="categoryNo") int categoryNo, @RequestParam(value="productOptionName") String productOptionName, @RequestParam(value="optionValue") int optionValue,ModelAndView mav) {
-		System.out.println(categoryNo);
+	public ModelAndView getOption(@RequestParam(value="categoryNo") int categoryNo, @RequestParam(value="optionName") String optionName, @RequestParam(value="optionValue") int optionValue,ModelAndView mav) {
+//		System.out.println(categoryNo);
+//		System.out.println(optionName);
+//		System.out.println(optionValue);
 		
-		int productOptionNo = addProductService.getProductOptionNo(categoryNo);
+		Option option = new Option();
+		option.setCategoryNo(categoryNo);
+		option.setoptionName(optionName);
+		option.setOptionValue(optionValue);
 		
-		mav.addObject("productOptionNo", productOptionNo);
-		mav.addObject("categoryNo",categoryNo);
-
+		System.out.println(option);
+		
+		addProductService.addOption(option);
+		List<Option> optionList = addProductService.selectOption(categoryNo);
+		mav.addObject("optionList", optionList);
 		mav.setViewName("jsonView");
-		
 		return mav;
 	}
 	
