@@ -37,6 +37,8 @@ public class LoginController {
 			session.setAttribute("login", isLogin);
 			session.setAttribute("staffNo", staff.getStaffNo());
 			session.setAttribute("nick", staff.getNick());
+			
+			return "redirect:/dashboard/index";
 		} else {
 			model.addAttribute("login", false);
 		}

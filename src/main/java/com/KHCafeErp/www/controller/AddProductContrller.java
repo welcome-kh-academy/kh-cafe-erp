@@ -40,4 +40,9 @@ public class AddProductContrller {
 		return mav;
 	}
 	
+	//판매지점 등록
+	@RequestMapping(value="/product/addshop", method=RequestMethod.GET)
+	public void addShop() {
+		
+	}
 }
