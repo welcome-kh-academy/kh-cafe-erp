@@ -64,6 +64,19 @@ public class AddProductContrller {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
+	public String addProduct() {
+		logger.info("addProduct()");
+		return "/product/addproduct";
+	}
+
+	@RequestMapping(value = "/product/register", method = RequestMethod.POST)
+	public String addProductProc() {
+		logger.info("addProductProc()");
+		
+		return "/product/addproduct";
+	}
+	
 	// 상품 옵션 목록  
 	@RequestMapping(value = "/product/option", method=RequestMethod.GET)
 	public String optionList(Model model) {

@@ -12,9 +12,9 @@ nav.nav {
 
 <nav class="nav nav-pills nav-justified">
 
-  <a class="nav-item nav-link " href="#">카테고리 등록</a>
+  <a class="nav-item nav-link " href="/product/addCategory">카테고리 등록</a>
   >
-  <a class="nav-item nav-link" href="#">상품기초정보등록</a>
+  <a class="nav-item nav-link" href="/product/register">상품기초정보등록</a>
   >
   <a class="nav-item nav-link" href="/product/option">상품 옵션 등록</a>
   >
