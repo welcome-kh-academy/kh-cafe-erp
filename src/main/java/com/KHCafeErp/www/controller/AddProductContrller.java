@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.service.face.AddProductService;
 
@@ -24,6 +25,15 @@ public class AddProductContrller {
 	@RequestMapping(value = "/product/index", method=RequestMethod.GET)
 	public void productIndex() {
 		logger.info("상품등록 첫 페이지");
+	}
+	
+//	상품등록 1단계 - 카테고리등록
+	@RequestMapping(value = "/product/addCategory", method=RequestMethod.GET)
+	public void addCategory(Model model) {
+		logger.info("카테고리 등록");
+		List<CategoryBase> categoryList = addProductService.getCategoryList();
+	
+		model.addAttribute("categoryList", categoryList);
 	}
 	
 	// 상품 옵션 목록  

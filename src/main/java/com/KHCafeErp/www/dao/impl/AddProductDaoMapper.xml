@@ -11,4 +11,9 @@
 		SELECT productOptionNo, productOptionName, optionValue FROM productOption ORDER BY productOptionNo
 	</select>
 
+	<!-- 19-12-26 현석 : 카테고리 목록 불러오기  -->
+	<select id="selectCategoryList" resultType="com.KHCafeErp.www.dto.CategoryBase">
+		SELECT categoryNo, categoryName FROM categoryBase
+	</select>
+
 </mapper>

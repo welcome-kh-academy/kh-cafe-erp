@@ -38,7 +38,7 @@ table tr td:last-child {border-right : none;}
 			<td>여러 카테고리의 상품을 엑셀로 일괄 등록 합니다.</td>
 		</tr>
 		<tr>
-			<td><button class="btn btn-outline-primary" ><a href="/product/add" style="color:black;">신규상품등록</a></button></td>
+			<td><button class="btn btn-outline-primary" ><a href="/product/addCategory" style="color:black;">신규상품등록</a></button></td>
 			<td><button class="btn btn-outline-success" ><a href="/product/upload"> 엑셀 업로드</a></button></td>
 		</tr>
 	</table>

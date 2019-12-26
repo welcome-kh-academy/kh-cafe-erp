@@ -14,6 +14,14 @@
 <!-- 제이쿼리 3.2.1 버전 -->
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
 
+<!-- select2 4.0.5 버전 -->
+<link rel="stylesheet" href="/resources/vendor/select2/select2.min.css" />
+<script type="text/javascript" src="/resources/vendor/select2/select2.min.js"></script>
+
+<!-- select2 4.0.12 버전 -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" /> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> -->
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #wrapper{
