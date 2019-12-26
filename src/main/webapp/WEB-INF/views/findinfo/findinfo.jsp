@@ -33,16 +33,35 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <!--===============================================================================================-->
 <script type="text/javascript">
-//체크 버튼에 따라 아이디/비밀번호 기능이 달라진다
-function search_check(num) {
-	if (num == '1') {
-		document.getElementById("searchP").style.display = "none";
-		document.getElementById("searchI").style.display = "";	
-	} else {
-		document.getElementById("searchI").style.display = "none";
-		document.getElementById("searchP").style.display = "";
+	//체크 버튼에 따라 아이디/비밀번호 기능이 달라진다
+	function search_check(num) {
+		if (num == '1') {
+			document.getElementById("searchPw").style.display = "none";
+			document.getElementById("searchId").style.display = "";
+		} else {
+			document.getElementById("searchId").style.display = "none";
+			document.getElementById("searchPw").style.display = "";
+		}
 	}
-}
+	// 아이디 & 스토어 값 저장하기 위한 변수
+	var idV = "";
+	// 아이디 값 받고 출력하는 ajax
+	var idSearch_click = function(){
+		$.ajax({
+			type:"POST",
+			url:"${pageContext.request.contextPath}/user/userSearch?inputshopNo="
+					+$('#shopNo').val()+"&inputemail="+$('#email').val(),
+			success:function(data){
+				if(data == 0){
+					$('#id_value').text("회원 정보를 확인해주세요!");	
+				} else {
+					$('#id_value').text(data);
+					// 아이디값 별도로 저장
+					idV = data;
+				}
+			}
+		});
+	}
 
 </script>
 
@@ -53,75 +72,78 @@ function search_check(num) {
 		<div class="container-login100">
 			<div class="wrap-login100">
 
-				<h1>사원번호/비밀번호 찾기</h1>
+				<h2>사원번호/비밀번호 찾기</h2>
 
-				<form class="login100-form validate-form" action="/findinfo/findidinfo"
-					method="post">
+				<form class="login100-form validate-form"
+					action="/findinfo/findidinfo" method="post">
 
-					<div style="margin-bottom: 10px;"
-						class="custom-control custom-radio custom-control-inline">
-						<input type="radio" class="custom-control-input" id="search_1"
+					<div style="margin-bottom: 10px;">
+						
+						<input type="radio"  id="search_1"
 							name="search_total" onclick="search_check(1)" checked="checked">
-						<label class="custom-control-label "
-							for="search_1">사원번호 찾기</label>
+						<label for="search_1">사원번호 찾기</label>
 					</div>
 
 
-					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" class="custom-control-input" id="search_2"
-							name="search_total" onclick="search_check(2)">
-							 <label class="custom-control-label "
+					<div>
+						<input type="radio"  id="search_2"
+							name="search_total" onclick="search_check(2)"> <label
 							for="search_2">비밀번호 찾기</label>
 					</div>
 
 
 
+					
+
 
 
 
-					<div class="wrap-input100 validate-input"
-						data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="shopNo"
-							placeholder="지점번호 입력" required> <span class="focus-input100"></span>
-						<span class="symbol-input100"> <i class="fa fa-user-o"
-							aria-hidden="true"></i>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input"
-						data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="email" name="email"
-							placeholder="이메일 입력" required> <span class="focus-input100"></span>
-						<span class="symbol-input100"> <i class="fa fa-user-o"
-							aria-hidden="true" ></i>
-						</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input"
-						data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="shopNo"
-							placeholder="사원번호 입력" required> <span class="focus-input100"></span>
-						<span class="symbol-input100"> <i class="fa fa-user-o"
-							aria-hidden="true"></i>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input"
-						data-validate="Valid email is required: ex@abc.xyz">
-						<input class="input100" type="email" name="email"
-							placeholder="이메일 입력" required> <span class="focus-input100"></span>
-						<span class="symbol-input100"> <i class="fa fa-user-o"
-							aria-hidden="true" ></i>
-						</span>
+					<div id="searchId">
+						<div class="wrap-input100 validate-input"
+							data-validate="Valid email is required: ex@abc.xyz">
+							<input class="input100" type="text" name="shopNo" id="shopNo"
+								placeholder="지점번호 입력" required> <span
+								class="focus-input100"></span> <span class="symbol-input100">
+								<i class="fa fa-user-o" aria-hidden="true"></i>
+							</span>
+						</div>
+						<div class="wrap-input100 validate-input"
+							data-validate="Valid email is required: ex@abc.xyz">
+							<input class="input100" type="email" name="email" id="email"
+								placeholder="이메일 입력" required> <span
+								class="focus-input100"></span> <span class="symbol-input100">
+								<i class="fa fa-user-o" aria-hidden="true"></i>
+							</span>
+						</div>
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" type="submit"
+								name="findidbutton" onclick="idSearch_click()">찾기</button>
+						</div>						
 					</div>
 					
-					
-					
+					<div id="searchPw" style="display: none;">
+						<div class="wrap-input100 validate-input"
+							data-validate="Valid email is required: ex@abc.xyz">
+							<input class="input100" type="text" name="staffNo" id="staffNo"
+								placeholder="사원번호 입력" required> <span
+								class="focus-input100"></span> <span class="symbol-input100">
+								<i class="fa fa-user-o" aria-hidden="true"></i>
+							</span>
+						</div>
+						<div class="wrap-input100 validate-input"
+							data-validate="Valid email is required: ex@abc.xyz">
+							<input class="input100" type="email" name="email" id="email"
+								placeholder="이메일 입력" required> <span
+								class="focus-input100"></span> <span class="symbol-input100">
+								<i class="fa fa-user-o" aria-hidden="true"></i>
+							</span>
+						</div>
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit"
-							name="findidbutton">찾기</button>
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn" type="submit"
+								name="findpwbutton" onclick="idSearch_click()">찾기</button>
+						</div>
 					</div>
-
 				</form>
 			</div>
 		</div>

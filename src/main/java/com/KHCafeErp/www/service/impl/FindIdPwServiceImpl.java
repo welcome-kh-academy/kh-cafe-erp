@@ -1,5 +1,6 @@
 package com.KHCafeErp.www.service.impl;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,9 @@ import com.KHCafeErp.www.service.face.FindIdPwService;
 public class FindIdPwServiceImpl implements FindIdPwService{
 
 	
-	@Autowired FindIdPwDao findidpwDao;
+	@Autowired 
+				FindIdPwDao findidpwDao;
+	          
 	
 	@Override
 	public Staff findid(Staff staff) {
@@ -21,5 +24,6 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 		return findidResult;
 		
 	}
+
 
 }

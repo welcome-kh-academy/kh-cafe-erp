@@ -19,11 +19,11 @@ public class FindIdPwController {
 
 	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.GET)
 	public void findId() {
-		//		logger.info("테스트");
+		//		logger.info("�뀒�뒪�듃");
 	}
 	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.POST)
 	public String findIdResult(Staff staff,Model model) {
-		//		logger.info("테스트");
+		//		logger.info("�뀒�뒪�듃");
 
 		Staff findid = findidpwservice.findid(staff);
 

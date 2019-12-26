@@ -6,4 +6,5 @@ public interface FindIdPwService {
 
 	public Staff findid(Staff staff);
 
+	
 }
