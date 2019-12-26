@@ -74,12 +74,14 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">
-							찾기
-						</span>
+						
 						<a class="txt2" href="/findinfo/findinfo">
-							아이디 / 패스워드
+							아이디 찾기
 						</a>
+						<a class="txt2" href="/findinfo/findinfopw">
+							패스워드 찾기
+						</a>
+						
 					</div>
 
 					<div class="text-center p-t-136">
@@ -92,6 +94,12 @@
 				</form>
 					<c:if test="${ login }">
 						<div class="container-login100-form-btn">
+						<a href="/dashboard/index">
+							<button class="login100-form-btn">
+								대쉬보드 시작하기
+							</button>
+						</a>
+						<br>
 						<a href="/login/logout">
 							<button class="login100-form-btn">
 								로그아웃

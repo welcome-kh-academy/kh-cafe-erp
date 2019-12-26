@@ -3,9 +3,9 @@ package com.KHCafeErp.www.dao.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
+import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.Product;
-import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface AddProductDao {
@@ -22,9 +22,7 @@ public interface AddProductDao {
 	 * 상품 옵션 조회
 	 * @return - Option 리스트
 	 */
-	public List<ProductOption> selectOption(int categoryNo);
-
-	public int selectProductOptionNo(int categoryNo);
+	public List<Option> selectOption(int categoryNo);
 
 	/**
 	 * 19-12-26 현석
@@ -33,6 +31,8 @@ public interface AddProductDao {
 	 */
 	public List<CategoryBase> selectCategoryList();
 
+
+	public void insertOption(Option option);
 	/**
 	 * 19-12-26 현석
 	 * 상품검색으로 카테고리 가져오기
