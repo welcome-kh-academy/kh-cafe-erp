@@ -11,7 +11,7 @@ nav.nav {
 </style>
 
 <nav class="nav nav-pills nav-justified">
-  <a class="nav-item nav-link active" href="#">카테고리 등록</a>
+  <a class="nav-item nav-link" href="#">카테고리 등록</a>
   >
   <a class="nav-item nav-link" href="#">상품기초정보등록</a>
   >
@@ -19,6 +19,6 @@ nav.nav {
   >
   <a class="nav-item nav-link" href="#">판매 방식 설정</a>
   >
-  <a class="nav-item nav-link" href="#">판매 지점 등록</a>
+  <a class="nav-item nav-link active" href="/product/addShop">판매 지점 등록</a>
 </nav>
 

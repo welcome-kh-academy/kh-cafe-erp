@@ -10,8 +10,8 @@
 </style>
 <!-- <h1>상품관리</h1> -->
 <!-- <hr> -->
+<legend class="text-primary">상품 관리</legend>
 <table class="table table-hover">
-	<legend class="text-primary">상품 관리</legend>
   <thead>
     <tr>
    		<td>
@@ -30,25 +30,21 @@
     <tr>
     	<td>
    			 <div class="form-group">
-		      <label for="exampleSelect1">상품카테고리</label>
-		      <select class="form-control" id="exampleSelect1">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-		        <option>5</option>
+		      <label for="categoryBase">상품카테고리</label>
+		      <select class="form-control" id="categoryBase">
+		      	<c:forEach items="${ category }" var="category">
+		        <option>${ category.categoryName }</option>
+		        </c:forEach>
 		      </select>
 		    </div>
    		</td>
     	<td>
    			 <div class="form-group">
-		      <label for="exampleSelect1">세부카테고리</label>
-		      <select class="form-control" id="exampleSelect2">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-		        <option>5</option>
+		      <label for="categoryDetail">세부카테고리</label>
+		      <select class="form-control" id="categoryDetail">
+		      	<c:forEach items="${ categoryDetail }" var="detail">
+		        <option>${ detail.categoryDetailName }</option>
+				</c:forEach>
 		      </select>
 		    </div>
    		</td>
@@ -56,13 +52,11 @@
     <tr>
     	<td>
    			 <div class="form-group">
-		      <label for="exampleSelect1">입점매장</label>
-		      <select class="form-control" id="exampleSelect2">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-		        <option>5</option>
+		      <label for="shop">입점매장</label>
+		      <select class="form-control" id="shop">
+		      	<c:forEach items="${ shop }" var="s">
+		        <option>${ s.shopName }</option>
+				</c:forEach>
 		      </select>
 		    </div>
    		</td>
@@ -78,7 +72,6 @@
 </table> 
 
 <table class="table table-hover">
-  <thead>
     <tr class = table-secondary>
 	  <th id="checkbox" scope="col" class="text-center">
           <input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked="">
@@ -93,59 +86,29 @@
       <th scope="col">판매등록일</th>
       <th scope="col">판매종료일</th>
       <th scope="col">판매상태</th>
+      <th></th>
+      <th></th>
     </tr>
-  </thead>
   <tbody>
+    	<c:forEach items="${ product }" var="p">
     <tr class="table-light">
     	<td style="text-align: center"><input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked=""></td>
-      <td>Column content</td>
-      <td>Column content</td>
+      	<td>${ p.productNo }</td>
+      	<td>${ p.categoryMapNo }</td>
+      	<td>${ p.productName }</td>
+      	<td>${ p.originPrice }</td>
+      	<td>${ p.price }</td>
+      	<td>${ p.productOrigin }</td>
+      	<td>${ p.enrollDate }</td>
+      	<td>${ p.selStartDate }</td>
+      	<td>${ p.selEndDate }</td>
+      	<td>${ p.selStatus }</td>
+      	<td><button class="btn btn-primary">수정</button></td>
+      	<td><button class="btn btn-primary">삭제</button></td>
     </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
+      	</c:forEach>
+
+   
   </tbody>
 </table> 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
