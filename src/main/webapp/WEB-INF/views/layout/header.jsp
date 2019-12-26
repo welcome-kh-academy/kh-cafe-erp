@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 제이쿼리 3.2.1 버전 -->
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
 
 <!-- 헤더 --> <!-- 부트스트랩 4.4.1 버전 -->
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -14,8 +16,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
-<!-- 제이쿼리 3.2.1 버전 -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
 
 <!-- select2 4.0.5 버전 -->
 <link rel="stylesheet" href="/resources/vendor/select2/select2.min.css" />
