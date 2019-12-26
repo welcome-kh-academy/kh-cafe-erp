@@ -16,11 +16,13 @@ public interface AddProductService {
 	public List<Shop> getShopList();
 
 	/**
-	 * 19-12-24 유진
-	 * 상품 옵션 조회
-	 * @return - Option 리스트
+	 * 상품 옵션 목록 조회
+	 * @param categoryNo
+	 * @return
 	 */
-	public List<ProductOption> selectOption();
+	public List<ProductOption> selectOption(int categoryNo);
+
+	public int getProductOptionNo(int categoryNo);
 
 	/**
 	 * 19-12-26 현석
