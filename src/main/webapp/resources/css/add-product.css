@@ -75,17 +75,12 @@ body {
   display: none;
 }
 
-#crumbs ul li a:hover {
-  background: #357DFD;
-  color: #fff;
-}
+/* #crumbs ul li a:hover { */
+/*   background: #357DFD; */
+/*   color: #fff; */
+/* } */
 
-#crumbs ul li a:hover:after {
-  border-left-color: #357DFD;
-  color: #fff;
-}
-
-#crumbs ul li.active {
-  background: #357DFD;
-  color: #fff;
-}
+/* #crumbs ul li a:hover:after { */
+/*   border-left-color: #357DFD; */
+/*   color: #fff; */
+/* } */
