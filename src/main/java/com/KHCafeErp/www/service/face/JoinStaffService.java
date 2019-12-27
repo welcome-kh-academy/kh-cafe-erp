@@ -25,6 +25,6 @@ public interface JoinStaffService {
 	 */
 	public int idCheck(int staffNo);
 	
-
+	
 
 }

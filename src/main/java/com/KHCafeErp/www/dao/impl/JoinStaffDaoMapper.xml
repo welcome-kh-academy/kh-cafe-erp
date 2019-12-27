@@ -25,4 +25,5 @@ VALUES ( #{staffNo }, #{shopNo }, #{position }, #{nick }, #{pw }, #{staffName },
 </select>
 
 
+
 </mapper>

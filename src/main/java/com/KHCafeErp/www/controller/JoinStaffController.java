@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.JoinStaffService;
@@ -25,13 +26,13 @@ public class JoinStaffController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JoinStaffController.class);
 	
-
 	
 	//회원가입페이지
 	@RequestMapping(value="/join/join", method=RequestMethod.GET)
 	public String join() { 
 		
 		logger.info("회원가입접속확인");
+		
 		return "join/join";		
 	}
 	
@@ -42,10 +43,12 @@ public class JoinStaffController {
 		logger.info(staff.toString());
 		
 		//회원가입 처리
-		joinstaffService.join(staff);		
-		
+		joinstaffService.join(staff);	
+
 		return "redirect:/dashboard/index";
 	}
+	
+
 	
 	//id 중복 처리 
 	@RequestMapping(value="/join/idcheck", method=RequestMethod.GET)
@@ -73,7 +76,6 @@ public class JoinStaffController {
 		logger.info("nickcheck" + result);
 		return Integer.toString(result);
 	}
-	
 	
 	
 }
