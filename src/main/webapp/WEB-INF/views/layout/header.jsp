@@ -57,7 +57,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">상품관리</a>
+        <a class="nav-link" href="/product/index">상품관리</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">주문관리</a>
