@@ -34,5 +34,25 @@ public interface JoinStaffDao {
 
 
 	
+	/**
+	 * 유저 인증키 생성 매소드
+	 * 2019/12/27 지재용
+	 * 
+	 * @param staffNo - 회원번호
+	 * @param user_key - 난수(인증키)
+	 */
+	public int getKey(int staffNo, String user_key);
+	
+	/**
+	 * 유저 인증키 Y로 바꿔주는 메소드
+	 * 2019/12/27 지재용
+	 *  
+	 * @param staffNo - 회원번호
+	 * @param key - 난수(인증키)
+	 * @return
+	 */
+	public int alterJoinStaffKey(int staffNo, String key); 
+	
+	
 	
 }

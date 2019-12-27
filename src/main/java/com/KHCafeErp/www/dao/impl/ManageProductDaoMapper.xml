@@ -9,13 +9,27 @@
 	<select id="selectCategoryAll" resultType="com.KHCafeErp.www.dto.CategoryBase">
 		SELECT * FROM categoryBase
 	</select>
-	<select id="selectCategoryDetailAll" resultType="com.KHCafeErp.www.dto.CategoryDetail">
-		SELECT * FROM categoryDetail
+	<select id="selectCategoryDetail" parameterType="int" resultType="com.KHCafeErp.www.dto.CategoryDetail">
+		SELECT categoryMapNo, categoryDetailName, categoryNo
+		FROM categoryDetail
+		WHERE 1=1
+		AND categoryNo = #{categoryNo}
 	</select>
 	<select id="selectShopAll" resultType="com.KHCafeErp.www.dto.Shop">
 		SELECT * FROM shop
 	</select>
 	<select id="selectProductAll" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT * FROM product
+	</select>
+	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT
+		    P.productno, P.categorymapno, P.optionno, P.shopno, productname
+		    , productcontent, originprice, price, productorigin, enrolldate
+		    , selstartdate, selenddate, selstatus, CB.categoryName, CB.categoryNo
+		FROM product P, categoryDetail CD, categoryBase CB
+		WHERE 1=1
+		    AND P.categoryMapNo = CD.categoryMapNo
+		    AND CD.categoryNo = CB.categoryNo
+		    AND P.productNo = #{productNo}
 	</select>
 </mapper>

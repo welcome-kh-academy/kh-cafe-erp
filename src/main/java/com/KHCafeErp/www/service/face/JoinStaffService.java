@@ -1,5 +1,7 @@
 package com.KHCafeErp.www.service.face;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.KHCafeErp.www.dto.Staff;
 
 public interface JoinStaffService {
@@ -25,6 +27,24 @@ public interface JoinStaffService {
 	 */
 	public int idCheck(int staffNo);
 	
-	
+	/**
+	 * 인증 메일 보내기 메서드
+	 * 2019-12-27 지재용
+	 * 
+	 * @param email - 이메일 주소
+	 * @param staffNo - 회원번호
+	 * @param req
+	 */
+	public void mailSendWithjoinStaffKey(String email, int staffNo, HttpServletRequest req);
+
+	/**
+	 * 인증 확인 메서드 (Y 값으로 바꿔주는 메서드)
+	 * 2019-12-27 지재용
+	 * 
+	 * @param staffNo
+	 * @param key
+	 */
+	public int alter_userKey_service(int staffNo, String key);
+
 
 }

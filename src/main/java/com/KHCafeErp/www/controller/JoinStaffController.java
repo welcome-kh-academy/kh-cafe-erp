@@ -22,10 +22,11 @@ import com.KHCafeErp.www.service.face.JoinStaffService;
 @Controller
 public class JoinStaffController {
 	
-	@Autowired private JoinStaffService joinstaffService;
-	
+
+	@Autowired private JoinStaffService joinStaffService;
+
 	private static final Logger logger = LoggerFactory.getLogger(JoinStaffController.class);
-	
+
 	
 	//회원가입페이지
 	@RequestMapping(value="/join/join", method=RequestMethod.GET)
@@ -38,13 +39,17 @@ public class JoinStaffController {
 	
 	//회원가입 폼 작성 처리
 	@RequestMapping(value="/join/join", method=RequestMethod.POST)
-	public String joinProcess(Staff staff) { 
+	public String joinProcess(Staff staff, Model model, HttpServletRequest req) { 
 		
-		logger.info(staff.toString());
+//		logger.info(staff.toString());
 		
 		//회원가입 처리
-		joinstaffService.join(staff);	
 
+		joinStaffService.join(staff);		
+		
+		//인증 메일 보내기 메서드
+		joinStaffService.mailSendWithjoinStaffKey(staff.getEmail(), staff.getStaffNo(), req);
+		
 		return "redirect:/dashboard/index";
 	}
 	
@@ -56,7 +61,7 @@ public class JoinStaffController {
 		
 //		logger.info("id 중복 체크");
 //		String id = request.getParameter("id");
-		int check = joinstaffService.idCheck(staffNo);
+		int check = joinStaffService.idCheck(staffNo);
 		
 		logger.info("idcheck " + check);
 		mav.addObject("check", check);
@@ -72,10 +77,17 @@ public class JoinStaffController {
 		
 		logger.info("nick 중복 체크");
 		String nick = request.getParameter("nick");
-		int result = joinstaffService.nickCheck(nick);
+		int result = joinStaffService.nickCheck(nick);
 		logger.info("nickcheck" + result);
 		return Integer.toString(result);
 	}
 	
-	
+	// e-mail 인증 컨트롤러
+	@RequestMapping(value = "/user/mail", method = RequestMethod.GET)
+	public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("user_key") String key) {
+
+		joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
+
+		return "join/regSuccess";
+	}
 }

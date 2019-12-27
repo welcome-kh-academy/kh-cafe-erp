@@ -26,12 +26,17 @@ public class ManageProductServiceImpl implements ManageProductService{
 		return manageProductDao.selectShopAll();
 	}
 	@Override
-	public List<CategoryDetail> getcategoryDetailList() {
-		return manageProductDao.selectCategoryDetailAll();
+	public List<CategoryDetail> getcategoryDetailList(int categoryNo) {
+		return manageProductDao.selectCategoryDetail(categoryNo);
 	}
 	
 	@Override
 	public List<CategoryBase> getcategoryList() {
 		return manageProductDao.selectCategoryAll();
+	}
+	
+	@Override
+	public Product getProduct(int productNo) {
+		return manageProductDao.selectProductByProductNo(productNo);
 	}
 }
