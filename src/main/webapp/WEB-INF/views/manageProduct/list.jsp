@@ -12,6 +12,31 @@
 <!-- <hr> -->
 <<script type="text/javascript">
 $(document).ready(function() {
+	
+	$("#prodList").on("click",".edit", function(){
+		
+		$(".modal-content").html( "" );
+		
+		$.ajax({
+			type: "get"
+			, url: "/manageProduct/view"
+			, data: { productNo: $(this).parent().parent("tr").attr("data-productNo") }
+			, dataType: "html"
+			, success: function( data ) {
+				console.log("success")
+				$(".modal-content").html( data )
+			}
+			, error: function() {
+				console.log("error")
+				
+			}
+		})
+	});
+	
+	
+	
+	
+	
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
 });
@@ -30,11 +55,37 @@ $(document).ready(function() {
 				console.log(e);
 			},
 			success : function(res) {
+				console.log(res);
 				$("#categoryDetail").html("");
 				if(res.categoryDetail.length == 0)
 					$("#categoryDetail").append("<option>-----</option>");
 				for (var i=0; i<res.categoryDetail.length;i++) {
 					$("#categoryDetail").append("<option value='"+res.categoryDetail[i].categoryMapno+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				}
+			}
+		})
+	}
+	function getCategory2(e){
+		var value = document.getElementById('categoryBase2').value;
+		console.log(value)
+		$.ajax({
+			type : "GET",
+			url : "/manageProduct/categoryDetail",
+			data : {
+				value : value
+			},
+			dataType : "json",
+			error : function(e) {
+				alert("ajax오류!");
+				console.log(e);
+			},
+			success : function(res) {
+				console.log(res);
+				$("#categoryDetail2").html("");
+				if(res.categoryDetail.length == 0)
+					$("#categoryDetail2").append("<option>-----</option>");
+				for (var i=0; i<res.categoryDetail.length;i++) {
+					$("#categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapno+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
 				}
 			}
 		})
@@ -110,6 +161,7 @@ $(document).ready(function() {
 <!-- 	  </th> -->
       <th scope="col">상품코드</th>
       <th scope="col">상품카테고리</th>
+<!--       <th scope="col">상세카테고리</th> -->
       <th scope="col">상품명</th>
       <th scope="col">원가</th>
       <th scope="col">판매가</th>
@@ -121,9 +173,9 @@ $(document).ready(function() {
       <th></th>
       <th></th>
     </tr>
-  <tbody>
+  <tbody id="prodList">
     	<c:forEach items="${ product }" var="p">
-    <tr class="table-light">
+    <tr class="table-light" data-productNo="${ p.productNo }">
 <!--     	<td style="text-align: center"><input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked=""></td> -->
       	<td>${ p.productNo }</td>
       	<td>${ p.categoryMapNo }</td>
@@ -136,11 +188,11 @@ $(document).ready(function() {
       	<td>${ p.selEndDate }</td>
       	<td>${ p.selStatus }</td>
 		<!-- Button trigger modal -->
-		<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-		  수정
+		<td><button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
+		  상세 / 수정
 		</button></td>
 <!--       	<td><button class="btn btn-primary">수정</button></td> -->
-      	<td><button class="btn btn-primary">삭제</button></td>
+      	<td><button class="btn btn-primary del">삭제</button></td>
     </tr>
       	</c:forEach>
   </tbody>
@@ -149,50 +201,10 @@ $(document).ready(function() {
 
 <!-- 수정 Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">상품 관리 수정</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table>
-        	<tr>
-        		<th>상품코드</th>
-        		<td>123</td>
-        		<th>상품명</th>
-        		<td>커피</td>
-        	</tr>
-        	<tr>
-        		<th>카테고리</th>
-        		<td>
-        			<select>
-        				<option>푸드</option>
-        			</select>
-       			</td>
-        		<th>상세 카테고리</th>
-        		<td>
-        			<select>
-        				<option>베이글</option>
-        			</select>
-       			</td>
-        	</tr>
-        	<tr>
-        		<th>원가</th>
-        		<td><input /></td>
-        		<th>판매가</th>
-        		<td><input /></td>
-        	</tr>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary">수정완료</button>
-      </div>
-    </div>
-  </div>
+    </div><!-- .modal-content -->
+  </div><!-- .modal-dialog -->
 </div>
 
 

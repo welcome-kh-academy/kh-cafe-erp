@@ -35,6 +35,7 @@ public class ManageProductController {
 		model.addAttribute("category", category);
 		model.addAttribute("shop", shop);
 		model.addAttribute("product", product);
+		
 	}
 	@RequestMapping(value="manageProduct/categoryDetail", method=RequestMethod.GET)
 	public ModelAndView getCategoryDetail(@RequestParam(value = "value")int categoryNo, ModelAndView mav) {
@@ -45,4 +46,17 @@ public class ManageProductController {
 		mav.setViewName("jsonView");
 		return mav;
 	}
+	
+	@RequestMapping(value="manageProduct/view", method=RequestMethod.GET)
+	public void getProductView(Model model, int productNo) {		
+
+		List<CategoryBase> category = manageProductService.getcategoryList();
+		Product product = manageProductService.getProduct(productNo);
+		
+		model.addAttribute("category", category);
+		model.addAttribute("product", product);
+
+	}
+	
+	
 }

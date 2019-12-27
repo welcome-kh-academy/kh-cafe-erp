@@ -34,4 +34,9 @@ public class ManageProductServiceImpl implements ManageProductService{
 	public List<CategoryBase> getcategoryList() {
 		return manageProductDao.selectCategoryAll();
 	}
+	
+	@Override
+	public Product getProduct(int productNo) {
+		return manageProductDao.selectProductByProductNo(productNo);
+	}
 }
