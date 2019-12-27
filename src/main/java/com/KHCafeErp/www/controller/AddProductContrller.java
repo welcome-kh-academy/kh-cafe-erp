@@ -1,6 +1,8 @@
 package com.KHCafeErp.www.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
-import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.Product;
-
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
 
@@ -28,6 +29,7 @@ public class AddProductContrller {
 	@Autowired AddProductService addProductService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddProductContrller.class);
+	private Map<String, Object> addProduct = new HashMap<String, Object>();
 	
 	@RequestMapping(value = "/product/index", method=RequestMethod.GET)
 	public void productIndex() {
@@ -67,8 +69,13 @@ public class AddProductContrller {
 	}
 	
 	@RequestMapping(value = "/product/saveCategoryMap", method=RequestMethod.POST)
-	public String saveCategoryMap(CategoryBase category, CategoryDetail categoryDetail) {
-	
+	public String saveCategoryMap(HttpSession session, CategoryBase category, CategoryDetail categoryDetail) {
+		
+		addProduct.put("categoryNo", category.getCategoryNo());
+		addProduct.put("categoryDetailNo", categoryDetail.getCategoryMapNo());
+		
+		session.setAttribute("addProduct", addProduct);
+		
 		logger.info(category.toString());
 		logger.info(categoryDetail.toString());
 		
