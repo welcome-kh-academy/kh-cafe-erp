@@ -18,6 +18,101 @@ td div{
 }
 </style>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	//경고 모달 호출 메서드
+	function warningModal(content) {
+		$(".modal-contents").text(content);
+		$("#defaultModal").modal('show');
+	}
+	
+	$(function(){
+		//필수 입력사항 검사
+        //빈칸 여부 검사
+        $('#productName').keyup(function(event){
+             
+            var divProductName = $('#divProductName');
+             
+            if($('#productName').val()==""){
+            	divProductName.removeClass("has-success");
+            	divProductName.addClass("has-error");
+            }else{
+            	divProductName.removeClass("has-error");
+                divProductName.addClass("has-success");
+            }
+        });
+       
+		$('#originPrice').keyup(function(event){
+             
+            var divOriginPrice = $('#divOriginPrice');
+             
+            if($('#originPrice').val()==""){
+            	divOriginPrice.removeClass("has-success");
+            	divOriginPrice.addClass("has-error");
+            }else{
+            	divOriginPrice.removeClass("has-error");
+            	divOriginPrice.addClass("has-success");
+            }
+        });
+       
+		$('#price').keyup(function(event){
+             
+            var divPrice = $('#divPrice');
+             
+            if($('#price').val()==""){
+            	divPrice.removeClass("has-success");
+            	divPrice.addClass("has-error");
+            }else{
+            	divPrice.removeClass("has-error");
+            	divPrice.addClass("has-success");
+            }
+        });
+		
+		$("form").submit(function(event) {
+            var divProductName = $('#divProductName');
+            var divOriginPrice = $('#divOriginPrice');
+            var divPrice = $('#divPrice');
+            
+            if($('#productName').val()==""){
+                warningModal("제품명을 입력하여 주시기 바랍니다.");
+                 
+                divProductName.removeClass("has-success");
+                divProductName.addClass("has-error");
+                $('#productName').focus();
+                return false;
+            }else{
+            	divProductName.removeClass("has-error");
+            	divProductName.addClass("has-success");
+            }
+
+            if($('#originPrice').val()==""){
+                warningModal("원가를 입력하여 주시기 바랍니다.");
+                 
+                divOriginPrice.removeClass("has-success");
+                divOriginPrice.addClass("has-error");
+                $('#originPrice').focus();
+                return false;
+            }else{
+            	divOriginPrice.removeClass("has-error");
+            	divOriginPrice.addClass("has-success");
+            }
+
+            if($('#price').val()==""){
+                warningModal("판매가를 입력하여 주시기 바랍니다.");
+                 
+                divPrice.removeClass("has-success");
+                divPrice.addClass("has-error");
+                $('#price').focus();
+                return false;
+            }else{
+            	divPrice.removeClass("has-error");
+            	divPrice.addClass("has-success");
+            }
+		})
+	})
+})
+</script>
+
 <div id="addProduct">
 	<fieldset>
 		<legend class="text-primary">상품 기본 정보</legend>
@@ -42,7 +137,7 @@ td div{
 				</tr>
 				<tr>
 					<td>
-						<div>
+						<div id="divProductName">
 							<label for="productName">제품명</label>
 							<input type="text" class="form-control" id="productName" name="productName">
 						</div>
@@ -70,13 +165,13 @@ td div{
 				</tr>
 				<tr>
 					<td>
-						<div>
+						<div id="divOriginPrice">
 							<label for="originPrice">원가</label>
 							<input type="number" class="form-control" id="originPrice" name="originPrice">							
 						</div>
 					</td>
 					<td>
-						<div>
+						<div id="divPrice">
 							<label for="price">판매가</label>
 							<input type="number" class="form-control" id="price" name="price">							
 						</div>
@@ -88,5 +183,23 @@ td div{
 	</fieldset>
 
 </div>
+
+<!-- 경고 모달창 -->
+<div class="modal fade" id="defaultModal">
+	 <div class="modal-dialog">
+	     <div class="modal-content panel-danger">
+    	     <div class="modal-header panel-heading">
+        	     <h4 class="modal-title">오류 메시지</h4>
+              </div>
+              <div class="modal-body">
+              	<p class="modal-contents"></p>
+              </div>
+              <div class="modal-footer">
+              	<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+              </div>
+          </div>
+      </div>
+</div>
+
 
 <jsp:include page="/WEB-INF/views/layout/product-footer.jsp"/>
