@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.KHCafeErp.www.dao.face.FindIdPwDao">
+
+	<select id="findid" parameterType="com.KHCafeErp.www.dto.Staff" resultType="com.KHCafeErp.www.dto.Staff">
+		select ifnull(staffNo,0) from staff
+		 where shopno = #{shopNo} and email = #{email}		 
+	</select>
+
+
+</mapper>

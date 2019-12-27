@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 마이바티스 3 Mapper DOCTYPE -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.KHCafeErp.www.dao.face.ManageProductDao">
+	<select id="selectCategoryAll" resultType="com.KHCafeErp.www.dto.CategoryBase">
+		SELECT * FROM categoryBase
+	</select>
+	<select id="selectCategoryDetailAll" resultType="com.KHCafeErp.www.dto.CategoryDetail">
+		SELECT * FROM categoryDetail
+	</select>
+	<select id="selectShopAll" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT * FROM shop
+	</select>
+	<select id="selectProductAll" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT * FROM product
+	</select>
+</mapper>

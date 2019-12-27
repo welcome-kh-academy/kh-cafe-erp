@@ -18,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.JoinStaffService;
 
-
-
 @Controller
 public class JoinStaffController {
 	

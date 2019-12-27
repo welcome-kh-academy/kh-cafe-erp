@@ -5,10 +5,13 @@ public class CategoryDetail {
 	private String categoryDetailName;
 	private int categoryNo;
 	
+	private String categoryName;
+	
+
 	@Override
 	public String toString() {
 		return "CategoryDetail [categoryMapNo=" + categoryMapNo + ", categoryDetailName=" + categoryDetailName
-				+ ", categoryNo=" + categoryNo + "]";
+				+ ", categoryNo=" + categoryNo + ", categoryName=" + categoryName + "]";
 	}
 
 	public int getCategoryMapNo() {
@@ -35,6 +38,12 @@ public class CategoryDetail {
 		this.categoryNo = categoryNo;
 	}
 	
-	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	
 }
