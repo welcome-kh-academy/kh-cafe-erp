@@ -6,16 +6,23 @@
 <mapper namespace="com.KHCafeErp.www.dao.face.JoinStaffDao">
 
 <insert parameterType="com.KHCafeErp.www.dto.Staff" id="insert">
-INSERT INTO staff ( id, pw, name, nickname, email, phone )VALUES ( #{id }, #{pw }, #{name }, #{nickname }, #{email }, #{phone } )
+INSERT INTO staff ( staffNo, shopNo, position, nick, pw, staffName, email, cellNum, hiredDate, gender )
+VALUES ( #{staffNo }, #{shopNo }, #{position }, #{nick }, #{pw }, #{staffName }, #{email }, #{cellNum }, #{hiredDate }, #{gender } )
 </insert>
 
-<select id="idCheck" resultType="int" parameterType="com.KHCafeErp.www.dto.Staff">
+<select id="nickCheck" resultType="int" parameterType="com.KHCafeErp.www.dto.Staff">
 	<![CDATA[
 		SELECT count(*) FROM staff
-		WHERE id = #{id}
+		WHERE nick = #{nick}
 	]]>
 </select>
 
+<select id="selectIdCntCheck" resultType="int" parameterType="int">
+	<![CDATA[
+		SELECT count(*) FROM staff
+		WHERE staffNo = #{staffNo}
+	]]>
+</select>
 
 
 </mapper>
