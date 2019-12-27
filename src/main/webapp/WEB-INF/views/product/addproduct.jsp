@@ -116,7 +116,7 @@ $(document).ready(function(){
 <div id="addProduct">
 	<fieldset>
 		<legend class="text-primary">상품 기본 정보</legend>
-		<form action="/product/register" method="post">
+		<form action="/product/register" method="post" enctype="multipart/form-data">
 			<table>
 				<tr style="height:10px"><td></td></tr>
 				<tr>
@@ -159,7 +159,7 @@ $(document).ready(function(){
 					<td>
 						<div style="padding-bottom:155px;">
 							<label for="productImage">제품 이미지</label>
-							<input type="file" class="form-control-file" id="productImage" aria-describedby="fileHelp">
+							<input type="file" class="form-control-file" name="productImage" id="productImage">
 						</div>
 					</td>
 				</tr>
