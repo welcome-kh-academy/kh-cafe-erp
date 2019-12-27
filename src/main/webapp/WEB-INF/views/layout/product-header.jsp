@@ -15,4 +15,10 @@
 	</ul>
 </div>
 
+<!-- <!-- 상품등록 헤더 --> -->
+<!-- <form id="addProduct" name="addProduct" method="post"> -->
+<!-- 	<input type="hidden" name="categoryNo" value=""/> -->
+<!-- 	<input type="hidden" name="categoryMapNo" value=""/> -->
+<!-- </form> -->
+
 

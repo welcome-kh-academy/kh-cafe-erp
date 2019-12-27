@@ -22,11 +22,6 @@
 		margin : 1%;
 	}
 
-	.product-bottom {
-		margin : 2%;
-		margin-top: 50%;
-		float : right;
-	}
 </style>
 
 <script type="text/javascript">
@@ -72,9 +67,10 @@
 </div>
 </div>
 
+<form id="addProductForm" action="/product/saveCategoryMap" method="post">
 <div class="search-category">
 <h3>카테고리 등록</h3>
-<select id="categoryBase" onchange="getCategoryDetail(this.value)" class="search-select select2-selection select2-selection--single form-control">
+<select name="categoryNo" id="categoryBase" onchange="getCategoryDetail(this.value)" class="search-select select2-selection select2-selection--single form-control">
 	<option value="0">--------</option>
 	<c:forEach items="${categoryList}" var="category">
 		<option value="${category.categoryNo }">${category.categoryName }</option>	
@@ -84,10 +80,11 @@
 
 <div class="search-category-detail">
 <h3>세부 카테고리 등록</h3>
-<select id="categoryDetail" class="search-select select2-selection select2-selection--single form-control">
+<select name="categoryDetailNo" id="categoryDetail" class="search-select select2-selection select2-selection--single form-control">
 	<option>-------</option>
 </select>
 </div>
+</form>
 
 </div>
 

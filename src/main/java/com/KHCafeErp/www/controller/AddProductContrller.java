@@ -2,6 +2,8 @@ package com.KHCafeErp.www.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,16 +66,26 @@ public class AddProductContrller {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/product/saveCategoryMap", method=RequestMethod.POST)
+	public String saveCategoryMap(CategoryBase category, CategoryDetail categoryDetail) {
+	
+		logger.info(category.toString());
+		logger.info(categoryDetail.toString());
+		
+		return "redirect:/product/register";
+	}
+	
 	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
 	public String addProduct() {
+		
 		logger.info("addProduct()");
 		return "/product/addproduct";
 	}
 
 	@RequestMapping(value = "/product/register", method = RequestMethod.POST)
 	public String addProductProc() {
-		logger.info("addProductProc()");
 		
+		logger.info("addProductProc()");
 		return "/product/addproduct";
 	}
 	
