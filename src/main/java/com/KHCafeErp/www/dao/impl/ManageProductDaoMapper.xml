@@ -9,8 +9,11 @@
 	<select id="selectCategoryAll" resultType="com.KHCafeErp.www.dto.CategoryBase">
 		SELECT * FROM categoryBase
 	</select>
-	<select id="selectCategoryDetailAll" resultType="com.KHCafeErp.www.dto.CategoryDetail">
-		SELECT * FROM categoryDetail
+	<select id="selectCategoryDetail" parameterType="int" resultType="com.KHCafeErp.www.dto.CategoryDetail">
+		SELECT categoryMapNo, categoryDetailName, categoryNo
+		FROM categoryDetail
+		WHERE 1=1
+		AND categoryNo = #{categoryNo}
 	</select>
 	<select id="selectShopAll" resultType="com.KHCafeErp.www.dto.Shop">
 		SELECT * FROM shop
