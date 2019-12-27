@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <jsp:include page="/WEB-INF/views/layout/header.jsp"/> --%>
-<jsp:include page="/WEB-INF/views/layout/product-header.jsp"/>
+
+<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+<link href="/resources/css/add-product.css" rel="stylesheet">
+
+<style type="text/css">
+#crumbs ul li #productHeader_4 {
+  background-color: #2C3E50;
+  color: #fff;
+}
+</style>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -18,6 +26,18 @@ $(document).ready(function() {
 	});
 })
 </script>
+
+<!-- 상품헤더 -->
+<div id="crumbs">
+	<ul>
+		<li><a id=productHeader_1 href="#1"><b>카테고리 등록</b></a></li>
+		<li><a id=productHeader_2 href="#2"><b>상품기초정보등록</b></a></li>
+		<li><a id=productHeader_3 href="#3"><b>상품 옵션 등록</b></a></li>
+		<li><a id=productHeader_4 href="#4"><b>판매 지점 등록</b></a></li>
+	</ul>
+</div>
+
+
 <h1>판매지점 등록하기이이이이이</h1>
 <hr>
 <div class="text-center">

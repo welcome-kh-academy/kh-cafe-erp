@@ -6,8 +6,8 @@
 <mapper namespace="com.KHCafeErp.www.dao.face.JoinStaffDao">
 
 <insert parameterType="com.KHCafeErp.www.dto.Staff" id="insert">
-INSERT INTO staff ( staffNo, shopNo, position, nick, pw, staffName, email, cellNum, hiredDate, gender )
-VALUES ( #{staffNo }, #{shopNo }, #{position }, #{nick }, #{pw }, #{staffName }, #{email }, #{cellNum }, #{hiredDate }, #{gender } )
+INSERT INTO staff ( staffNo, shopNo, position, nick, pw, staffName, email, cellNum, hiredDate, gender, user_key )
+VALUES ( #{staffNo }, #{shopNo }, #{position }, #{nick }, #{pw }, #{staffName }, #{email }, #{cellNum }, #{hiredDate }, #{gender }, 'N' )
 </insert>
 
 <select id="nickCheck" resultType="int" parameterType="com.KHCafeErp.www.dto.Staff">
@@ -24,5 +24,13 @@ VALUES ( #{staffNo }, #{shopNo }, #{position }, #{nick }, #{pw }, #{staffName },
 	]]>
 </select>
 
+<insert id="getKey" parameterType="Map">
+	update staff set user_key = #{param2} where staffNo = #{param1}
+</insert>
+
+<!-- 회원 인증키(난수) Y로 변경 -->
+<update id="alterJoinStaffKey" parameterType="Map">
+	update staff set iser_key = 'Y' where staffNo = #{param1} and user_key = #{param2}	
+</update>
 
 </mapper>
