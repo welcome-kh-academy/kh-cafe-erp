@@ -29,4 +29,5 @@ public interface ManageProductDao {
 	 */
 	public List<CategoryDetail> selectCategoryDetail(int categoryNo);
 
+	public Product selectProductByProductNo(int productNo);
 }
