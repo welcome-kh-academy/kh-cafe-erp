@@ -29,4 +29,5 @@ public interface ManageProductService {
 	 */
 	public List<CategoryDetail> getcategoryDetailList(int categoryNo);
 
+	public Product getProduct(int productNo);
 }

@@ -10,8 +10,8 @@ public class Product {
 	private int originPrice;
 	private int price;
 	private String productOrigin;
-	private String enrollDate;
 	private String selStartDate;
+	private String enrollDate;
 	private String selEndDate;
 	private int selStatus;
 	

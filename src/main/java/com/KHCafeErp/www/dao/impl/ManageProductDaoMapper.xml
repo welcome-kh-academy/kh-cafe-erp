@@ -21,4 +21,8 @@
 	<select id="selectProductAll" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT * FROM product
 	</select>
+	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT * FROM product
+		WHERE productno = #{productNo }
+	</select>
 </mapper>
