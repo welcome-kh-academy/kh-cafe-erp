@@ -6,7 +6,7 @@
 <mapper namespace="com.KHCafeErp.www.dao.face.FindIdPwDao">
 
 	<select id="findid" parameterType="com.KHCafeErp.www.dto.Staff" resultType="com.KHCafeErp.www.dto.Staff">
-		select staffNo from staff
+		select ifnull(staffNo,0) from staff
 		 where shopno = #{shopNo} and email = #{email}		 
 	</select>
 
