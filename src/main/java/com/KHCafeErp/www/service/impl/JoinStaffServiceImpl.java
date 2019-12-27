@@ -18,6 +18,18 @@ public class JoinStaffServiceImpl implements JoinStaffService {
 		joinstaffDao.insert(staff);
 	}
 
+	@Override
+	public int nickCheck(String nick) {
+		
+		int result = joinstaffDao.nickCheck(nick);
+		return result;
+	}
+
+	@Override
+	public int idCheck(int staffNo) {
+		return joinstaffDao.selectIdCntCheck(staffNo);
+	}
+
 
 	
 }

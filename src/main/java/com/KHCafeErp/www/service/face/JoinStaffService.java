@@ -11,6 +11,20 @@ public interface JoinStaffService {
 	 */
 	public void join(Staff staff);
 	
+	/*
+	 * nick 중복 체크
+	 * 
+	 * @param nick - nick값
+	 */
+	public int nickCheck(String nick);
+	
+	/*
+	 * id 중복 체크
+	 * 
+	 * @param id - id값
+	 */
+	public int idCheck(int staffNo);
+	
 
 
 }
