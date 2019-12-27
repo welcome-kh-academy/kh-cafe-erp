@@ -27,6 +27,6 @@ public interface ManageProductDao {
 	 * 세부 카테고리 목록 가져오기
 	 * @return - 세부 카테고리 목록
 	 */
-	public List<CategoryDetail> selectCategoryDetailAll();
+	public List<CategoryDetail> selectCategoryDetail(int categoryNo);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.LoginService;
@@ -26,7 +27,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login/check")
-	public String loginCheck(Staff staff, HttpSession session, Model model) {
+	public String loginMain(Staff staff, HttpSession session, Model model) {
 		
 		logger.info(staff.toString());
 		
@@ -43,8 +44,9 @@ public class LoginController {
 			model.addAttribute("login", false);
 		}
 		
-		
 		return "redirect:/login/main";
+		
+		
 	}
 	
 	@RequestMapping(value="/login/logout")
