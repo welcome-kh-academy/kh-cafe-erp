@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#categoryBase2").val('${product.categoryNo }').change();
+})
+</script>
 
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">상품 관리</h5>
@@ -77,3 +84,44 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
         <button type="button" class="btn btn-primary">수정완료</button>
       </div>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('input[name="enrollDate"]').daterangepicker({
+			singleDatePicker : true,
+			showDropdowns : true,
+			minYear : 1960,
+			maxYear : parseInt(moment().format('YYYY'), 10),
+			locale: {
+				format : "YYYYMMDD"
+			},
+			startDate: '${product.enrollDate }'
+		});
+
+	
+		$('input[name="selStartDate"]').daterangepicker({
+			singleDatePicker : true,
+			showDropdowns : true,
+			minYear : 1960,
+			maxYear : parseInt(moment().format('YYYY'), 10),
+			locale: {
+				format : "YYYYMMDD"
+			},
+			startDate: '${product.selStartDate }'
+		});
+
+		$('input[name="selEndDate"]').daterangepicker({
+			singleDatePicker : true,
+			showDropdowns : true,
+			minYear : 1960,
+			maxYear : parseInt(moment().format('YYYY'), 10),
+			locale: {
+				format : "YYYYMMDD"
+			},
+			startDate: '${product.selEndDate }'
+		});
+
+	})
+</script>
