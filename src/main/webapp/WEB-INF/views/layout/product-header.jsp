@@ -2,22 +2,23 @@
     pageEncoding="UTF-8"%>
     
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+
 <link href="/resources/css/add-product.css" rel="stylesheet">
 
 <div id="crumbs">
 	<ul>
-		<li><a href="#1"><i class="fa fa-home" aria-hidden="true"></i>카테고리 등록</a></li>
-		<li><a href="#2"><i class="fa fa-shopping-bag" aria-hidden="true"></i>상품기초정보등록</a></li>
-		<li><a href="#3"><i class="fa fa-cart-plus" aria-hidden="true"></i>상품 옵션 등록</a></li>
-		<li><a href="#4"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>판매 방식 설정</a></li>
-		<li><a href="#4"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>판매 지점 등록</a></li>
+		<li><a href="#1"><b>카테고리 등록</b></a></li>
+		<li><a href="#2"><b>상품기초정보등록</b></a></li>
+		<li><a href="#3"><b>상품 옵션 등록</b></a></li>
+		<li><a href="#4"><b>판매 방식 설정</b></a></li>
+		<li><a href="#4"><b>판매 지점 등록</b></a></li>
 	</ul>
 </div>
-<style type="text/css">
-nav.nav {
-	margin-top : 30px;
-	margin-bottom : 30px;
-}
-</style>
+
+<!-- <!-- 상품등록 헤더 --> -->
+<!-- <form id="addProduct" name="addProduct" method="post"> -->
+<!-- 	<input type="hidden" name="categoryNo" value=""/> -->
+<!-- 	<input type="hidden" name="categoryMapNo" value=""/> -->
+<!-- </form> -->
 
 

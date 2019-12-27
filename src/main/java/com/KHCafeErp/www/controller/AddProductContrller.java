@@ -67,8 +67,19 @@ public class AddProductContrller {
 	}
 	
 	// 상품 등록 페이지
+	@RequestMapping(value = "/product/saveCategoryMap", method=RequestMethod.POST)
+	public String saveCategoryMap(CategoryBase category, CategoryDetail categoryDetail) {
+	
+		logger.info(category.toString());
+		logger.info(categoryDetail.toString());
+		
+		return "redirect:/product/register";
+	}
+	
+
 	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
 	public String addProduct() {
+		
 		logger.info("addProduct()");
 		return "/product/addproduct";
 	}
@@ -85,7 +96,7 @@ public class AddProductContrller {
 		session.setAttribute("productName", product.getProductName());
 		session.setAttribute("productOrigin", product.getProductOrigin());
 		session.setAttribute("productContent", product.getProductContent());
-		
+
 		return "/product/addproduct";
 	}
 		

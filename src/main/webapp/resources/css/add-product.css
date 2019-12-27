@@ -1,5 +1,5 @@
 body {
-  margin: 100px auto;
+  margin:  auto;
   font-family: Helvetica;
   background: #FFF;
 }
@@ -23,17 +23,17 @@ body {
   display: inline;
 }
 #crumbs ul li a {
-  display: block;
-  float: left;
-  height: 50px;
-  background: #F3F5FA;
-  text-align: center;
-  padding: 30px 20px 0 60px;
-  position: relative;
-  margin: 0 10px 0 0;
-  font-size: 20px;
-  text-decoration: none;
-  color: #8093A7;
+    display: block;
+    float: left;
+    height: 81px;
+    background: #F3F5FA;
+    text-align: center;
+    padding: 18px 20px 0 60px;
+    position: relative;
+    margin: 10px 64px 0 0;
+    font-size: 24px;
+    text-decoration: none;
+    color: #8093A7;
 }
 #crumbs ul li a:after {
   content: "";
