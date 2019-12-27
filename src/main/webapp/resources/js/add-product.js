@@ -3,11 +3,16 @@
  */
 
 $(document).ready(function() {
+	
+	//셀렉트박스 + 검색기능
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
 
 	// 다음버튼 클릭시
 	$("#next-stage").click(function(){
-		alert("다음 이시간에 ^-^")
+		
+		$("#addProductForm").submit();
+	
 	});
 });
+

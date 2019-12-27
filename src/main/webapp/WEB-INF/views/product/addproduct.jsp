@@ -2,9 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="/WEB-INF/views/layout/product-header.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+<link href="/resources/css/add-product.css" rel="stylesheet">
 
 <style type="text/css">
+
+#crumbs ul li #productHeader_2 {
+  background-color: #2C3E50;
+  color: #fff;
+}
+
 fieldset{
 	margin : 28px 30px;
 }
@@ -113,10 +120,21 @@ $(document).ready(function(){
 })
 </script>
 
+<!-- 상품헤더-->
+<div id="crumbs">
+	<ul>
+		<li><a id=productHeader_1 href="#1"><b>카테고리 등록</b></a></li>
+		<li><a id=productHeader_2 href="#2"><b>상품기초정보등록</b></a></li>
+		<li><a id=productHeader_3 href="#3"><b>상품 옵션 등록</b></a></li>
+		<li><a id=productHeader_4 href="#4"><b>판매 지점 등록</b></a></li>
+	</ul>
+</div>
+
+
 <div id="addProduct">
 	<fieldset>
 		<legend class="text-primary">상품 기본 정보</legend>
-		<form action="/product/register" method="post">
+		<form action="/product/register" method="post" enctype="multipart/form-data">
 			<table>
 				<tr style="height:10px"><td></td></tr>
 				<tr>
@@ -159,7 +177,7 @@ $(document).ready(function(){
 					<td>
 						<div style="padding-bottom:155px;">
 							<label for="productImage">제품 이미지</label>
-							<input type="file" class="form-control-file" id="productImage" aria-describedby="fileHelp">
+							<input type="file" class="form-control-file" name="productImage" id="productImage">
 						</div>
 					</td>
 				</tr>
