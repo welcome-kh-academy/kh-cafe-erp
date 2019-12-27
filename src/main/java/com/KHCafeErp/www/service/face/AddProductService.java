@@ -1,11 +1,12 @@
 package com.KHCafeErp.www.service.face;
 
+import java.io.File;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
-import com.KHCafeErp.www.dto.Option;
-
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
+import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
@@ -32,6 +33,11 @@ public interface AddProductService {
 	 */
 	public List<CategoryBase> getCategoryList();
 
+	/**
+	 * 19-12-26 유진
+	 * 옵션 추가하기
+	 * @param option - 입력한 option
+	 */
 	public void addOption(Option option);
 	
 	/**
@@ -49,5 +55,12 @@ public interface AddProductService {
 	 * @return CategoryDetail List
 	 */
 	public List<CategoryDetail> getCategoryDetail(int categoryNo);
+
+	/**
+	 * 이미지 파일 서버에 저장
+	 * @param imgFile - 업로드한 이미지 파일
+	 * @return - 이미지 파일
+	 */
+	public ImgFile filesave(ImgFile imgFile);
 	
 }

@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+
+import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.Option;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
@@ -68,6 +70,7 @@ public class AddProductContrller {
 		return mav;
 	}
 	
+	// 상품 등록 페이지
 	@RequestMapping(value = "/product/saveCategoryMap", method=RequestMethod.POST)
 	public String saveCategoryMap(HttpSession session, CategoryBase category, CategoryDetail categoryDetail) {
 		
@@ -82,6 +85,7 @@ public class AddProductContrller {
 		return "redirect:/product/register";
 	}
 	
+
 	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
 	public String addProduct() {
 		
@@ -89,13 +93,22 @@ public class AddProductContrller {
 		return "/product/addproduct";
 	}
 
+	// 상품 정보 저장하기
 	@RequestMapping(value = "/product/register", method = RequestMethod.POST)
-	public String addProductProc() {
-		
+	public String addProductProc(HttpSession session, Product product,ImgFile imgFile, Model model) {
 		logger.info("addProductProc()");
+		logger.info(product.toString()); 
+//		logger.info(imgFile.toString());
+		imgFile = addProductService.filesave(imgFile);
+		logger.info(imgFile.toString());
+
+		session.setAttribute("productName", product.getProductName());
+		session.setAttribute("productOrigin", product.getProductOrigin());
+		session.setAttribute("productContent", product.getProductContent());
+
 		return "/product/addproduct";
 	}
-	
+		
 	// 상품 옵션 목록  
 	@RequestMapping(value = "/product/option", method=RequestMethod.GET)
 	public String optionList(Model model) {
