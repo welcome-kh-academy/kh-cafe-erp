@@ -12,9 +12,6 @@ $(document).ready(function() {
 	$("#next-stage").click(function(){
 		
 		$("#addProductForm").submit();
-//		"/product/register/"
-//		"/product/option"
-//		"/product/addShop"
 	
 	});
 });

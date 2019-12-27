@@ -80,7 +80,7 @@
 
 <div class="search-category-detail">
 <h3>세부 카테고리 등록</h3>
-<select name="categoryDetailNo" id="categoryDetail" class="search-select select2-selection select2-selection--single form-control">
+<select name="categoryMapNo" id="categoryDetail" class="search-select select2-selection select2-selection--single form-control">
 	<option>-------</option>
 </select>
 </div>
