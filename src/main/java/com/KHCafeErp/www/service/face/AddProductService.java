@@ -2,11 +2,14 @@ package com.KHCafeErp.www.service.face;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
-import com.KHCafeErp.www.dto.Option;
+import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
@@ -24,7 +27,7 @@ public interface AddProductService {
 	 * @param categoryNo
 	 * @return
 	 */
-	public List<Option> selectOption(int categoryNo);
+	public List<OptionBase> selectOption(int categoryNo);
 
 	/**
 	 * 19-12-26 현석
@@ -38,7 +41,7 @@ public interface AddProductService {
 	 * 옵션 추가하기
 	 * @param option - 입력한 option
 	 */
-	public void addOption(Option option);
+	public void addOption(OptionBase option);
 	
 	/**
 	 * 19-12-26 현석
@@ -62,5 +65,26 @@ public interface AddProductService {
 	 * @return - 이미지 파일
 	 */
 	public ImgFile filesave(ImgFile imgFile);
+
+	/**
+	 * 카테고리 이름 조회하기
+	 * @param categoryBaseNo - 카테고리 No
+	 * @return - 조회된 카테고리 이름
+	 */
+	public String getCategoryBaseName(int categoryBaseNo);
+
+	/**
+	 * 상세 카테고리 이름 조회하기
+	 * @param categoryDetailNo - 상세 카테고리 No
+	 * @return - 조회된 카테고리 이름
+	 */
+	public String getCategoryDetailName(int categoryDetailNo);
+
+	/**
+	 * 선택한 option들 받아오기
+	 * @param req - addOption.jsp에서 넘어온 request
+	 * @return - 선택한 옵션들
+	 */
+	public Map<String, String> getOption(HttpServletRequest req);
 	
 }
