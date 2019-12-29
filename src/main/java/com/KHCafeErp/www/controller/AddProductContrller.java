@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -158,14 +159,17 @@ public class AddProductContrller {
 		
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/product/saveOptionMap", method=RequestMethod.POST)
-	public String addOptionProc(OptionBase optionBase) {
+	public String addOptionProc(HttpServletRequest req, HttpSession session) {
 		logger.info("addOptionProc()");
-		System.out.println(optionBase);
-		
-		
-		return "redirect:/product/option";
+		Map<String, String> option = addProductService.getOption(req);
+		System.out.println(option);
+		addProduct.put("option", option);
+
+		session.setAttribute("addProduct", addProduct);
+
+		return "redirect:/product/addShop";
 	}
 
 	//판매 방식 등록

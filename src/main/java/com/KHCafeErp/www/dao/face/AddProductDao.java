@@ -47,7 +47,17 @@ public interface AddProductDao {
 	 */
 	public List<CategoryDetail> selectCategoryDetailList(int categoryNo);
 
+	/**
+	 * 카테고리 이름 조회
+	 * @param categoryBaseNo - 카테고리 No
+	 * @return - 카테고리 이름
+	 */
 	public String selectCategoryBaseName(int categoryBaseNo);
 
+	/**
+	 * 상세 카테고리 조회
+	 * @param categoryDetailNo - 상세 카테고리 No
+	 * @return - 상세 카테고리 이름
+	 */
 	public String selectCategoryDetailName(int categoryDetailNo);
 }

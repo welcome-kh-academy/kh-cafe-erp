@@ -2,10 +2,14 @@ package com.KHCafeErp.www.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,6 +103,29 @@ public class AddProductServiceImpl implements AddProductService {
 	@Override
 	public String getCategoryDetailName(int categoryDetailNo) {
 		return addProductDao.selectCategoryDetailName(categoryDetailNo);
+	}
+
+	@Override
+	public Map<String, String> getOption(HttpServletRequest req) {
+		Map<String, String> option = new HashMap<String, String>();
+		String optionName = null;
+		int optionValue = 0;
+		
+		int cnt = 0;
+//		int cnt = Integer.parseInt(req.getParameter("count"));
+//		System.out.println("********************************************* "+cnt);
+		
+		Enumeration params = req.getParameterNames();
+		System.out.println("----------------------------");
+		while (params.hasMoreElements()){
+			String name = (String)params.nextElement();
+			System.out.println(name + " : " +req.getParameter(name));
+			option.put(name, req.getParameter(name));
+		}
+		System.out.println("----------------------------");
+		System.out.println(option);
+		
+		return option;
 	}
 
 }

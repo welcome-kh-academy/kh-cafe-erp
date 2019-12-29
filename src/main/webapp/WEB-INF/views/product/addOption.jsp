@@ -40,10 +40,12 @@ fieldset, #optionList, #product{
 
 <script type="text/javascript">
 $(document).ready(function(){
+	var cnt = parseInt($("#count").val());
 	$("#optionSubmit").click(function(){
 		var categoryNo = $("#categoryNo").val();
 		var optionName = $("#optionName").val();
 		var optionValue = $("#optionValue").val();		
+		
 		$.ajax({
 			type : "POST",
 			url : "/product/option/register",
@@ -58,21 +60,25 @@ $(document).ready(function(){
 			},
 			success : function(res) {
 				console.log(res.optionList[0])
+				cnt = cnt + 1;
 				$("#optionList .table").append("<tr>"
 						+"<td style='width:10%'></td>"
-						+"<td style='width:55%'>"+optionName+"<input type='hidden' id='optionName' name='optionName' value='"+optionName+"'/></td>"
-// 						+"<td style='width:55%'>"+optionName+"<input type='hidden' id='optionName${status.count}' name='optionName${status.count}' value='"+optionName+"'/></td>"
-						+"<td style='width:25%'>"+optionValue+"<input type='hidden' id='optionValue$' name='optionValue' value='"+optionValue+"'/></td>"
-// 						+"<td style='width:25%'>"+optionValue+"<input type='hidden' id='optionValue${status.count}' name='optionValue${status.count}' value='"+optionValue+"'/></td>"
+// 						+"<td style='width:55%'>"+optionName+"<input type='hidden' id='optionName' name='optionName' value='"+optionName+"'/></td>"
+						+"<td style='width:55%'>"+optionName+"<input type='hidden' id='optionName${status.count}' name='optionName"+cnt+"' value='"+optionName+"'/></td>"
+// 						+"<td style='width:25%'>"+optionValue+"<input type='hidden' id='optionValue$' name='optionValue' value='"+optionValue+"'/></td>"
+						+"<td style='width:25%'>"+optionValue+"<input type='hidden' id='optionValue${status.count}' name='optionValue"+cnt+"' value='"+optionValue+"'/></td>"
 						+"<td style='width:10%'><button class='btn btn-primary btn-sm optionDelete'>삭제</button></td></tr>");
 				$("#optionName").val("");
 				$("#optionValue").val("");
+// 				$("#count").attr("value", cnt);
 			}
 		});
 	});
 
 	$('#optionList .table').on("click",".optionDelete", function(){
 		$(this).parent().parent().remove();
+// 		cnt = cnt -1;
+// 		$("#count").attr("value", cnt);
 	})
 });
 </script>
@@ -188,16 +194,17 @@ $(document).ready(function(){
 					</td>
 					<td style="width:55%">
 						${option.optionName }
-						<input type="hidden" id="optionName" name="optionName" value="${option.optionName }"/>
-<%-- 						<input type="hidden" id="optionName${status.count }" name="optionName${status.count }" value="${option.optionName }"/> --%>
+<%-- 						<input type="hidden" id="optionName" name="optionName" value="${option.optionName }"/> --%>
+						<input type="hidden" id="optionName${status.count }" name="optionName${status.count }" value="${option.optionName }"/>
 					</td>
 					<td style="width:25%">
 						${option.optionValue }
-						<input type="hidden" id="optionValue" name="optionValue" value="${option.optionValue }"/>
-<%-- 						<input type="hidden" id="optionValue${status.count}" name="optionValue${status.count }" value="${option.optionValue }"/> --%>
+<%-- 						<input type="hidden" id="optionValue" name="optionValue" value="${option.optionValue }"/> --%>
+						<input type="hidden" id="optionValue${status.count}" name="optionValue${status.count }" value="${option.optionValue }"/>
 					</td>
 					<td style="width:10%"><button class="btn btn-primary btn-sm optionDelete">삭제</button></td>
 				</tr>
+				<c:if test="${status.last }"><button style="display: none" type="button" id="count" name="count" value="${status.count}"></button></c:if>
 			</c:forEach>
 			</table>
 		</form>
