@@ -1,5 +1,7 @@
 package com.KHCafeErp.www.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
@@ -190,5 +195,30 @@ public class AddProductContrller {
 		
 		List<Shop> shopList = addProductService.getShopList();
 		model.addAttribute("shopList", shopList);
+	}
+	
+	@RequestMapping(value = "/product/upload")
+	public ModelAndView uploadExcel(MultipartHttpServletRequest request) {
+		
+		MultipartFile excelFile = request.getFile("excelFile");
+        if(excelFile==null || excelFile.isEmpty()){
+            throw new RuntimeException("엑셀파일을 선택해 주세요");
+        }
+ 
+        File destFile = new File("D:\\"+excelFile.getOriginalFilename());
+        try {
+            excelFile.transferTo(destFile);
+        } catch (IllegalStateException | IOException e) {
+            throw new RuntimeException(e.getMessage(),e);
+ 
+        }
+        
+        addProductService.insertMassiveArticleInBoard(destFile);
+        
+//        FileUtils.deleteFile(destFile.getAbsolutePath());
+        
+        ModelAndView view = new ModelAndView();
+        view.setViewName("redirect:/board/list");
+        return view;
 	}
 }

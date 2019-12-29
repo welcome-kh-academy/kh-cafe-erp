@@ -24,6 +24,8 @@ import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
+import com.KHCafeErp.www.util.ExcelRead;
+import com.KHCafeErp.www.util.ReadOption;
 
 @Service
 public class AddProductServiceImpl implements AddProductService {
@@ -126,6 +128,27 @@ public class AddProductServiceImpl implements AddProductService {
 		System.out.println(option);
 		
 		return option;
+	}
+
+	@Override
+	public void insertMassiveArticleInBoard(File destFile) {
+		ReadOption readOption = new ReadOption();
+		readOption.setFilePath(destFile.getAbsolutePath());
+		readOption.setOutputColumns("A","B","C","D");
+		readOption.setStartRow(2);
+		  
+		List<Map<String, String>> excelContent = ExcelRead.read(readOption);
+		  
+		Product product = null;
+		for(Map<String, String> article : excelContent){
+		   
+		   product = new Product();
+//		   boardVO.setSubject(article.get("A"));
+
+		 
+//		   this.insertArticleInBoard(product);
+		  }
+
 	}
 
 }

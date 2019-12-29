@@ -39,7 +39,13 @@ table tr td:last-child {border-right : none;}
 		</tr>
 		<tr>
 			<td><button class="btn btn-outline-primary" ><a href="/product/addCategory" style="color:black;">신규상품등록</a></button></td>
-			<td><button class="btn btn-outline-success" ><a href="/product/upload"> 엑셀 업로드</a></button></td>
+			<td>
+<!-- 				<button class="btn btn-outline-success" ><a href="/product/upload"> 엑셀 업로드</a></button> -->
+				<form action="/product/upload" method="post" id="massiveForm" name="excelUpload" enctype="multipart/form-data">
+					<input type="file" name="excelFile"/><br>
+					<input class="btn btn-outline-success" type="submit" value="업로드"/>
+				</form>
+			</td>
 		</tr>
 	</table>
 </div>
