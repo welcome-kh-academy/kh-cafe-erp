@@ -10,11 +10,12 @@ $(document).ready(function() {
 
 	// 다음버튼 클릭시
 	$("#next-stage").click(function(){
-		
+
 		$(".addProductForm").submit();		
 //		"/product/register/"
 //		"/product/option"
 //		"/product/addShop"
+
 	
 	});
 });

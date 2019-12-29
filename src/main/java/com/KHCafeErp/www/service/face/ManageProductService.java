@@ -27,6 +27,7 @@ public interface ManageProductService {
 	 * 세부 카테고리 리스트 불러오기
 	 * @return - 세부카테고리 목록
 	 */
-	public List<CategoryDetail> getcategoryDetailList();
+	public List<CategoryDetail> getcategoryDetailList(int categoryNo);
 
+	public Product getProduct(int productNo);
 }

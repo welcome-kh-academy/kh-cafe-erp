@@ -17,11 +17,11 @@ public class FindIdPwController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.GET)
+	@RequestMapping(value="/findinfo/test" ,method=RequestMethod.GET)
 	public void findId() {
 		//		logger.info("�뀒�뒪�듃");
 	}
-	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.POST)
+	@RequestMapping(value="/findinfo/test" ,method=RequestMethod.POST)
 	public String findIdResult(Staff staff,Model model) {
 		//		logger.info("�뀒�뒪�듃");
 

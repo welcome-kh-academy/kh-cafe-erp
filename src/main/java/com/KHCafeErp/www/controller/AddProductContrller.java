@@ -145,16 +145,11 @@ public class AddProductContrller {
 	// 상품 옵션 저장
 	@RequestMapping(value = "/product/option/register")
 	public ModelAndView getOption(@RequestParam(value="categoryNo") int categoryNo, @RequestParam(value="optionName") String optionName, @RequestParam(value="optionValue") int optionValue,ModelAndView mav) {
-//		System.out.println(categoryNo);
-//		System.out.println(optionName);
-//		System.out.println(optionValue);
 		
 		OptionBase option = new OptionBase();
 		option.setCategoryNo(categoryNo);
 		option.setoptionName(optionName);
 		option.setOptionValue(optionValue);
-		
-//		System.out.println(option);
 		
 		addProductService.addOption(option);
 		List<OptionBase> optionList = addProductService.selectOption(categoryNo);
@@ -172,14 +167,24 @@ public class AddProductContrller {
 		
 		return "redirect:/product/option";
 	}
+
+	//판매 방식 등록
+	@RequestMapping(value="/product/salesMethod", method=RequestMethod.GET)
+	public void salesMethod(Model model) { 
+		
+		model.addAttribute("productHeaderNo",4);
+		
+	}
+	
+	@RequestMapping(value="/product/salesMethod", method=RequestMethod.POST)
+	public void saveSalesMethod() { }
+
 	
 	//판매지점 등록
 	@RequestMapping(value="/product/addShop", method=RequestMethod.GET)
 	public void addShop(Model model) {
-//		logger.info("지점등록");
 		
 		List<Shop> shopList = addProductService.getShopList();
 		model.addAttribute("shopList", shopList);
-		
 	}
 }

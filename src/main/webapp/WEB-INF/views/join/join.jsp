@@ -12,7 +12,6 @@
     <!-- Title Page-->
     <title>Au Register Forms by Colorlib</title>
     
-    <!-- Icons font CSS-->
     <link href="/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     
@@ -403,7 +402,7 @@
     <script src="/resources/vendor/datepicker/daterangepicker.js"></script>
 
     <!-- Join JS-->
-    <script src="/resources/js/join.js"></script>
+    <script src="/resources/js/datepicker.js"></script>
 
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

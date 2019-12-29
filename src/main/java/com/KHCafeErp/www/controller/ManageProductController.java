@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
@@ -27,14 +29,34 @@ public class ManageProductController {
 		logger.info("상품관리");
 		
 		List<CategoryBase> category = manageProductService.getcategoryList();
-		List<CategoryDetail> categoryDetail = manageProductService.getcategoryDetailList();
 		List<Shop> shop = manageProductService.getShopList();
 		List<Product> product = manageProductService.getProductList();
 		
 		model.addAttribute("category", category);
-		model.addAttribute("categoryDetail", categoryDetail);
 		model.addAttribute("shop", shop);
 		model.addAttribute("product", product);
+		
 	}
+	@RequestMapping(value="manageProduct/categoryDetail", method=RequestMethod.GET)
+	public ModelAndView getCategoryDetail(@RequestParam(value = "value")int categoryNo, ModelAndView mav) {
+		
+		List<CategoryDetail> categoryDetail = manageProductService.getcategoryDetailList(categoryNo);
+		
+		mav.addObject("categoryDetail", categoryDetail);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	@RequestMapping(value="manageProduct/view", method=RequestMethod.GET)
+	public void getProductView(Model model, int productNo) {		
 
+		List<CategoryBase> category = manageProductService.getcategoryList();
+		Product product = manageProductService.getProduct(productNo);
+		
+		model.addAttribute("category", category);
+		model.addAttribute("product", product);
+
+	}
+	
+	
 }
