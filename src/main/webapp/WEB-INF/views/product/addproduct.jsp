@@ -48,6 +48,43 @@ $(document).ready(function(){
                 divProductName.addClass("has-success");
             }
         });
+		
+        $('#productOrigin').keyup(function(event){
+             
+            var divProductOrigin = $('#divProductOrigin');
+             
+            if($('#productOrigin').val()==""){
+            	divProductOrigin.removeClass("has-success");
+            	divProductOrigin.addClass("has-error");
+            }else{
+            	divProductOrigin.removeClass("has-error");
+            	divProductOrigin.addClass("has-success");
+            }
+        });
+        $('#productContent').keyup(function(event){
+             
+            var divProductContent = $('#divProductContent');
+             
+            if($('#productContent').val()==""){
+            	divProductContent.removeClass("has-success");
+            	divProductContent.addClass("has-error");
+            }else{
+            	divProductContent.removeClass("has-error");
+            	divProductContent.addClass("has-success");
+            }
+        });
+        $('#productImage').keyup(function(event){
+             
+            var divProductImage = $('#divProductImage');
+             
+            if($('#productImage').val()==""){
+            	divProductImage.removeClass("has-success");
+            	divProductImage.addClass("has-error");
+            }else{
+            	divProductImage.removeClass("has-error");
+            	divProductImage.addClass("has-success");
+            }
+        });
        
 		$('#originPrice').keyup(function(event){
              
@@ -77,6 +114,9 @@ $(document).ready(function(){
 		
 		$("form").submit(function(event) {
             var divProductName = $('#divProductName');
+            var divProductOrigin = $('#divProductOrigin')
+            var divProductContent = $('#divProductContent')
+            var divProductImage = $('#divProductImage')
             var divOriginPrice = $('#divOriginPrice');
             var divPrice = $('#divPrice');
             
@@ -90,6 +130,42 @@ $(document).ready(function(){
             }else{
             	divProductName.removeClass("has-error");
             	divProductName.addClass("has-success");
+            }
+           
+            if($('#productOrigin').val()==""){
+                warningModal("제조사를 입력하여 주시기 바랍니다.");
+                 
+                divProductOrigin.removeClass("has-success");
+                divProductOrigin.addClass("has-error");
+                $('#productOrigin').focus();
+                return false;
+            }else{
+            	divProductOrigin.removeClass("has-error");
+            	divProductOrigin.addClass("has-success");
+            }
+           
+            if($('#productContent').val()==""){
+                warningModal("제품소개를 입력하여 주시기 바랍니다.");
+                 
+                divProductContent.removeClass("has-success");
+                divProductContent.addClass("has-error");
+                $('#productContent').focus();
+                return false;
+            }else{
+            	divProductContent.removeClass("has-error");
+            	divProductContent.addClass("has-success");
+            }
+           
+            if($('#productImage').val()==""){
+                warningModal("제품사진을 등록하여 주시기 바랍니다.");
+                 
+                divProductImage.removeClass("has-success");
+                divProductImage.addClass("has-error");
+                $('#productImage').focus();
+                return false;
+            }else{
+            	divProductImage.removeClass("has-error");
+            	divProductImage.addClass("has-success");
             }
 
             if($('#originPrice').val()==""){
@@ -161,7 +237,7 @@ $(document).ready(function(){
 						</div>
 					</td>
 					<td>
-						<div>
+						<div id="divProductOrigin">
 							<label for="productOrigin">제조사</label>
 							<input type="text" class="form-control" id="productOrigin" name="productOrigin">
 						</div>
@@ -169,13 +245,13 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<td>
-						<div>
+						<div id="divProductContent">
 							<label for="productContent">상품 소개</label>
 							<textarea class="form-control" id="productContent" name="productContent" style="width:100%; height:200px; resize: none; overflow:auto"></textarea>
 						</div>
 					</td>
 					<td>
-						<div style="padding-bottom:155px;">
+						<div id="divProductImage" style="padding-bottom:155px;">
 							<label for="productImage">제품 이미지</label>
 							<input type="file" class="form-control-file" name="productImage" id="productImage">
 						</div>
