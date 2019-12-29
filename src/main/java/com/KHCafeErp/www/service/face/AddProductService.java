@@ -6,7 +6,7 @@ import java.util.List;
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
-import com.KHCafeErp.www.dto.Option;
+import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
@@ -24,7 +24,7 @@ public interface AddProductService {
 	 * @param categoryNo
 	 * @return
 	 */
-	public List<Option> selectOption(int categoryNo);
+	public List<OptionBase> selectOption(int categoryNo);
 
 	/**
 	 * 19-12-26 현석
@@ -38,7 +38,7 @@ public interface AddProductService {
 	 * 옵션 추가하기
 	 * @param option - 입력한 option
 	 */
-	public void addOption(Option option);
+	public void addOption(OptionBase option);
 	
 	/**
 	 * 19-12-26 현석
@@ -62,5 +62,9 @@ public interface AddProductService {
 	 * @return - 이미지 파일
 	 */
 	public ImgFile filesave(ImgFile imgFile);
+
+	public String getCategoryBaseName(int categoryBaseNo);
+
+	public String getCategoryDetailName(int categoryDetailNo);
 	
 }

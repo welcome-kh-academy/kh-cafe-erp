@@ -116,22 +116,22 @@ $(document).ready(function(){
 <div id="addProduct">
 	<fieldset>
 		<legend class="text-primary">상품 기본 정보</legend>
-		<form action="/product/register" method="post" enctype="multipart/form-data">
+		<form class="addProductForm" action="/product/saveRegisterMap" method="post" enctype="multipart/form-data">
 			<table>
 				<tr style="height:10px"><td></td></tr>
 				<tr>
 					<td>
 					<div>
 						<label for="categoryBase">카테고리</label>
-						<input type="text" class="form-control" id="categoryBase" value="음료" disabled>
-						<input type="hidden" class="form-control" name="categoryBase" value="1">
+						<input type="text" class="form-control" id="categoryBase" value="${addProduct.categoryName }" disabled>
+						<input type="hidden" class="form-control" name="categoryBase" value="${addProduct.categoryNo }">
 					</div>
 					</td>
 					<td style="width:50%">
 					<div>
 						<label for="categoryDetail">상세 카테고리</label>
-						<input type="text" class="form-control" id="categoryDetail" value="티(티바나)" disabled>
-						<input type="hidden" class="form-control" name="categoryDetail" value="7">
+						<input type="text" class="form-control" id="categoryDetail" value="${addProduct.categoryDetailName }" disabled>
+						<input type="hidden" class="form-control" name="categoryDetail" value="${addProduct.categoryDetailNo }">
 					</div>
 					</td>
 				</tr>
@@ -152,8 +152,8 @@ $(document).ready(function(){
 				<tr>
 					<td>
 						<div>
-							<label for="productInfo">상품 소개</label>
-							<textarea class="form-control" id="productInfo" name="productInfo" style="width:100%; height:200px; resize: none; overflow:auto"></textarea>
+							<label for="productContent">상품 소개</label>
+							<textarea class="form-control" id="productContent" name="productContent" style="width:100%; height:200px; resize: none; overflow:auto"></textarea>
 						</div>
 					</td>
 					<td>
@@ -178,7 +178,6 @@ $(document).ready(function(){
 					</td>
 				</tr>
 				</table>
-				<button id="addSubmit" class="btn btn-primary" style="float:right; margin-right:5px">저장</button>
 		</form>
 	</fieldset>
 

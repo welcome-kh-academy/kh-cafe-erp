@@ -18,9 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
-
 import com.KHCafeErp.www.dto.ImgFile;
-import com.KHCafeErp.www.dto.Option;
+import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
@@ -76,7 +75,7 @@ public class AddProductContrller {
 		
 		addProduct.put("categoryNo", category.getCategoryNo());
 		addProduct.put("categoryDetailNo", categoryDetail.getCategoryMapNo());
-		
+
 		session.setAttribute("addProduct", addProduct);
 		
 		logger.info(category.toString());
@@ -87,14 +86,24 @@ public class AddProductContrller {
 	
 
 	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
-	public String addProduct() {
-		
+	public String addProduct(HttpSession session, Model model) {
 		logger.info("addProduct()");
+		int categoryBaseNo = (int) addProduct.get("categoryNo");
+		String categoryBaseName = addProductService.getCategoryBaseName(categoryBaseNo);
+
+		int categoryDetailNo = (int) addProduct.get("categoryDetailNo");
+		String categoryDetailName = addProductService.getCategoryDetailName(categoryDetailNo);
+		
+		addProduct.put("categoryName", categoryBaseName);
+		addProduct.put("categoryDetailName", categoryDetailName);
+
+		session.setAttribute("addProduct", addProduct);
+		
 		return "/product/addproduct";
 	}
 
 	// 상품 정보 저장하기
-	@RequestMapping(value = "/product/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/saveRegisterMap", method = RequestMethod.POST)
 	public String addProductProc(HttpSession session, Product product,ImgFile imgFile, Model model) {
 		logger.info("addProductProc()");
 		logger.info(product.toString()); 
@@ -102,21 +111,30 @@ public class AddProductContrller {
 		imgFile = addProductService.filesave(imgFile);
 		logger.info(imgFile.toString());
 
-		session.setAttribute("productName", product.getProductName());
-		session.setAttribute("productOrigin", product.getProductOrigin());
-		session.setAttribute("productContent", product.getProductContent());
+		addProduct.put("productName", product.getProductName());
+		addProduct.put("productOrigin", product.getProductOrigin());
+		addProduct.put("productContent", product.getProductContent());
+		addProduct.put("fileOrigin", imgFile.getOriginName());
+		addProduct.put("fileStored", imgFile.getStoredName());
+		addProduct.put("originPrice",product.getOriginPrice());
+		addProduct.put("price",product.getPrice());
 
-		return "/product/addproduct";
+		System.out.println("++++++++++++++++++++++++-*** "+imgFile.getOriginName()+imgFile.getStoredName());
+		
+		session.setAttribute("addProduct", addProduct);
+		
+		System.out.println("+++++++++++++++++++++++++++++++++++++++"+addProduct);
+		
+		return "redirect:/product/option";
 	}
 		
 	// 상품 옵션 목록  
 	@RequestMapping(value = "/product/option", method=RequestMethod.GET)
 	public String optionList(Model model) {
 		logger.info("optionList()");
-		int categoryNo = 1;	// 나중에 수정 필요 - 앞에서 넘어오는 categoryNo로..!
-//		int categoryNo = 2;	
+		int categoryNo = (int) addProduct.get("categoryNo");
 
-		List<Option> optionList = addProductService.selectOption(categoryNo);
+		List<OptionBase> optionList = addProductService.selectOption(categoryNo);
 
 		model.addAttribute("optionList", optionList);
 		
@@ -124,14 +142,14 @@ public class AddProductContrller {
 	}
 
 
-	// 상품 옵션 등록
+	// 상품 옵션 저장
 	@RequestMapping(value = "/product/option/register")
 	public ModelAndView getOption(@RequestParam(value="categoryNo") int categoryNo, @RequestParam(value="optionName") String optionName, @RequestParam(value="optionValue") int optionValue,ModelAndView mav) {
 //		System.out.println(categoryNo);
 //		System.out.println(optionName);
 //		System.out.println(optionValue);
 		
-		Option option = new Option();
+		OptionBase option = new OptionBase();
 		option.setCategoryNo(categoryNo);
 		option.setoptionName(optionName);
 		option.setOptionValue(optionValue);
@@ -139,11 +157,20 @@ public class AddProductContrller {
 //		System.out.println(option);
 		
 		addProductService.addOption(option);
-		List<Option> optionList = addProductService.selectOption(categoryNo);
+		List<OptionBase> optionList = addProductService.selectOption(categoryNo);
 		mav.addObject("optionList", optionList);
 		mav.setViewName("jsonView");
 		
 		return mav;
+	}
+	
+	@RequestMapping(value = "/product/saveOptionMap", method=RequestMethod.POST)
+	public String addOptionProc(OptionBase optionBase) {
+		logger.info("addOptionProc()");
+		System.out.println(optionBase);
+		
+		
+		return "redirect:/product/option";
 	}
 	
 	//판매지점 등록

@@ -16,7 +16,7 @@ import com.KHCafeErp.www.dao.face.AddProductDao;
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
-import com.KHCafeErp.www.dto.Option;
+import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
@@ -35,7 +35,7 @@ public class AddProductServiceImpl implements AddProductService {
 	}
 	
 	@Override
-	public List<Option> selectOption(int categoryNo) {
+	public List<OptionBase> selectOption(int categoryNo) {
 		return addProductDao.selectOption(categoryNo);
 	}
 
@@ -46,7 +46,7 @@ public class AddProductServiceImpl implements AddProductService {
 	}
 
 	@Override
-	public void addOption(Option option) {
+	public void addOption(OptionBase option) {
 		addProductDao.insertOption(option);
 	}
 	public CategoryBase getCategory(Product product) {
@@ -69,7 +69,7 @@ public class AddProductServiceImpl implements AddProductService {
 		String uid=UUID.randomUUID().toString().split("-")[4];
 		
 		// 저장될 파일의 이름 (원본명+UUID)
-		String filename = imgFile.getProductImage().getOriginalFilename()+"_"+uid;
+		String filename = uid+"_"+imgFile.getProductImage().getOriginalFilename();
 		
 		// 저장될 파일 객체
 		File dest = new File(storedPath, filename);
@@ -85,10 +85,20 @@ public class AddProductServiceImpl implements AddProductService {
 		}
 		
 		ImgFile file = new ImgFile();
-		file.setOriginName(imgFile.getOriginName());
+		file.setOriginName(imgFile.getProductImage().getOriginalFilename());
 		file.setStoredName(filename);
 		
 		return file;
+	}
+
+	@Override
+	public String getCategoryBaseName(int categoryBaseNo) {
+		return addProductDao.selectCategoryBaseName(categoryBaseNo);
+	}
+
+	@Override
+	public String getCategoryDetailName(int categoryDetailNo) {
+		return addProductDao.selectCategoryDetailName(categoryDetailNo);
 	}
 
 }
