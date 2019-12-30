@@ -7,10 +7,16 @@
 
 <style type="text/css">
 
+/*브레드크럼 스타일 지정*/
 #crumbs ul li #productHeader_2 {
   background-color: #2C3E50;
   color: #fff;
 }
+
+#crumbs ul li #productHeader_2:after {
+	border-left: 40px solid #2C3E50;
+}
+/**/
 
 fieldset{
 	margin : 28px 30px;
@@ -293,6 +299,5 @@ $(document).ready(function(){
           </div>
       </div>
 </div>
-
 
 <jsp:include page="/WEB-INF/views/layout/product-footer.jsp"/>
