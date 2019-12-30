@@ -87,6 +87,6 @@ public interface AddProductService {
 	 */
 	public Map<String, String> getOption(HttpServletRequest req);
 
-	public void insertMassiveArticleInBoard(File destFile);
+	public void insertMassiveProduct(File destFile);
 	
 }

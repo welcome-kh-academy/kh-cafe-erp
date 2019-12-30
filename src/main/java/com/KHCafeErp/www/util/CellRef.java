@@ -1,6 +1,9 @@
 package com.KHCafeErp.www.util;
 
+import java.text.SimpleDateFormat;
+
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.util.CellReference;
  
 public class CellRef {
@@ -36,7 +39,12 @@ public class CellRef {
                 value = cell.getCellFormula();
             }
             else if( cell.getCellType() == Cell.CELL_TYPE_NUMERIC ) {
-                value = cell.getNumericCellValue() + "";
+            	if(DateUtil.isCellDateFormatted(cell)) {
+            		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            		value = formatter.format(cell.getDateCellValue());
+            	} else {
+            		value = cell.getNumericCellValue() + "";
+            	}
             }
             else if( cell.getCellType() == Cell.CELL_TYPE_STRING ) {
                 value = cell.getStringCellValue();
