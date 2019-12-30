@@ -1,12 +1,17 @@
 package com.KHCafeErp.www.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.FindIdPwService;
@@ -36,6 +41,18 @@ public class FindIdPwController {
 			return "/findinfo/findidfail";
 
 	}
-	
+//	// 비밀번호 찾기
+//	@RequestMapping(value = "/findinfo/findinfo", method = RequestMethod.GET)
+//	@ResponseBody
+//	public String passwordSearch(@RequestParam("userId")int staffNo,
+//			@RequestParam("userEmail")String email,
+//			HttpServletRequest request) {
+//
+//		MailSender.mailSendWithPassword(staffNo, email, request);
+//		
+//		return "/findinfo/findinfo";
+//	}
+
+
 
 }

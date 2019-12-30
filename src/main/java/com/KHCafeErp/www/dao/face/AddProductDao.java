@@ -3,7 +3,7 @@ package com.KHCafeErp.www.dao.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
-import com.KHCafeErp.www.dto.Option;
+import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
@@ -22,7 +22,7 @@ public interface AddProductDao {
 	 * 상품 옵션 조회
 	 * @return - Option 리스트
 	 */
-	public List<Option> selectOption(int categoryNo);
+	public List<OptionBase> selectOption(int categoryNo);
 
 	/**
 	 * 19-12-26 현석
@@ -32,7 +32,7 @@ public interface AddProductDao {
 	public List<CategoryBase> selectCategoryList();
 
 
-	public void insertOption(Option option);
+	public void insertOption(OptionBase option);
 	/**
 	 * 19-12-26 현석
 	 * 상품검색으로 카테고리 가져오기
@@ -46,4 +46,18 @@ public interface AddProductDao {
 	 * @return
 	 */
 	public List<CategoryDetail> selectCategoryDetailList(int categoryNo);
+
+	/**
+	 * 카테고리 이름 조회
+	 * @param categoryBaseNo - 카테고리 No
+	 * @return - 카테고리 이름
+	 */
+	public String selectCategoryBaseName(int categoryBaseNo);
+
+	/**
+	 * 상세 카테고리 조회
+	 * @param categoryDetailNo - 상세 카테고리 No
+	 * @return - 상세 카테고리 이름
+	 */
+	public String selectCategoryDetailName(int categoryDetailNo);
 }

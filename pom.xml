@@ -23,12 +23,26 @@
    
    <dependencies>
    
-      <!-- 메일 -->
-      <dependency>
-         <groupId>javax.mail</groupId>
-         <artifactId>mail</artifactId>
-         <version>1.4.7</version>
-      </dependency>
+	
+		<!-- Excel Read/Write 를 위한 Dependency 추가 -->
+    	<dependency>
+        	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi</artifactId>
+        	<version>3.11</version>
+    	</dependency>
+    	
+   	 	<dependency>
+   	     	<groupId>org.apache.poi</groupId>
+        	<artifactId>poi-ooxml</artifactId>
+    	    <version>3.11</version>
+	    </dependency>
+	
+		<!-- 메일 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 
       <dependency>
          <groupId>org.springframework</groupId>
@@ -71,88 +85,88 @@
          <version>${org.springframework-version}</version>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-      <dependency>
-         <groupId>org.mybatis</groupId>
-         <artifactId>mybatis-spring</artifactId>
-         <version>2.0.3</version>
-      </dependency>
-      
-      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-      <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-         <version>2.10.1</version>
-      </dependency>
-      
-      <!-- Spring -->
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-context</artifactId>
-         <version>${org.springframework-version}</version>
-         <exclusions>
-            <!-- Exclude Commons Logging in favor of SLF4j -->
-            <exclusion>
-               <groupId>commons-logging</groupId>
-               <artifactId>commons-logging</artifactId>
-             </exclusion>
-         </exclusions>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-webmvc</artifactId>
-         <version>${org.springframework-version}</version>
-      </dependency>
-            
-      <!-- AspectJ -->
-      <dependency>
-         <groupId>org.aspectj</groupId>
-         <artifactId>aspectjrt</artifactId>
-         <version>${org.aspectj-version}</version>
-      </dependency>   
-      
-      <!-- Logging -->
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-api</artifactId>
-         <version>${org.slf4j-version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>jcl-over-slf4j</artifactId>
-         <version>${org.slf4j-version}</version>
-         <scope>runtime</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-log4j12</artifactId>
-         <version>${org.slf4j-version}</version>
-         <scope>runtime</scope>
-      </dependency>
-      <dependency>
-         <groupId>log4j</groupId>
-         <artifactId>log4j</artifactId>
-         <version>1.2.15</version>
-         <exclusions>
-            <exclusion>
-               <groupId>javax.mail</groupId>
-               <artifactId>mail</artifactId>
-            </exclusion>
-            <exclusion>
-               <groupId>javax.jms</groupId>
-               <artifactId>jms</artifactId>
-            </exclusion>
-            <exclusion>
-               <groupId>com.sun.jdmk</groupId>
-               <artifactId>jmxtools</artifactId>
-            </exclusion>
-            <exclusion>
-               <groupId>com.sun.jmx</groupId>
-               <artifactId>jmxri</artifactId>
-            </exclusion>
-         </exclusions>
-         <scope>runtime</scope>
-      </dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.1</version>
+		</dependency>
+		
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				 </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
 
       <!-- @Inject -->
       <dependency>

@@ -86,7 +86,7 @@
 </div>
 </div>
 
-<form id="addProductForm" action="/product/saveCategoryMap" method="post">
+<form class="addProductForm" action="/product/saveCategoryMap" method="post">
 <div class="search-category">
 <h3>카테고리 등록</h3>
 <select name="categoryNo" id="categoryBase" onchange="getCategoryDetail(this.value)" class="search-select select2-selection select2-selection--single form-control">

@@ -1,6 +1,6 @@
 package com.KHCafeErp.www.dto;
 
-public class Option {
+public class OptionBase {
 	private int optionNo;
 	private String optionName;
 	private int optionValue;

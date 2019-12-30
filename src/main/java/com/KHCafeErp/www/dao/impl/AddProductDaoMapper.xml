@@ -7,7 +7,7 @@
   
 <mapper namespace="com.KHCafeErp.www.dao.face.AddProductDao">
 	<!-- 19-12-24 유진 : 상품 옵션 목록  -->
-	<select id="selectOption" parameterType="int" resultType="com.KHCafeErp.www.dto.Option">
+	<select id="selectOption" parameterType="int" resultType="com.KHCafeErp.www.dto.OptionBase">
 		SELECT rownum rnum, B.* FROM(SELECT optionNo, optionName, optionValue FROM optionBase WHERE categoryNo=#{categoryNo} ORDER BY optionNo)B ORDER BY rnum
 	</select>
 
@@ -21,7 +21,7 @@
 		SELECT * FROM shop
 	</select>
 
-	<insert id="insertOption" parameterType="com.KHCafeErp.www.dto.Option">
+	<insert id="insertOption" parameterType="com.KHCafeErp.www.dto.OptionBase">
 		INSERT INTO optionBase (optionNo, optionName, optionValue, categoryNo) VALUES (optionNo_seq.nextval, #{optionName}, #{optionValue}, #{categoryNo})
 	</insert>
 
@@ -42,4 +42,11 @@
 		AND categoryNo = #{categoryNo}
 	</select>
 
+	<select id="selectCategoryBaseName" parameterType="int" resultType="String">
+		SELECT categoryName FROM categoryBase WHERE categoryNo=#{categoryNo}
+	</select>
+
+	<select id="selectCategoryDetailName" parameterType="int" resultType="String">
+		SELECT categoryDetailName FROM categoryDetail WHERE categoryMapNo=#{categoryDetailNo}
+	</select>
 </mapper>
