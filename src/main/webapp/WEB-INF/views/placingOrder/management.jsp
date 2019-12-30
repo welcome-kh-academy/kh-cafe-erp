@@ -40,49 +40,47 @@ $(document).ready( function () {
 <hr/>
 
 <div class="condition-container">
+<form action="/placingOrder/management" method="post">
 <table class="table table-bordered">
 	<tr>
-		<th class="condition">발주번호</th>
-		<td><input type="number" name="placingOrderNo"/></td>
-		<th class="condition">지점명</th>
-		<td><input type="text" name=""></td>
+		<th class="condition"><label for="placingOrderNo">발주번호</label></th>
+		<td><input type="text" id="placingOrderNo" name="placingOrderNo"/></td>
+		<th class="condition"><label for="shopName">지점명</label></th>
+		<td><input type="text" name="shopName" id="shopName"></td>
 		<td rowspan="3" style="vertical-align : middle;text-align:center;">
-			<button type="button" class="btn btn-primary btn-lg">검색</button>
+			<button class="btn btn-primary btn-lg">검색</button>
 		</td>
 	</tr>
 	<tr>
-		<th class="condition">발주일시</th>
+		<th class="condition"><label for="startDate">발주일시</label></th>
 		<td colspan="3">
 			<input class="input--style-1 js-datepicker" type="text"
-				placeholder="" id="hiredDate" name="hiredDate">
+				placeholder="" id="startDate" name="startDate">
 			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 			<span class="space">~</span> 
 			<input class="input--style-1 js-datepicker" type="text"
-				placeholder="" id="hiredDate" name="hiredDate">
+				placeholder="" id="endDate" name="endDate">
 			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 		</td>
 	</tr>
 	<tr>
-		<th class="condition">발주상태</th>
+		<th class="condition"><label for="placingOrderStatus">발주상태</label></th>
 		<td>
-			<div class="search-category-detail">
-				<select name="categoryMapNo" id="categoryDetail"
-					class="search-select select2-selection select2-selection--single form-control">
-					<option>발주완료</option>
-				</select>
-			</div>
+			<select name="placingOrderStatus" id="placingOrderStatus"
+				class="select2-selection--single form-control">
+				<option value="1">발주완료</option>
+			</select>
 		</td>
-		<th class="condition">입고상태</th>
+		<th class="condition"><label for="inStockStatus">입고상태</label></th>
 		<td>
-			<div class="search-category-detail">
-				<select name="categoryMapNo" id="categoryDetail"
-					class="search-select select2-selection select2-selection--single form-control">
-					<option>입고완료</option>
-				</select>
-			</div>
+			<select name="inStockStatus" id="inStockStatus"
+				class="select2-selection--single form-control">
+				<option value="1">입고완료</option>
+			</select>
 		</td>
 	</tr>
 </table>
+</form>
 </div>
 
 <div style="float:right;">
