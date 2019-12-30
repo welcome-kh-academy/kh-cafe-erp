@@ -86,5 +86,7 @@ public interface AddProductService {
 	 * @return - 선택한 옵션들
 	 */
 	public Map<String, String> getOption(HttpServletRequest req);
+
+	public void insertMassiveArticleInBoard(File destFile);
 	
 }
