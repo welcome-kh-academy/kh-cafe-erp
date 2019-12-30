@@ -10,7 +10,7 @@
 </style>
 <!-- <h1>상품관리</h1> -->
 <!-- <hr> -->
-<<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
 	
 	$("#prodList").on("click",".edit", function(){
