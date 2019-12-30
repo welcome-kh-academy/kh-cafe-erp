@@ -17,6 +17,12 @@ public class ManageProductServiceImpl implements ManageProductService{
 	@Autowired ManageProductDao manageProductDao;
 	
 	@Override
+	public void editProduct(Product product, CategoryDetail category) {
+//		manageProductDao.updateCategoryDetail(category);
+		manageProductDao.updateProduct(product);
+	}
+	
+	@Override
 	public List<Product> getProductList() {
 		return manageProductDao.selectProductAll();
 	}

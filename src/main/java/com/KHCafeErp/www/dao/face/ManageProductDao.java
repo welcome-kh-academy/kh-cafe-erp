@@ -9,6 +9,16 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
 	/**
+	 * 상품정보에 업데이트된 카테고리 정보를 업데이트 한다
+	 * @param category - 업데이트할 카테고리 정보
+	 */
+	public void updateCategoryDetail(CategoryDetail category);
+	/**
+	 * 상품정보를 업데이트한다
+	 * @param product - 업데이트할 상품정보
+	 */
+	public void updateProduct(Product product);
+	/**
 	 * 등록되있는 상품 목록 불러오기
 	 * @return - 상품 목록
 	 */

@@ -32,4 +32,20 @@
 		    AND CD.categoryNo = CB.categoryNo
 		    AND P.productNo = #{productNo}
 	</select>
+	<update id="updateCategoryDetail" parameterType="com.KHCafeErp.www.dto.CategoryDetail">
+		UPDATE categoryDetail SET categoryNo =#{ categoryNo }, WHERE categoryMapNo = ${ categoryMapNo }
+	</update>
+	<update id="updateProduct" parameterType="com.KHCafeErp.www.dto.Product">
+		UPDATE product SET productName = #{ productName },
+				categoryMapNo = #{ categoryMapNo },
+				originPrice = #{ originPrice },
+				price = #{ price },
+				enrollDate = #{ enrollDate },
+				selStartDate = #{ selStartDate },
+				selEndDate = #{ selEndDate },
+				selStatus = #{ selStatus },
+				productContent = #{ productContent }
+		WHERE productNo = #{ productNo }
+	</update>
+	
 </mapper>
