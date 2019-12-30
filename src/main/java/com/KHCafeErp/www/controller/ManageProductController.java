@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.controller;
 
 import java.util.List;
+import java.util.Locale.Category;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,5 +59,15 @@ public class ManageProductController {
 
 	}
 	
+	@RequestMapping(value="manageProduct/update", method=RequestMethod.GET)
+	public String updateProduct(Product product, CategoryDetail category) {
+		logger.info("모달 값 : " + product.toString());
+		logger.info("모달 값 : " + category.toString());
+		
+		
+		manageProductService.editProduct(product, category);
+		
+		return "redirect:/manageProduct/list";
+	}
 	
 }

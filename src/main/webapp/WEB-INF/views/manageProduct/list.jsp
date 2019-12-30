@@ -10,7 +10,7 @@
 </style>
 <!-- <h1>상품관리</h1> -->
 <!-- <hr> -->
-<<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
 	
 	$("#prodList").on("click",".edit", function(){
@@ -32,6 +32,8 @@ $(document).ready(function() {
 			}
 		})
 	});
+	
+	
 	
 	
 	
@@ -85,7 +87,7 @@ $(document).ready(function() {
 				if(res.categoryDetail.length == 0)
 					$("#categoryDetail2").append("<option>-----</option>");
 				for (var i=0; i<res.categoryDetail.length;i++) {
-					$("#categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapno+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+					$("#categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapNo+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
 				}
 			}
 		})
@@ -184,9 +186,25 @@ $(document).ready(function() {
       	<td>${ p.price }</td>
       	<td>${ p.productOrigin }</td>
       	<td>${ p.enrollDate }</td>
-      	<td>${ p.selStartDate }</td>
-      	<td>${ p.selEndDate }</td>
-      	<td>${ p.selStatus }</td>
+      	<td>
+      	<c:choose>
+      		<c:when test="${ p.selStartDate ne null }">${ p.selStartDate }</c:when>
+      		<c:when test="${ p.selStartDate eq null }"><button class="btn btn-primary">등록하기</button></c:when>
+      	</c:choose>
+      	</td>
+      	<td>
+      	<c:choose>
+      		<c:when test="${ p.selEndDate ne null }">${ p.selEndDate }</c:when>
+      		<c:when test="${ p.selEndDate eq null }"><button class="btn btn-primary">등록하기</button></c:when>
+      	</c:choose>
+      	
+      	</td>
+      	<td>
+      	<c:choose>
+      		<c:when test="${ p.selStatus eq 0 }">판매중</c:when>
+      		<c:when test="${ p.selStatus eq 1 }">판매종료</c:when>
+		</c:choose>
+      	</td>
 		<!-- Button trigger modal -->
 		<td><button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
 		  상세 / 수정

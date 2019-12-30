@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,6 +32,8 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 		
 		Staff findidResult =findidpwDao.findid(staff);
 		return findidResult;
+
+
 		
 	}
 
@@ -69,6 +70,7 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 	
 
 
+
 		// 패스워드 찾기 이메일 발송
 		public void mailSendWithPassword(int staffNo, String email, HttpServletRequest request) {
 			// 비밀번호는 6자리로 보내고 데이터베이스 비밀번호를 바꿔준다
@@ -96,4 +98,5 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 
 	
 	
+
 }
