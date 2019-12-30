@@ -3,7 +3,7 @@ package com.KHCafeErp.www.dto;
 public class Product {
 	private int productNo;
 	private int categoryMapNo;
-	private int productOptionNo;
+	private int optionNo;
 	private int shopNo;
 	private String productName;
 	private String productContent;
@@ -19,8 +19,8 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", productOptionNo="
-				+ productOptionNo + ", shopNo=" + shopNo + ", productName=" + productName + ", productContent="
+		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", optionNo="
+				+ optionNo + ", shopNo=" + shopNo + ", productName=" + productName + ", productContent="
 				+ productContent + ", originPrice=" + originPrice + ", price=" + price + ", productOrigin="
 				+ productOrigin + ", selStartDate=" + selStartDate + ", enrollDate=" + enrollDate + ", selEndDate="
 				+ selEndDate + ", selStatus=" + selStatus + ", categoryName=" + categoryName + ", categoryNo="
@@ -39,11 +39,11 @@ public class Product {
 	public void setCategoryMapNo(int categoryMapNo) {
 		this.categoryMapNo = categoryMapNo;
 	}
-	public int getProductOptionNo() {
-		return productOptionNo;
+	public int getOptionNo() {
+		return optionNo;
 	}
-	public void setProductOptionNo(int productOptionNo) {
-		this.productOptionNo = productOptionNo;
+	public void setOptionNo(int optionNo) {
+		this.optionNo = optionNo;
 	}
 	public int getShopNo() {
 		return shopNo;

@@ -19,7 +19,7 @@
 		SELECT * FROM shop
 	</select>
 	<select id="selectProductAll" resultType="com.KHCafeErp.www.dto.Product">
-		SELECT * FROM product
+		SELECT * FROM product ORDER BY productNo 
 	</select>
 	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT

@@ -131,23 +131,46 @@ public class AddProductServiceImpl implements AddProductService {
 	}
 
 	@Override
-	public void insertMassiveArticleInBoard(File destFile) {
+	public void insertMassiveProduct(File destFile) {
 		ReadOption readOption = new ReadOption();
 		readOption.setFilePath(destFile.getAbsolutePath());
-		readOption.setOutputColumns("A","B","C","D");
+		readOption.setOutputColumns("A","B","C","D","E","F","G","H","I","J","K");
 		readOption.setStartRow(2);
 		  
 		List<Map<String, String>> excelContent = ExcelRead.read(readOption);
 		  
+		Map<String, Object> productInfo = new HashMap<String, Object>();
 		Product product = null;
 		for(Map<String, String> article : excelContent){
 		   
 		   product = new Product();
-//		   boardVO.setSubject(article.get("A"));
-
-		 
-//		   this.insertArticleInBoard(product);
+		   
+		   product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
+		   product.setShopNo((int)Float.parseFloat(article.get("B")));
+//		   product.setOptionNo((int)Float.parseFloat(article.get("C")));
+		   product.setProductName(article.get("D"));
+		   product.setProductContent(article.get("E"));
+		   product.setOriginPrice((int)Float.parseFloat(article.get("F")));
+		   product.setPrice((int)Float.parseFloat(article.get("G")));
+		   product.setProductOrigin(article.get("H"));
+		   product.setSelStartDate(article.get("I"));
+		   product.setSelEndDate(article.get("J"));
+		   product.setSelStatus((int)Float.parseFloat(article.get("K")));
+		   
+		   System.out.println(product);
+		   
+//		   String[][] a;
+		  
+		   
+//		   productInfo.put(product.getProductName(),product);
+//		   System.out.println(productInfo);
+		   
+//		   while(productInfo.)
+		   
+		   addProductDao.insertProduct(product);
+//		   addProductDao.insertProduct(productInfo);
 		  }
+		System.out.println(excelContent);
 
 	}
 

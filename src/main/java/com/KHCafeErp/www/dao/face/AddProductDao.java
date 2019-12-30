@@ -60,4 +60,6 @@ public interface AddProductDao {
 	 * @return - 상세 카테고리 이름
 	 */
 	public String selectCategoryDetailName(int categoryDetailNo);
+
+	public void insertProduct(Product product);
 }
