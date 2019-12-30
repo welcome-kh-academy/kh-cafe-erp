@@ -8,10 +8,16 @@
 
 <style type="text/css">
 
+/*브레드크럼 스타일 지정*/
 #crumbs ul li #productHeader_3 {
   background-color: #2C3E50;
   color: #fff;
 }
+
+#crumbs ul li #productHeader_3:after {
+	border-left: 40px solid #2C3E50;
+}
+/**/
 
 table{
 	width : 90%;
