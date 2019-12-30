@@ -17,6 +17,8 @@ import com.KHCafeErp.www.dao.face.JoinStaffDao;
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.JoinStaffService;
 
+
+
 @Service
 public class JoinStaffServiceImpl implements JoinStaffService {
 
@@ -25,8 +27,9 @@ public class JoinStaffServiceImpl implements JoinStaffService {
 	
 	@Override
 	public void join(Staff staff) {
-		// TODO Auto-generated method stub
+		
 		joinStaffDao.insert(staff);
+		
 	}
 
 	@Override
@@ -104,5 +107,6 @@ public class JoinStaffServiceImpl implements JoinStaffService {
 
 		return resultCnt;
 	}
+
 
 }

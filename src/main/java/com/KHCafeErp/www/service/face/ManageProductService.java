@@ -9,6 +9,11 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductService {
 	/**
+	 * 상품 정보를 수정한다
+	 * @param product - 수정할 상품 데이터
+	 */
+	public void editProduct(Product product, CategoryDetail category);
+	/**
 	 * 등록되있는 상품 목록 불러오기
 	 * @return - 상품 목록
 	 */

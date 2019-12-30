@@ -75,7 +75,6 @@ public class AddProductContrller {
 		return mav;
 	}
 	
-	// 상품 등록 페이지
 	@RequestMapping(value = "/product/saveCategoryMap", method=RequestMethod.POST)
 	public String saveCategoryMap(HttpSession session, CategoryBase category, CategoryDetail categoryDetail) {
 		
@@ -90,7 +89,7 @@ public class AddProductContrller {
 		return "redirect:/product/register";
 	}
 	
-
+	//상품등록 2단계 - 상품 등록 페이지
 	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
 	public String addProduct(HttpSession session, Model model) {
 		logger.info("addProduct()");
@@ -215,7 +214,7 @@ public class AddProductContrller {
         
         addProductService.insertMassiveArticleInBoard(destFile);
         
-//        FileUtils.deleteFile(destFile.getAbsolutePath());
+//      FileUtils.deleteFile(destFile.getAbsolutePath());
         
         ModelAndView view = new ModelAndView();
         view.setViewName("redirect:/board/list");

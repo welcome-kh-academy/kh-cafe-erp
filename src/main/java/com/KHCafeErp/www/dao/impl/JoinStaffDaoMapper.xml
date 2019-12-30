@@ -33,4 +33,5 @@ VALUES ( #{staffNo }, #{shopNo }, #{position }, #{nick }, #{pw }, #{staffName },
 	update staff set iser_key = 'Y' where staffNo = #{param1} and user_key = #{param2}	
 </update>
 
+
 </mapper>

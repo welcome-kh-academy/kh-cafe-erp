@@ -10,13 +10,14 @@ $(document).ready(function() {
 
 	// 다음버튼 클릭시
 	$("#next-stage").click(function(){
-
 		$(".addProductForm").submit();		
-//		"/product/register/"
-//		"/product/option"
-//		"/product/addShop"
-
-	
 	});
+	
 });
+
+//경고 모달 호출 메서드
+function warningModal(content) {
+	$(".modal-contents").text(content);
+	$("#defaultModal").modal('show');
+}
 
