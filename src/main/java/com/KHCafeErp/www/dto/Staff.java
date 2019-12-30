@@ -15,15 +15,13 @@ public class Staff {
 	private String email;
 	private String cellNum;
 	private String gender;
-	private String authKey;
-	private int authStatus;
 	
 	@Override
 	public String toString() {
 		return "Staff [staffNo=" + staffNo + ", shopNo=" + shopNo + ", position=" + position + ", staffName="
 				+ staffName + ", hiredDate=" + hiredDate + ", leaveDate=" + leaveDate + ", salary=" + salary
 				+ ", status=" + status + ", pw=" + pw + ", nick=" + nick + ", email=" + email + ", cellNum=" + cellNum
-				+ ", gender=" + gender + ", authKey=" + authKey + ", authStatus=" + authStatus + "]";
+				+ ", gender=" + gender + "]";
 	}
 
 	public int getStaffNo() {
@@ -130,21 +128,7 @@ public class Staff {
 		this.gender = gender;
 	}
 
-	public String getAuthKey() {
-		return authKey;
-	}
-
-	public void setAuthKey(String authKey) {
-		this.authKey = authKey;
-	}
-
-	public int getAuthStatus() {
-		return authStatus;
-	}
-
-	public void setAuthStatus(int authStatus) {
-		this.authStatus = authStatus;
-	}
+	
 	
 	
 	
