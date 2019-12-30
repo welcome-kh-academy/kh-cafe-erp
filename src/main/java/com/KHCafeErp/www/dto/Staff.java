@@ -127,6 +127,12 @@ public class Staff {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	
+	
+	
+	
+	
 	
 	
 	

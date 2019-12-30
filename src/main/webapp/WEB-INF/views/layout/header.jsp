@@ -31,6 +31,10 @@
 <link href="/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 <link href="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
 
+<!-- 게시판(테이블) dataTable 1.10.19 & 부트스트랩4 버전 -->
+<link href="/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #wrapper{

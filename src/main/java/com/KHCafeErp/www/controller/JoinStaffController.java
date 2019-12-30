@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.KHCafeErp.www.dto.Staff;
 import com.KHCafeErp.www.service.face.JoinStaffService;
@@ -21,15 +22,18 @@ import com.KHCafeErp.www.service.face.JoinStaffService;
 @Controller
 public class JoinStaffController {
 	
+
 	@Autowired private JoinStaffService joinStaffService;
 
 	private static final Logger logger = LoggerFactory.getLogger(JoinStaffController.class);
+
 	
 	//회원가입페이지
 	@RequestMapping(value="/join/join", method=RequestMethod.GET)
 	public String join() { 
 		
 		logger.info("회원가입접속확인");
+		
 		return "join/join";		
 	}
 	
@@ -40,6 +44,7 @@ public class JoinStaffController {
 //		logger.info(staff.toString());
 		
 		//회원가입 처리
+
 		joinStaffService.join(staff);		
 		
 		//인증 메일 보내기 메서드
@@ -47,6 +52,8 @@ public class JoinStaffController {
 		
 		return "redirect:/dashboard/index";
 	}
+	
+
 	
 	//id 중복 처리 
 	@RequestMapping(value="/join/idcheck", method=RequestMethod.GET)
@@ -76,11 +83,11 @@ public class JoinStaffController {
 	}
 	
 	// e-mail 인증 컨트롤러
-		@RequestMapping(value = "/user/mail", method = RequestMethod.GET)
-		public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("user_key") String key) {
+	@RequestMapping(value = "/user/mail", method = RequestMethod.GET)
+	public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("user_key") String key) {
 
-			joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
+		joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
 
-			return "join/regSuccess";
-		}
+		return "join/regSuccess";
+	}
 }

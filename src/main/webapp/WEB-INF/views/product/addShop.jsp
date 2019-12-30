@@ -6,10 +6,16 @@
 <link href="/resources/css/add-product.css" rel="stylesheet">
 
 <style type="text/css">
+/*브레드크럼 스타일 지정*/
 #crumbs ul li #productHeader_4 {
   background-color: #2C3E50;
   color: #fff;
 }
+
+#crumbs ul li #productHeader_4:after {
+	border-left: 40px solid #2C3E50;
+}
+/**/
 </style>
 
 <script type="text/javascript">

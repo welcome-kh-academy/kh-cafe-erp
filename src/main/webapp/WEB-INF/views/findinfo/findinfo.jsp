@@ -7,7 +7,8 @@
 
 <html>
 <head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
@@ -188,7 +189,6 @@ to {
 			document.getElementById("searchPw").style.display = "";
 		}
 	}
-
 </script>
 </head>
 <body>
@@ -198,20 +198,22 @@ to {
 			사원번호 / 비밀번호 찾기<small>KH-CAFE</small>
 		</h2>
 
+
+
+		<div style="margin-bottom: 10px;">
+
+			<input type="radio" id="search_1" name="search_total"
+				onclick="search_check(1)" checked="checked">사원번호 찾기
+
+		</div>
+
+
+
+		<div>
+			비밀번호 찾기<input type="radio" id="search_2" name="search_total"
+				onclick="search_check(2)">
+		</div>
 		<form action="/findinfo/findinfo" method="post">
-
-			<div style="margin-bottom: 10px;">
-
-				<input type="radio" id="search_1" name="search_total"
-					onclick="search_check(1)" checked="checked">사원번호 찾기
-
-			</div>
-
-			<div>
-				비밀번호 찾기<input type="radio" id="search_2" name="search_total"
-					onclick="search_check(2)">
-			</div>
-
 			<div id="searchId">
 				<div class="group">
 					<input type="text" name="shopNo" id="shopNo" required> <span
@@ -230,8 +232,8 @@ to {
 					<button onclick="javascript:history.go(-1)">취소</button>
 				</div>
 			</div>
-
-
+		</form>
+		<form action="/findinfo/findinfo" method="post">
 			<div id="searchPw" style="display: none;">
 				<div class="group">
 					<input type="text" name="staffNo" id="staffNo"> <span
@@ -240,18 +242,18 @@ to {
 				</div>
 
 				<div class="group">
-					<input type="text" name="email" id="email" > <span
+					<input type="text" name="email" id="email"> <span
 						class="highlight"></span> <span class="bar"></span> <label>Email</label>
 				</div>
 
 				<div class="form-group">
-					<button type="submit" id="searchBtn"  name="searchBtn"
+					<button type="submit" id="searchBtn" name="searchBtn"
 						class="btn btn-primary btn-block">확인</button>
 					<button onclick="javascript:history.go(-1)">취소</button>
 				</div>
 			</div>
-
 		</form>
+
 
 
 	</div>

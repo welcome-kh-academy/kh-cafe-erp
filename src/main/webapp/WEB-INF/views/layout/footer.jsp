@@ -20,5 +20,10 @@
 <script src="/resources/vendor/datepicker/daterangepicker.js"></script>
 <script src="/resources/js/datepicker.js"></script>
 
+<!-- 게시판(테이블) dataTable 1.10.19 & 부트스트랩4 버전 -->
+<script src="/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
 </body>
 </html>

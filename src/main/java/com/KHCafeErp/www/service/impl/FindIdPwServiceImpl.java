@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,12 +30,13 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 	public Staff findid(Staff staff) {
 		
 		Staff findidResult =findidpwDao.findid(staff);
-		
 		return findidResult;
+
+
 		
 	}
 
-	// 이메일 난수 만드는 메서드
+		// 이메일 난수 만드는 메서드
 		private String init() {
 			Random ran = new Random();
 			StringBuffer sb = new StringBuffer();
@@ -69,13 +69,14 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 	
 
 
-	// 패스워드 찾기 이메일 발송
+
+		// 패스워드 찾기 이메일 발송
 		public void mailSendWithPassword(int staffNo, String email, HttpServletRequest request) {
 			// 비밀번호는 6자리로 보내고 데이터베이스 비밀번호를 바꿔준다
 			String key = getKey(false, 6);
-			findidpwDao = sqlSession.getMapper(FindIdPwDao.class);
 			
-//			findidpwDao.get
+
+//			findidpwDao.getKey(staffNo, key);
 //			MimeMessage mail = MailSender.createMimeMessage();
 //			String htmlStr = "<h2>안녕하세요"
 //					+ "<p> 임시 비밀번호를 발급해드렸습니다.</p>"
@@ -89,12 +90,14 @@ public class FindIdPwServiceImpl implements FindIdPwService{
 //			} catch (MessagingException e) { 
 //				e.printStackTrace();
 //			}
+//			
 //			// 비밀번호 암호화해주는 메서드
-//		
 //			findidpwDao.searchPassword(staffNo, email, key);
+
 			
 		}
 
 	
 	
+
 }
