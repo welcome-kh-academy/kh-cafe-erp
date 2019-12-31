@@ -5,6 +5,7 @@ public class Product {
 	private int categoryMapNo;
 	private int productOptionNo;
 	private int shopNo;
+	private String shopName;
 	private String productName;
 	private String productContent;
 	private int originPrice;
@@ -20,13 +21,12 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", productOptionNo="
-				+ productOptionNo + ", shopNo=" + shopNo + ", productName=" + productName + ", productContent="
-				+ productContent + ", originPrice=" + originPrice + ", price=" + price + ", productOrigin="
-				+ productOrigin + ", selStartDate=" + selStartDate + ", enrollDate=" + enrollDate + ", selEndDate="
-				+ selEndDate + ", selStatus=" + selStatus + ", categoryName=" + categoryName + ", categoryNo="
-				+ categoryNo + "]";
+				+ productOptionNo + ", shopNo=" + shopNo + ", shopName=" + shopName + ", productName=" + productName
+				+ ", productContent=" + productContent + ", originPrice=" + originPrice + ", price=" + price
+				+ ", productOrigin=" + productOrigin + ", selStartDate=" + selStartDate + ", enrollDate=" + enrollDate
+				+ ", selEndDate=" + selEndDate + ", selStatus=" + selStatus + ", categoryName=" + categoryName
+				+ ", categoryNo=" + categoryNo + "]";
 	}
-	
 	public int getProductNo() {
 		return productNo;
 	}
@@ -50,6 +50,12 @@ public class Product {
 	}
 	public void setShopNo(int shopNo) {
 		this.shopNo = shopNo;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 	public String getProductName() {
 		return productName;
@@ -117,5 +123,7 @@ public class Product {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+	
+	
 	
 }

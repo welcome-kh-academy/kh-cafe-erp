@@ -31,6 +31,7 @@ $(document).ready(function() {
 				categoryNo : $("#categoryBase2").val(),
 				originPrice : $("#originPrice").val(),
 				price : $("#price").val(),
+				productOrigin : $("#productOrigin").val(),
 				enrollDate : $("#enrollDate").val(),
 				selStartDate : selStartDate,
 				selEndDate : selEndDate,
@@ -38,10 +39,11 @@ $(document).ready(function() {
 				productContent : $("#productContent").val(),
 				categoryMapNo : $("#categoryDetail2").val()
 			}
-			, dataType : "html"
+			, dataType : "json"
 			, success : function(data){
 				console.log(data);
 				console.log("값갔나유");
+				location.href=data.redirect;
 			}
 			,error : function(){
 				console.log("error");
@@ -67,7 +69,7 @@ $(document).ready(function() {
         		<th>상품코드</th>
         		<td>${product.productNo }</td>
         		<th>상품명</th>
-        		<td>${product.productName }</td>
+        		<td><input type="text" id="productName" class="form-control" value="${product.productName }"></td>
         		<th>상품보기</th>
         		<td></td>
         	</tr>
@@ -93,6 +95,8 @@ $(document).ready(function() {
         		<td><input type="number" id="originPrice" class="form-control" value="${product.originPrice }"></td>
         		<th>판매가</th>
         		<td><input type="number" id="price" class="form-control" value="${product.price }"></td>
+        		<th>제조사</th>
+        		<td><input type="text" id="productOrigin" class="form-control" value="${product.productOrigin }"></td>
         	</tr>
         	<tr>
         		<th>상품등록일</th>
@@ -155,7 +159,7 @@ $(document).ready(function() {
 			minYear : 1960,
 			maxYear : parseInt(moment().format('YYYY'), 10),
 			locale: {
-				format : "YYYYMMDD"
+				format : "YYYY-MM-DD"
 			},
 			startDate: '${product.enrollDate }'
 		});
@@ -167,7 +171,7 @@ $(document).ready(function() {
 			minYear : 1960,
 			maxYear : parseInt(moment().format('YYYY'), 10),
 			locale: {
-				format : "YYYYMMDD"
+				format : "YYYY-MM-DD"
 			},
 			startDate: '${product.selStartDate }'
 				
@@ -179,7 +183,7 @@ $(document).ready(function() {
 			minYear : 1960,
 			maxYear : parseInt(moment().format('YYYY'), 10),
 			locale: {
-				format : "YYYYMMDD"
+				format : "YYYY-MM-DD"
 			},
 			startDate: '${product.selEndDate }'
 		});
