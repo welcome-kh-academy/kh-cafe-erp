@@ -49,15 +49,19 @@
 	<select id="selectCategoryDetailName" parameterType="int" resultType="String">
 		SELECT categoryDetailName FROM categoryDetail WHERE categoryMapNo=#{categoryDetailNo}
 	</select>
-	
-<!-- 	<insert id="insertProduct" parameterType="com.KHCafeErp.www.dto.Product"> -->
-<!-- 		INSERT INTO product(productNo, categoryMapNo, shopNo, productName, productContent, originPrice, price, productOrigin, enrollDate, selStartDate, selEndDate, selStatus)  -->
-<!-- 		VALUES (productNo_seq.nextval, #{categoryMapNo}, #{shopNo}, #{productName}, #{productContent}, #{originPrice}, #{price}, #{productOrigin}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{selStartDate}, #{selEndDate}, #{selStatus}) -->
-<!-- 	</insert> -->
+
 	<insert id="insertProduct" parameterType="com.KHCafeErp.www.dto.Product">
 		INSERT INTO product (productNo, categoryMapNo, shopNo, productName, productContent, originPrice, price, productOrigin, enrollDate, selStartDate, selEndDate, selStatus)
 		SELECT productNo_seq.nextval, #{categoryMapNo}, #{shopNo}, #{productName}, #{productContent}, #{originPrice}, #{price}, #{productOrigin}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{selStartDate}, #{selEndDate}, #{selStatus}
 		FROM DUAL A
 		WHERE NOT EXISTS (SELECT 0 FROM product WHERE productName=#{productName})
+	</insert>
+	
+	<select id="getProductNo" parameterType="String" resultType="int">
+		SELECT productNo FROM product WHERE productName=#{productName}
+	</select>
+	
+	<insert id="insertProductOption" parameterType="com.KHCafeErp.www.dto.ProductOption">
+		INSERT INTO productOption(productOptionNo, productNo, optionNo) VALUES (productOptionNo_seq.nextval, #{productNo}, #{optionNo})
 	</insert>
 </mapper>
