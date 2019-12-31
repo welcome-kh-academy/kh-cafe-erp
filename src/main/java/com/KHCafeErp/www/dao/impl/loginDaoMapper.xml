@@ -12,4 +12,8 @@
 	<select id="selectByStaffNo" parameterType="com.KHCafeErp.www.dto.Staff" resultType="com.KHCafeErp.www.dto.Staff">
 		SELECT * FROM staff WHERE staffNo = #{ staffNo }
 	</select>
+	
+	<select id="getPosition" parameterType="com.KHCafeErp.www.dto.Staff" resultType="int">
+		SELECT position FROM staff WHERE staffNo=#{staffNo}
+	</select>
 </mapper>

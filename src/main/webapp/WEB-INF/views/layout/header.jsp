@@ -67,7 +67,6 @@
 	color : white;
 	width: 150px;
     text-align: center;
-    margin-right: 20px;
 }
 
 li{
@@ -75,7 +74,7 @@ li{
 	margin : 5px 0px;
 }
 .nav-link{
-	font-size : 20px;
+	font-size : 17px;
 }
 </style>
 
@@ -91,7 +90,7 @@ li{
   <div class="collapse navbar-collapse menubar" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link" href="/product/index">상&nbsp;&nbsp;&nbsp;품</a>
+        <a class="nav-link" href="/manageProduct/list">상&nbsp;&nbsp;&nbsp;품</a>
         <div class="dropdown-menu">
         <ul>
         	<li><a href="/manageProduct/list">상품 관리</a></li>
@@ -100,28 +99,57 @@ li{
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">주&nbsp;&nbsp;&nbsp;문</a>
+        <a class="nav-link" href="/order/orderlist">주&nbsp;&nbsp;&nbsp;문</a>
         <div class="dropdown-menu">
         <ul>
-        	<li><a href="#">주문 관리</a></li>
+        	<li><a href="/order/orderlist">주문 관리</a></li>
         	<li><a href="#">주문 등록</a></li>
         </ul>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">발&nbsp;&nbsp;&nbsp;주</a>
+        <a class="nav-link" href="/placingOrder/management">발&nbsp;&nbsp;&nbsp;주</a>
         <div class="dropdown-menu">
         <ul>
-        	<li><a href="#">발주 관리</a></li>
-        	<li><a href="#">발주 등록</a></li>
+        	<li><a href="/placingOrder/management">발주 관리</a></li>
+        	<li><a href="/placingOrder/registration">발주 등록</a></li>
+        </ul>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#">입&nbsp;&nbsp;&nbsp;고</a>
+        <div class="dropdown-menu">
+        <ul>
+        	<li><a href="#">입고 관리</a></li>
+        	<li><a href="#">단가 현황</a></li>
+        </ul>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#">출&nbsp;&nbsp;&nbsp;고</a>
+        <div class="dropdown-menu">
+        <ul>
+        	<li><a href="#">출고 관리</a></li>
+        	<li><a href="#">출고 등록</a></li>
         </ul>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">정산 · 통계</a>
+        <div class="dropdown-menu">
+        <ul>
+        	<li><a href="#">정산 통계</a></li>
+        	<li><a href="#">매출 통계</a></li>
+        </ul>
+        </div>
       </li>    
+      <c:if test="${position eq '2' or position eq '3' }">
+      	<li class="nav-item">
+        	<a class="nav-link" href="#">직 원 관 리</a>
+      	</li>    
+      </c:if>
       <li class="nav-item">
-        <a class="nav-link" href="#">직원&nbsp;&nbsp;&nbsp;관리</a>
+        <a class="nav-link" href="#">공 지 사 항</a>
       </li>    
     </ul>
   </div>

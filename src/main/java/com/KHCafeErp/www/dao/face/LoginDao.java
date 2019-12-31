@@ -15,5 +15,6 @@ public interface LoginDao {
 	 * @return - db와 일치하는 갯수
 	 */
 	public int cntAccount(Staff staff);
+	public Object getPosition(Staff staff);
 
 }

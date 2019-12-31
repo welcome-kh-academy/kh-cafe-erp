@@ -15,5 +15,7 @@ public interface LoginService {
 	 * @return - true : 직원 / false : 아님
 	 */
 	public boolean loginCheck(Staff staff);
+	
+	public Object getPosition(Staff staff);
 
 }

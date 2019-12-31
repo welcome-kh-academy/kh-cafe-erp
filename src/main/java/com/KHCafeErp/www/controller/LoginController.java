@@ -39,6 +39,9 @@ public class LoginController {
 			session.setAttribute("staffNo", staff.getStaffNo());
 			session.setAttribute("nick", staff.getNick());
 			
+			// 19-12-31 유진 : 직원 등급 확인
+			session.setAttribute("position", loginService.getPosition(staff));
+			
 			return "redirect:/dashboard/index";
 		} else {
 			model.addAttribute("login", false);
