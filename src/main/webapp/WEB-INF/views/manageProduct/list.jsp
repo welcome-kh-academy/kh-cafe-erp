@@ -6,7 +6,23 @@
 #checkbox {
     vertical-align: baseline;
 }
-  
+fieldset, #productList {
+	margin : 18px 20px;
+}
+table{
+	width : 100%;
+}
+td div{
+	margin : 0px 20px;
+	margin-bottom:5px;
+}
+thead tr td {
+	width : 50%;
+}
+#searchSubmit{
+	width:20%;
+	position : absolute;
+}
 </style>
 <!-- <h1>상품관리</h1> -->
 <!-- <hr> -->
@@ -93,8 +109,12 @@ $(document).ready(function() {
 		})
 	}
 </script>
+
+<div id="searchProduct" style="margin : 10px;">
+<form action="" method="post">
+<fieldset>
 <legend class="text-primary">상품 관리</legend>
-<table class="table table-hover">
+<table>
   <thead>
     <tr>
    		<td>
@@ -147,7 +167,7 @@ $(document).ready(function() {
    		</td>
    		<td>
    			<div class="form-group">
-   				<button type="button" class="btn btn-primary btn-lg btn-block">검색</button>
+   				<button id="searchSubmit"type="button" class="btn btn-primary btn-block">검색</button>
    			</div>
    			
    		</td>
@@ -155,9 +175,13 @@ $(document).ready(function() {
   </thead>
  
 </table> 
+</fieldset>
+</form>
+</div>
 
-<table class="table table-hover">
-    <tr class = table-secondary>
+<div id="productList">
+<table class="table">
+    <tr class = table-primary>
 <!-- 	  <th id="checkbox" scope="col" class="text-center"> -->
 <!--           <input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked=""> -->
 <!-- 	  </th> -->
@@ -215,7 +239,7 @@ $(document).ready(function() {
       	</c:forEach>
   </tbody>
 </table> 
-
+</div>
 
 <!-- 수정 Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
