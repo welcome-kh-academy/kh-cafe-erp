@@ -38,6 +38,7 @@
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #wrapper{
+	min-width : 1800px;
 	min-height:800px;
 }
 #footer{
@@ -129,12 +130,12 @@ li{
         <a class="nav-link" href="#">출&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
         <ul>
-        	<li><a href="#">출고 관리</a></li>
+        	<li><a href="/release/list">출고 관리</a></li>
         	<li><a href="#">출고 등록</a></li>
         </ul>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item dropdown">
         <a class="nav-link" href="#">정산 · 통계</a>
         <div class="dropdown-menu">
         <ul>
@@ -143,16 +144,27 @@ li{
         </ul>
         </div>
       </li>    
+      <!-- 매니저, 지점장만 직원관리 가능 -->
       <c:if test="${position eq '2' or position eq '3' }">
       	<li class="nav-item">
         	<a class="nav-link" href="#">직 원 관 리</a>
       	</li>    
-      </c:if>
+      </c:if> 
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#">C&nbsp;&nbsp;&nbsp;S</a>
+        <div class="dropdown-menu">
+        <ul>
+        	<li><a href="#">클레임 내역</a></li>
+        	<li><a href="#">상담 내역</a></li>
+        </ul>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">공 지 사 항</a>
-      </li>    
+      </li>      
     </ul>
   </div>
+  
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#myModal">로그아웃</a>
