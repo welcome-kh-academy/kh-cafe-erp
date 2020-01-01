@@ -16,6 +16,12 @@ public interface LoginService {
 	 */
 	public boolean loginCheck(Staff staff);
 	
+	/**
+	 * 19-12-31 유진
+	 * 직원의 등급 확인
+	 * @param staff - 로그인한 정보
+	 * @return position
+	 */
 	public Object getPosition(Staff staff);
 
 }

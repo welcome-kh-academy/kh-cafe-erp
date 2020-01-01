@@ -15,6 +15,13 @@ public interface LoginDao {
 	 * @return - db와 일치하는 갯수
 	 */
 	public int cntAccount(Staff staff);
+	
+	/**
+	 * 19-12-31 유진
+	 * 직원의 등급을 조회
+	 * @param staff - 로그인한 정보
+	 * @return - 직원등급
+	 */
 	public Object getPosition(Staff staff);
 
 }
