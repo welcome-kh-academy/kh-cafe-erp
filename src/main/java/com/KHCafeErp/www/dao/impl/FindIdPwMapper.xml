@@ -10,9 +10,9 @@
 		 where shopno = #{shopNo} and email = #{email}		 
 	</select>
 
-<!-- 회원 임시 비밀번호-->
-	<update id="searchPassword" parameterType="Map">
-		update staff set pw = #{key} where staffNo = #{staffNo} and email = #{email}
-	</update>
+<!-- 회원 임시 비밀번호--> 
+<!-- 	<update id="searchPassword" parameterType="Map"> -->
+<!-- 		update staff set pw = #{pw} where staffNo = #{staffNo} and email = #{email} -->
+<!-- 	</update> -->
 
 </mapper>

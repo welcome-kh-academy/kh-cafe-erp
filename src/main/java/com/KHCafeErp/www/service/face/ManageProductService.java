@@ -9,10 +9,20 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductService {
 	/**
+	 * 상품판매 시작날짜를 등록한다
+	 * @param product - 상품 판매 시작 날짜
+	 */
+	public void editSelStartDate(Product product);
+	/**
+	 * 상품판매 종료날짜를 등록한다
+	 * @param product - 상품 판매 종료 날짜
+	 */
+	public void editSelEndDate(Product product);
+	/**
 	 * 상품 정보를 수정한다
 	 * @param product - 수정할 상품 데이터
 	 */
-	public void editProduct(Product product, CategoryDetail category);
+	public void editProduct(Product product);
 	/**
 	 * 등록되있는 상품 목록 불러오기
 	 * @return - 상품 목록

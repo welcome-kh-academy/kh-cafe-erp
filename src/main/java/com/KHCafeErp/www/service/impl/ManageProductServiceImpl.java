@@ -15,10 +15,19 @@ import com.KHCafeErp.www.service.face.ManageProductService;
 public class ManageProductServiceImpl implements ManageProductService{
 	
 	@Autowired ManageProductDao manageProductDao;
-	
+
 	@Override
-	public void editProduct(Product product, CategoryDetail category) {
-//		manageProductDao.updateCategoryDetail(category);
+	public void editSelStartDate(Product product) {
+		manageProductDao.updateSelStartDate(product);
+	}
+
+	@Override
+	public void editSelEndDate(Product product) {
+		manageProductDao.updateSelEndDate(product);
+	}
+
+	@Override
+	public void editProduct(Product product) {
 		manageProductDao.updateProduct(product);
 	}
 	

@@ -32,4 +32,9 @@ public class LoginServiceImpl implements LoginService{
 			return false; //직원이 아니거나 오류
 		}
 	}
+
+	@Override
+	public Object getPosition(Staff staff) {
+		return loginDao.getPosition(staff);
+	}
 }

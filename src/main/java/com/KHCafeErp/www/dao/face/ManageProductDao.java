@@ -9,10 +9,15 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
 	/**
-	 * 상품정보에 업데이트된 카테고리 정보를 업데이트 한다
-	 * @param category - 업데이트할 카테고리 정보
+	 * 상품판매 시작 날짜를 업데이트 한다
+	 * @param product - 업데이트할 날짜 정보
 	 */
-	public void updateCategoryDetail(CategoryDetail category);
+	public void updateSelStartDate(Product product);
+	/**
+	 * 상품판매 종료 날짜를 업데이트 한다
+	 * @param product - 업데이트할 날짜 정보
+	 */
+	public void updateSelEndDate(Product product);
 	/**
 	 * 상품정보를 업데이트한다
 	 * @param product - 업데이트할 상품정보
