@@ -47,9 +47,6 @@ $(document).ready(function() {
 			.appendTo( $(document.body) );
 // 		$f.submit();
 	});
-	
-	
-	
 })
 
 var index = new Array();
