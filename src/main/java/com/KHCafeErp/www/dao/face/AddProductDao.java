@@ -77,4 +77,11 @@ public interface AddProductDao {
 	 * @param product - 세션에 담긴 상품정보
 	 */
 	public void insertProduct(Product product);
+
+	/**
+	 * 전체 상품 목록 불러오기
+	 * 2020-01-03 서현석
+	 * @return List<product> - 전체상품목록
+	 */
+	public List<Product> selectPrdList();
 }

@@ -223,4 +223,9 @@ public class AddProductServiceImpl implements AddProductService {
 		}
 		
 	}
+
+	@Override
+	public List<Product> getPrdList() {
+		return addProductDao.selectPrdList();
+	}
 }

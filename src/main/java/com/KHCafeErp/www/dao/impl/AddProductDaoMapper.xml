@@ -27,7 +27,7 @@
 
 	<!-- 19-12-26 현석 : 카테고리 불러오기 -->
 	<select id="selectCategory" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.CategoryBase">
-		SELECT c.categoryName, d.categoryDetailName
+		SELECT c.categoryName,c.categoryNo,d.categoryMapNo, d.categoryDetailName
 		FROM categoryBase c, categoryDetail d
 		WHERE 1=1
 		AND c.categoryNo = d.categoryNo
@@ -64,5 +64,9 @@
 	<insert id="insertProductOption" parameterType="com.KHCafeErp.www.dto.ProductOption">
 		INSERT INTO productOption(productOptionNo, productNo, optionNo) VALUES (productOptionNo_seq.nextval, #{productNo}, #{optionNo})
 	</insert>
+	
+	<select id="selectPrdList" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT * FROM product
+	</select>
 	
 </mapper>
