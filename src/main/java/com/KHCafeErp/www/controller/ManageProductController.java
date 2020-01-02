@@ -55,6 +55,7 @@ public class ManageProductController {
 		
 		model.addAttribute("category", category);
 		model.addAttribute("product", product);
+		
 
 	}
 	
@@ -91,6 +92,15 @@ public class ManageProductController {
 		mav.setViewName("jsonView");
 		mav.addObject("redirect", "/manageProduct/list");
 
+		return mav;
+	}
+	
+	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
+	public ModelAndView search(ModelAndView mav, Product product) {
+		
+		logger.info("검색조건 :" + product);
+//		manageProductService.searchList();
+		
 		return mav;
 	}
 

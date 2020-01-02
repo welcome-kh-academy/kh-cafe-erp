@@ -5,7 +5,14 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	//select2 실행 코드
+	var $disabledResults = $(".search-select");
+	$disabledResults.select2();
+	
+	/* 모달로 카테고리값 받아오기 */
 	$("#categoryBase2").val('${product.categoryNo }').change();
+	
 	
 	$("#editBtn").on("click", function(){
 		
@@ -55,6 +62,7 @@ $(document).ready(function() {
 })
 
 
+
 </script>
 
       <div class="modal-header">
@@ -76,17 +84,18 @@ $(document).ready(function() {
         	<tr>
         		<th>카테고리</th>
         		<td>
-        		 <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase2" onchange="getCategory2(this.value)">
+        		 <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase2" onchange="getCategory2(this)">
 		      		<option value="0">-----</option>
 		      		<c:forEach items="${ category }" var="c">
 		        		<option value="${ c.categoryNo }">${ c.categoryName }</option>
 		        	</c:forEach>
 		      	</select>
        			</td>
-        		<th>상세 카테고리</th>
+        		<th><label for="categoryDetail2">세부카테고리</label>
+</th>
         		<td>
         			<select class="search-select select2-selection select2-selection--single form-control" id="categoryDetail2">
-						<option value="">-----</option>
+						<option>-----</option>
 		      		</select>
        			</td>
         	</tr>
