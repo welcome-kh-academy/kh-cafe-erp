@@ -32,6 +32,7 @@ public class FindIdPwController {
 //		logger.info("xxfxf");
 		
 	}
+	
 	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.POST)
 	public String findIdResult(Staff staff,Model model) {
 //		logger.info("xxfxf222222");
