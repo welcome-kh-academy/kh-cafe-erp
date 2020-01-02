@@ -126,7 +126,7 @@ function getList() {
 <form action="/placingOrder/management" method="post" id="placingOrderForm">
 <table class="table table-bordered">
 	<tr>
-		<th class="condition"><label for="placingOrderNo">발주번호</label></th>
+		<th class="condition"><label for="placingOrderNo">주문번호</label></th>
 		<td><input type="number" value="${placingOrderList.placingOrderNo }" id="placingOrderNo" name="placingOrderNo"/></td>
 		<th class="condition"><label for="shopName">지점명</label></th>
 		<td><select name="shopName" id="shopName">
@@ -195,7 +195,6 @@ function getList() {
     <thead class="thead-dark">
         <tr>
 <!--         	<th><input type="checkbox"/></th> -->
-            <th>발주번호</th>
             <th>주문번호</th>
             <th>상품명</th>
             <th>상품갯수</th>

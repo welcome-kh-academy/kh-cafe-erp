@@ -4,9 +4,7 @@
 <script src="/resources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
-	$("#closeBtn").click(function(){
-		window.close();
-	});
+		self.close();
 });
 
 </script>

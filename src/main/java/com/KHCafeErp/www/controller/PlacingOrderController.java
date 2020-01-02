@@ -22,12 +22,12 @@ public class PlacingOrderController {
 	private static final Logger logger = LoggerFactory.getLogger(PlacingOrderController.class);
 	@Autowired PlacingOrderService placingOrderService;
 	
-	@RequestMapping(value="placingOrder/registration", method=RequestMethod.GET)
+	@RequestMapping(value="/placingOrder/registration", method=RequestMethod.GET)
 	public void placingOrderAdd() {
 		logger.info("발주등록 페이지");
 	}
 	
-	@RequestMapping(value="placingOrder/management", method=RequestMethod.GET)
+	@RequestMapping(value="/placingOrder/management", method=RequestMethod.GET)
 	public void placingOrderMain() {
 		logger.info("발주관리 페이지");
 	}

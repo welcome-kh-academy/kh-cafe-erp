@@ -134,6 +134,8 @@ $(document).ready(function() {
                     </div>
         		</td>
         		</c:if>
+        	</tr>
+        	<tr>
         		<th>판매상태</th>
         		<td>
         			<select class="search-select select2-selection select2-selection--single form-control" id="selStatus">
@@ -147,10 +149,8 @@ $(document).ready(function() {
     	    			<option value="1">판매종료</option>
         			</select>
         		</td>
-        	</tr>
-        	<tr>
         		<th>상세설명</th>
-        		<td><textarea id ="productContent" class="form-control">${ product.productContent }</textarea></td>
+        		<td colspan="2"><textarea id ="productContent" class="form-control">${ product.productContent }</textarea></td>
         	</tr>
         </table>
       </div>

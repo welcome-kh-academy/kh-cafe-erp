@@ -45,17 +45,17 @@
 					</span>
 					<c:if test="${ !login }">
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="shopNo" placeholder="shop code">
+						<input class="input100" type="text" name="shopNo" placeholder="Shop code">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user-o" aria-hidden="true"></i>
+							<i class="fa fa-coffee" aria-hidden="true"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="staffNo" placeholder="id">
+						<input class="input100" type="text" name="staffNo" placeholder="Staff code">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user-o" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
 					</div>
 

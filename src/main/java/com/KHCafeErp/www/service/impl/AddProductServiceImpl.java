@@ -198,7 +198,7 @@ public class AddProductServiceImpl implements AddProductService {
 		product.setProductName((String)map.get("productName"));
 
 		//가짜데이터
-		product.setShopNo(11);
+		product.setShopNo(9);
 		product.setSelStartDate("20200101");
 		product.setSelEndDate("20200101");
 		product.setSelStatus(1);
