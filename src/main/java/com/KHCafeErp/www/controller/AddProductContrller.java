@@ -201,6 +201,14 @@ public class AddProductContrller {
 		
 		List<Shop> shopList = addProductService.getShopList();
 		model.addAttribute("shopList", shopList);
+		model.addAttribute("page", 4);
+	}
+	
+	@RequestMapping(value="/product/addShop", method=RequestMethod.POST)
+	public String addProduct() {
+		
+
+		return "redirect:product/index";
 	}
 	
 	@RequestMapping(value = "/product/upload")

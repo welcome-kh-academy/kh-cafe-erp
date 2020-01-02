@@ -46,10 +46,20 @@ public class PlacingOrderController {
 		List llist = new ArrayList();
 		List list = null;
 		
+		//번호
+		int i=1;
 		for(PlacingOrder po : data) {
 			list = new ArrayList();
+			list.add(i++);
 			list.add(po.getPlacingOrderNo());
 			list.add(po.getShopNo());
+			
+//			StringBuffer sb = new StringBuffer(po.getPlacingOrderDate());
+//			sb.insert(4, "년 ");
+//			sb.insert(7, "월  ");
+//			sb.insert(10, "일");
+//			list.add(sb);
+			
 			list.add(po.getPlacingOrderDate());
 			list.add(po.getPlacingOrderStatus());
 			list.add(po.getInStockStatus());
@@ -59,6 +69,7 @@ public class PlacingOrderController {
 			
 			llist.add(list);
 		}
+		
 		
 		mav.addObject("data",llist);
 //		mav.addObject("data",data);
