@@ -6,6 +6,7 @@ import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface AddProductDao {
@@ -60,4 +61,10 @@ public interface AddProductDao {
 	 * @return - 상세 카테고리 이름
 	 */
 	public String selectCategoryDetailName(int categoryDetailNo);
+
+	public void insertProduct(Product product);
+
+	public int getProductNo(String productName);
+
+	public void insertProductOption(ProductOption productOption);
 }

@@ -119,22 +119,5 @@ public class ExcelRead {
         
     }
     
-    
-    
-    public static void main(String[] args) {
-        
-        ReadOption ro = new ReadOption();
-        ro.setFilePath("D:/game.xlsx");
-        ro.setOutputColumns("A", "B");
-        ro.setStartRow(1);
-        
-        // Map을 리스트로 만들기
-        List<Map<String, String>> result = ExcelRead.read(ro);
-        
-        for(Map<String, String> map : result) {
-            System.out.println(map.get("A"));
-        }
-    }
-    
 }
 

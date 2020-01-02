@@ -3,8 +3,9 @@ package com.KHCafeErp.www.dto;
 public class Product {
 	private int productNo;
 	private int categoryMapNo;
-	private int productOptionNo;
+	private int optionNo;
 	private int shopNo;
+	private String shopName;
 	private String productName;
 	private String productContent;
 	private int originPrice;
@@ -19,14 +20,15 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", productOptionNo="
-				+ productOptionNo + ", shopNo=" + shopNo + ", productName=" + productName + ", productContent="
+
+		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", optionNo="
+				+ optionNo + ", shopNo=" + shopNo + ", productName=" + productName + ", productContent="
 				+ productContent + ", originPrice=" + originPrice + ", price=" + price + ", productOrigin="
 				+ productOrigin + ", selStartDate=" + selStartDate + ", enrollDate=" + enrollDate + ", selEndDate="
 				+ selEndDate + ", selStatus=" + selStatus + ", categoryName=" + categoryName + ", categoryNo="
 				+ categoryNo + "]";
+
 	}
-	
 	public int getProductNo() {
 		return productNo;
 	}
@@ -39,17 +41,23 @@ public class Product {
 	public void setCategoryMapNo(int categoryMapNo) {
 		this.categoryMapNo = categoryMapNo;
 	}
-	public int getProductOptionNo() {
-		return productOptionNo;
+	public int getOptionNo() {
+		return optionNo;
 	}
-	public void setProductOptionNo(int productOptionNo) {
-		this.productOptionNo = productOptionNo;
+	public void setOptionNo(int optionNo) {
+		this.optionNo = optionNo;
 	}
 	public int getShopNo() {
 		return shopNo;
 	}
 	public void setShopNo(int shopNo) {
 		this.shopNo = shopNo;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 	public String getProductName() {
 		return productName;
@@ -117,5 +125,7 @@ public class Product {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+	
+	
 	
 }

@@ -2,6 +2,7 @@ package com.KHCafeErp.www.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,6 @@ public class AddProductContrller {
 		return mav;
 	}
 	
-	// 상품 등록 페이지
 	@RequestMapping(value = "/product/saveCategoryMap", method=RequestMethod.POST)
 	public String saveCategoryMap(HttpSession session, CategoryBase category, CategoryDetail categoryDetail) {
 		
@@ -90,7 +90,7 @@ public class AddProductContrller {
 		return "redirect:/product/register";
 	}
 	
-
+	//상품등록 2단계 - 상품 등록 페이지
 	@RequestMapping(value = "/product/register", method = RequestMethod.GET)
 	public String addProduct(HttpSession session, Model model) {
 		logger.info("addProduct()");
@@ -168,10 +168,16 @@ public class AddProductContrller {
 	@RequestMapping(value = "/product/saveOptionMap", method=RequestMethod.POST)
 	public String addOptionProc(HttpServletRequest req, HttpSession session) {
 		logger.info("addOptionProc()");
-		Map<String, String> option = addProductService.getOption(req);
-		System.out.println(option);
-		addProduct.put("option", option);
-
+		List optionBase = new ArrayList();
+		
+		String[] option = req.getParameterValues("optionNo");
+		for(int i=0;i<option.length;i++) {
+			System.out.println(option[i]);	
+			optionBase.add(option[i]);
+		}
+		
+		addProduct.put("option", optionBase);
+//		System.out.println(addProduct);
 		session.setAttribute("addProduct", addProduct);
 
 		return "redirect:/product/addShop";
@@ -213,12 +219,14 @@ public class AddProductContrller {
  
         }
         
-        addProductService.insertMassiveArticleInBoard(destFile);
+        addProductService.insertMassiveProduct(destFile);
         
-//        FileUtils.deleteFile(destFile.getAbsolutePath());
+//      FileUtils.deleteFile(destFile.getAbsolutePath());
         
         ModelAndView view = new ModelAndView();
-        view.setViewName("redirect:/board/list");
+        
+        view.setViewName("redirect:/manageProduct/list");
+        
         return view;
 	}
 }

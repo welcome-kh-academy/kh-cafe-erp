@@ -44,8 +44,8 @@ $(document).ready(function() {
 </div>
 
 
-<h1>판매지점 등록하기이이이이이</h1>
-<hr>
+<!-- <h1>판매지점 등록하기이이이이이</h1> -->
+<!-- <hr> -->
 <div class="text-center">
 <div id="addShop" class="btn-group" role="group" aria-label="Button group with nested dropdown">
   <button type="button" class="btn btn-outline-primary">지점보기</button>

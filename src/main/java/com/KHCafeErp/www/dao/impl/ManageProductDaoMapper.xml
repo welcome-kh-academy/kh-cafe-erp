@@ -19,11 +19,27 @@
 		SELECT * FROM shop
 	</select>
 	<select id="selectProductAll" resultType="com.KHCafeErp.www.dto.Product">
-		SELECT * FROM product
+
+		SELECT 
+			productno,
+			categorymapno,
+			shopno,
+			productname,
+			productcontent,
+			originprice,
+			price,
+			productorigin,
+			enrolldate,
+			selstartdate,
+			selenddate,
+			selstatus,
+			(SELECT shopName FROM shop WHERE product.shopNo = shop.shopNo ) AS shopName
+		 FROM product ORDER BY productNo
+
 	</select>
 	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT
-		    P.productno, P.categorymapno, P.optionno, P.shopno, productname
+		    P.productno, P.categorymapno, P.shopno, productname
 		    , productcontent, originprice, price, productorigin, enrolldate
 		    , selstartdate, selenddate, selstatus, CB.categoryName, CB.categoryNo
 		FROM product P, categoryDetail CD, categoryBase CB
@@ -32,4 +48,24 @@
 		    AND CD.categoryNo = CB.categoryNo
 		    AND P.productNo = #{productNo}
 	</select>
+	<update id="updateSelStartDate" parameterType="com.KHCafeErp.www.dto.Product">
+		UPDATE product SET selStartDate =#{ selStartDate } WHERE productNo = #{ productNo }
+	</update>
+	<update id="updateSelEndDate" parameterType="com.KHCafeErp.www.dto.Product">
+		UPDATE product SET selEndDate =#{ selEndDate } WHERE productNo = #{ productNo }
+	</update>
+	<update id="updateProduct" parameterType="com.KHCafeErp.www.dto.Product">
+		UPDATE product SET productName = #{ productName },
+				categoryMapNo = #{ categoryMapNo },
+				originPrice = #{ originPrice },
+				price = #{ price },
+				enrollDate = #{ enrollDate },
+				selStartDate = #{ selStartDate },
+				selEndDate = #{ selEndDate },
+				selStatus = #{ selStatus },
+				productContent = #{ productContent },
+				productOrigin = #{ productOrigin }
+		WHERE productNo = #{ productNo }
+	</update>
+	
 </mapper>

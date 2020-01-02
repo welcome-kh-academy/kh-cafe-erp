@@ -9,6 +9,21 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
 	/**
+	 * 상품판매 시작 날짜를 업데이트 한다
+	 * @param product - 업데이트할 날짜 정보
+	 */
+	public void updateSelStartDate(Product product);
+	/**
+	 * 상품판매 종료 날짜를 업데이트 한다
+	 * @param product - 업데이트할 날짜 정보
+	 */
+	public void updateSelEndDate(Product product);
+	/**
+	 * 상품정보를 업데이트한다
+	 * @param product - 업데이트할 상품정보
+	 */
+	public void updateProduct(Product product);
+	/**
 	 * 등록되있는 상품 목록 불러오기
 	 * @return - 상품 목록
 	 */

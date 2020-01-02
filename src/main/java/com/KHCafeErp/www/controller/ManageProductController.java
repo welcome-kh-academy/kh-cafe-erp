@@ -24,7 +24,7 @@ public class ManageProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ManageProductController.class);
 	@Autowired ManageProductService manageProductService;
 	
-	@RequestMapping(value="manageProduct/list", method=RequestMethod.GET)
+	@RequestMapping(value="/manageProduct/list", method=RequestMethod.GET)
 	public void productList(Model model) {
 		logger.info("상품관리");
 		
@@ -37,7 +37,7 @@ public class ManageProductController {
 		model.addAttribute("product", product);
 		
 	}
-	@RequestMapping(value="manageProduct/categoryDetail", method=RequestMethod.GET)
+	@RequestMapping(value="/manageProduct/categoryDetail", method=RequestMethod.GET)
 	public ModelAndView getCategoryDetail(@RequestParam(value = "value")int categoryNo, ModelAndView mav) {
 		
 		List<CategoryDetail> categoryDetail = manageProductService.getcategoryDetailList(categoryNo);
@@ -47,7 +47,7 @@ public class ManageProductController {
 		return mav;
 	}
 	
-	@RequestMapping(value="manageProduct/view", method=RequestMethod.GET)
+	@RequestMapping(value="/manageProduct/view", method=RequestMethod.GET)
 	public void getProductView(Model model, int productNo) {		
 
 		List<CategoryBase> category = manageProductService.getcategoryList();
@@ -55,8 +55,53 @@ public class ManageProductController {
 		
 		model.addAttribute("category", category);
 		model.addAttribute("product", product);
+		
 
 	}
 	
+	@RequestMapping(value="/manageProduct/update", method=RequestMethod.GET)
+	public ModelAndView updateProduct(Product product, ModelAndView mav) {
+		logger.info("모달 값 : " + product.toString());
+		
+		manageProductService.editProduct(product);
+		
+		mav.setViewName("jsonView");
+		mav.addObject("redirect", "/manageProduct/list");
+		
+		return mav;
+	}
+
+	@RequestMapping(value="/manageProduct/selStartDate", method=RequestMethod.GET)
+	public ModelAndView updateSelStartDate(Product product, ModelAndView mav) {
+		logger.info("판매 시작 등록 모달 값 : " + product.toString());
+		
+		manageProductService.editSelStartDate(product);
+		
+		mav.setViewName("jsonView");
+		mav.addObject("redirect", "/manageProduct/list");
+		
+		return mav;
+	}
+
+	@RequestMapping(value="/manageProduct/selEndDate", method=RequestMethod.GET)
+	public ModelAndView updateSelEndDate(Product product, ModelAndView mav) {
+		logger.info("판매 종료 등록 모달 값 : " + product.toString());
+		
+		manageProductService.editSelEndDate(product);
+
+		mav.setViewName("jsonView");
+		mav.addObject("redirect", "/manageProduct/list");
+
+		return mav;
+	}
 	
+	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
+	public ModelAndView search(ModelAndView mav, Product product) {
+		
+		logger.info("검색조건 :" + product);
+//		manageProductService.searchList();
+		
+		return mav;
+	}
+
 }

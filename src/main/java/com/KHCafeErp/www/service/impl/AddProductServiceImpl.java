@@ -22,6 +22,7 @@ import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
 import com.KHCafeErp.www.util.ExcelRead;
@@ -131,23 +132,50 @@ public class AddProductServiceImpl implements AddProductService {
 	}
 
 	@Override
-	public void insertMassiveArticleInBoard(File destFile) {
+	public void insertMassiveProduct(File destFile) {
 		ReadOption readOption = new ReadOption();
 		readOption.setFilePath(destFile.getAbsolutePath());
-		readOption.setOutputColumns("A","B","C","D");
+		readOption.setOutputColumns("A","B","C","D","E","F","G","H","I","J","K");
 		readOption.setStartRow(2);
 		  
 		List<Map<String, String>> excelContent = ExcelRead.read(readOption);
-		  
-		Product product = null;
+
+//		Product product = null;
+		
 		for(Map<String, String> article : excelContent){
 		   
-		   product = new Product();
-//		   boardVO.setSubject(article.get("A"));
+			Product product = new Product();
+		   
+			product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
+			product.setShopNo((int)Float.parseFloat(article.get("B")));
+		   	product.setProductName(article.get("D"));
+		   	product.setProductContent(article.get("E"));
+		   	product.setOriginPrice((int)Float.parseFloat(article.get("F")));
+		   	product.setPrice((int)Float.parseFloat(article.get("G")));
+		   	product.setProductOrigin(article.get("H"));
+		   	product.setSelStartDate(article.get("I"));
+		   	product.setSelEndDate(article.get("J"));
+		   	product.setSelStatus((int)Float.parseFloat(article.get("K")));
+		   
+		   	System.out.println(product);
+		   
+		   	addProductDao.insertProduct(product);
+		   	
+		   	ProductOption productOption = new ProductOption();
+		   	String productName = product.getProductName();
+		   	
+		   	int productNo = addProductDao.getProductNo(productName);
+		   	System.out.println(productNo);
+		   	
+		   	productOption.setProductNo(productNo);
+		   	productOption.setOptionNo((int)Float.parseFloat(article.get("C")));
+		   	
+		   	System.out.println(productOption);
+		   	
+		   	addProductDao.insertProductOption(productOption);
 
-		 
-//		   this.insertArticleInBoard(product);
 		  }
+		System.out.println(excelContent);
 
 	}
 
