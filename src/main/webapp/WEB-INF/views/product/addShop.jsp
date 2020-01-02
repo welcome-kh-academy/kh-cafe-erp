@@ -130,9 +130,6 @@ function searchAll(){
 	}
 	var opwin=window.open(info,"childForm", "width=900px, height=600px, resizable = no, scrollbars = no"); 
 	
-	
-	
-	
 }
 function addIndex(ind){
 	$.ajax({
