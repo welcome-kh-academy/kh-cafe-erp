@@ -2,6 +2,7 @@ package com.KHCafeErp.www.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
 
 @Controller
@@ -25,8 +27,13 @@ public class ReleaseProductController {
 
 
 	@RequestMapping(value="/release/list" ,method=RequestMethod.GET)
-	public String releaseList() {
+	public String releaseList(Model model) {
 		logger.info("releaseList()");
+		
+		List<Release> releaseList = releaseProductService.getReleaseList();
+		System.out.println(releaseList);
+		
+		model.addAttribute("releaseList",releaseList);
 		
 		return "/release/releaseList";
 	}

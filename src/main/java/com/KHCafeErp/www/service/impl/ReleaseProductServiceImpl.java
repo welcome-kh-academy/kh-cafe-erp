@@ -4,8 +4,11 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.KHCafeErp.www.dao.face.ReleaseProductDao;
+import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
 import com.KHCafeErp.www.util.ExcelRead;
 import com.KHCafeErp.www.util.ReadOption;
@@ -13,6 +16,13 @@ import com.KHCafeErp.www.util.ReadOption;
 @Service
 public class ReleaseProductServiceImpl implements ReleaseProductService {
 
+	@Autowired ReleaseProductDao releaseProductDao;
+	
+	@Override
+	public List<Release> getReleaseList() {
+		return releaseProductDao.selectReleaseList();
+	}
+	
 	@Override
 	public void insertMassiveProduct(File destFile) {
 		ReadOption readOption = new ReadOption();
