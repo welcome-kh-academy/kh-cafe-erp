@@ -7,11 +7,11 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
 <div class="container">
-<h1 >게시판 리스트</h1>
+<h1>공지사항 게시판</h1>
 
 <hr>
 
-<table>
+<table class="table">
 
 	<tr>
 		<th style="width: 10%">글번호</th>
@@ -37,7 +37,7 @@
 
 <span class="pull-left">total : ${paging.totalCount }</span>
 
-<button id="btnWrite" onclick="location.href='/notice/write'">글쓰기</button>
+<button class="btn btn-primary" id="btnWrite" onclick="location.href='/notice/write'" style="float: right">글쓰기</button>
 
 </div>
 

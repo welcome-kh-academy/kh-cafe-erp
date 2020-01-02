@@ -5,7 +5,7 @@
 
 <div style="text-align:center;">
 	<nav aria-label="Page navigation example">
-		<ul class="pagination">
+		<ul class="pagination justify-content-center">
 
 			<!-- 처음으로 가기 -->
 			<c:if test="${paging.curPage ne 1 }">

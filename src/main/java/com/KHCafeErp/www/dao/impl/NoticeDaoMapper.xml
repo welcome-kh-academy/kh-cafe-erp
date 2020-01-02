@@ -45,4 +45,15 @@
   		AND nBoardNo = #{nBoardNo }
 	</select>
 	
+	<update id="update" parameterType="com.KHCafeErp.www.dto.NoticeBoard">
+		UPDATE noticeboard
+			SET nBoardContent = #{nBoardContent }
+			WHERE nBoardNo = #{nBoardNo }	
+	</update>
+	
+	<update id="delete" parameterType="com.KHCafeErp.www.dto.NoticeBoard">
+		DELETE noticeboard
+		WHERE nBoardNo = #{nBoardNo }
+	</update>
+	
 </mapper>
