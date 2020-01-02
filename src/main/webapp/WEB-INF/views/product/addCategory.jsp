@@ -43,7 +43,7 @@
 
 <script type="text/javascript">
 
-// 	폼 유효성 검사
+	// 	폼 유효성 검사
 	function form_check() {
 		if (fr.categoryNo.value == "0") {
 			warningModal("카테고리를(을) 입력해 주세요.");
