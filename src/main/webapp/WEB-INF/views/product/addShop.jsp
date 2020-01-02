@@ -183,18 +183,9 @@ function addIndex(ind){
 <h1>판매지점 등록</h1>
 <hr>
 <div class="text-center">
-<div id="addShop" class="btn-group" role="group" aria-label="Button group with nested dropdown">
-  <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-      <c:forEach items="${ shopList }" var="list">
-      <a class="dropdown-item" href="#">${ list.shopName }</a>
-      </c:forEach>
-    </div>
-  </div>
-</div>
 
 	<button id="select" type="button" class="btn btn-primary">등록</button>
+	
 	<div id="map_body">
 	<div id="map"></div>
 	</div>
@@ -204,6 +195,11 @@ function addIndex(ind){
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZL82RRYpAr7GrwdJQ5S11-pDaZJs3n9c&callback=initMap">
 	</script>
 
+	<div class="shopList">
+		<form class="addProductForm" action="/product/addShop" method="POST" >
+			<input type="hidden" name="11" value="11"/>
+		</form>
+	</div>
 </div>
 
 
