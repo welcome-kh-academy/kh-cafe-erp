@@ -32,11 +32,11 @@ $(document).ready(function() {
 	/* 판매등록일 모달 */
 	$("#prodList").on("click",".selStart", function(){
 		
-		$(".modal-content").html("");
+		$("#exampleModalLong .modal-content").html("");
 		
 		var productNo = $(this).attr('data-productNo');
 
-		$(".modal-content").html(
+		$("#exampleModalLong .modal-content").html(
 		'	      <div class="modal-header">'
 		+'	      	<h5 class="modal-title">판매등록일 추가</h5>'
 		+'	      	<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
@@ -63,7 +63,7 @@ $(document).ready(function() {
 		+'     	  </div>' );
 		
 		/* 달력 날짜포맷 */
-		$('input[name="selStartDate"]').daterangepicker({
+		$('#exampleModalLong input[name="selStartDate"]').daterangepicker({
 				singleDatePicker : true,
 				showDropdowns : true,
 				minYear : 1960,
@@ -78,11 +78,11 @@ $(document).ready(function() {
 	/* 판매종료일 모달 */
 	$("#prodList").on("click",".selEnd", function(){
 		
-		$(".modal-content").html("");
+		$("#exampleModalLong .modal-content").html("");
 		
 		var productNo = $(this).attr('data-productNo');
 
-		$(".modal-content").html(
+		$("#exampleModalLong .modal-content").html(
 		'	      <div class="modal-header">'
 		+'	      	<h5 class="modal-title">판매종료일 추가</h5>'
 		+'	      	<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
@@ -109,7 +109,7 @@ $(document).ready(function() {
 		+'     	  </div>' );
 		
 		/* 달력 날짜포맷 */
-		$('input[name="selEndDate"]').daterangepicker({
+		$('#exampleModalLong input[name="selEndDate"]').daterangepicker({
 				singleDatePicker : true,
 				showDropdowns : true,
 				minYear : 1960,
@@ -123,7 +123,7 @@ $(document).ready(function() {
 	/* 수정 모달 ajax */
 	$("#prodList").on("click",".edit", function(){
 		
-		$(".modal-content").html( "" );
+		$("#exampleModalLong .modal-content").html( "" )
 		
 		$.ajax({
 			type: "get"
@@ -131,11 +131,11 @@ $(document).ready(function() {
 			, data: { productNo: $(this).parent().parent("tr").attr("data-productNo") }
 			, dataType: "html"
 			, success: function( data ) {
-				console.log("success")
-				$(".modal-content").html( data )
+				console.log("success");
+				$("#exampleModalLong .modal-content").html( data )
 			}
 			, error: function() {
-				console.log("edit error")
+				console.log("edit error");
 				
 			}
 		})
@@ -146,13 +146,13 @@ $(document).ready(function() {
 	
 	
 	//판매등록 AJAX
-	$(".modal-content").on("click", "#selStartBtn", function(){
+	$("#exampleModalLong .modal-content").on("click", "#selStartBtn", function(){
 		$.ajax({
 			type: "get"
 			, url: "/manageProduct/selStartDate"
 			, data : { 
-				selStartDate : $('#selStartDate').val(),
-				productNo : $("#productNo").val()
+				selStartDate : $('#exampleModalLong #selStartDate').val(),
+				productNo : $("#exampleModalLong #productNo").val()
 			}
 			, dataType: "json"
 			, success: function( data ) {
@@ -168,14 +168,14 @@ $(document).ready(function() {
 
 
 	//판매종료 AJAX
-	$(".modal-content").on("click", "#selEndBtn", function(){
+	$("#exampleModalLong .modal-content").on("click", "#selEndBtn", function(){
 
 		$.ajax({
 			type: "get"
 			, url: "/manageProduct/selEndDate"
 			, data : { 
-				selEndDate : $('#selEndDate').val(),
-				productNo : $("#productNo").val()
+				selEndDate : $('#exampleModalLong #selEndDate').val(),
+				productNo : $("#exampleModalLong #productNo").val()
 			}
 			, dataType: "json"
 			, success: function( data ) {
@@ -196,12 +196,40 @@ $(document).ready(function() {
 	//select2 실행 코드
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
+	
+	/* 검색 ajax */
+	$("#searchSubmit").on("click", function(){
+		
+		$.ajax({
+			type: "get"
+			, url: "/manageProduct/search"
+			, data: {
+				productNo : $('#searchProductNo').val() ,
+				productName : $('#searchProductName').val() ,
+				categoryMapNo : $("#categoryDetail").val(),
+				shopNo : $('#shop').val()
+			}
+			, dataType:"html"
+			, success: function( data ){
+				console.log(data);
+				console.log("검색값 전달성공");
+			}
+			, error: function(){
+				console.log("search error");
+			}
+		});
+	});
 });
 
 //상품관리(list) 카테고리
 function getCategory(e){
-	var value = document.getElementById('categoryBase').value;
+	$("#categoryDetail").html("");
+
+	var value = e.value;
 	console.log(value)
+// 	var value = document.getElementById('categoryBase').value;
+// 	console.log(value)
+	
 	$.ajax({
 		type : "GET",
 		url : "/manageProduct/categoryDetail",
@@ -215,7 +243,6 @@ function getCategory(e){
 		},
 		success : function(res) {
 			console.log(res);
-			$("#categoryDetail").html("");
 			if(res.categoryDetail.length == 0)
 				$("#categoryDetail").append("<option>-----</option>");
 			for (var i=0; i<res.categoryDetail.length;i++) {
@@ -227,9 +254,13 @@ function getCategory(e){
 
 //수정 모달(edit) 카테고리
 function getCategory2(e){
-	var value = document.getElementById('categoryBase2').value;
-	console.log()
-	console.log(value)
+	$("#exampleModalLong #categoryDetail2").html("");
+	
+	var value = e.value;
+		
+	console.log(e);
+	console.log("카테고리값" + value);
+
 	$.ajax({
 		type : "GET",
 		url : "/manageProduct/categoryDetail",
@@ -242,16 +273,20 @@ function getCategory2(e){
 			console.log(e);
 		},
 		success : function(res) {
+			console.log("모달상세카테고리 나와요" + res);
 			console.log(res);
-			$("#categoryDetail2").html("");
-			if(res.categoryDetail.length == 0)
-				$("#categoryDetail2").append("<option>-----</option>");
+			if(res.categoryDetail.length == 0) {
+				$("#exampleModalLong #categoryDetail2").append("<option>-----</option>");
+				console.log(100000);
+			}
 			for (var i=0; i<res.categoryDetail.length;i++) {
-				$("#categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapNo+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				$("#exampleModalLong #categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapNo+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				console.log(100001);
 			}
 		}
 	})
 }
+
 </script>
 
 <div id="searchProduct" style="margin : 10px;">
@@ -264,13 +299,13 @@ function getCategory2(e){
    		<td>
    			<div>
    				<label>상품코드</label>
-   				<input type="text" class="form-control" value="">
+   				<input id="searchProductNo" type="text" class="form-control" value="">
    			</div>
    		</td>
    		<td>
    			<div>
    				<label>상품명</label>
-   				<input type="text" class="form-control" value="">
+   				<input id="searchProductName" type="text" class="form-control" value="">
    			</div>
    		</td>
     </tr>
@@ -278,7 +313,7 @@ function getCategory2(e){
     	<td>
    			 <div class="form-group">
 		      <label for="categoryBase">상품카테고리</label>
-		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase" onchange="getCategory(this.value)">
+		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase" onchange="getCategory(this)">
 		      	<option value="0">-----</option>
 		      	<c:forEach items="${ category }" var="c">
 		        <option value="${ c.categoryNo }">${ c.categoryName }</option>
@@ -290,9 +325,6 @@ function getCategory2(e){
    			 <div class="form-group">
 		      <label for="categoryDetail">세부카테고리</label>
 		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryDetail">
-<%-- 		      	<c:forEach items="${ categoryDetail }" var="detail"> --%>
-<%-- 		        <option>${ detail.categoryDetailName }</option> --%>
-<%-- 				</c:forEach> --%>
 					<option>-----</option>
 		      </select>
 		    </div>
@@ -311,7 +343,7 @@ function getCategory2(e){
    		</td>
    		<td>
    			<div class="form-group">
-   				<button id="searchSubmit"type="button" class="btn btn-primary btn-block">검색</button>
+   				<button id="searchSubmit"type="button" class="btn btn-primary btn-block"><i class="fas fa-search"></i></button>
    			</div>
    			
    		</td>
@@ -376,10 +408,9 @@ function getCategory2(e){
 		</c:choose>
       	</td>
 		<!-- Button trigger modal -->
-		<td><button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
+		<td><button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
 		  상세 / 수정
 		</button></td>
-<!--       	<td><button class="btn btn-primary">수정</button></td> -->
       	<td><button class="btn btn-primary del">삭제</button></td>
     </tr>
       	</c:forEach>

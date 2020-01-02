@@ -64,4 +64,5 @@
 	<insert id="insertProductOption" parameterType="com.KHCafeErp.www.dto.ProductOption">
 		INSERT INTO productOption(productOptionNo, productNo, optionNo) VALUES (productOptionNo_seq.nextval, #{productNo}, #{optionNo})
 	</insert>
+	
 </mapper>
