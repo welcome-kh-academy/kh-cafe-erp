@@ -32,17 +32,18 @@ public class FindIdPwController {
 //		logger.info("xxfxf");
 		
 	}
+	
 	@RequestMapping(value="/findinfo/findinfo" ,method=RequestMethod.POST)
 	public String findIdResult(Staff staff,Model model) {
 //		logger.info("xxfxf222222");
-//		Staff findid = findidpwservice.findid(staff);
-//
-//		if( findid != null ) {
-//			int id = findid.getStaffNo();
-//			model.addAttribute("id" ,id);
-//			return "/findinfo/findidsuccess";
-//
-//		}else 
+		Staff findid = findidpwservice.findid(staff);
+
+		if( findid != null ) {
+			int id = findid.getStaffNo();
+			model.addAttribute("id" ,id);
+			return "/findinfo/findidsuccess";
+
+		}else 
 			return "/findinfo/findidfail";
 
 	}
@@ -52,7 +53,7 @@ public class FindIdPwController {
 //	@Autowired
 //	private Email email;
 //
-//	@RequestMapping(value = "/findinfo/findinfoo", method = RequestMethod.GET)
+//	@RequestMapping(value = "/findinfo/findinfo", method = RequestMethod.GET)
 //	@ResponseBody
 //	public String passwordSearch(int staffNo,
 //			String user_email,
@@ -62,7 +63,7 @@ public class FindIdPwController {
 //
 //		return "/findinfo/findidfail";
 //	}
-//
+
 
 }
 

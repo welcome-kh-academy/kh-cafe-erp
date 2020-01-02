@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.KHCafeErp.www.dao.face.PlacingOrderDao">
+
+	<select id="selectPlacingOrderListCnt" resultType="int">
+		SELECT COUNT(1) FROM PLACINGORDER
+	</select>
+ 
+ 	<select id="selectPlacingOrderList" resultType="com.KHCafeErp.www.dto.PlacingOrder">
+		SELECT PLACINGORDERNO, SHOPNO, PLACINGORDERDATE, PLACINGORDERSTATUS, INSTOCKSTATUS
+		FROM PLACINGORDER
+	</select>
+ 
+</mapper>
+
+

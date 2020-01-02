@@ -2,7 +2,7 @@ package com.KHCafeErp.www.dto;
 
 public class PlacingOrder {
 
-	private int placingOrderNo; //기본키
+	private Integer placingOrderNo; //기본키
 	private int shopNo; //외래키
 	private String placingOrderDate; //발주일
 	private int placingOrderStatus; //발주상태
@@ -19,12 +19,14 @@ public class PlacingOrder {
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", shopName=" + shopName + "]";
 	}
 	
-	public int getPlacingOrderNo() {
+	public Integer getPlacingOrderNo() {
 		return placingOrderNo;
 	}
-	public void setPlacingOrderNo(int placingOrderNo) {
+
+	public void setPlacingOrderNo(Integer placingOrderNo) {
 		this.placingOrderNo = placingOrderNo;
 	}
+
 	public int getShopNo() {
 		return shopNo;
 	}
