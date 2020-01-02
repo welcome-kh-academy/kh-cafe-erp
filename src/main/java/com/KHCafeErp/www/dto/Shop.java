@@ -4,10 +4,22 @@ public class Shop {
 	
 	private int shopNo;
 	private String shopName;
-	private int shopLat;
-	private int shopLng;
+	private double shopLat;
+	private double shopLng;
 	
 	
+	public double getShopLat() {
+		return shopLat;
+	}
+	public double getShopLng() {
+		return shopLng;
+	}
+	public void setShopLat(double shopLat) {
+		this.shopLat = shopLat;
+	}
+	public void setShopLng(double shopLng) {
+		this.shopLng = shopLng;
+	}
 	@Override
 	public String toString() {
 		return "Shop [shopNo=" + shopNo + ", shopName=" + shopName + ", shopLat=" + shopLat + ", shopLng=" + shopLng
@@ -25,19 +37,7 @@ public class Shop {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	public int getShopLat() {
-		return shopLat;
-	}
-	public void setShopLat(int shopLat) {
-		this.shopLat = shopLat;
-	}
-	public int getShopLng() {
-		return shopLng;
-	}
-	public void setShopLng(int shopLng) {
-		this.shopLng = shopLng;
-	}
-	
+
 	
 
 	

@@ -15,10 +15,27 @@
 #crumbs ul li #productHeader_4:after {
 	border-left: 40px solid #2C3E50;
 }
+#map {
+	height: 100%;
+	width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+#map_body {
+	height: 500px;
+	width: 40%;
+	margin-left: 20px;
+}
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
 /**/
 </style>
 
 <script type="text/javascript">
+var map;
+
 $(document).ready(function() {
 	$("#addShop a.dropdown-item").click(function(){
 		$("#addShop > button").html( $(this).html() );
@@ -30,6 +47,9 @@ $(document).ready(function() {
 			.appendTo( $(document.body) );
 // 		$f.submit();
 	});
+	
+	
+	
 })
 </script>
 
@@ -44,11 +64,10 @@ $(document).ready(function() {
 </div>
 
 
-<!-- <h1>판매지점 등록하기이이이이이</h1> -->
-<!-- <hr> -->
+<h1>판매지점 등록</h1>
+<hr>
 <div class="text-center">
 <div id="addShop" class="btn-group" role="group" aria-label="Button group with nested dropdown">
-  <button type="button" class="btn btn-outline-primary">지점보기</button>
   <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
@@ -60,6 +79,15 @@ $(document).ready(function() {
 </div>
 
 	<button id="select" type="button" class="btn btn-primary">등록</button>
+	<div id="map_body">
+	<div id="map"></div>
+	</div>
+	<script
+		src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZL82RRYpAr7GrwdJQ5S11-pDaZJs3n9c&callback=initMap">
+	</script>
+
 </div>
 
 
