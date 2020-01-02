@@ -15,6 +15,12 @@ import com.KHCafeErp.www.service.face.ManageProductService;
 public class ManageProductServiceImpl implements ManageProductService{
 	
 	@Autowired ManageProductDao manageProductDao;
+	
+//	@Override
+//	public List<Product> searchList(Product product) {
+//	
+//		return manageProductDao.selectSearchList(product);
+//	}
 
 	@Override
 	public void editSelStartDate(Product product) {
@@ -32,8 +38,8 @@ public class ManageProductServiceImpl implements ManageProductService{
 	}
 	
 	@Override
-	public List<Product> getProductList() {
-		return manageProductDao.selectProductAll();
+	public List<Product> getProductList(Product product) {
+		return manageProductDao.selectProductAll(product);
 	}
 	
 	@Override

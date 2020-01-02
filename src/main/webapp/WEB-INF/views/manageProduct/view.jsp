@@ -35,7 +35,7 @@ $(document).ready(function() {
 			, url : "/manageProduct/update"
 			, data : {
 				productNo : '${ product.productNo }',
-				productName : '${ product.productName }',
+				productName : $("#productName").val(),
 				categoryNo : $("#categoryBase2").val(),
 				originPrice : $("#originPrice").val(),
 				price : $("#price").val(),

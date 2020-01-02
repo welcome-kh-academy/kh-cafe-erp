@@ -9,6 +9,12 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
 	/**
+	 * 검색조건으로 검색결과를 가져온다
+	 * @param product - 검색 조건 값들
+	 * @return - 검색 결과 리스트
+	 */
+//	public List<Product> selectSearchList(Product product);
+	/**
 	 * 상품판매 시작 날짜를 업데이트 한다
 	 * @param product - 업데이트할 날짜 정보
 	 */
@@ -27,7 +33,7 @@ public interface ManageProductDao {
 	 * 등록되있는 상품 목록 불러오기
 	 * @return - 상품 목록
 	 */
-	public List<Product> selectProductAll();
+	public List<Product> selectProductAll(Product product);
 	/**
 	 * 지점 목록 불러오기
 	 * @return - 지점 목록
