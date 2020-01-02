@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 <style type="text/css">
 #checkbox {
@@ -21,14 +22,19 @@ thead tr td {
 }
 #searchSubmit{
 	width:20%;
-	position : absolute;
+	float : left;
+/* 	position : absolute; */
 }
 </style>
 <!-- <h1>상품관리</h1> -->
 <!-- <hr> -->
 <script type="text/javascript">
-$(document).ready(function() {
 
+$(document).ready(function() {
+	$("#shop option[value='${ param.shopNo }']").attr("selected", true);
+	$("#categoryBase option[value='${ param.categoryNo }']").attr("selected", true);
+	$("#categoryBase").change();
+	
 	/* 판매등록일 모달 */
 	$("#prodList").on("click",".selStart", function(){
 		
@@ -198,27 +204,29 @@ $(document).ready(function() {
 	$disabledResults.select2();
 	
 	/* 검색 ajax */
-	$("#searchSubmit").on("click", function(){
+// 	$("#searchSubmit").on("click", function(e){
 		
-		$.ajax({
-			type: "get"
-			, url: "/manageProduct/search"
-			, data: {
-				productNo : $('#searchProductNo').val() ,
-				productName : $('#searchProductName').val() ,
-				categoryMapNo : $("#categoryDetail").val(),
-				shopNo : $('#shop').val()
-			}
-			, dataType:"html"
-			, success: function( data ){
-				console.log(data);
-				console.log("검색값 전달성공");
-			}
-			, error: function(){
-				console.log("search error");
-			}
-		});
-	});
+// 		console.log($("#categoryDetail").val());
+// 		$.ajax({
+// 			type: "get"
+// 			, url: "/manageProduct/list"
+// 			, data: {
+// 				productNo : $('#searchProductNo').val() ,
+// 				productName : $('#searchProductName').val() ,
+// 				categoryMapNo : $("#categoryDetail").val(),
+// 				shopNo : $('#shop').val()
+// 			}
+// 			, dataType:"html"
+// 			, success: function( data ){
+// 				console.log(data);
+// // 				$("#productList").html(data)
+// // 				location.href=data.redirect;
+// 			}
+// 			, error: function(e){
+// 				console.log("search error");
+// 			}
+// 		});
+// 	});
 });
 
 //상품관리(list) 카테고리
@@ -244,9 +252,13 @@ function getCategory(e){
 		success : function(res) {
 			console.log(res);
 			if(res.categoryDetail.length == 0)
-				$("#categoryDetail").append("<option>-----</option>");
+				$("#categoryDetail").append("<option value='0'></option>");
 			for (var i=0; i<res.categoryDetail.length;i++) {
-				$("#categoryDetail").append("<option value='"+res.categoryDetail[i].categoryMapno+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				if(res.categoryDetail[i].categoryMapNo == '${ param.categoryMapNo }') {
+					$("#categoryDetail").append("<option value='"+res.categoryDetail[i].categoryMapNo+"' selected='selected'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				} else {
+					$("#categoryDetail").append("<option value='"+res.categoryDetail[i].categoryMapNo+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				}
 			}
 		}
 	})
@@ -276,7 +288,7 @@ function getCategory2(e){
 			console.log("모달상세카테고리 나와요" + res);
 			console.log(res);
 			if(res.categoryDetail.length == 0) {
-				$("#exampleModalLong #categoryDetail2").append("<option>-----</option>");
+				$("#exampleModalLong #categoryDetail2").append("<option></option>");
 				console.log(100000);
 			}
 			for (var i=0; i<res.categoryDetail.length;i++) {
@@ -290,7 +302,7 @@ function getCategory2(e){
 </script>
 
 <div id="searchProduct" style="margin : 10px;">
-<form action="" method="post">
+<form action="/manageProduct/list" method="get">
 <fieldset>
 <legend class="text-primary">상품 관리</legend>
 <table>
@@ -299,13 +311,13 @@ function getCategory2(e){
    		<td>
    			<div>
    				<label>상품코드</label>
-   				<input id="searchProductNo" type="text" class="form-control" value="">
+   				<input id="searchProductNo" name="productNo" type="number" class="form-control" value='${param.productNo}'>
    			</div>
    		</td>
    		<td>
    			<div>
    				<label>상품명</label>
-   				<input id="searchProductName" type="text" class="form-control" value="">
+   				<input id="searchProductName" name="productName" type="text" class="form-control" value="${ param.productName }">
    			</div>
    		</td>
     </tr>
@@ -313,8 +325,8 @@ function getCategory2(e){
     	<td>
    			 <div class="form-group">
 		      <label for="categoryBase">상품카테고리</label>
-		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase" onchange="getCategory(this)">
-		      	<option value="0">-----</option>
+		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase" onchange="getCategory(this)" name="categoryNo">
+		      	<option value="0"></option>
 		      	<c:forEach items="${ category }" var="c">
 		        <option value="${ c.categoryNo }">${ c.categoryName }</option>
 		        </c:forEach>
@@ -324,8 +336,8 @@ function getCategory2(e){
     	<td>
    			 <div class="form-group">
 		      <label for="categoryDetail">세부카테고리</label>
-		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryDetail">
-					<option>-----</option>
+		      <select class="search-select select2-selection select2-selection--single form-control" id="categoryDetail" name="categoryMapNo">
+					<option value="0"></option>
 		      </select>
 		    </div>
    		</td>
@@ -334,7 +346,11 @@ function getCategory2(e){
     	<td>
    			 <div class="form-group">
 		      <label for="shop">입점매장</label>
-		      <select class="search-select select2-selection select2-selection--single form-control" id="shop">
+		      <select class="search-select select2-selection select2-selection--single form-control" id="shop" name="shopNo">
+		      	<c:if test="${ param.shopNo ne null }">
+		      		<option value="${ param.shopNo }"></option>
+		      	</c:if>
+		      	<option value="0"></option>
 		      	<c:forEach items="${ shop }" var="s">
 		        <option value="${ s.shopNo }">${ s.shopName }</option>
 				</c:forEach>
@@ -343,7 +359,8 @@ function getCategory2(e){
    		</td>
    		<td>
    			<div class="form-group">
-   				<button id="searchSubmit"type="button" class="btn btn-primary btn-block"><i class="fas fa-search"></i></button>
+   				<button id="searchSubmit" class="btn btn-primary btn-block"><i class="fas fa-search"></i></button>
+   				<a href="/manageProduct/list"><i class="fas fa-redo fa-2x"></i></a>
    			</div>
    			
    		</td>

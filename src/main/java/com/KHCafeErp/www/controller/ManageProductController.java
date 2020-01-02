@@ -25,16 +25,37 @@ public class ManageProductController {
 	@Autowired ManageProductService manageProductService;
 	
 	@RequestMapping(value="/manageProduct/list", method=RequestMethod.GET)
-	public void productList(Model model) {
-		logger.info("상품관리");
+	public void productList(Model model,
+			@RequestParam(defaultValue = "0") int productNo,
+			String productName,
+			@RequestParam(defaultValue = "0") int categoryNo,
+			@RequestParam(defaultValue = "0") int categoryMapNo,
+			@RequestParam(defaultValue = "0") int shopNo) {
+//		logger.info("상품관리");
+		Product product = new Product();
+		product.setProductNo(productNo);
+		product.setProductName(productName);
+		product.setCategoryNo(categoryNo);
+		product.setCategoryMapNo(categoryMapNo);
+		product.setShopNo(shopNo);
 		
+		logger.info("검색조건 :" + product);
+
 		List<CategoryBase> category = manageProductService.getcategoryList();
 		List<Shop> shop = manageProductService.getShopList();
-		List<Product> product = manageProductService.getProductList();
 		
+		List<Product> productList = manageProductService.getProductList(product);
+		
+		logger.info("검색결과 : " + productList);
+		
+//		mav.setViewName("jsonView");
+//		mav.addObject("product", productList);
+//		mav.addObject("category", category);
+//		mav.addObject("shop", shop);
+//		mav.addObject("redirect", "/manageProduct/list");
 		model.addAttribute("category", category);
 		model.addAttribute("shop", shop);
-		model.addAttribute("product", product);
+		model.addAttribute("product", productList);
 		
 	}
 	@RequestMapping(value="/manageProduct/categoryDetail", method=RequestMethod.GET)
@@ -95,13 +116,15 @@ public class ManageProductController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
-	public ModelAndView search(ModelAndView mav, Product product) {
-		
-		logger.info("검색조건 :" + product);
-//		manageProductService.searchList();
-		
-		return mav;
-	}
+//	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
+//	public String search(Model model, Product product) {
+//		
+//		logger.info("검색조건 :" + product);
+//		List<Product> searchList = manageProductService.searchList(product);
+//		
+//		logger.info("검색결과 : " + searchList);
+//		model.addAttribute("searchList", searchList);
+//		return "redirect:/manageProduct/list";
+//	}
 
 }
