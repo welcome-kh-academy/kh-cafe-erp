@@ -55,6 +55,20 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.selectBoardByBoardNo(viewBoard);
 		
 	}
+
+	@Override
+	public void update(NoticeBoard board) {
+		
+		noticeDao.update(board);
+		
+	}
+
+	@Override
+	public void delete(NoticeBoard board) {
+		
+		noticeDao.delete(board);
+		
+	}
 	
 
 }

@@ -70,5 +70,25 @@ public interface NoticeDao {
 	 * @return Board - 게시글 조회 결과
 	 */
 	public NoticeBoard selectBoardByBoardNo(NoticeBoard viewBoard);
+	
+	/**
+	 * 지재용
+	 * 2020-01-02
+	 * 
+	 * 게시글 수정
+	 * 
+	 * @param board - 수정될 게시글 내용
+	 */
+	public void update(NoticeBoard board);
+	
+	/**
+	 * 지재용
+	 * 2020-01-02
+	 * 
+	 * 게시글 삭제
+	 * 
+	 * @param board - 삭제할 객체
+	 */
+	public void delete(NoticeBoard board);
 
 }

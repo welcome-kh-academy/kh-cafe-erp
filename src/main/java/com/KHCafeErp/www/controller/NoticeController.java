@@ -91,14 +91,31 @@ public class NoticeController {
 		
 	}
 	
-//	@RequestMapping(value="/notice/update", method=RequestMethod.GET)
-//	public void update(NoticeBoard board, HttpSession session, Model model) {
-//		
-//		board = noticeService.boardView(board);
-//		model.addAttribute("view", board);
-//	}
+	@RequestMapping(value="/notice/update", method=RequestMethod.GET)
+	public void update(NoticeBoard board, HttpSession session, Model model) {
+		
+		board = noticeService.boardView(board);
+		logger.info("게시글 수정 보드번호? " + board);
+		model.addAttribute("update", board);
+	}
 	
+	@RequestMapping(value="/notice/update", method = RequestMethod.POST)
+	public String updateBoardProc(NoticeBoard board) {
+		
+		noticeService.update(board);
+		
+		logger.info("게시글 수정완료? " + board.toString());
+		
+		return "redirect:/notice/list";
+	}
 	
+	@RequestMapping(value="/notice/delete", method=RequestMethod.GET)
+	public String deleteProcess(NoticeBoard board) {
+		noticeService.delete(board);
+		
+		return "redirect:/notice/list";
+		
+	}
 	
 	
 	

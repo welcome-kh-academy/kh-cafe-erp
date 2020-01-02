@@ -23,7 +23,7 @@ td:not(.info) {
 
 <div class="container">
 
-<h1 class="pull-left">게시글 상세보기</h1>
+<h1 class="pull-left">공지사항</h1>
 
 <hr>
 
@@ -49,8 +49,8 @@ td:not(.info) {
 </table>
 
 <!-- 버튼 영역 -->
-<div class="text-center">
-	<a href="/notice/list"><button class="btn btn-default">목록</button></a>
+<div class="text-center" style="float: right;">
+	<a href="/notice/list"><button class="btn btn-success">목록</button></a>
 	<c:if test="${staffNo eq view.staffNo }">
 		<a href="/notice/update?nBoardNo=${view.nBoardNo }"><button class="btn btn-primary">수정</button></a>
 		<a href="/notice/delete?nBoardNo=${view.nBoardNo }"><button class="btn btn-danger">삭제</button></a>

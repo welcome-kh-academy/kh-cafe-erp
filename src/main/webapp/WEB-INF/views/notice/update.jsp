@@ -31,21 +31,21 @@ function submitContents(elClickedObj) {
 $(document).ready(function(){
 	
 	//작성버튼 동작
-	$("#btnWrite").click(function(){
+	$("#btnUpdate").click(function(){
 		
-		//타이틀 비었는지 검사
-		$("form").bind("submit", function(){
-			if($("input[name=nBoardTitle]").val()=='') {
-				//input value가 빈값 일 경우
-				alert("제목을 입력해주세요");
-				$("input[name=nBoardTitle]").focus();
+// 		//타이틀 비었는지 검사
+// 		$("form").bind("submit", function(){
+// 			if($("input[name=nBoardTitle]").val()=='') {
+// 				//input value가 빈값 일 경우
+// 				alert("제목을 입력해주세요");
+// 				$("input[name=nBoardTitle]").focus();
 				
-				return false;
-			}
-		});
+// 				return false;
+// 			}
+// 		});
 
 		// 스마트에디터의 내용을 <textarea>에 적용
-		submitContents($("#btnWrite"));
+		submitContents($("#btnUpdate"));
 		
 		// form submit
  		$("form").submit();
@@ -59,6 +59,7 @@ $(document).ready(function(){
 });
 
 </script>
+
 
 <style type="text/css">
 #content {
@@ -90,26 +91,27 @@ div {
 
 <div class="container">
 
-<h1>공지사항 작성</h1>
+<h1>공지사항 수정</h1>
 <hr>
 
 <div>
 
 <!--  enctype="multipart/form-data" -->
-<form action="/notice/write" method="post">
+<form action="/notice/update" method="post">
 
 	<input type="hidden" name="nBoardDate" value="${sysdate }"/>
-	<div class="form-group">
-		<label for="staffName">작성자</label>
-		<input type="text" id="staffName" name="staffName" value="${staffName }" readonly="readonly" class="form-control"/>
-	</div>
+<!-- 	<div class="form-group"> -->
+<!-- 		<label for="staffName">작성자</label> -->
+<%-- 		<input type="text" id="staffName" name="staffName" value="${staffName }" readonly="readonly" class="form-control"/> --%>
+<!-- 	</div> -->
+	<input type="hidden" name="nBoardNo" value="${update.nBoardNo }"/>
 	<div class="form-group">
 		<label for="nBoardTitle">제목</label>
-		<input type="text" id="nBoardTitle" name="nBoardTitle" class="form-control" />
+		<input type="text" id="nBoardTitle" name="nBoardTitle" class="form-control" value="${update.nBoardTitle }" readonly="readonly"/>
 	</div>
 	<div class="form-group">
 		<label for="nBoardContent">본문</label>
-		<textarea rows="10" style="width:100%" id="nBoardContent" name="nBoardContent"></textarea>
+		<textarea rows="10" style="width:100%" id="nBoardContent" name="nBoardContent" >${update.nBoardContent }</textarea>
 	</div>
 
 
@@ -118,7 +120,7 @@ div {
 </div>
 
 <div style="text-align:right;">
-	<button class="btn btn-primary" id="btnWrite">작성</button>
+	<button class="btn btn-primary" id="btnUpdate">작성</button>
 	<button class="btn btn-secondary" id="btnCancel">취소</button>
 </div>
 </div>
@@ -128,7 +130,7 @@ div {
 <!-- 스마트 에디터 적용 코드 -->
 <!-- <textarea>태그에 스마트 에디터의 스킨을 입히는 코드 -->
 <script type="text/javascript">
-var oEditors = [];
+var oEditors = []; 
 nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
  elPlaceHolder: "nBoardContent", // 에디터가 적용되는 <textarea>의 id

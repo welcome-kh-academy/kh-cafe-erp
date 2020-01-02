@@ -70,5 +70,27 @@ public interface NoticeService {
 	 * @return NoticeBoard - 상세보기할 게시글 조회 결과
 	 */
 	public NoticeBoard boardView(NoticeBoard viewBoard);
+	
+	/*
+	 * 지재용
+	 * 2020-01-02
+	 * 
+	 * 게시글 수정
+	 * 
+	 * @param board - 요청정보객체
+	 * 
+	 */
+	public void update(NoticeBoard board);
+	
+	/*
+	 * 지재용
+	 * 2020-01-02
+	 * 
+	 * 게시글 삭제
+	 * 
+	 * @param board - 삭제 대상 객체
+	 * 
+	 */
+	public void delete(NoticeBoard board);
 
 }
