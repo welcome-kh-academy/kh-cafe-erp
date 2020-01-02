@@ -28,7 +28,7 @@ thead tr td {
 <!-- <hr> -->
 <script type="text/javascript">
 $(document).ready(function() {
-
+	
 	/* 판매등록일 모달 */
 	$("#prodList").on("click",".selStart", function(){
 		
@@ -228,6 +228,7 @@ function getCategory(e){
 //수정 모달(edit) 카테고리
 function getCategory2(e){
 	var value = document.getElementById('categoryBase2').value;
+	console.log()
 	console.log(value)
 	$.ajax({
 		type : "GET",

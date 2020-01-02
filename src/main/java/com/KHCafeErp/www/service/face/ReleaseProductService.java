@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.util.Paging;
 
 public interface ReleaseProductService {
 
@@ -19,6 +20,8 @@ public interface ReleaseProductService {
 	 * 발주 목록에 나타낼 발주 조회
 	 * @return - 발주 목록
 	 */
-	public List<Release> getReleaseList();
+	public List<Release> getReleaseList(Paging paging);
+
+	public Paging getPaging(int curPage, Release release);
 
 }

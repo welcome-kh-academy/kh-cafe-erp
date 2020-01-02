@@ -40,8 +40,10 @@
 
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
-#wrapper{
+#container{
 	min-width : 1800px;
+}
+#wrapper{
 	min-height:800px;
 }
 #footer{
@@ -84,9 +86,9 @@ li{
 
 </head>
 <body>
-
+<div id="container">
 <div id="header">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
+<nav class="navbar navbar-expand navbar-dark bg-primary static-top">
   <a class="navbar-brand" href="/dashboard/index" style="margin-top:5px"><img src="/resources/img/KH.png" style="height:40px; margin-bottom:5px;"/>ERP 통합 관리 프로그램</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -130,7 +132,7 @@ li{
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">출&nbsp;&nbsp;&nbsp;고</a>
+        <a class="nav-link" href="/release/list">출&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
         <ul>
         	<li><a href="/release/list">출고 관리</a></li>
