@@ -5,6 +5,8 @@ import com.KHCafeErp.www.dto.Staff;
 public interface JoinStaffDao {
 	
 	/**
+	 * 2019-12-26 지재용
+	 * 
 	 * 회원가입 정보 삽입
 	 * 
 	 * @param staff - 회원가입 정보
@@ -12,6 +14,8 @@ public interface JoinStaffDao {
 	public void insert(Staff staff);
 		
 	/*
+	 * 2019-12-26 지재용
+	 * 
 	 *  nick 중복 체크
 	 * 
 	 * @param nick - 입력한 nick 값
@@ -20,6 +24,8 @@ public interface JoinStaffDao {
 	public int nickCheck(String nick);
 	
 	/*
+	 * 2019-12-26 지재용
+	 * 
 	 * id 중복 체크
 	 * 
 	 * @param id - 입력한 id 값
@@ -27,21 +33,14 @@ public interface JoinStaffDao {
 	 */
 	public int selectIdCntCheck(int staffNo);
 
-
-
-
-	
-
-
-	
 	/**
 	 * 유저 인증키 생성 매소드
 	 * 2019/12/27 지재용
 	 * 
 	 * @param staffNo - 회원번호
-	 * @param user_key - 난수(인증키)
+	 * @param userKey - 난수(인증키)
 	 */
-	public int getKey(int staffNo, String user_key);
+	public int getKey(int staffNo, String userKey);
 	
 	/**
 	 * 유저 인증키 Y로 바꿔주는 메소드

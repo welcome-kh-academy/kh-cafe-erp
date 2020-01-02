@@ -11,7 +11,7 @@
 	<p class="text-white" id="corporationInfo">대표 전화 : 1234 - 5678	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : 1234@gmail.com</p>
 	<p class="text-white" id="copyright">Copyright &copy; 서현석 서동산 이경수 안병주 장유진 지재용 All Rights Reserved.<p>
 </div>
-
+</div>
 <!-- select2 JS -->
 <script src="/resources/vendor/select2/select2.min.js"></script>
 

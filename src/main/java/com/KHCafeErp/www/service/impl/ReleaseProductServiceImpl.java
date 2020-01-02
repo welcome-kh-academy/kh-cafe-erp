@@ -4,39 +4,53 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.KHCafeErp.www.dao.face.ReleaseProductDao;
+import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
 import com.KHCafeErp.www.util.ExcelRead;
+import com.KHCafeErp.www.util.Paging;
 import com.KHCafeErp.www.util.ReadOption;
 
 @Service
 public class ReleaseProductServiceImpl implements ReleaseProductService {
 
+	@Autowired ReleaseProductDao releaseProductDao;
+	
+	@Override
+	public List<Release> getReleaseList(Paging paging) {
+		return releaseProductDao.selectReleaseList(paging);
+	}
+	
 	@Override
 	public void insertMassiveProduct(File destFile) {
 		ReadOption readOption = new ReadOption();
 		readOption.setFilePath(destFile.getAbsolutePath());
-		readOption.setOutputColumns("A","B","C","D","E","F","G","H","I","J","K");
+		readOption.setOutputColumns("A","B","C","D","E","F","G");
 		readOption.setStartRow(2);
 		  
 		List<Map<String, String>> excelContent = ExcelRead.read(readOption);
 		
 		for(Map<String, String> article : excelContent){
-//		   
-//			Product product = new Product();
-//		   
-//			product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
-//			product.setShopNo((int)Float.parseFloat(article.get("B")));
-//		   	product.setProductName(article.get("D"));
-//		   	product.setProductContent(article.get("E"));
-//		   	product.setOriginPrice((int)Float.parseFloat(article.get("F")));
-//		   	product.setPrice((int)Float.parseFloat(article.get("G")));
-//		   	product.setProductOrigin(article.get("H"));
-//		   	product.setSelStartDate(article.get("I"));
-//		   	product.setSelEndDate(article.get("J"));
-//		   	product.setSelStatus((int)Float.parseFloat(article.get("K")));
-//		   
+		   
+			Release release = new Release();
+
+			release.setPlacingOrderNo((int)Float.parseFloat(article.get("A")));
+			release.setShopName(article.get("B"));
+			if(article.get("C").equals("출고 전")) {
+				release.setReleaseStatus(0);				
+			} else if(article.get("C").equals("출고 완료")) {
+				release.setReleaseStatus(1);								
+			} else {
+				release.setReleaseStatus(-1);								
+			}
+			release.setReleaseDate(article.get("D"));
+			
+			System.out.println(release);
+		   	releaseProductDao.insertRelease(release);
+			
 //		   	System.out.println(product);
 //		   
 //		   	orderDao.insertRelease(product);
@@ -56,6 +70,14 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 
 		  }
 		System.out.println(excelContent);
+	}
+
+	@Override
+	public Paging getPaging(int curPage, Release release) {
+		int totalCount = releaseProductDao.selectReleaseListCnt(release);
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;
 	}
 
 }

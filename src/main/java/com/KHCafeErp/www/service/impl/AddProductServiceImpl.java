@@ -2,6 +2,7 @@ package com.KHCafeErp.www.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -179,4 +181,46 @@ public class AddProductServiceImpl implements AddProductService {
 
 	}
 
+	@Override
+	public void addProduct(HttpSession session) {
+
+		Map map = (HashMap)session.getAttribute("addProduct");
+
+		Product product = new Product();
+		
+		product.setCategoryMapNo((int)map.get("categoryMapNo"));
+		product.setPrice((int)map.get("price"));
+		product.setProductContent((String)map.get("productContent"));
+		product.setCategoryNo((int)map.get("categoryNo"));
+		product.setProductOrigin((String)map.get("productOrigin"));
+		product.setOriginPrice((int)map.get("originPrice"));
+		product.setCategoryName((String)map.get("categoryName"));
+		product.setProductName((String)map.get("productName"));
+
+		//가짜데이터
+		product.setShopNo(11);
+		product.setSelStartDate("20200101");
+		product.setSelEndDate("20200101");
+		product.setSelStatus(1);
+		
+		//상품등록
+		addProductDao.insertProduct(product);
+		
+		//상품번호 구하기
+	   	int productNo = addProductDao.getProductNo((String)map.get("productName"));
+		product.setProductNo(productNo);
+		
+		ProductOption productOption = new ProductOption();
+		
+		List optionNo = (ArrayList)map.get("option");
+		for(Object i : optionNo) {
+			
+			productOption.setProductNo(productNo);
+			productOption.setOptionNo(Integer.parseInt((String) i)); 
+			
+			//상품옵션 등록
+			addProductDao.insertProductOption(productOption);
+		}
+		
+	}
 }

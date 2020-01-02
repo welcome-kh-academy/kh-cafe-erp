@@ -7,6 +7,8 @@ import com.KHCafeErp.www.dto.Staff;
 public interface JoinStaffService {
 	
 	/**
+	 * 2019-12-26 지재용
+	 * 
 	 * 회원가입
 	 * 
 	 * @param login - 회원가입 정보
@@ -14,6 +16,8 @@ public interface JoinStaffService {
 	public void join(Staff staff);
 	
 	/*
+	 * 2019-12-26 지재용
+	 * 
 	 * nick 중복 체크
 	 * 
 	 * @param nick - nick값

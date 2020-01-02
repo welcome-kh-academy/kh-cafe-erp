@@ -1,11 +1,6 @@
 package com.KHCafeErp.www.controller;
 
-
-import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,34 +31,7 @@ public class PlacingOrderController {
 	public void placingOrderMain() {
 		logger.info("발주관리 페이지");
 	}
-	
-	
-//	@RequestMapping(value="/placingOrder/search", method=RequestMethod.GET)
-//	public void placingOrderSearch(Writer out, PlacingOrder placingOrder, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
-//		
-//		logger.info(placingOrder.toString());
-//
-//		Paging paging = placingOrderService.getPaging(curPage, placingOrder);
-//		logger.info("--" + paging);
-//		
-//		List<PlacingOrder> data = placingOrderService.getPlacingOrderList(paging);
-//		logger.info("++" + data);
-//		
-//		try {
-//			out.append(
-//				"{"
-//				+ 	"\"data\":["
-//				+ 		"[1,11,\"20191230\",1,1,null,null,null]"
-//				+		",[2,11,\"20111212\",22,111,null,null,null]"
-//				+ 	"]"
-//				+	", \"length\":2"
-//				+"}");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}	
+
 	@RequestMapping(value="/placingOrder/search", method=RequestMethod.GET)
 	public ModelAndView placingOrderSearch(PlacingOrder placingOrder, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
 		
@@ -78,10 +46,20 @@ public class PlacingOrderController {
 		List llist = new ArrayList();
 		List list = null;
 		
+		//번호
+		int i=1;
 		for(PlacingOrder po : data) {
 			list = new ArrayList();
+			list.add(i++);
 			list.add(po.getPlacingOrderNo());
 			list.add(po.getShopNo());
+			
+//			StringBuffer sb = new StringBuffer(po.getPlacingOrderDate());
+//			sb.insert(4, "년 ");
+//			sb.insert(7, "월  ");
+//			sb.insert(10, "일");
+//			list.add(sb);
+			
 			list.add(po.getPlacingOrderDate());
 			list.add(po.getPlacingOrderStatus());
 			list.add(po.getInStockStatus());
@@ -91,6 +69,7 @@ public class PlacingOrderController {
 			
 			llist.add(list);
 		}
+		
 		
 		mav.addObject("data",llist);
 //		mav.addObject("data",data);

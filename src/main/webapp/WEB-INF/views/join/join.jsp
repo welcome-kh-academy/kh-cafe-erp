@@ -272,20 +272,20 @@
                 <div class="card-body">
                     <h2 class="title">회원가입</h2>
                     <form id="joinForm" action="/join/join" method="post">
-                    	<div class="row row-space">
-                    	<div class="col-2">
-                        <div class="input-group">
-                          	 아이디<input class="input--style-1" type="text" placeholder="직원번호" id="staffNo" name="staffNo">
-                        </div>
-                        </div>
-						<div class="col-2">
-                        <div class="input-group">
-                         	<br><br>
-                            <input type="button" id="icheck" value="아이디 중복 체크">
-                            <div id="idCheck"></div>        
-                        </div>
-                        </div>
-                        </div>
+<!--                     	<div class="row row-space"> -->
+<!--                     	<div class="col-2"> -->
+<!--                         <div class="input-group"> -->
+<!--                           	 아이디<input class="input--style-1" type="text" placeholder="직원번호" id="staffNo" name="staffNo"> -->
+<!--                         </div> -->
+<!--                         </div> -->
+<!-- 						<div class="col-2"> -->
+<!--                         <div class="input-group"> -->
+<!--                          	<br><br> -->
+<!--                             <input type="button" id="icheck" value="아이디 중복 체크"> -->
+<!--                             <div id="idCheck"></div>         -->
+<!--                         </div> -->
+<!--                         </div> -->
+<!--                         </div> -->
                         
                         <div class="row row-space">
                         <div class="col-2">

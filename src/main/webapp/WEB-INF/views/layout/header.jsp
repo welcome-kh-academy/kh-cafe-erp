@@ -23,10 +23,6 @@
 <link href="/resources/css/datepicker.css">
 <link href="/resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-<!-- select2 4.0.12 버전 -->
-<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" /> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> -->
-
 <!-- 폰트 어썸 4.7 버전 -->
 <link href="/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 <link href="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -40,9 +36,12 @@
 
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
-#wrapper{
+#container{
 	min-width : 1800px;
+}
+#wrapper{
 	min-height:800px;
+	margin : 20px;
 }
 #footer{
 	padding : 2rem;
@@ -84,9 +83,9 @@ li{
 
 </head>
 <body>
-
+<div id="container">
 <div id="header">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
+<nav class="navbar navbar-dark bg-primary static-top">
   <a class="navbar-brand" href="/dashboard/index" style="margin-top:5px"><img src="/resources/img/KH.png" style="height:40px; margin-bottom:5px;"/>ERP 통합 관리 프로그램</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -130,7 +129,7 @@ li{
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">출&nbsp;&nbsp;&nbsp;고</a>
+        <a class="nav-link" href="/release/list">출&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
         <ul>
         	<li><a href="/release/list">출고 관리</a></li>
