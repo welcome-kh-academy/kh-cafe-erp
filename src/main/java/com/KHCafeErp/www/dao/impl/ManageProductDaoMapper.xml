@@ -23,7 +23,6 @@
 		SELECT 
 			productno,
 			categorymapno,
-			optionno,
 			shopno,
 			productname,
 			productcontent,
@@ -40,7 +39,7 @@
 	</select>
 	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT
-		    P.productno, P.categorymapno, P.optionno, P.shopno, productname
+		    P.productno, P.categorymapno, P.shopno, productname
 		    , productcontent, originprice, price, productorigin, enrolldate
 		    , selstartdate, selenddate, selstatus, CB.categoryName, CB.categoryNo
 		FROM product P, categoryDetail CD, categoryBase CB
