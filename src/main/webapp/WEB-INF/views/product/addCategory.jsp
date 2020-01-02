@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+
+<!-- 브래드크럼 스타일 지정 -->
 <link href="/resources/css/add-product.css" rel="stylesheet">
 <script src=""></script>
 

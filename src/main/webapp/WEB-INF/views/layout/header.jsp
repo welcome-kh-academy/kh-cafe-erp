@@ -23,10 +23,6 @@
 <link href="/resources/css/datepicker.css">
 <link href="/resources/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-<!-- select2 4.0.12 버전 -->
-<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" /> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> -->
-
 <!-- 폰트 어썸 4.7 버전 -->
 <link href="/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 <link href="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -43,6 +39,7 @@
 #wrapper{
 	min-width : 1800px;
 	min-height:800px;
+	margin : 20px;
 }
 #footer{
 	padding : 2rem;

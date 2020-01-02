@@ -10,10 +10,6 @@
     border-color: #DEE2E6;
 }
 
-.condition-container {
-	margin : 20px;
-}
-
 .space {
 	margin-left : 20px;
 	margin-right : 20px;
@@ -30,10 +26,22 @@
 // datatable
 $(document).ready( function () {
 	
-	var curPage = 1; //페이지 변수를 1로 초기화
+	//select2 실행 코드
+	var $disabledResults = $(".search-select");
+	$disabledResults.select2();
 	
     $('#myTable').DataTable({
     	"scrollY" : 200, //테이블 고정 크기 설정
+    	"columnDefs" : [
+    	      { width: '5%', targets : [0] },
+    	      { width: '7%', targets : [1] },
+    	      { width: '15%', targets : [2] },
+    	      { width: '15%', targets : [3] },
+    	      { width: '15%', targets : [4] },
+    	      { width: '15%', targets : [5] },
+    	      { width: '14%', targets : [6] },
+    	      { width: '14%', targets : [7] }
+    	],
     	"scrollCollapse" : true, //가변 크기 막기
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
     	"language" : {
@@ -52,9 +60,23 @@ $(document).ready( function () {
 			},
 			"dataSrc" : function(json){
 				
+				for(let i=0; i<json.data.length; i++){
+
+					if(json.data[i][2] == "11"){
+						json.data[i][2] = "강남점";
+					}
+					
+					if(json.data[i][4] == "0"){
+						json.data[i][4] = "입고완료"
+					}
+					
+					if(json.data[i][5] == "0"){
+						json.data[i][5] = "발주완료"
+					}
+					
+				}
 				console.log(json.data);
 				
-// 				console.log(JSON.stringify(json.data))
 				return json.data;
 			}
 		}
@@ -123,18 +145,23 @@ function getList() {
 
 <div class="condition-container">
 <form action="/placingOrder/management" method="post" id="placingOrderForm">
+
 <table class="table table-bordered">
 	<tr>
 		<th class="condition"><label for="placingOrderNo">발주번호</label></th>
 		<td><input type="number" value="${placingOrderList.placingOrderNo }" id="placingOrderNo" name="placingOrderNo"/></td>
 		<th class="condition"><label for="shopName">지점명</label></th>
-		<td><input type="text" name="shopName" id="shopName"></td>
+		<td>
+			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+				<option value="11">강남점</option>
+			</select>
+		</td>
 		<td rowspan="3" style="vertical-align : middle;text-align:center;">
 			<button type="button" class="btn btn-primary btn-lg" onclick="getList()">검색</button>
 		</td>
 	</tr>
 	<tr>
-		<th class="condition"><label for="startDate">발주일시</label></th>
+		<th class="condition"><label for="startDate">발주날짜</label></th>
 		<td colspan="3">
 			<input class="input--style-1 js-datepicker" type="text"
 				placeholder="" id="startDate" name="startDate">
@@ -150,13 +177,17 @@ function getList() {
 		<td>
 			<select name="placingOrderStatus" id="placingOrderStatus"
 				class="select2-selection--single form-control">
+				<option value="0">발주확인전</option>
 				<option value="1">발주완료</option>
+				<option value="2">출고대기</option>
+				<option value="3">출고완료</option>
 			</select>
 		</td>
 		<th class="condition"><label for="inStockStatus">입고상태</label></th>
 		<td>
 			<select name="inStockStatus" id="inStockStatus"
 				class="select2-selection--single form-control">
+				<option value="0">입고대기</option>
 				<option value="1">입고완료</option>
 			</select>
 		</td>
@@ -169,14 +200,14 @@ function getList() {
 	<button class="btn btn-outline-success">Excel 다운로드</button>
 </div>
 
-<table id="myTable" class="display table table-bordered">
+<table id="myTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
 <!--         	<th><input type="checkbox"/></th> -->
             <th>no</th>
             <th>발주번호</th>
             <th>지점명</th>
-            <th>발주일시</th>
+            <th>발주날짜</th>
             <th>총 발주수량</th>
             <th>발주금액</th>
             <th>발주상태</th>
@@ -184,6 +215,5 @@ function getList() {
         </tr>
     </thead>
 </table>
-
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
