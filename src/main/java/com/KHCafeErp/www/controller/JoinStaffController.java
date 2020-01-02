@@ -84,7 +84,7 @@ public class JoinStaffController {
 	
 	// e-mail 인증 컨트롤러
 	@RequestMapping(value = "/user/mail", method = RequestMethod.GET)
-	public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("user_key") String key) {
+	public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("userKey") String key) {
 
 		joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
 

@@ -15,13 +15,14 @@ public class Staff {
 	private String email;
 	private String cellNum;
 	private String gender;
+	private String userKey;
 	
 	@Override
 	public String toString() {
 		return "Staff [staffNo=" + staffNo + ", shopNo=" + shopNo + ", position=" + position + ", staffName="
 				+ staffName + ", hiredDate=" + hiredDate + ", leaveDate=" + leaveDate + ", salary=" + salary
 				+ ", status=" + status + ", pw=" + pw + ", nick=" + nick + ", email=" + email + ", cellNum=" + cellNum
-				+ ", gender=" + gender + "]";
+				+ ", gender=" + gender + ", userKey=" + userKey + "]";
 	}
 
 	public int getStaffNo() {
@@ -128,6 +129,15 @@ public class Staff {
 		this.gender = gender;
 	}
 
+	public String getUserKey() {
+		return userKey;
+	}
+
+	public void setUserKey(String userKey) {
+		this.userKey = userKey;
+	}
+	
+	
 	
 	
 	
