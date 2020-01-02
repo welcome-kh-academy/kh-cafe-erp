@@ -57,7 +57,7 @@ function initMap() {
 center : new google.maps.LatLng(${37.4978525}, ${127.0285875}),
 	zoom: zoomVal
  
-};
+});
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 <c:forEach items="${shopList}" var="marker">
