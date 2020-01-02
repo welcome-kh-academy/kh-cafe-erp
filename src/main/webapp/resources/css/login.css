@@ -38,7 +38,6 @@ body, html {
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
 }
-
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
@@ -170,11 +169,18 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #455BA6, #4158d0);
-  background: -o-linear-gradient(-135deg, #455BA6, #4158d0);
-  background: -moz-linear-gradient(-135deg, #455BA6, #4158d0);
-  background: linear-gradient(-135deg, #455BA6, #4158d0);
+/*   background: #9053c7; */
+/*   background: -webkit-linear-gradient(-135deg, #455BA6, #4158d0); */
+/*   background: -o-linear-gradient(-135deg, #455BA6, #4158d0); */
+/*   background: -moz-linear-gradient(-135deg, #455BA6, #4158d0); */
+/*   background: linear-gradient(-135deg, #455BA6, #4158d0); */
+ 
+  background: url("/resources/img/main.jpg" )no-repeat center center fixed ; 
+   -webkit-background-size: cover; 
+   -moz-background-size: cover; 
+   -o-background-size: cover; 
+  background-size: cover;
+
 }
 
 .wrap-login100 {

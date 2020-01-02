@@ -50,6 +50,8 @@ public interface AddProductDao {
 
 	/**
 	 * 카테고리 이름 조회
+	 * 2019-12-30 서현석
+	 * 
 	 * @param categoryBaseNo - 카테고리 No
 	 * @return - 카테고리 이름
 	 */
@@ -57,14 +59,29 @@ public interface AddProductDao {
 
 	/**
 	 * 상세 카테고리 조회
+	 * 2019-12-30 서현석
+	 * 
 	 * @param categoryDetailNo - 상세 카테고리 No
 	 * @return - 상세 카테고리 이름
 	 */
 	public String selectCategoryDetailName(int categoryDetailNo);
 
-	public void insertProduct(Product product);
-
 	public int getProductNo(String productName);
 
 	public void insertProductOption(ProductOption productOption);
+
+	/**
+	 * 상품정보 등록하기
+	 * 2020-01-01 서현석
+	 * 
+	 * @param product - 세션에 담긴 상품정보
+	 */
+	public void insertProduct(Product product);
+
+	/**
+	 * 전체 상품 목록 불러오기
+	 * 2020-01-03 서현석
+	 * @return List<product> - 전체상품목록
+	 */
+	public List<Product> selectPrdList();
 }

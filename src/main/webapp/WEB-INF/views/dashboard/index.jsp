@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-warning o-hidden h-100">
+            <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-list"></i>
@@ -92,7 +92,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
+            <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-shopping-cart"></i>
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-danger o-hidden h-100">
+            <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-life-ring"></i>
@@ -129,7 +129,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
+            차트 서비스 준비중</div>
           <div class="card-body">
             <canvas id="myAreaChart" width="100%" height="30"></canvas>
           </div>
@@ -140,36 +140,28 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Table Example</div>
+            테이블 서비스 준비중</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>서비스 준비중</th>
+                    <th>서비스 준비중</th>
+                    <th>서비스 준비중</th>
+                    <th>서비스 준비중</th>
+                    <th>서비스 준비중</th>
+                    <th>서비스 준비중</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                  </tr>
-                  <tr>
-                    <td>Donna Snider</td>
-                    <td>Customer Support</td>
-                    <td>New York</td>
-                    <td>27</td>
-                    <td>2011/01/25</td>
-                    <td>$112,000</td>
+                    <td>서비스 준비중</td>
+                    <td>서비스 준비중</td>
+                    <td>서비스 준비중</td>
+                    <td>서비스 준비중</td>
+                    <td>서비스 준비중</td>
+                    <td>서비스 준비중</td>
                   </tr>
                 </tbody>
               </table>
@@ -181,14 +173,6 @@
       </div>
       <!-- /.container-fluid -->
 
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
 
     </div>
     <!-- /.content-wrapper -->
@@ -220,19 +204,4 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Page level plugin JavaScript-->
-  <script src="/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="/resources/js/sb-admin.min.js"></script>
-
-</body>
-
-</html>
+<jsp:include page="/WEB-INF/views/layout/footer.jsp"/>

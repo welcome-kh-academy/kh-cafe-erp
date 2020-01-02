@@ -5,7 +5,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.KHCafeErp.www.dao.face.ReleaseProductDao">
-	<insert id="insertRelease" parameterType="com.KHCafeErp.www.dto.ReleaseProduct">
-		INSERT INTO releaseProduct(releaseNo, placingOrderNo, productNo, productCnt) VALUES (releaseNo_seq.nextval, #{placingOrder}, #{productNo}, #{productCnt})
+	<select id="selectReleaseList" resultType="com.KHCafeErp.www.dto.Release">
+		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate FROM release, placingOrder, shop WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo ORDER BY releaseNo
+	</select>
+
+	<insert id="insertRelease" parameterType="com.KHCafeErp.www.dto.Release">
+		INSERT INTO release (releaseNo, placingOrderNo, releaseStatus, releaseDate)
+		SELECT release_seq.nextval, #{placingOrderNo}, #{releaseStatus}, #{releaseDate}
+		FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM release WHERE placingOrderNo=#{placingOrderNo})
 	</insert>
+	
+	<select id="selectReleaseListCnt" resultType="int">
+		SELECT COUNT(*) FROM release
+	</select>
 </mapper>

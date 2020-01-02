@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>회원가입</title>
     
     <link href="/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -391,7 +391,7 @@
 
                         <div class="p-t-20">
                             <button class="btn btn--radius " type="button" id="btnJoin" style="float: right; background-color: rgb(46, 62, 114);">가입</button>
-                            <button class="btn btn--radius " type="button" id="btnCancel" style="float: right; margin-right: 8px; background-color: gray;">취소</button>
+                            <button class="btn btn--radius " type="button" id="btnCancel" style="float: right; margin-right: 8px; background-color: gray;" onclick="location.href='/login/main'">취소</button>
                         </div>
                     </form>
                 </div>

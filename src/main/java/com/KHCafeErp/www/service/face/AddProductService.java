@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
@@ -88,5 +89,23 @@ public interface AddProductService {
 	public Map<String, String> getOption(HttpServletRequest req);
 
 	public void insertMassiveProduct(File destFile);
+
+	/**
+	 * 2020-01-02
+	 * 서현석
+	 * 
+	 * 상품 추가하기 최종 단계!
+	 * @param session - 세션에 상품정보 담겨있음
+	 */
+	public void addProduct(HttpSession session);
+
+	/**
+	 * 2020-01-03
+	 * 서현석
+	 * 
+	 * 상품 목록 불러오기
+	 * @return List<Product>
+	 */
+	public List<Product> getPrdList();
 	
 }
