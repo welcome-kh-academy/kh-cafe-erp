@@ -6,6 +6,15 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
+<style type="text/css">
+table, th {
+	text-align: center;
+}
+
+
+
+</style>
+
 <div class="container">
 <h1>공지사항 게시판</h1>
 
