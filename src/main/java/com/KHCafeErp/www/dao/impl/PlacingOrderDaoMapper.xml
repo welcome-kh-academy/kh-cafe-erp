@@ -9,9 +9,21 @@
 		SELECT COUNT(1) FROM PLACINGORDER
 	</select>
  
- 	<select id="selectPlacingOrderList" resultType="com.KHCafeErp.www.dto.PlacingOrder">
+ 	<select id="selectPlacingOrderList" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="com.KHCafeErp.www.dto.PlacingOrder">
 		SELECT PLACINGORDERNO, SHOPNO, PLACINGORDERDATE, PLACINGORDERSTATUS, INSTOCKSTATUS
 		FROM PLACINGORDER
+		WHERE 1=1
+		AND PLACINGORDERDATE BETWEEN #{startDate} AND #{endDate}
+		<if test="placingOrderNo != null">
+    		AND placingOrderNo = #{placingOrderNo}
+  		</if>
+  		<if test="shopNo != null">
+    		AND shopNo = #{shopNo}
+  		</if>
+	</select>
+	
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT SHOPNO, SHOPNAME FROM SHOP
 	</select>
  
 </mapper>

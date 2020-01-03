@@ -3,6 +3,7 @@ package com.KHCafeErp.www.service.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.PlacingOrder;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface PlacingOrderService {
@@ -24,6 +25,23 @@ public interface PlacingOrderService {
 	 * @param paging : 페이징 객체
 	 * @return 발주 현황 리스트
 	 */
-	List<PlacingOrder> getPlacingOrderList(Paging paging);
+//	List<PlacingOrder> getPlacingOrderList(Paging paging);
+
+	/**
+	 * 20-01-03 서현석 
+	 * 지점 리스트 불러오기 (모듈화 필요!)
+	 * 
+	 * @return List<Shop>
+	 */
+	List<Shop> getShopList();
+
+	/**
+	 * 20-01-03
+	 * 발주 리스트 받아오기
+	 * 
+	 * @param placingOrder : 검색조건
+	 * @return List<PlacingOrder> : 발주리스트
+	 */
+	List<PlacingOrder> getPlacingOrderList(PlacingOrder placingOrder);
 
 }
