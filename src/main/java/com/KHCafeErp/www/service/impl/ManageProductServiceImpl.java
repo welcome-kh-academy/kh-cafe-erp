@@ -16,6 +16,11 @@ public class ManageProductServiceImpl implements ManageProductService{
 	
 	@Autowired ManageProductDao manageProductDao;
 	
+	@Override
+	public void deleteProduct(Product product) {
+		manageProductDao.deleteProduct(product);
+	}
+	
 //	@Override
 //	public List<Product> searchList(Product product) {
 //	

@@ -34,4 +34,18 @@ public interface PlacingOrderDao {
 	 */
 	public List<Shop> selectShopList();
 
+	/**
+	 * 20-01-03 유진
+	 * 발주 목록 전체 조회
+	 * @return - 발주 리스트
+	 */
+	public List<PlacingOrder> selectPlacingOrderListAll();
+
+	/**
+	 * 20-01-03 유진
+	 * 총 발주 수량
+	 * @return - 총 발주 수량
+	 */
+	public int getTotalPlacingOrder();
+
 }

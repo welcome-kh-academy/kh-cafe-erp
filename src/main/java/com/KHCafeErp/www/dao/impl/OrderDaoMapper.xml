@@ -5,8 +5,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.KHCafeErp.www.dao.face.OrderDao">
-	<insert id="insertOrder" parameterType="com.KHCafeErp.www.dto.Order">
-		INSERT INTO order(orderNo, cusNo, orderDate, requirement) VALUES (orderNo_seq.nextval, #{cusNo}, #{orderDate}, #{requirement});
-	</insert>
+	<select id="selectOrderList" resultType="com.KHCafeErp.www.dto.Release">
+		SELECT * from orderBase , prdShop where orderBase.prdshopno = prdshop.prdshopno
+	</select>
 
+
+
+	<!-- 엑셀파일 업로드 -->
+	<insert id="insertOrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
+		INSERT INTO orderBase(orderNo, cusNo, orderDate, requirement, orderStatus, orderShopNo)
+		SELECT orderBase_seq.nextval, #{cusNo}, #{orderDate}, #{requirement}, #{orderStatus}, #{orderShopNo}
+		FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}) 
+	</insert>
+	
+	<select id="selectOrderNo" parameterType="com.KHCafeErp.www.dto.OrderBase" resultType="int">
+		SELECT orderNo FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}
+	</select>
+	
+	<insert id="insertOrderProduct" parameterType="com.KHCafeErp.www.dto.OrderProduct">
+		INSERT INTO orderProduct(orderPrdNo, orderNo, productOptionNo, productNo, productCnt) VALUES (orderProduct_seq.nextval, #{orderno}, #{productOptionNo}, #{productNo}, #{productCnt}) 
+	</insert>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.ReleaseProductDao;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
 import com.KHCafeErp.www.util.ExcelRead;
 import com.KHCafeErp.www.util.Paging;
@@ -46,27 +47,28 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 			} else {
 				release.setReleaseStatus(-1);								
 			}
-			release.setReleaseDate(article.get("D"));
+			release.setReleaseDate(article.get("G"));
 			
 			System.out.println(release);
 		   	releaseProductDao.insertRelease(release);
 			
-//		   	System.out.println(product);
-//		   
-//		   	orderDao.insertRelease(product);
-//		   	
-//		   	ProductOption productOption = new ProductOption();
-//		   	String productName = product.getProductName();
-//		   	
-//		   	int productNo = orderDao.getProductNo(productName);
-//		   	System.out.println(productNo);
-//		   	
-//		   	productOption.setProductNo(productNo);
-//		   	productOption.setOptionNo((int)Float.parseFloat(article.get("C")));
-//		   	
-//		   	System.out.println(productOption);
-//		   	
-//		   	orderDao.insertProductOption(productOption);
+		   	int releaseNo = releaseProductDao.selectOrderNo(release);
+		   	System.out.println(releaseNo);
+		   	
+		   	ReleaseProduct releaseProduct = new ReleaseProduct();
+		   	releaseProduct.setReleaseNo(releaseNo);
+		   	releaseProduct.setReleaseProductName(article.get("D"));
+		   	releaseProduct.setProductCnt((int)Float.parseFloat(article.get("E")));
+		   	if(article.get("F").equals("출고 전")) {
+				releaseProduct.setProductStatus(0);				
+			} else if(article.get("F").equals("출고 완료")) {
+				releaseProduct.setProductStatus(1);								
+			} else {
+				releaseProduct.setProductStatus(-1);								
+			}
+		   	
+		   	System.out.println(releaseProduct);
+		   	releaseProductDao.insertReleaseProduct(releaseProduct);
 
 		  }
 		System.out.println(excelContent);

@@ -49,4 +49,14 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		return shopList;
 	}
 
+	@Override
+	public List<PlacingOrder> getList() {
+		return placingOrderDao.selectPlacingOrderListAll();
+	}
+
+	@Override
+	public int getTotalPlacingOrder() {
+		return placingOrderDao.getTotalPlacingOrder();
+	}
+
 }
