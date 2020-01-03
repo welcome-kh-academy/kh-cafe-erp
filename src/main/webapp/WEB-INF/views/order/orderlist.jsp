@@ -117,6 +117,7 @@ function getList() {
 // 	});
 }
 
+// 20-01-02 유진 : 엑셀 업로드 팝업창
 function popupOpen(){
 	var url ="/order/popExcel";
 	var winWidth = 500;
