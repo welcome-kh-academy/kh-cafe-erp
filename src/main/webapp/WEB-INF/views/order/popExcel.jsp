@@ -22,7 +22,7 @@ $(document).ready( function () {
 
 
 <div id="pop" style="margin:20px">
-<form action="/release/upload" method="post" class="releaseMassive" name="excelUpload" enctype="multipart/form-data">
+<form action="/order/upload" method="post" class="orderMassive" name="excelUpload" enctype="multipart/form-data">
 <fieldset>
 <legend class="text-primary">엑셀 업로드</legend>
 <p class="text-danger">엑셀 파일(.xlsx) 파일만 업로드 가능합니다</p>

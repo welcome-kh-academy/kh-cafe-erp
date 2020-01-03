@@ -87,7 +87,6 @@ public class ReleaseProductController {
             throw new RuntimeException(e.getMessage(),e);
  
         }
-        System.out.println("sdfbggblhglh;sihdfgh");
         releaseProductService.insertMassiveProduct(destFile);
         
         ModelAndView view = new ModelAndView();

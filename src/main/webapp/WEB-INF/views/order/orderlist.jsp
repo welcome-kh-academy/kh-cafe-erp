@@ -117,6 +117,17 @@ function getList() {
 // 	});
 }
 
+function popupOpen(){
+	var url ="/order/popExcel";
+	var winWidth = 500;
+	var winHeight = 300;
+	
+	
+	var winLeft = Math.ceil(( window.screen.width - winWidth )/2);
+	var winTop = Math.ceil(( window.screen.width - winHeight )/2);
+	var popupOption = "width=" + winWidth+ ", height=" + winHeight +", left=" + winLeft + ", winTop=" + winTop;
+	var myWindow = window.open(url, "", popupOption);
+}
 </script>
 
 <h1>주문 통합 관리</h1>
@@ -188,6 +199,7 @@ function getList() {
 
 <div style="float:right;">
 	<button class="btn btn-outline-success">Excel 다운로드</button>
+	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
 </div>
 <br>
 <h2>주문 리스트</h2>
