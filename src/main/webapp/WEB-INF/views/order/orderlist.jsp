@@ -45,6 +45,16 @@ $(document).ready( function () {
     	"bPaginate" : true, //페이징 처리를 할 것인가
     	"serverSide" : false, //클라이언트에서 처리
     	"processing" : true, 
+    	"columnDefs": [{
+            "targets": -1,
+            "data": null,
+            "render": function(data, type, row){
+             return '<button class="btn btn-primary" onclick="#">상세보기</button>';
+      },
+      "orderable": false
+
+           }],
+           
     	ajax : {
 			"type" : "GET",
 			"url" : "/placingOrder/search",
@@ -61,6 +71,7 @@ $(document).ready( function () {
 		}
     });
 });	
+
 
 
 function getList() {
@@ -209,12 +220,13 @@ function popupOpen(){
         <tr>
 <!--         	<th><input type="checkbox"/></th> -->
             <th>주문번호</th>
-            <th>상품명</th>
+            <th>유저번호</th>
             <th>상품갯수</th>
-            <th>결제금액</th>
-            <th>주문일</th>
+            <th>보유기준정보</th>
+            <th>주문날짜</th>
+            <th>고객요구사항</th>
             <th>진행상태</th>
-            <th>비고</th>
+            <th></th>
         </tr>
     </thead>
 </table>
