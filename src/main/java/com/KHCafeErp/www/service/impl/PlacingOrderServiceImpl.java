@@ -42,4 +42,9 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		return placingOrderDao.selectPlacingOrderListAll();
 	}
 
+	@Override
+	public int getTotalPlacingOrder() {
+		return placingOrderDao.getTotalPlacingOrder();
+	}
+
 }

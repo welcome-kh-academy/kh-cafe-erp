@@ -15,9 +15,12 @@
 	</select>
 	
 	<select id="selectPlacingOrderListAll" resultType="com.KHCafeErp.www.dto.PlacingOrder">
-		SELECT placingOrder.placingOrderNo, shop.shopName, placingOrderDate, placingOrderStatus, inStockStatus FROM placingOrder, shop WHERE placingOrder.shopNo=shop.shopName
+		SELECT placingOrder.placingOrderNo, shop.shopName, placingOrderDate, placingOrderStatus, inStockStatus FROM placingOrder, shop WHERE placingOrder.shopNo=shop.shopNo ORDER BY placingOrder.placingOrderNo
 	</select>
  
+ 	<select id="getTotalPlacingOrder" resultType="int">
+ 		SELECT SUM(placingOrderProductCnt) FROM placingOrderProduct GROUP BY placingOrderNo ORDER BY placingOrderNo
+ 	</select>
 </mapper>
 
 
