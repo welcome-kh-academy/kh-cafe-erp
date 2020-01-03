@@ -13,6 +13,10 @@
 		SELECT PLACINGORDERNO, SHOPNO, PLACINGORDERDATE, PLACINGORDERSTATUS, INSTOCKSTATUS
 		FROM PLACINGORDER
 	</select>
+	
+	<select id="selectPlacingOrderListAll" resultType="com.KHCafeErp.www.dto.PlacingOrder">
+		SELECT placingOrder.placingOrderNo, shop.shopName, placingOrderDate, placingOrderStatus, inStockStatus FROM placingOrder, shop WHERE placingOrder.shopNo=shop.shopName
+	</select>
  
 </mapper>
 

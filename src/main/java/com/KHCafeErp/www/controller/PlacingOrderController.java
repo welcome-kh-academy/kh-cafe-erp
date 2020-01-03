@@ -80,4 +80,13 @@ public class PlacingOrderController {
 		return mav;
 		
 	}	
+	
+	@RequestMapping(value = "/placingorder/exceldown")
+	public void excelDown() {
+		
+		List<PlacingOrder> placingOrderList = placingOrderService.getList();
+		System.out.println(placingOrderList);
+
+
+	}
 }

@@ -197,7 +197,7 @@ function getList() {
 </div>
 
 <div style="float:right;">
-	<button class="btn btn-outline-success">Excel 다운로드</button>
+	<button class="btn btn-outline-success" onclick="location.href='/placingorder/exceldown'">Excel 다운로드</button>
 </div>
 
 <table id="myTable" class="display table table-bordered" >

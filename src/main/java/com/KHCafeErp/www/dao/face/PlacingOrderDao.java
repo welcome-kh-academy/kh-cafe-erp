@@ -25,4 +25,6 @@ public interface PlacingOrderDao {
 	 */
 	public List<PlacingOrder> selectPlacingOrderList(Paging paging);
 
+	public List<PlacingOrder> selectPlacingOrderListAll();
+
 }

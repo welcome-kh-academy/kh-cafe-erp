@@ -20,6 +20,8 @@
 			<exclude-mapping path="/login/**"/>
 			<exclude-mapping path="/join/**"/>
 			<exclude-mapping path="/findinfo/**"/>
+			<exclude-mapping path="/resources/**"/>
+			<exclude-mapping path="/upload/**"/>
 			<beans:bean class="com.KHCafeErp.www.interceptor.Interceptor" />
 		</interceptor>
 	</interceptors>

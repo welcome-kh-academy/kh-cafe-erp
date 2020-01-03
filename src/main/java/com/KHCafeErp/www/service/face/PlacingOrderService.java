@@ -26,4 +26,6 @@ public interface PlacingOrderService {
 	 */
 	List<PlacingOrder> getPlacingOrderList(Paging paging);
 
+	public List<PlacingOrder> getList();
+
 }

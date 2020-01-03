@@ -7,6 +7,8 @@ public class PlacingOrder {
 	private String placingOrderDate; //발주일
 	private int placingOrderStatus; //발주상태
 	private int inStockStatus; //입고상태
+	private int placingOrderPrice;	// 발주 금액
+	private int placingOrderCnt;	// 발주 수량
 	
 	private String startDate; //시작일
 	private String endDate; //종료일
@@ -16,9 +18,10 @@ public class PlacingOrder {
 	public String toString() {
 		return "PlacingOrder [placingOrderNo=" + placingOrderNo + ", shopNo=" + shopNo + ", placingOrderDate="
 				+ placingOrderDate + ", placingOrderStatus=" + placingOrderStatus + ", inStockStatus=" + inStockStatus
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", shopName=" + shopName + "]";
+				+ ", placingOrderPrice=" + placingOrderPrice + ", placingOrderCnt=" + placingOrderCnt + ", startDate="
+				+ startDate + ", endDate=" + endDate + ", shopName=" + shopName + "]";
 	}
-	
+
 	public Integer getPlacingOrderNo() {
 		return placingOrderNo;
 	}
@@ -70,4 +73,21 @@ public class PlacingOrder {
 		this.shopName = shopName;
 	}
 
+	public final int getPlacingOrderPrice() {
+		return placingOrderPrice;
+	}
+
+	public final void setPlacingOrderPrice(int placingOrderPrice) {
+		this.placingOrderPrice = placingOrderPrice;
+	}
+
+	public final int getPlacingOrderCnt() {
+		return placingOrderCnt;
+	}
+
+	public final void setPlacingOrderCnt(int placingOrderCnt) {
+		this.placingOrderCnt = placingOrderCnt;
+	}
+	
+	
 }

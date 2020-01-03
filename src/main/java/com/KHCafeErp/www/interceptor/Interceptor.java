@@ -17,7 +17,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		logger.info("+ + + 인터셉터 시작 + + +");
 		
 		HttpSession session = request.getSession();
-		
+		logger.info(request.getRequestURI());
 		if(session.getAttribute("staffNo")==null) {
 			logger.info("접속 불가 : 비 로그인 상태");
 			response.sendRedirect("/login/main");
