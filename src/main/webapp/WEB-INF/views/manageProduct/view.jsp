@@ -62,7 +62,45 @@ $(document).ready(function() {
 	})
 })
 
+//수정 모달(edit) 카테고리
+function getCategory2(e){
+	$("#exampleModalLong #categoryDetail2").html("");
+	
+	var value = e.value;
+		
+	console.log(e);
+	console.log("카테고리값" + value);
 
+	$.ajax({
+		type : "GET",
+		url : "/manageProduct/categoryDetail",
+		data : {
+			value : value
+		},
+		dataType : "json",
+		error : function(e) {
+			alert("ajax오류!");
+			console.log(e);
+		},
+		success : function(res) {
+			console.log("모달상세카테고리 나와요" + res);
+			console.log(res);
+			
+			
+			if(res.categoryDetail.length == 0) {
+				$("#exampleModalLong #categoryDetail2").append("<option></option>");
+			}
+			for (var i=0; i<res.categoryDetail.length;i++) {
+				if(res.categoryDetail[i].categoryMapNo == '1') {
+					$("#exampleModalLong #categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapNo+"' selected='selected'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				} else {
+				$("#exampleModalLong #categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapNo+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
+				}
+			}
+			$("#categoryDetail2").val('${product.categoryMapNo}').change();
+		}
+	})
+}
 
 </script>
 
@@ -87,16 +125,15 @@ $(document).ready(function() {
         		<td>
         		 <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase2" onchange="getCategory2(this)">
 		      		<option value="0">-----</option>
-		      		<c:forEach items="${ category }" var="c">
-		        		<option value="${ c.categoryNo }">${ c.categoryName }</option>
-		        	</c:forEach>
+<%-- 		      		<c:forEach items="${ category }" var="c"> --%>
+		        		<option value="${ product.categoryNo }">${ product.categoryName }</option>
+<%-- 		        	</c:forEach> --%>
 		      	</select>
        			</td>
-        		<th><label for="categoryDetail2">세부카테고리</label>
-</th>
+        		<th><label for="categoryDetail2">세부카테고리</label></th>
         		<td>
         			<select class="search-select select2-selection select2-selection--single form-control" id="categoryDetail2">
-						<option>-----</option>
+						<option value="${ product.categoryMapNo }">${ product.categoryDetailName }</option>
 		      		</select>
        			</td>
         	</tr>
