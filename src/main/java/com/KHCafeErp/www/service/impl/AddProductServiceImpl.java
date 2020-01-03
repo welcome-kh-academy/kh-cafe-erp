@@ -58,7 +58,7 @@ public class AddProductServiceImpl implements AddProductService {
 	public void addOption(OptionBase option) {
 		addProductDao.insertOption(option);
 	}
-	public CategoryBase getCategory(Product product) {
+	public Map getCategory(Product product) { 
 		return addProductDao.selectCategory(product);
 	}
 

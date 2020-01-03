@@ -66,12 +66,12 @@ $(document).ready( function () {
 						json.data[i][2] = "강남점";
 					}
 					
-					if(json.data[i][4] == "0"){
-						json.data[i][4] = "입고완료"
+					if(json.data[i][6] == "0"){
+						json.data[i][6] = "발주완료"
 					}
 					
-					if(json.data[i][5] == "0"){
-						json.data[i][5] = "발주완료"
+					if(json.data[i][7] == "0"){
+						json.data[i][7] = "입고완료"
 					}
 					
 				}

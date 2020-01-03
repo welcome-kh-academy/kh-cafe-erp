@@ -59,13 +59,15 @@ public class PlacingOrderController {
 //			sb.insert(7, "월  ");
 //			sb.insert(10, "일");
 //			list.add(sb);
-			
 			list.add(po.getPlacingOrderDate());
+			list.add(0);
+			list.add(0);
 			list.add(po.getPlacingOrderStatus());
 			list.add(po.getInStockStatus());
-			list.add(po.getStartDate());
-			list.add(po.getEndDate());
-			list.add(po.getShopName());
+			
+//			list.add(po.getStartDate());
+//			list.add(po.getEndDate());
+//			list.add(po.getShopName());
 			
 			llist.add(list);
 		}

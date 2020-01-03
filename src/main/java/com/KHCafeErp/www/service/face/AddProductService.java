@@ -50,7 +50,7 @@ public interface AddProductService {
 	 * @param product
 	 * @return Category
 	 */
-	public CategoryBase getCategory(Product product);
+	public Map getCategory(Product product);
 
 	/**
 	 * 19-12-27 현석

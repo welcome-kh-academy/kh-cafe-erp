@@ -76,23 +76,25 @@
 						alert("ajax오류!");
 					},
 					success : function(res) {
-						$("#category").html("");
+						
+						$("#categoryBase").html("");
 						$("#categoryDetail").html("");
 
-						if (res.category.length == 0){
-							$("#category").append("<option>--------</option>");
+						if (res.length == 0){
+							$("#categoryBase").append("<option>--------</option>");
 							$("#categoryDetail").append("<option>--------</option>");
-						} else {
-							$("#category")
+						} 
+						else {
+							$("#categoryBase")
 							.append(
-									"<option value='"+res.category.categoryNo+"'>"
-											+ res.category.categoryName
+									"<option value='"+res.category.CATEGORYNO+"'>"
+											+ res.category.CATEGORYNAME
 											+ "</option>");
 							
 							$("#categoryDetail")
 							.append(
-									"<option value='"+res.category.categoryMapNo+"'>"
-											+ res.category.categoryDetailName
+									"<option value='"+res.category.CATEGORYMAPNO+"'>"
+											+ res.category.CATEGORYDETAILNAME
 											+ "</option>");
 						}
 				}

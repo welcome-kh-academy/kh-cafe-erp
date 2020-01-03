@@ -58,16 +58,18 @@ public class AddProductContrller {
 	
 //	상품등록 1단계 - 카테고리등록 - 상품검색
 	@RequestMapping(value = "/product/getCategoryByPrd", method=RequestMethod.GET)
-	public void getCategoryByPrd(ModelAndView mav, @RequestParam(value = "value") int value) {
+	public ModelAndView getCategoryByPrd(ModelAndView mav, @RequestParam(value = "value") int value) {
 		
 		Product product = new Product();
 		product.setCategoryMapNo(value);
 		
 		logger.info(product.toString());
-		CategoryBase category = addProductService.getCategory(product);
-		
+		Map category = addProductService.getCategory(product);
 		
 		mav.addObject("category", category);
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	//상품등록 1단계 - 카테고리등록 - 카테고리로 카테고리 상세목록 가져오기(Ajax)
