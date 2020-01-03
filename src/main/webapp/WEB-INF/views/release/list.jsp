@@ -16,6 +16,9 @@ td div{
 fieldset, .divReleaseList, .divSearchRelease{
 	margin : 20px;
 }
+tr td:nth-child(6){
+	text-align:center;
+}
 </style>
 
 <script type="text/javascript">
@@ -37,6 +40,15 @@ $(document).ready( function () {
     	"serverSide" : false, //클라이언트에서 처리
     	"processing" : true, 
     	"bInfo" : false,
+    	"columnDefs": [{
+    		   "targets": -1,
+    		   "data": null,
+    		   "render": function(data, type, row){
+    		    return '<button class="btn btn-primary" onclick="#">출고 등록</button>';
+    	},
+    	"orderable": false
+
+    		  }],
     	ajax : {
 			"type" : "GET",
 			"url" : "/release/search",
@@ -84,6 +96,16 @@ function popupOpen(){
 <div class="divReleaseList">
 <fieldset>
 	<legend class="text-primary">상품 출고 목록</legend>
+	<div>
+	<div class="custom-control custom-checkbox">
+		<input type="checkbox" value="1" id="complete" class="custom-control-input"/><label class="custom-control-label" for="complete">출고</label>
+	</div>
+	<div class="custom-control custom-checkbox">
+		<input type="checkbox" value="2" id="notComplete" class="custom-control-input"/><label class="custom-control-label" for="notComplete">미출고</label>
+	</div>
+	</div>
+	<!-- <div>
+	</div> -->
 	<div style="float:right;">
 		<button class="btn btn-outline-primary">Excel 다운로드</button>
 		<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
@@ -91,12 +113,12 @@ function popupOpen(){
 	<table id="myTable" class="display table table-bordered">
     	<thead class="thead-dark">
         	<tr class="table-primary">
-				<th>출고번호</th>
-				<th>발주번호</th>
-				<th>지점명</th>
-				<th>상태</th>
-				<th>출고일</th>
-<!-- 				<th></th> -->
+				<th width="15%">출고번호</th>
+				<th width="15%">발주번호</th>
+				<th width="15%">지점명</th>
+				<th width="20%">상태</th>
+				<th width="20%">출고일</th>
+				<th width="15%"></th>
 			</tr>
     	</thead>	
 	</table>

@@ -22,6 +22,13 @@ public interface ReleaseProductService {
 	 */
 	public List<Release> getReleaseList(Paging paging);
 
+	/**
+	 * 20-01-03 유진
+	 * 페이징 처리
+	 * @param curPage - 현재 페이지
+	 * @param release - 출고 정보
+	 * @return - Paging 객체
+	 */
 	public Paging getPaging(int curPage, Release release);
 
 }

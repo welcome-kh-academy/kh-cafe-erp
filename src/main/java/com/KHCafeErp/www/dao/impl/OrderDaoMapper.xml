@@ -25,6 +25,5 @@
 	
 	<insert id="insertOrderProduct" parameterType="com.KHCafeErp.www.dto.OrderProduct">
 		INSERT INTO orderProduct(orderPrdNo, orderNo, productOptionNo, productNo, productCnt) VALUES (orderProduct_seq.nextval, #{orderno}, #{productOptionNo}, #{productNo}, #{productCnt}) 
-<!-- 		INSERT INTO orderProduct(orderPrdNo, orderNo, productOptionNo, productNo, productCnt) VALUES (orderProduct_seq.nextval, #{orderno}, #{productOptionNo}, #{productNo}, 1)  -->
 	</insert>
 </mapper>

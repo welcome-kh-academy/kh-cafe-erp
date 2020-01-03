@@ -56,6 +56,7 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 		   	System.out.println(releaseNo);
 		   	
 		   	ReleaseProduct releaseProduct = new ReleaseProduct();
+		   	releaseProduct.setReleaseNo(releaseNo);
 		   	releaseProduct.setReleaseProductName(article.get("D"));
 		   	releaseProduct.setProductCnt((int)Float.parseFloat(article.get("E")));
 		   	if(article.get("F").equals("출고 전")) {
@@ -67,7 +68,7 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 			}
 		   	
 		   	System.out.println(releaseProduct);
-//		   	releaseProductDao.insertReleaseProduct(releaseProduct);
+		   	releaseProductDao.insertReleaseProduct(releaseProduct);
 
 		  }
 		System.out.println(excelContent);

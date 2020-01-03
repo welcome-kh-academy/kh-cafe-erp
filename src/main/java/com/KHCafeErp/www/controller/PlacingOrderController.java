@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.service.face.PlacingOrderService;
 import com.KHCafeErp.www.util.Paging;
+import com.KHCafeErp.www.util.WriteOption;
 
 @Controller
 public class PlacingOrderController {
@@ -80,4 +81,28 @@ public class PlacingOrderController {
 		return mav;
 		
 	}	
+	
+	@RequestMapping(value = "/placingorder/exceldown")
+	public void excelDown() {
+		
+		List<PlacingOrder> placingOrderList = placingOrderService.getList();
+		System.out.println(placingOrderList);
+		
+		WriteOption writeOption = new WriteOption();
+		writeOption.setFileName("발주목록.xlsx");
+		writeOption.setSheetName("발주");
+		
+		
+		
+		 List<String> titles = new ArrayList<String>();
+		 
+		 titles.add("발주 번호");
+		 titles.add("지점명");
+		 titles.add("발주 날짜");
+		 titles.add("총 발주 수량");
+		 titles.add("총 발주 금액");
+		 titles.add("발주 상태");
+		 titles.add("입고 상태");
+		 
+	}
 }
