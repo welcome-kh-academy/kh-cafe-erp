@@ -46,19 +46,30 @@ public class AddProductContrller {
 //	상품등록 1단계 - 카테고리등록
 	@RequestMapping(value = "/product/addCategory", method=RequestMethod.GET)
 	public void addCategory(Model model) {
+		
 		logger.info("카테고리 등록");
 		List<CategoryBase> categoryList = addProductService.getCategoryList();
 	
+		List<Product> prdList = addProductService.getPrdList();
+		
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("prdList", prdList);
 	}
 	
 //	상품등록 1단계 - 카테고리등록 - 상품검색
-	@RequestMapping(value = "/product/addCategory", method=RequestMethod.POST)
-	public void addCategory(Model model, Product product) {
-		logger.info("카테고리 등록에서 상품검색");
-		CategoryBase category = addProductService.getCategory(product);
-			
-		model.addAttribute("category", category);
+	@RequestMapping(value = "/product/getCategoryByPrd", method=RequestMethod.GET)
+	public ModelAndView getCategoryByPrd(ModelAndView mav, @RequestParam(value = "value") int value) {
+		
+		Product product = new Product();
+		product.setCategoryMapNo(value);
+		
+		logger.info(product.toString());
+		Map category = addProductService.getCategory(product);
+		
+		mav.addObject("category", category);
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	//상품등록 1단계 - 카테고리등록 - 카테고리로 카테고리 상세목록 가져오기(Ajax)
@@ -237,4 +248,6 @@ public class AddProductContrller {
         
         return view;
 	}
+	
+	
 }

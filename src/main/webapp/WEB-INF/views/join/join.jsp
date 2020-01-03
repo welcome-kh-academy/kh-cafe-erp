@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>회원가입</title>
     
     <link href="/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -120,64 +120,67 @@
 			if($.trim($('#staffName').val()) == ''){
 				alert("아이디 입력하세요");
 				$('#staffName').focus();
-				
+				return false;
 			}else if($.trim($('#pw').val()) == ''){
 				alert("패스워드 입력하세요");
 				$('#pw').focus();
-				
+				return false;
 			}
 			//패스워드 확인
 			else if($('#pw').val() != $('#pwConfirm').val()){
 				alert('패스워드가 다릅니다.');
 				$('#pw').focus();
-				
+				return false;
 			}else if($.trim($('#staffName').val()) == ''){
 				alert("이름을 입력하세요");
 				$('#name').focus();
-					
+				return false;
 			}else if($.trim($('#nick').val()) == ''){
 				alert("닉네임을 입력하세요");
 				$('#nick').focus();
-					
+				return false;
 			}else if($.trim($('#nick').val()) == ''){
 				alert("닉네임을 입력하세요");
 				$('#nick').focus();
-					
+				return false;
 			}else if($.trim($('#email').val()) == ''){
 				alert("이메일을 입력하세요");
 				$('#email').focus();
-				
+				return false;
 			}else if($.trim($('#cellNum').val()) == ''){
 				alert("휴대전화번호를 입력하세요");
 				$('#cellNum').focus();
-			
+				return false;
 			}else if($.trim($('#shopNo').val()) == ''){
-				alert("휴대전화번호를 입력하세요");
-				$('#cellNum').focus();	
-					
+				alert("지점번호를 입력하세요");
+				$('#shopNo').focus();	
+				return false;
 			}else if($.trim($('#position').val()) == ''){
-				alert("휴대전화번호를 입력하세요");
-				$('#cellNum').focus();
-				
+				alert("직원등급을 입력하세요");
+				$('#position').focus();
+				return false;
 			}else if($.trim($('#hiredDate').val()) == ''){
 				alert("입사일을 입력하세요");
 				$('#hiredDate').focus();
-					
+				return false;
 			}else if($.trim($('#gender').val()) == ''){
 				alert("성별을 입력하세요");
 				$('#gender').focus();
-					
+				return false;
+			}else if($('#privacyInfoAgree:checked').val()==null){
+				alert("개인정보취급방침에 동의하여 주시기 바랍니다.");
+				$('#privacyInfoAgree').focus();
+				return false;
 			}
-			
 			
 			
 			if(idx==false){
 				alert("닉네임 중복체크를 해주세요.");
-				
+				return false;
 			}else{
 				$('#joinForm').submit();
 			}
-		});
+		}); 
 		
 		$('#ncheck').click(function(){
 			$.ajax({
@@ -388,7 +391,7 @@
 
                         <div class="p-t-20">
                             <button class="btn btn--radius " type="button" id="btnJoin" style="float: right; background-color: rgb(46, 62, 114);">가입</button>
-                            <button class="btn btn--radius " type="button" id="btnCancel" style="float: right; margin-right: 8px; background-color: gray;">취소</button>
+                            <button class="btn btn--radius " type="button" id="btnCancel" style="float: right; margin-right: 8px; background-color: gray;" onclick="location.href='/login/main'">취소</button>
                         </div>
                     </form>
                 </div>

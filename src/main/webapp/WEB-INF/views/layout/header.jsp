@@ -85,7 +85,7 @@ li{
 <body>
 <div id="container">
 <div id="header">
-<nav class="navbar navbar-dark bg-primary static-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
   <a class="navbar-brand" href="/dashboard/index" style="margin-top:5px"><img src="/resources/img/KH.png" style="height:40px; margin-bottom:5px;"/>ERP 통합 관리 프로그램</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -162,7 +162,7 @@ li{
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">공 지 사 항</a>
+        <a class="nav-link" href="/notice/list">공 지 사 항</a>
       </li>      
     </ul>
   </div>

@@ -50,7 +50,7 @@ public interface AddProductService {
 	 * @param product
 	 * @return Category
 	 */
-	public CategoryBase getCategory(Product product);
+	public Map getCategory(Product product);
 
 	/**
 	 * 19-12-27 현석
@@ -98,5 +98,14 @@ public interface AddProductService {
 	 * @param session - 세션에 상품정보 담겨있음
 	 */
 	public void addProduct(HttpSession session);
+
+	/**
+	 * 2020-01-03
+	 * 서현석
+	 * 
+	 * 상품 목록 불러오기
+	 * @return List<Product>
+	 */
+	public List<Product> getPrdList();
 	
 }

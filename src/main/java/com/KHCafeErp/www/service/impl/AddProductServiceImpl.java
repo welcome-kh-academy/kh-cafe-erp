@@ -58,7 +58,7 @@ public class AddProductServiceImpl implements AddProductService {
 	public void addOption(OptionBase option) {
 		addProductDao.insertOption(option);
 	}
-	public CategoryBase getCategory(Product product) {
+	public Map getCategory(Product product) { 
 		return addProductDao.selectCategory(product);
 	}
 
@@ -198,7 +198,7 @@ public class AddProductServiceImpl implements AddProductService {
 		product.setProductName((String)map.get("productName"));
 
 		//가짜데이터
-		product.setShopNo(11);
+		product.setShopNo(9);
 		product.setSelStartDate("20200101");
 		product.setSelEndDate("20200101");
 		product.setSelStatus(1);
@@ -222,5 +222,10 @@ public class AddProductServiceImpl implements AddProductService {
 			addProductDao.insertProductOption(productOption);
 		}
 		
+	}
+
+	@Override
+	public List<Product> getPrdList() {
+		return addProductDao.selectPrdList();
 	}
 }

@@ -56,8 +56,8 @@ $(document).ready( function () {
 
 function popupOpen(){
 	var url ="/release/popExcel";
-	var winWidth = 400;
-	var winHeight = 600;
+	var winWidth = 500;
+	var winHeight = 300;
 	
 	
 	var winLeft = Math.ceil(( window.screen.width - winWidth )/2);

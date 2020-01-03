@@ -22,12 +22,12 @@ public class PlacingOrderController {
 	private static final Logger logger = LoggerFactory.getLogger(PlacingOrderController.class);
 	@Autowired PlacingOrderService placingOrderService;
 	
-	@RequestMapping(value="placingOrder/registration", method=RequestMethod.GET)
+	@RequestMapping(value="/placingOrder/registration", method=RequestMethod.GET)
 	public void placingOrderAdd() {
 		logger.info("발주등록 페이지");
 	}
 	
-	@RequestMapping(value="placingOrder/management", method=RequestMethod.GET)
+	@RequestMapping(value="/placingOrder/management", method=RequestMethod.GET)
 	public void placingOrderMain() {
 		logger.info("발주관리 페이지");
 	}
@@ -59,13 +59,15 @@ public class PlacingOrderController {
 //			sb.insert(7, "월  ");
 //			sb.insert(10, "일");
 //			list.add(sb);
-			
 			list.add(po.getPlacingOrderDate());
+			list.add(0);
+			list.add(0);
 			list.add(po.getPlacingOrderStatus());
 			list.add(po.getInStockStatus());
-			list.add(po.getStartDate());
-			list.add(po.getEndDate());
-			list.add(po.getShopName());
+			
+//			list.add(po.getStartDate());
+//			list.add(po.getEndDate());
+//			list.add(po.getShopName());
 			
 			llist.add(list);
 		}

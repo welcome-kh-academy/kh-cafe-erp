@@ -60,6 +60,47 @@
 			return true;
 	}
 
+	//상품으로 카테고리 검색
+	function searchByPrd(e) {
+		var value = document.getElementById('searchByPrd').value;
+		console.log(value)
+		$
+				.ajax({
+					type : "GET",
+					url : "/product/getCategoryByPrd",
+					data : {
+						value : value
+					},
+					dataType : "json",
+					error : function() {
+						alert("ajax오류!");
+					},
+					success : function(res) {
+						
+						$("#categoryBase").html("");
+						$("#categoryDetail").html("");
+
+						if (res.length == 0){
+							$("#categoryBase").append("<option>--------</option>");
+							$("#categoryDetail").append("<option>--------</option>");
+						} 
+						else {
+							$("#categoryBase")
+							.append(
+									"<option value='"+res.category.CATEGORYNO+"'>"
+											+ res.category.CATEGORYNAME
+											+ "</option>");
+							
+							$("#categoryDetail")
+							.append(
+									"<option value='"+res.category.CATEGORYMAPNO+"'>"
+											+ res.category.CATEGORYDETAILNAME
+											+ "</option>");
+						}
+				}
+				});
+	}
+	
 	function getCategoryDetail(e) {
 		var value = document.getElementById('categoryBase').value;
 		console.log(value)
@@ -108,13 +149,12 @@
 <hr/>
 
 <div class="search-product">
-<h3>상품검색</h3>
-<div class="input-group input-group-lg">
-  <span class="input-group-addon">
-    <i class="fa fa-search"></i>
-  </span>
-  <input class="form-control" type="text" placeholder="상품 검색">
-</div>
+<h3>상품검색<i class="fa fa-search"></i></h3>
+<select name="searchByPrd" id="searchByPrd" onchange="searchByPrd(this.value)" class="search-select select2-selection select2-selection--single form-control">
+	<c:forEach items="${prdList}" var="prd">
+		<option value="${prd.categoryMapNo }">${prd.productName }</option>	
+	</c:forEach>
+</select>
 </div>
 
 <form class="addProductForm" name="fr" action="/product/saveCategoryMap" method="post" onsubmit="return form_check()">

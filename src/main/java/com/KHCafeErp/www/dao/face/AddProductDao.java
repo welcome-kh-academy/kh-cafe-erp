@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
+import java.util.Map;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.OptionBase;
@@ -38,7 +39,7 @@ public interface AddProductDao {
 	 * 19-12-26 현석
 	 * 상품검색으로 카테고리 가져오기
 	 */
-	public CategoryBase selectCategory(Product product);
+	public Map selectCategory(Product product);
 
 	/**
 	 * 19-12-26 현석
@@ -77,4 +78,11 @@ public interface AddProductDao {
 	 * @param product - 세션에 담긴 상품정보
 	 */
 	public void insertProduct(Product product);
+
+	/**
+	 * 전체 상품 목록 불러오기
+	 * 2020-01-03 서현석
+	 * @return List<product> - 전체상품목록
+	 */
+	public List<Product> selectPrdList();
 }
