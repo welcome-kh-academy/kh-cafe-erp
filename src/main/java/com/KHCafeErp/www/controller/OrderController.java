@@ -41,6 +41,41 @@ public class OrderController {
 		
 	}
 	
+	@RequestMapping(value="/order/search" ,method=RequestMethod.GET)
+	public ModelAndView releaseSearch(OrderBase orderBase, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
+		logger.info("releaseSearch()");
+		
+		Paging paging = orderService.getPaging(curPage, orderBase);
+		
+		List<Release> releaseList = orderService.getOrderList(paging);
+		System.out.println(releaseList);
+		
+		List llist = new ArrayList();
+		List list = null;
+		
+		for(Release r : releaseList) {
+			list = new ArrayList();
+			list.add(r.getReleaseNo());
+			list.add(r.getPlacingOrderNo());
+			list.add(r.getShopName());
+			if(r.getReleaseStatus()==0) {
+				list.add("출고 전");
+			} else {
+				list.add("출고 완료");
+			}
+			list.add(r.getReleaseDate());
+			
+			llist.add(list);
+		}
+		
+		mav.addObject("data",llist);
+//		mav.addObject("data",data);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	
 	// 19-12-31 유진 - 엑셀 업로드
 	@RequestMapping(value = "/order/upload", method = RequestMethod.POST)
 	public ModelAndView uploadExcel(MultipartHttpServletRequest request) {

@@ -10,14 +10,19 @@ import org.springframework.stereotype.Service;
 import com.KHCafeErp.www.dao.face.OrderDao;
 import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.OrderProduct;
+import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.service.face.OrderService;
 import com.KHCafeErp.www.util.ExcelRead;
+import com.KHCafeErp.www.util.Paging;
 import com.KHCafeErp.www.util.ReadOption;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired OrderDao orderDao;
+	
+	
+	
 	
 	@Override
 	public void insertMassiveProduct(File destFile) {
@@ -68,6 +73,29 @@ public class OrderServiceImpl implements OrderService {
 		   	orderDao.insertOrderProduct(orderProduct);
 		  }
 		System.out.println(excelContent);
+	}
+
+
+
+
+	@Override
+	public List getOrderList(Paging paging) {
+		// TODO Auto-generated method stub
+		return orderDao.selectOrderList(paging);
+		
+	}
+
+
+
+
+	@Override
+	public Paging getPaging(int curPage, OrderBase orderBase) {
+		// TODO Auto-generated method stub
+		int totalCount = orderDao.selectOrderListCnt(orderBase);
+		
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;
 	}
 
 }
