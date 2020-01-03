@@ -3,6 +3,7 @@ package com.KHCafeErp.www.dao.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.util.Paging;
 
 public interface ReleaseProductDao {
@@ -22,4 +23,8 @@ public interface ReleaseProductDao {
 	public List<Release> selectReleaseList(Paging paging);
 
 	public int selectReleaseListCnt(Release release);
+
+	public void insertReleaseProduct(ReleaseProduct releaseProduct);
+
+	public int selectOrderNo(Release release);
 }

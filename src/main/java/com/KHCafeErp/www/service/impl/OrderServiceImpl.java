@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.OrderDao;
+import com.KHCafeErp.www.dto.OrderBase;
+import com.KHCafeErp.www.dto.OrderProduct;
 import com.KHCafeErp.www.service.face.OrderService;
 import com.KHCafeErp.www.util.ExcelRead;
 import com.KHCafeErp.www.util.ReadOption;
@@ -21,43 +23,49 @@ public class OrderServiceImpl implements OrderService {
 	public void insertMassiveProduct(File destFile) {
 		ReadOption readOption = new ReadOption();
 		readOption.setFilePath(destFile.getAbsolutePath());
-		readOption.setOutputColumns("A","B","C","D","E","F","G","H","I","J","K");
+		readOption.setOutputColumns("A","B","C","D","E","F","G","H");
 		readOption.setStartRow(2);
 		  
 		List<Map<String, String>> excelContent = ExcelRead.read(readOption);
 		
 		for(Map<String, String> article : excelContent){
-//		   
-//			Product product = new Product();
-//		   
-//			product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
-//			product.setShopNo((int)Float.parseFloat(article.get("B")));
-//		   	product.setProductName(article.get("D"));
-//		   	product.setProductContent(article.get("E"));
-//		   	product.setOriginPrice((int)Float.parseFloat(article.get("F")));
-//		   	product.setPrice((int)Float.parseFloat(article.get("G")));
-//		   	product.setProductOrigin(article.get("H"));
-//		   	product.setSelStartDate(article.get("I"));
-//		   	product.setSelEndDate(article.get("J"));
-//		   	product.setSelStatus((int)Float.parseFloat(article.get("K")));
-//		   
-//		   	System.out.println(product);
-//		   
-//		   	orderDao.insertOrder(product);
-//		   	
-//		   	ProductOption productOption = new ProductOption();
-//		   	String productName = product.getProductName();
-//		   	
-//		   	int productNo = orderDao.getProductNo(productName);
-//		   	System.out.println(productNo);
-//		   	
-//		   	productOption.setProductNo(productNo);
-//		   	productOption.setOptionNo((int)Float.parseFloat(article.get("C")));
-//		   	
-//		   	System.out.println(productOption);
-//		   	
-//		   	orderDao.insertProductOption(productOption);
+		   
+			OrderBase orderBase = new OrderBase();
+			
+			orderBase.setCusNo((int)Float.parseFloat(article.get("A")));
+			orderBase.setOrderDate(article.get("B"));			
+			if(article.get("C").equals("장바구니")) {
+				orderBase.setOrderStatus(0);
+			} else if(article.get("C").equals("주문완료")) {
+				orderBase.setOrderStatus(1);
+			} else if(article.get("C").equals("장바구니")){
+				orderBase.setOrderStatus(2);
+			} else {
+				orderBase.setOrderStatus(-1);
+			}
 
+			if(article.get("H")!= null && !"".equals(article.get("H"))) {
+				orderBase.setRequirement(article.get("H"));				
+			} else {
+				orderBase.setRequirement("");								
+			}
+		   
+		   	System.out.println(orderBase);
+		   
+		   	orderDao.insertOrderBase(orderBase);
+	 		   	
+		   	int orderno = orderDao.selectOrderNo(orderBase);
+		   	System.out.println(orderno);
+		   	
+		   	OrderProduct orderProduct = new OrderProduct();
+		   	
+		   	orderProduct.setOrderno(orderno);
+		   	orderProduct.setProductNo((int)Float.parseFloat(article.get("E")));
+		   	orderProduct.setProductOptionNo((int)Float.parseFloat(article.get("F")));
+		   	orderProduct.setProductCnt((int)Float.parseFloat(article.get("G")));
+		   	System.out.println(orderProduct);
+		   	
+		   	orderDao.insertOrderProduct(orderProduct);
 		  }
 		System.out.println(excelContent);
 	}
