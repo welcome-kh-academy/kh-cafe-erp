@@ -31,4 +31,6 @@ public interface ReleaseProductService {
 	 */
 	public Paging getPaging(int curPage, Release release);
 
+	public List<Release> getList();
+
 }

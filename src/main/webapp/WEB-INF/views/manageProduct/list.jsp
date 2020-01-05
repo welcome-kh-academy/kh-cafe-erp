@@ -128,6 +128,31 @@ $(document).ready(function() {
 		})
 	})
 	
+	/* 엑셀 다운 모달 */
+	$("#excelDown").click(function(){
+		console.log("sdsdsdsd")
+		$("#exampleModalLong .modal-content").html("")
+
+		$("#exampleModalLong .modal-content").html(
+		'	<div class="modal-header">'
+		+' 		<h5 class="modal-title">엑셀 다운로드</h5>'
+		+'		<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+		+'			<span aria-hidden="true">&times;</span>'
+		+'		</button>'
+		+'	</div>'
+		+'	<div class="modal-body">'
+		+'		<p>엑셀 다운로드가 완료되었습니다</p>'
+		+'	</div>'
+		+'	      <div class="modal-footer">'
+		+'	         <button id="downBtn" type="button" class="btn btn-primary">확인</button>'
+		+'     	  </div>'
+		);
+	})
+	
+	$("#exampleModalLong .modal-content").on("click", "#downBtn", function(){
+		location.href="/manageProduct/exceldown";
+	})
+	
 	/* 삭제 모달 */
 	$("#prodList").on("click",".delList", function(){
 		$("#exampleModalLong .modal-content").html("")
@@ -371,6 +396,7 @@ function getCategory(e){
    			<div class="form-group">
    				<button id="searchSubmit" class="btn btn-primary btn-block"><i class="fas fa-search"></i></button>
    				<a href="/manageProduct/list"><i class="fas fa-redo fa-2x"></i></a>
+				<button style="margin-left:20px" id="excelDown" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModalLong">Excel 다운로드</button>
    			</div>
    			
    		</td>
@@ -381,6 +407,8 @@ function getCategory(e){
 </fieldset>
 </form>
 </div>
+
+
 
 <div id="productList">
 <table class="table">

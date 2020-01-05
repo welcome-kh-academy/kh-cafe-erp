@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
+import com.KHCafeErp.www.util.ExcelWriter;
 import com.KHCafeErp.www.util.Paging;
 
 @Controller
@@ -94,5 +96,20 @@ public class ReleaseProductController {
         view.setViewName("/release/excel-success");
         
         return view;
+	}
+	
+	@RequestMapping(value = "/release/exceldown")
+	public String excelDown() {
+		
+		List<Release> releaseList = releaseProductService.getList();
+
+		System.out.println(releaseList);
+		 
+		 ExcelWriter excelWriter=new ExcelWriter();
+		 excelWriter.releasetXls(releaseList);
+		 
+		 logger.info("엑셀 다운 완료");
+		 
+		 return "redirect:/release/list";
 	}
 }

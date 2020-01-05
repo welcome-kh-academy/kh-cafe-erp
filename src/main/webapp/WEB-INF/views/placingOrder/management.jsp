@@ -210,7 +210,7 @@ function enter(e){
 </div>
 
 <div style="float:right;">
-	<button class="btn btn-outline-success" onclick="location.href='/placingorder/exceldown'">Excel 다운로드</button>
+	<button id="excelDown" class="btn btn-outline-success"  data-toggle="modal" data-target="#placingOrderModal">Excel 다운로드</button>
 </div>
 
 <table id="myTable" class="display table table-bordered" >
@@ -230,3 +230,23 @@ function enter(e){
 </table>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+
+<div id="placingOrderModal" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">엑셀 다운로드</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>엑셀 다운로드가 완료되었습니다</p>
+      </div>
+      <div class="modal-footer">
+        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/placingorder/exceldown'">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+

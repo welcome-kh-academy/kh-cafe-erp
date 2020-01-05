@@ -44,4 +44,6 @@ public interface ReleaseProductDao {
 	 * @return - orderNo
 	 */
 	public int selectOrderNo(Release release);
+
+	public List<Release> getList();
 }
