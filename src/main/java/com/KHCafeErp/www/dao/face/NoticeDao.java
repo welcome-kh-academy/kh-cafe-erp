@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
+import java.util.Map;
 
 import com.KHCafeErp.www.dto.NoticeBoard;
 import com.KHCafeErp.www.util.Paging;
@@ -15,7 +16,17 @@ public interface NoticeDao {
 	 * 
 	 * @return int - 총 게시글 수
 	 */
-	public int selectCntAll();
+//	public int selectCntAll();
+	
+	/**
+	 * 지재용
+	 * 2020-01-04
+	 * 
+	 * 검색어를 이용한 총 게시글 수 조회
+	 * 
+	 * @return int - 총 게시글 수
+	 */
+	public int selectCntAll(Map<String, String> search);
 	
 	/**
 	 * 지재용
@@ -90,5 +101,7 @@ public interface NoticeDao {
 	 * @param board - 삭제할 객체
 	 */
 	public void delete(NoticeBoard board);
+
+	
 
 }

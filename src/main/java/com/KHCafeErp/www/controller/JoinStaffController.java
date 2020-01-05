@@ -50,7 +50,7 @@ public class JoinStaffController {
 		//인증 메일 보내기 메서드
 		joinStaffService.mailSendWithjoinStaffKey(staff.getEmail(), staff.getStaffNo(), req);
 		
-		return "redirect:/dashboard/index";
+		return "redirect:/login/main";
 	}
 	
 

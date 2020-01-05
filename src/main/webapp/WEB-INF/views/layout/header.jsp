@@ -166,12 +166,12 @@ li{
       </li>      
     </ul>
   </div>
-  
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#myModal">로그아웃</a>
       </li>    
  	</ul>
+ 	
 </nav>
 </div>
 
