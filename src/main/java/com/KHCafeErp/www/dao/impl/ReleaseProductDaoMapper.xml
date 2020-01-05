@@ -27,4 +27,8 @@
 	<select id="selectOrderNo" parameterType="com.KHCafeErp.www.dto.Release" resultType="int">
 		SELECT releaseNo FROM release WHERE placingOrderNo=#{placingOrderNo}
 	</select>
+	
+	<select id="getList" resultType="com.KHCafeErp.www.dto.Release">
+		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate FROM release, placingOrder, shop WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo ORDER BY releaseNo
+	</select>
 </mapper>

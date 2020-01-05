@@ -13,8 +13,8 @@
 
 	<!-- 엑셀파일 업로드 -->
 	<insert id="insertOrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
-		INSERT INTO orderBase(orderNo, cusNo, orderDate, requirement, orderStatus, orderShopNo)
-		SELECT orderBase_seq.nextval, #{cusNo}, #{orderDate}, #{requirement}, #{orderStatus}, #{orderShopNo}
+		INSERT INTO orderBase(orderNo, cusNo, orderDate, requirement, orderStatus, prdShopNo)
+		SELECT orderBase_seq.nextval, #{cusNo}, #{orderDate}, #{requirement}, #{orderStatus}, #{prdShopNo}
 		FROM DUAL A
 		WHERE NOT EXISTS (SELECT 0 FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}) 
 	</insert>

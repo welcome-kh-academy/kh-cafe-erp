@@ -51,11 +51,4 @@ public interface PlacingOrderService {
 	 */
 	public List<PlacingOrder> getList();
 
-	/**
-	 * 20-01-03 유진
-	 * 총 발주 수량 구하기
-	 * @return - 발주수량
-	 */
-	public int getTotalPlacingOrder();
-
 }

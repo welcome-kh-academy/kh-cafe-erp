@@ -41,11 +41,4 @@ public interface PlacingOrderDao {
 	 */
 	public List<PlacingOrder> selectPlacingOrderListAll();
 
-	/**
-	 * 20-01-03 유진
-	 * 총 발주 수량
-	 * @return - 총 발주 수량
-	 */
-	public int getTotalPlacingOrder();
-
 }

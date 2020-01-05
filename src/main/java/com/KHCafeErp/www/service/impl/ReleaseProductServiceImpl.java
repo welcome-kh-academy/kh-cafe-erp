@@ -82,4 +82,9 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 		return paging;
 	}
 
+	@Override
+	public List<Release> getList() {
+		return releaseProductDao.getList();
+	}
+
 }
