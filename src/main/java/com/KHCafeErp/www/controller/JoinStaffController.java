@@ -85,8 +85,7 @@ public class JoinStaffController {
 	@RequestMapping(value = "/user/mail", method = RequestMethod.GET)
 	public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("userKey") String key) {
 
-		int resultCnt = 0;
-		resultCnt = joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
+		joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
 
 		return "join/regSuccess";
 	}

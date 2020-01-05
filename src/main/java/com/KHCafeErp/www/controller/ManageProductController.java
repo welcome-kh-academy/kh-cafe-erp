@@ -58,6 +58,7 @@ public class ManageProductController {
 		model.addAttribute("product", productList);
 		
 	}
+	
 	@RequestMapping(value="/manageProduct/categoryDetail", method=RequestMethod.GET)
 	public ModelAndView getCategoryDetail(@RequestParam(value = "value")int categoryNo, ModelAndView mav) {
 		
