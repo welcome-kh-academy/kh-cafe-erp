@@ -44,7 +44,6 @@ public class JoinStaffController {
 //		logger.info(staff.toString());
 		
 		//회원가입 처리
-
 		joinStaffService.join(staff);		
 		
 		//인증 메일 보내기 메서드
@@ -86,7 +85,8 @@ public class JoinStaffController {
 	@RequestMapping(value = "/user/mail", method = RequestMethod.GET)
 	public String mail(@RequestParam("staffNo") int staffNo, @RequestParam("userKey") String key) {
 
-		joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
+		int resultCnt = 0;
+		resultCnt = joinStaffService.alter_userKey_service(staffNo, key); // mailsender의 경우 @Autowired
 
 		return "join/regSuccess";
 	}
