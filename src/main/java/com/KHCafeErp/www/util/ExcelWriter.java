@@ -104,7 +104,7 @@ public class ExcelWriter {
         
         // 입력된 내용 파일로 쓰기
         String filename=date+"발주 목록.xls";
-    	File file = new File("D:\\final\\"+filename);
+    	File file = new File("D:\\"+filename);
         FileOutputStream fos = null;
         
         try {
@@ -214,7 +214,7 @@ public class ExcelWriter {
     	
     	// 입력된 내용 파일로 쓰기
     	String filename=date+"상품 목록.xls";
-    	File file = new File("D:\\final\\"+filename);
+    	File file = new File("D:\\"+filename);
     	FileOutputStream fos = null;
     	
     	try {
@@ -296,7 +296,7 @@ public class ExcelWriter {
     	
     	// 입력된 내용 파일로 쓰기
     	String filename=date+"출고 목록.xls";
-    	File file = new File("D:\\final\\"+filename);
+    	File file = new File("D:\\"+filename);
     	FileOutputStream fos = null;
     	
     	try {
