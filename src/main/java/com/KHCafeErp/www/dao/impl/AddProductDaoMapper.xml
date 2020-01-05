@@ -24,9 +24,9 @@
 	<insert id="insertOption" parameterType="com.KHCafeErp.www.dto.OptionBase">
 		INSERT INTO optionBase (optionNo, optionName, optionValue, categoryNo) VALUES (optionNo_seq.nextval, #{optionName}, #{optionValue}, #{categoryNo})
 	</insert>
-
+	
 	<!-- 19-12-26 현석 : 카테고리 불러오기 -->
-	<select id="selectCategory" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.CategoryBase">
+	<select id="selectCategory" parameterType="com.KHCafeErp.www.dto.Product" resultType="hashmap">
 		SELECT c.categoryName,c.categoryNo,d.categoryMapNo, d.categoryDetailName
 		FROM categoryBase c, categoryDetail d
 		WHERE 1=1

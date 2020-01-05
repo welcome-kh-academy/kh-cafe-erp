@@ -3,13 +3,33 @@
     /*==================================================================
         [ Daterangepicker ]*/
     try {
+    	
+//    	//현재 날짜 구하기
+//    	var today = new Date();
+//    	
+//    	var dd = today.getDate();
+//    	var mm = today.getMonth()+1;
+//    	var yyyy = today.getFullYear();
+//    	
+//    	if(dd<10) {
+//    	    dd='0'+dd
+//    	} 
+//
+//    	if(mm<10) {
+//    	    mm='0'+mm
+//    	} 
+//    	
+//    	today = yyyy+'-'+mm+'-'+dd;
+    	
         $('.js-datepicker').daterangepicker({
             "singleDatePicker": true,
             "showDropdowns": true,
             "autoUpdateInput": false,
             locale: {
-                format: 'DD/MM/YYYY'
+                format: 'YYYY-MM-DD',
             },
+//            startDate : '2020-01-01',
+//            endDate : today
         });
     
         var myCalendar = $('.js-datepicker');
@@ -21,7 +41,7 @@
     
         $(myCalendar).on('apply.daterangepicker',function(ev, picker){
             isClick = 0;
-            $(this).val(picker.startDate.format('DD/MM/YYYY'));
+            $(this).val(picker.startDate.format('YYYY-MM-DD'));
     
         });
     

@@ -17,17 +17,17 @@ public class Product {
 	private int selStatus;
 	private String categoryName;
 	private int categoryNo;
+	private String categoryDetailName;
+	
 	
 	@Override
 	public String toString() {
-
-		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", optionNo="
-				+ optionNo + ", shopNo=" + shopNo + ", productName=" + productName + ", productContent="
+		return "Product [productNo=" + productNo + ", categoryMapNo=" + categoryMapNo + ", optionNo=" + optionNo
+				+ ", shopNo=" + shopNo + ", shopName=" + shopName + ", productName=" + productName + ", productContent="
 				+ productContent + ", originPrice=" + originPrice + ", price=" + price + ", productOrigin="
 				+ productOrigin + ", selStartDate=" + selStartDate + ", enrollDate=" + enrollDate + ", selEndDate="
 				+ selEndDate + ", selStatus=" + selStatus + ", categoryName=" + categoryName + ", categoryNo="
-				+ categoryNo + "]";
-
+				+ categoryNo + ", categoryDetailName=" + categoryDetailName + "]";
 	}
 	public int getProductNo() {
 		return productNo;
@@ -125,6 +125,13 @@ public class Product {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+	public String getCategoryDetailName() {
+		return categoryDetailName;
+	}
+	public void setCategoryDetailName(String categoryDetailName) {
+		this.categoryDetailName = categoryDetailName;
+	}
+	
 	
 	
 	

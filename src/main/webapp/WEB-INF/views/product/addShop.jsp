@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <link href="/resources/css/add-product.css" rel="stylesheet">
 
 <style type="text/css">
 /*브레드크럼 스타일 지정*/
 #crumbs ul li #productHeader_4 {
-  background-color: #2C3E50;
-  color: #fff;
+	background-color: #2C3E50;
+	color: #fff;
 }
 
 #crumbs ul li #productHeader_4:after {
 	border-left: 40px solid #2C3E50;
 }
+
 #map {
 	height: 100%;
 	width: 100%;
@@ -24,11 +25,38 @@
 	height: 500px;
 	width: 40%;
 	margin-left: 20px;
+	float: left;
 }
+
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+#shop_list {
+	height: 500px;
+	width: 10%;
+	margin-left: 20px;
+	float: left;
+	
+}
+
+#shop_list>div {
+	border: 1px solid #2C3E50;
+	margin-bottom: 3px;
+}
+#index_body{
+	height:500px;
+	width:10%;
+	float:left;
+	border: 1px solid #2C3E50;
+	margin-left: 20px;
+	overflow: auto;
+}
+.selected{
+	background: #2C3E50;
+	color: white;
 }
 /**/
 </style>
@@ -47,7 +75,13 @@ $(document).ready(function() {
 // 			.appendTo( $(document.body) );
 // // 		$f.submit();
 // 	});
+	$("#shop_list > div").on("click", function(){
+		addIndex($(this).index());
+// 		console.log($(this).index());
+		
+	})
 })
+
 var index = new Array();
 var result = new Array();
 var zoomVal=0;
@@ -61,7 +95,6 @@ center : new google.maps.LatLng(${37.4978525}, ${127.0285875}),
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 <c:forEach items="${shopList}" var="marker">
-	
 	var json  =new Object();
 	json.shopNo=${marker.shopNo}
 	json.shopName="${marker.shopName}"
@@ -74,7 +107,8 @@ var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var infowindow = new google.maps.InfoWindow();
 var markers = new Array();
 var marker, i;
-for (i = 0; i < result.length; i++) {  
+for (i = 0; i < result.length; i++) {
+	$("#shop_list").append	
   marker = new google.maps.Marker({
     id:result[i].shopNo,
     name:result[i].shopName,
@@ -103,67 +137,26 @@ for (i = 0; i < result.length; i++) {
 var markerCluster = new MarkerClusterer(map, markers,
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',gridSize:50} );
 };
-function openWindow(){
-	var divInd = $(this.parentNode);
-	var divBody=$(".index_body .selected_index")
-	var index=divInd.index();
-	var info ;
-	console.log(divInd.attr("data-place_no"))
-	console.log(divBody)
-	console.log(index)
-	var opwin=window.open("../map/test?startNo="+divBody.children("div").eq(index-1).attr("data-place_no")+"&endNo="+divInd.attr("data-place_no")
-			,"childForm", "width=900px, height=600px, resizable = no, scrollbars = no"); 
+    
 
-}
-function searchAll(){
-	var divBody=$(".index_body")
-	var info ;
-	info = "../map/test?startNo="+divBody.children(".selected_index").children().eq(0).attr("data-place_no")+"&endNo="+divBody.children(".selected_index").children().eq(-1).attr("data-place_no");
-	console.log($(".index_body").children(".selected_index").children().size())
-	if ($(".index_body").children(".selected_index").children().size()>2){
-		for(var i = 1 ; i<= $(".index_body").children(".selected_index").children().size()-2;i++){
-			info+=("&index"+i+"="+divBody.children(".selected_index").children().eq(i).attr("data-place_no"));
-			console.log(info);
-			console.log(divBody.children(".selected_index").children().eq(i).attr("data-place_no"));
+function addIndex(ind){
+	
+	for (var i =0 ; i<$("#index_body").children().length;i++){
+		var no = $("#index_body").children("div").eq(i).children("input").eq(0).val();
+		if(no == result[ind].shopNo){
+			var index = $("#index_body").children("div").eq(i).index();
+// 			console.log(index);
+			$("#index_body").children("div").eq(index).remove();
+			for(var j = i ; j<$("#index_body").children().length;j++){
+				$("#index_body").children("div").eq(j).attr("data-index",j);
+			}
+    		$("#shop_list").children("div").eq(ind).removeClass("selected")		
+			return false;
 		}
 	}
-	var opwin=window.open(info,"childForm", "width=900px, height=600px, resizable = no, scrollbars = no"); 
+	var shop_div=$("#shop_list").children("div").eq(ind).addClass("selected")
+	var div = $("#index_body").append("<div class='index_ele' data-index='"+$("#index_body").children().length+"'><input type='hidden' name='shopNo' value='"+result[ind].shopNo+"'/>"+result[ind].shopName+"</div>");
 	
-}
-function addIndex(ind){
-	$.ajax({
-		type: "get"
-		, url: "/planner/placeInfo"
-		, data: {"place_number":result[ind].place_number}
-		, dataType: "html"
-		, success: function(data) {
-			$("#indexList").html(data);
-		}
-		, error: function() {
-			console.log("fail");
-		}
-	})
-
-      var button = div.children().children().eq(-1);
-      button.on('click', function(){
-    	  var indexDiv=$(this.parentNode);
-    	  var indexBody=$(this.parentNode.parentNode);
-    	  var index = indexDiv.index();
-    	  var data_index=indexDiv.attr("data-index"); 
-//     	  console.log(indexDiv.find('input').eq(0).val());
-//     	  console.log(indexBody.children().eq(1).children('input').eq(0).val());
-    	  if (index==0){
-    		  
-    	  }
-    		indexBody.children().eq(index).remove();
-    		indexBody.children().eq(index).attr("data-index",data_index);
-    		path.removeAt(index);
-    		if(index==0){
-    		indexBody.children().eq(0).children("button").eq(0).remove();
-    		}
-      })
-      
-    
 }
 
 
@@ -184,23 +177,26 @@ function addIndex(ind){
 <hr>
 <div class="text-center">
 
-	<button id="select" type="button" class="btn btn-primary">등록</button>
-	
+
 	<div id="map_body">
-	<div id="map"></div>
+		<div id="map"></div>
 	</div>
+	<div id="shop_list">
+		<c:forEach items="${shopList}" var="marker">
+			<div>${marker.shopName }</div>
+		</c:forEach>
+
+	</div>
+	<form>
+		<div id="index_body"></div>
+	</form>	
 	<script
 		src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZL82RRYpAr7GrwdJQ5S11-pDaZJs3n9c&callback=initMap">
 	</script>
 
-	<div class="shopList">
-		<form class="addProductForm" action="/product/addShop" method="POST" >
-			<input type="hidden" name="11" value="11"/>
-		</form>
-	</div>
 </div>
 
 
-<jsp:include page="/WEB-INF/views/layout/product-footer.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/product-footer.jsp" />

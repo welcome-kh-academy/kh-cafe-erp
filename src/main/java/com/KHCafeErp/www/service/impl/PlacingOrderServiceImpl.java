@@ -1,8 +1,6 @@
 package com.KHCafeErp.www.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.PlacingOrderDao;
 import com.KHCafeErp.www.dto.PlacingOrder;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.PlacingOrderService;
 import com.KHCafeErp.www.util.Paging;
 
@@ -30,11 +29,34 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		return paging;
 	}
 
-	@Override
-	public List<PlacingOrder> getPlacingOrderList(Paging paging) {
+//	@Override
+//	public List<PlacingOrder> getPlacingOrderList(Paging paging) {
+//
+//		List<PlacingOrder> placingOrderList = placingOrderDao.selectPlacingOrderList(paging);
+//		return placingOrderList;
+//	}
 
-		List<PlacingOrder> placingOrderList = placingOrderDao.selectPlacingOrderList(paging);
+	@Override
+	public List<PlacingOrder> getPlacingOrderList(PlacingOrder placingOrder) {
+		List<PlacingOrder> placingOrderList = placingOrderDao.selectPlacingOrderList(placingOrder);
 		return placingOrderList;
+	}
+	
+	@Override
+	public List<Shop> getShopList() {
+		
+		List<Shop> shopList = placingOrderDao.selectShopList();
+		return shopList;
+	}
+
+	@Override
+	public List<PlacingOrder> getList() {
+		return placingOrderDao.selectPlacingOrderListAll();
+	}
+
+	@Override
+	public int getTotalPlacingOrder() {
+		return placingOrderDao.getTotalPlacingOrder();
 	}
 
 }

@@ -9,6 +9,11 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductService {
 	/**
+	 * 상품을 목록에서 삭제한다
+	 * @param product - 삭제할 상품 번호
+	 */
+	public void deleteProduct(Product product);
+	/**
 	 * 검색 결과를 가져온다
 	 * @param product - 검색 조건 값들
 	 * @return - 검색 결과

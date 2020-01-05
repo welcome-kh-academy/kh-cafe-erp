@@ -26,6 +26,13 @@ public class LoginController {
 		
 	}
 	
+	@RequestMapping(value="/login/main2")
+	public void login2() {
+		
+//		logger.info("로그인~");
+		
+	}
+	
 	@RequestMapping(value="/login/check")
 	public String loginMain(Staff staff, HttpSession session, Model model) {
 		

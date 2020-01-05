@@ -128,6 +128,30 @@ $(document).ready(function() {
 		})
 	})
 	
+	/* 삭제 모달 */
+	$("#prodList").on("click",".delList", function(){
+		$("#exampleModalLong .modal-content").html("")
+		var productNo = $(this).attr('data-productNo');
+		$("#exampleModalLong .modal-content").html(
+		'	<div class="modal-header">'
+		+' 		<h5 class="modal-title">상품 삭제</h5>'
+		+'		<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+		+'			<span aria-hidden="true">&times;</span>'
+		+'		</button>'
+		+'	</div>'
+		+'	<div class="modal-body">'
+		+'		<d>정말 삭제하시겠습니까?</d>'
+		+'	    <input type="hidden" id="productNo" value="'+productNo+'" />'
+		+'	</div>'
+		+'	      <div class="modal-footer">'
+		+'	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>'
+		+'	        <button type="button" class="btn btn-primary" id="productDelBtn">삭제</button>'
+		+'     	  </div>'
+		);
+	})
+	
+	
+	
 	/* 수정 모달 ajax */
 	$("#prodList").on("click",".edit", function(){
 		
@@ -150,7 +174,24 @@ $(document).ready(function() {
 	});
 	
 	
-	
+	/* 삭제 모달 ajax */
+	$("#exampleModalLong .modal-content").on("click", "#productDelBtn", function(){
+		$.ajax({
+			type : "get"
+			, url : "/manageProduct/delete"
+			, data : {
+				productNo : $("#exampleModalLong #productNo").val()
+			}
+			, dataType: "json"
+			, success: function(data){
+				console.log(data);
+				location.href=data.redirect;
+			}
+			, error: function(){
+				console.log("delete error")
+			}
+		})
+	})
 	
 	
 	//판매등록 AJAX
@@ -266,47 +307,14 @@ function getCategory(e){
 	})
 }
 
-//수정 모달(edit) 카테고리
-function getCategory2(e){
-	$("#exampleModalLong #categoryDetail2").html("");
-	
-	var value = e.value;
-		
-	console.log(e);
-	console.log("카테고리값" + value);
 
-	$.ajax({
-		type : "GET",
-		url : "/manageProduct/categoryDetail",
-		data : {
-			value : value
-		},
-		dataType : "json",
-		error : function(e) {
-			alert("ajax오류!");
-			console.log(e);
-		},
-		success : function(res) {
-			console.log("모달상세카테고리 나와요" + res);
-			console.log(res);
-			if(res.categoryDetail.length == 0) {
-				$("#exampleModalLong #categoryDetail2").append("<option></option>");
-				console.log(100000);
-			}
-			for (var i=0; i<res.categoryDetail.length;i++) {
-				$("#exampleModalLong #categoryDetail2").append("<option value='"+res.categoryDetail[i].categoryMapNo+"'>"+res.categoryDetail[i].categoryDetailName+"</option>");
-				console.log(100001);
-			}
-		}
-	})
-}
 
 </script>
 
 <div id="searchProduct" style="margin : 10px;">
 <form action="/manageProduct/list" method="get">
 <fieldset>
-<legend class="text-primary">상품 관리</legend>
+<legend class="text-primary"><a href="/manageProduct/list">상품 관리</a></legend>
 <table>
   <thead>
     <tr>
@@ -396,11 +404,14 @@ function getCategory2(e){
       <th></th>
     </tr>
   <tbody id="prodList">
+   		<c:if test="${ product eq null }">
+   			<div> 검색 결과가 없습니다</div>
+   		</c:if>
     	<c:forEach items="${ product }" var="p">
     <tr class="table-light" data-productNo="${ p.productNo }">
 <!--     	<td style="text-align: center"><input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked=""></td> -->
       	<td>${ p.productNo }</td>
-      	<td>${ p.categoryMapNo }</td>
+      	<td>${ p.categoryDetailName }</td>
       	<td>${ p.productName }</td>
       	<td>${ p.shopName }</td>
       	<td>${ p.originPrice }</td>
@@ -430,7 +441,7 @@ function getCategory2(e){
 		<td><button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
 		  상세 / 수정
 		</button></td>
-      	<td><button class="btn btn-primary del">삭제</button></td>
+      	<td><button id="listDelBtn" class="btn btn-primary delList" data-toggle="modal" data-target="#exampleModalLong" data-productNo="${ p.productNo }">삭제</button></td>
     </tr>
       	</c:forEach>
   </tbody>

@@ -26,11 +26,45 @@
 // datatable
 $(document).ready( function () {
 	
+	var startDate = getPastDate(1);
+	var endDate = getRecentDate();
+	 
+	$("#startDate").val(startDate);
+	$("#endDate").val(endDate);
+	 
+	function getRecentDate(){
+	    var dt = new Date();
+	 
+	    var recentYear = dt.getFullYear();
+	    var recentMonth = dt.getMonth() + 1;
+	    var recentDay = dt.getDate();
+	 
+	    if(recentMonth < 10) recentMonth = "0" + recentMonth;
+	    if(recentDay < 10) recentDay = "0" + recentDay;
+	 
+	    return recentYear + "-" + recentMonth + "-" + recentDay;
+	}
+	 
+	function getPastDate(period){
+	    var dt = new Date();
+	 
+	    dt.setMonth((dt.getMonth() + 1) - period);
+	 
+	    var year = dt.getFullYear();
+	    var month = dt.getMonth();
+	    var day = dt.getDate();
+	 
+	    if(month < 10) month = "0" + month;
+	    if(day < 10) day = "0" + day;
+	 
+	    return year + "-" + month + "-" + day;
+	}
+	
 	//select2 실행 코드
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
 	
-    $('#myTable').DataTable({
+	table = $('#myTable').DataTable({
     	"scrollY" : 200, //테이블 고정 크기 설정
     	"columnDefs" : [
     	      { width: '5%', targets : [0] },
@@ -44,19 +78,34 @@ $(document).ready( function () {
     	],
     	"scrollCollapse" : true, //가변 크기 막기
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
-    	"language" : {
-    		search: "빠른검색 ", //한글
-    		"emptyTable": "발주 목록이 존재하지 않습니다."
-    	},
+    	"language": {
+            "emptyTable": "데이터가 없어요.",
+            "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+            "info": "현재 _START_ - _END_ / _TOTAL_건",
+            "infoEmpty": "데이터 없음",
+            "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+            "search": "에서 검색: ",
+            "emptyTable": "발주 목록이 존재하지 않습니다.",
+            "zeroRecords": "일치하는 데이터가 없어요.",
+            "loadingRecords": "로딩중...",
+            "processing":     "잠시만 기다려 주세요...",
+            "paginate": {
+            	"first": "처음",
+                "last": "마지막",
+                "next": "다음",
+                "previous": "이전"
+            }
+        },
     	"length" : 5, //한페이지에 보여줄 페이지 갯수
-    	"bPaginate" : true, //페이징 처리를 할 것인가
     	"serverSide" : false, //클라이언트에서 처리
     	"processing" : true, 
     	ajax : {
 			"type" : "GET",
 			"url" : "/placingOrder/search",
-			"data" : function(d) {
-				d.formData = $("#placingOrderForm").serialize(); //검색조건
+			"dataType":"json",
+			"data" : function() {
+				console.log($("#placingOrderForm").serialize())
+				return $("#placingOrderForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
 				
@@ -66,12 +115,12 @@ $(document).ready( function () {
 						json.data[i][2] = "강남점";
 					}
 					
-					if(json.data[i][4] == "0"){
-						json.data[i][4] = "입고완료"
+					if(json.data[i][6] == "0"){
+						json.data[i][6] = "발주완료"
 					}
 					
-					if(json.data[i][5] == "0"){
-						json.data[i][5] = "발주완료"
+					if(json.data[i][7] == "0"){
+						json.data[i][7] = "입고완료"
 					}
 					
 				}
@@ -81,61 +130,22 @@ $(document).ready( function () {
 			}
 		}
     });
+	
 });	
-
 
 function getList() {
 	
-// 	var curPage = 1; //페이지 변수를 1로 초기화
+	//검색조건 가져오기
 // 	var formData = $("#placingOrderForm").serialize(); //검색조건
 	
-// 	$('#myTable').DataTable({
-//     	"autoWidth" : false, 
-//     	"scrollY" : 200, //테이블 고정 크기 설정
-//     	"scrollCollapse" : true, //가변 크기 막기
-//     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
-//     	"language" : {
-//     		search: "빠른검색 " //한글
-//     	},
-//     	"pageLength" : 5, //한페이지에 보여줄 페이지 갯수
-//     	"bPaginate" : true, //페이징 처리를 할 것인가
-//     	"serverSide" : false, //클라이언트에서 처리
-//     	"column" : [
-//     		{"data": "action"},
-// 			{"data": "bookId"},
-// 			{"data": "hostId"},
-// 			{"data": "type"},
-// 			{"data": "guestId"},
-// 			{"data": "regTime"}
-//     	],
-//     	ajax : {
-//     		"type" : "GET",
-//     		"url" : "/placingOrder/search",
-//     		"data" : function(d) {
-//     			d.curPage = curPage,
-//     			d.formData = $("#placingOrderForm").serialize(); //검색조건
-//     		}
-//     	}
-  
-//     });
+	 $("#myTable").DataTable().ajax.reload();
 	
-// 	$.ajax({
-// 		type : "GET",
-// 		url : "/placingOrder/search",
-// 		data : {
-// 			"curPage" : curPage,
-// 			"formData" : formData
-// 		},
-// 		dataType : "json",
-// 		error : function() {
-// 			alert("ajax오류!");
-// 		},
-// 		success : function(res) {
-			
-// 			alert(res.placingOrderList);
-		
-// 		}
-// 	});
+}
+
+function enter(e){
+	 if (e.keyCode == 13) {
+		 getList();
+	 }
 }
 
 </script>
@@ -153,7 +163,10 @@ function getList() {
 		<th class="condition"><label for="shopName">지점명</label></th>
 		<td>
 			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
-				<option value="11">강남점</option>
+				<option value="">전체</option>
+				<c:forEach var="shop" items="${shopList }" >
+					<option value="${shop.shopNo }">${shop.shopName }</option>
+				</c:forEach>
 			</select>
 		</td>
 		<td rowspan="3" style="vertical-align : middle;text-align:center;">
@@ -164,7 +177,7 @@ function getList() {
 		<th class="condition"><label for="startDate">발주날짜</label></th>
 		<td colspan="3">
 			<input class="input--style-1 js-datepicker" type="text"
-				placeholder="" id="startDate" name="startDate">
+				placeholder="" id="startDate" name="startDate" value="2020-01-01">
 			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 			<span class="space">~</span> 
 			<input class="input--style-1 js-datepicker" type="text"
@@ -197,13 +210,13 @@ function getList() {
 </div>
 
 <div style="float:right;">
-	<button class="btn btn-outline-success">Excel 다운로드</button>
+	<button class="btn btn-outline-success" onclick="location.href='/placingorder/exceldown'">Excel 다운로드</button>
 </div>
 
 <table id="myTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
-<!--         	<th><input type="checkbox"/></th> -->
+<!--        <th><input type="checkbox"/></th> -->
             <th>no</th>
             <th>발주번호</th>
             <th>지점명</th>

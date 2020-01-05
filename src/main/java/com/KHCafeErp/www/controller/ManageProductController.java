@@ -115,6 +115,18 @@ public class ManageProductController {
 
 		return mav;
 	}
+
+	@RequestMapping(value="/manageProduct/delete", method=RequestMethod.GET)
+	public ModelAndView deleteProduct(Product product, ModelAndView mav) {
+		logger.info("삭제 모달 값 : " + product.toString());
+		
+		manageProductService.deleteProduct(product);
+		
+		mav.setViewName("jsonView");
+		mav.addObject("redirect", "/manageProduct/list");
+		
+		return mav;
+	}
 	
 //	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
 //	public String search(Model model, Product product) {
