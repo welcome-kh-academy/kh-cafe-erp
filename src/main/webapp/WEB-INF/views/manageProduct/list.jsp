@@ -142,10 +142,11 @@ $(document).ready(function() {
 		+'	</div>'
 		+'	<div class="modal-body">'
 		+'		<p>엑셀을 다운받으시겠습니까?</p>'
+		+'		<p>경로 : D:/</p>'
 		+'	</div>'
 		+'	      <div class="modal-footer">'
 		+'	         <button id="downBtn" type="button" class="btn btn-primary">확인</button>'
-		+'	         <button type="button" class="btn btn-primary" data-dimiss="modal">취소</button>'
+		+'	         <button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>'
 		+'     	  </div>'
 		);
 	})

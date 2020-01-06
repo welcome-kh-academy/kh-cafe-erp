@@ -139,6 +139,7 @@ function popupOpen(){
       </div>
       <div class="modal-body">
         <p>엑셀을 다운받으시겠습니까?</p>
+        <p>경로 : D:/</p>
       </div>
       <div class="modal-footer">
         <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/release/exceldown'">확인</button>
