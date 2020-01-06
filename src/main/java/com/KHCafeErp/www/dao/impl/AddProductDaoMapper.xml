@@ -51,8 +51,8 @@
 	</select>
 
 	<insert id="insertProduct" parameterType="com.KHCafeErp.www.dto.Product">
-		INSERT INTO product (productNo, categoryMapNo, shopNo, productName, productContent, originPrice, price, productOrigin, enrollDate, selStartDate, selEndDate, selStatus)
-		SELECT productNo_seq.nextval, #{categoryMapNo}, #{shopNo}, #{productName}, #{productContent}, #{originPrice}, #{price}, #{productOrigin}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{selStartDate}, #{selEndDate}, #{selStatus}
+		INSERT INTO product (productNo, categoryMapNo, productName, productContent, originPrice, price, productOrigin, enrollDate, selStartDate, selEndDate, selStatus)
+		SELECT productNo_seq.nextval, #{categoryMapNo}, #{productName}, #{productContent}, #{originPrice}, #{price}, #{productOrigin}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{selStartDate}, #{selEndDate}, #{selStatus}
 		FROM DUAL A
 		WHERE NOT EXISTS (SELECT 0 FROM product WHERE productName=#{productName})
 	</insert>
@@ -61,8 +61,12 @@
 		SELECT productNo FROM product WHERE productName=#{productName}
 	</select>
 	
-	<insert id="insertProductOption" parameterType="com.KHCafeErp.www.dto.ProductOption">
-		INSERT INTO productOption(productOptionNo, productNo, optionNo) VALUES (productOptionNo_seq.nextval, #{productNo}, #{optionNo})
+	<insert id="insertAllProductDetail" parameterType="com.KHCafeErp.www.dto.ProductDetail">
+		INSERT INTO productDetail(productDetailNo, productNo,  optionNo, shopNo)
+		VALUES
+             <foreach collection="java.util.List" item="item" index="index" separator=" " open="INSERT ALL" close="select * from dual">
+                (productDetailNo_seq.nextval, #{productNo}, #{optionNo}, #{shopNo})
+             </foreach>
 	</insert>
 	
 	<insert id="insertImgFile" parameterType="com.KHCafeErp.www.dto.ImgFile">
