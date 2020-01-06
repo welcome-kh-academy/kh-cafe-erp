@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 <style type="text/css">
 #checkbox {
@@ -126,6 +127,33 @@ $(document).ready(function() {
 					format : "YYYY-MM-DD"
 				}
 		})
+	})
+	
+	/* 엑셀 다운 모달 */
+	$("#excelDown").click(function(){
+		console.log("sdsdsdsd")
+		$("#exampleModalLong .modal-content").html("")
+
+		$("#exampleModalLong .modal-content").html(
+		'	<div class="modal-header">'
+		+' 		<h5 class="modal-title">엑셀 다운로드</h5>'
+		+'		<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+		+'			<span aria-hidden="true">&times;</span>'
+		+'		</button>'
+		+'	</div>'
+		+'	<div class="modal-body">'
+		+'		<p>엑셀을 다운받으시겠습니까?</p>'
+		+'		<p>경로 : D:/</p>'
+		+'	</div>'
+		+'	      <div class="modal-footer">'
+		+'	         <button id="downBtn" type="button" class="btn btn-primary">확인</button>'
+		+'	         <button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>'
+		+'     	  </div>'
+		);
+	})
+	
+	$("#exampleModalLong .modal-content").on("click", "#downBtn", function(){
+		location.href="/manageProduct/exceldown";
 	})
 	
 	/* 삭제 모달 */
@@ -312,6 +340,9 @@ function getCategory(e){
 </script>
 
 <div id="searchProduct" style="margin : 10px;">
+<c:set var="now" value="<%=new java.util.Date()%>" />
+<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set> 
+
 <form action="/manageProduct/list" method="get">
 <fieldset>
 <legend class="text-primary"><a href="/manageProduct/list">상품 관리</a></legend>
@@ -371,6 +402,7 @@ function getCategory(e){
    			<div class="form-group">
    				<button id="searchSubmit" class="btn btn-primary btn-block"><i class="fas fa-search"></i></button>
    				<a href="/manageProduct/list"><i class="fas fa-redo fa-2x"></i></a>
+				<button style="margin-left:20px" id="excelDown" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModalLong">Excel 다운로드</button>
    			</div>
    			
    		</td>
@@ -381,6 +413,8 @@ function getCategory(e){
 </fieldset>
 </form>
 </div>
+
+
 
 <div id="productList">
 <table class="table">
@@ -432,10 +466,26 @@ function getCategory(e){
       	
       	</td>
       	<td>
-      	<c:choose>
-      		<c:when test="${ p.selStatus eq 0 }">판매중</c:when>
-      		<c:when test="${ p.selStatus eq 1 }">판매종료</c:when>
-		</c:choose>
+      		<c:if test="${ p.enrollDate ne null }">
+	      		<c:choose>
+		      		<c:when test="${ p.selStartDate <= sysdate }">
+		      			<c:choose>
+				      		<c:when test="${ p.selEndDate < sysdate }">
+				      			<div>판매종료</div>
+				      		</c:when>
+				      		<c:when test="${ p.selStartDate <= sysdate && p.selEndDate > sysdate }">
+				      			<div>판매중</div>
+				      		</c:when>
+				      		<c:otherwise>
+				      			<div>판매중</div>
+				      		</c:otherwise>
+			      		</c:choose>
+		      		</c:when>
+		      		<c:otherwise>
+		      			<div>상품 준비중</div>
+		      		</c:otherwise>
+		      	</c:choose>
+      		</c:if>
       	</td>
 		<!-- Button trigger modal -->
 		<td><button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >

@@ -89,7 +89,7 @@ public class JoinStaffServiceImpl implements JoinStaffService {
 				+ "<a href='http://localhost:8080" + req.getContextPath() + "/joinStaff/key_alter?joinStaff_id="+ staffNo +"&joinStaff_key="+key+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
-			mail.setSubject("[본인인증] MS :p 민수르님의 인증메일입니다", "utf-8");
+			mail.setSubject("[본인인증] MS :p "+staffNo+"님의 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(email));
 			mailSender.send(mail);

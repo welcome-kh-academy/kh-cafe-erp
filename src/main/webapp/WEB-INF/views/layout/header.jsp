@@ -133,7 +133,8 @@ li{
         <div class="dropdown-menu">
         <ul>
         	<li><a href="/release/list">출고 관리</a></li>
-        	<li><a href="#">출고 등록</a></li>
+        	<li><a href="/release/add">출고 등록</a></li>
+        	<li><a href="/release/releaseCost">출고가 보기</a></li>
         </ul>
         </div>
       </li>
@@ -168,14 +169,14 @@ li{
   </div>
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#myModal">로그아웃</a>
+        <a class="nav-link" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
       </li>    
  	</ul>
  	
 </nav>
 </div>
 
-<div id="myModal" class="modal fade">
+<div id="logoutModal" class="modal fade">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

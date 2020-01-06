@@ -187,7 +187,7 @@ function addIndex(ind){
 		</c:forEach>
 
 	</div>
-	<form>
+	<form class="addProductForm" action="/product/addShop" method="post">
 		<div id="index_body"></div>
 	</form>	
 	<script

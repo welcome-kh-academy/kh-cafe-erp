@@ -112,4 +112,15 @@
 	<delete id="deleteProduct" parameterType="com.KHCafeErp.www.dto.Product">
 		DELETE FROM product WHERE productNo = #{ productNo }
 	</delete>
+	
+	<select id="selectList" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT p.productNo, s.shopName, productName, originPrice, price, productOrigin
+				, selStartDate, enrollDate, selEndDate, selStatus, cd.categoryDetailName
+		FROM product P, categoryDetail CD, categoryBase CB, shop S
+		WHERE 1=1
+			AND p.categoryMapNo = CD.categoryMapNo
+			AND CD.categoryno = cb.categoryNo
+			AND p.shopNo = s.shopNo
+		ORDER BY p.productNo
+	</select>
 </mapper>

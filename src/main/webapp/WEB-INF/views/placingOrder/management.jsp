@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
+
 <style type="text/css">
 .condition {
     color: #FFFFFF;
@@ -84,7 +85,7 @@ $(document).ready( function () {
             "info": "현재 _START_ - _END_ / _TOTAL_건",
             "infoEmpty": "데이터 없음",
             "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
-            "search": "에서 검색: ",
+            "search": "빠른검색 : ",
             "emptyTable": "발주 목록이 존재하지 않습니다.",
             "zeroRecords": "일치하는 데이터가 없어요.",
             "loadingRecords": "로딩중...",
@@ -137,7 +138,7 @@ function getList() {
 	
 	//검색조건 가져오기
 // 	var formData = $("#placingOrderForm").serialize(); //검색조건
-	
+	// ajax 한 번 더 실행
 	 $("#myTable").DataTable().ajax.reload();
 	
 }
@@ -210,7 +211,7 @@ function enter(e){
 </div>
 
 <div style="float:right;">
-	<button class="btn btn-outline-success" onclick="location.href='/placingorder/exceldown'">Excel 다운로드</button>
+	<button id="excelDown" class="btn btn-outline-success"  data-toggle="modal" data-target="#placingOrderModal">Excel 다운로드</button>
 </div>
 
 <table id="myTable" class="display table table-bordered" >
@@ -230,3 +231,25 @@ function enter(e){
 </table>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+
+<div id="placingOrderModal" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">엑셀 다운로드</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>엑셀을 다운받으시겠습니까?</p>
+        <p>경로 : D:/</p>
+      </div>
+      <div class="modal-footer">
+        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/placingorder/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+

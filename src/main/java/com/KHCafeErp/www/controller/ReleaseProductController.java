@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +18,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
+import com.KHCafeErp.www.util.ExcelWriter;
 import com.KHCafeErp.www.util.Paging;
 
 @Controller
@@ -28,17 +31,16 @@ public class ReleaseProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ReleaseProductController.class);
 
 	@RequestMapping(value="/release/list" ,method=RequestMethod.GET)
-	public void releaseList() {
+	public void releaseList(Model model) {
 		logger.info("releaseList()");
+		List<Shop> shopList = releaseProductService.getShopList();
+		model.addAttribute(shopList);
 	}
 	
 	@RequestMapping(value="/release/search" ,method=RequestMethod.GET)
 	public ModelAndView releaseSearch(Release release, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
 		logger.info("releaseSearch()");
-		
-		Paging paging = releaseProductService.getPaging(curPage, release);
-		
-		List<Release> releaseList = releaseProductService.getReleaseList(paging);
+		List<Release> releaseList = releaseProductService.getReleaseList(release);
 		System.out.println(releaseList);
 		
 		List llist = new ArrayList();
@@ -94,5 +96,31 @@ public class ReleaseProductController {
         view.setViewName("/release/excel-success");
         
         return view;
+	}
+	
+
+	//출고 등록 페이지
+	@RequestMapping(value="/release/add", method=RequestMethod.GET)
+	public void addRelease() {
+		
+	}
+	//출고가 페이지
+	@RequestMapping(value="/release/releaseCost", method=RequestMethod.GET)
+	public void releaseCostList() {
+	}
+	
+	@RequestMapping(value = "/release/exceldown")
+	public String excelDown() {
+		
+		List<Release> releaseList = releaseProductService.getList();
+
+		System.out.println(releaseList);
+		 
+		 ExcelWriter excelWriter=new ExcelWriter();
+		 excelWriter.releasetXls(releaseList);
+		 
+		 logger.info("엑셀 다운 완료");
+		 
+		 return "redirect:/release/list";
 	}
 }

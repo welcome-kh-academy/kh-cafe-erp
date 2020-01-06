@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface ReleaseProductDao {
@@ -20,7 +21,7 @@ public interface ReleaseProductDao {
 	 * 발주 목록 조회
 	 * @return - 발주 목록
 	 */
-	public List<Release> selectReleaseList(Paging paging);
+	public List<Release> selectReleaseList(Release release);
 
 	/**
 	 * 20-01-01 유진
@@ -44,4 +45,8 @@ public interface ReleaseProductDao {
 	 * @return - orderNo
 	 */
 	public int selectOrderNo(Release release);
+
+	public List<Release> getList();
+
+	public List<Shop> selectShopList();
 }

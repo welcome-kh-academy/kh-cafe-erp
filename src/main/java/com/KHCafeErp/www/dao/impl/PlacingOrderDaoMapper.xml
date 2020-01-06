@@ -27,12 +27,18 @@
 	</select>
 	
 	<select id="selectPlacingOrderListAll" resultType="com.KHCafeErp.www.dto.PlacingOrder">
-		SELECT placingOrder.placingOrderNo, shop.shopName, placingOrderDate, placingOrderStatus, inStockStatus FROM placingOrder, shop WHERE placingOrder.shopNo=shop.shopNo ORDER BY placingOrder.placingOrderNo
+		SELECT A.placingOrderNo, shopName, placingOrderDate, placingOrderStatus, inStockStatus, placingOrderCnt 
+		FROM(
+			SELECT placingOrder.placingOrderNo, shop.shopName, placingOrderDate, placingOrderStatus, inStockStatus 
+			FROM placingOrder, shop 
+			WHERE placingOrder.shopNo=shop.shopNo ORDER BY placingOrder.placingOrderNo) A
+		LEFT OUTER JOIN (
+			SELECT *FROM (
+			SELECT placingOrderNo ,SUM(placingOrderProductCnt) AS placingOrderCnt 
+			FROM placingOrderProduct GROUP BY placingOrderNo ORDER BY placingOrderNo))B 
+		ON A.placingOrderNo=B.placingOrderNo
 	</select>
- 
- 	<select id="getTotalPlacingOrder" resultType="int">
- 		SELECT SUM(placingOrderProductCnt) FROM placingOrderProduct GROUP BY placingOrderNo ORDER BY placingOrderNo
- 	</select>
+
 </mapper>
 
 

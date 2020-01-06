@@ -56,4 +56,11 @@ public interface ManageProductService {
 	public List<CategoryDetail> getcategoryDetailList(int categoryNo);
 
 	public Product getProduct(int productNo);
+	
+	/**
+	 * 20-01-05 유진
+	 * 상품 전체 목록 조회
+	 * @return - 상품 전체 목록
+	 */
+	public List<Product> getList();
 }

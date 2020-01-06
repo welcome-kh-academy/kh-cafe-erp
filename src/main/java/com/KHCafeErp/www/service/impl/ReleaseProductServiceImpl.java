@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.KHCafeErp.www.dao.face.ReleaseProductDao;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
 import com.KHCafeErp.www.util.ExcelRead;
 import com.KHCafeErp.www.util.Paging;
@@ -21,8 +22,8 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 	@Autowired ReleaseProductDao releaseProductDao;
 	
 	@Override
-	public List<Release> getReleaseList(Paging paging) {
-		return releaseProductDao.selectReleaseList(paging);
+	public List<Release> getReleaseList(Release release) {
+		return releaseProductDao.selectReleaseList(release);
 	}
 	
 	@Override
@@ -80,6 +81,16 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 		Paging paging = new Paging(totalCount, curPage);
 		
 		return paging;
+	}
+
+	@Override
+	public List<Release> getList() {
+		return releaseProductDao.getList();
+	}
+
+	@Override
+	public List<Shop> getShopList() {
+		return releaseProductDao.selectShopList();
 	}
 
 }

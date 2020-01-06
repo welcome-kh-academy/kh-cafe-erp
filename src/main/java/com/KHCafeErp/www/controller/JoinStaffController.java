@@ -44,7 +44,6 @@ public class JoinStaffController {
 //		logger.info(staff.toString());
 		
 		//회원가입 처리
-
 		joinStaffService.join(staff);		
 		
 		//인증 메일 보내기 메서드

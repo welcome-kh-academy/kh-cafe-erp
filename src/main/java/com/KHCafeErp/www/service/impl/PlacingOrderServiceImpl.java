@@ -39,6 +39,7 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 	@Override
 	public List<PlacingOrder> getPlacingOrderList(PlacingOrder placingOrder) {
 		List<PlacingOrder> placingOrderList = placingOrderDao.selectPlacingOrderList(placingOrder);
+		
 		return placingOrderList;
 	}
 	
@@ -54,9 +55,5 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		return placingOrderDao.selectPlacingOrderListAll();
 	}
 
-	@Override
-	public int getTotalPlacingOrder() {
-		return placingOrderDao.getTotalPlacingOrder();
-	}
 
 }

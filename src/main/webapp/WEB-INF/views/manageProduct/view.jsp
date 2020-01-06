@@ -66,6 +66,7 @@ $(document).ready(function() {
 function getCategory2(e){
 	$("#exampleModalLong #categoryDetail2").html("");
 	
+
 	var value = e.value;
 		
 	console.log(e);
@@ -112,22 +113,29 @@ function getCategory2(e){
       </div>
       <div class="modal-body">
         <table class="table">
+<!-- 			<tr> -->
+<!--         	</tr> -->
         	<tr>
         		<th>상품코드</th>
         		<td>${product.productNo }</td>
         		<th>상품명</th>
         		<td><input type="text" id="productName" class="form-control" value="${product.productName }"></td>
         		<th>상품보기</th>
-        		<td></td>
+        		<td rowspan="2">
+		    		<div id="divProductImage">
+						<label for="productImage"><img src="/upload/${addProduct.fileStored }" style="width:125px; height:125px"/></label>
+						<input type="file" class="form-control-file" name="productImage" id="productImage">
+					</div>
+        		</td>
         	</tr>
         	<tr>
         		<th>카테고리</th>
         		<td>
         		 <select class="search-select select2-selection select2-selection--single form-control" id="categoryBase2" onchange="getCategory2(this)">
 		      		<option value="0">-----</option>
-<%-- 		      		<c:forEach items="${ category }" var="c"> --%>
-		        		<option value="${ product.categoryNo }">${ product.categoryName }</option>
-<%-- 		        	</c:forEach> --%>
+		      		<c:forEach items="${ category }" var="c">
+		        		<option value="${ c.categoryNo }">${ c.categoryName }</option>
+		        	</c:forEach>
 		      	</select>
        			</td>
         		<th><label for="categoryDetail2">세부카테고리</label></th>

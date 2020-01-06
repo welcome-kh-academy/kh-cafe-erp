@@ -11,8 +11,6 @@ $(document).ready( function () {
 		var form = document.excelUpload;
 		
 		form.submit();
-// 		opener.location.reload();
-// 		window.close();
 	});
 
 });

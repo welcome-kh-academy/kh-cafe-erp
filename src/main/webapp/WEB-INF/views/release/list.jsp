@@ -16,7 +16,7 @@ td div{
 fieldset, .divReleaseList, .divSearchRelease{
 	margin : 20px;
 }
-tr td:nth-child(6){
+.divReleaseList tr td:nth-child(6){
 	text-align:center;
 }
 </style>
@@ -46,22 +46,38 @@ $(document).ready( function () {
     		   "render": function(data, type, row){
     		    return '<button class="btn btn-primary" onclick="#">출고 등록</button>';
     	},
-    	"orderable": false
-
-    		  }],
+    	"orderable": false }],
     	ajax : {
 			"type" : "GET",
 			"url" : "/release/search",
-			"data" : function(d) {
-				d.formData = $(".divSearchRelease").serialize(); //검색조건
-			},
-			"dataSrc" : function(json){
-				
-				console.log(json.data);
-// 				console.log(JSON.stringify(json.data))
-				return json.data;
+			"dataType":"json",
+			"data" : function() {
+				console.log($("#divSearchRelease").serialize())
+				return $("#divSearchRelease").serialize(); //검색조건 전달
 			}
+// 			"dataSrc" : function(json){
+				
+// 				for(let i=0; i<json.data.length; i++){
+
+// 					if(json.data[i][2] == "11"){
+// 						json.data[i][2] = "강남점";
+// 					}
+					
+// 					if(json.data[i][6] == "0"){
+// 						json.data[i][6] = "발주완료"
+// 					}
+					
+// 					if(json.data[i][7] == "0"){
+// 						json.data[i][7] = "입고완료"
+// 					}
+					
+// 				}
+// 				console.log(json.data);
+				
+// 				return json.data;
+// 			}
 		}
+    	
     });
 });	
 
@@ -70,24 +86,71 @@ function popupOpen(){
 	var url ="/release/popExcel";
 	var winWidth = 500;
 	var winHeight = 300;
-	
-	
 	var winLeft = Math.ceil(( window.screen.width - winWidth )/2);
 	var winTop = Math.ceil(( window.screen.width - winHeight )/2);
 	var popupOption = "width=" + winWidth+ ", height=" + winHeight +", left=" + winLeft + ", winTop=" + winTop;
 	var myWindow = window.open(url, "", popupOption);
 }
+
+function getList() {
+	
+	//검색조건 가져오기
+// 	var formData = $("#placingOrderForm").serialize(); //검색조건
+	
+	 $("#myTable").DataTable().ajax.reload();
+	
+}
 </script>
 
 <div class="divSearchRelease" style="margin : 10px; height:230px">
-	<form action="/product/option/register" method="post">
 	<fieldset>
 		<legend class="text-primary">상품 출고 관리</legend>
-		<table>
-			
+		<form action="/product/option/register" method="post">
+		<table class="table">
+			<tr>
+				<th class="condition"><label for="releaseNo">출고번호</label></th>
+				<td><input type="number" value="" id="releaseNo" name="releaseNo"/></td>
+				<td></td>
+				<td></td>
+				<th class="condition"><label for="placingOrderNo">발주번호</label></th>
+				<td><input type="number" value="" id="placingOrderNo" name="placingOrderNo"/></td>
+			</tr>
+			<tr>
+			<th class="condition"><label for="shopName">지점명</label></th>
+			<td>
+				<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+					<option value="">전체</option>
+					<c:forEach var="shop" items="${shopList }">
+						<option value="${shop.shopNo }">${shop.shopName }</option>
+					</c:forEach>
+				</select>
+			</td>
+			<td></td>
+			<td></td>
+			<th class="condition"><label for="releaseDate">출고일</label></th>
+			<td colspan="3">
+				<input class="input--style-1 js-datepicker" type="text"
+					placeholder="" id="releaseDate" name="releaseDate">
+			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+			</td>
+			</tr>
+			<tr>
+				<th class="condition"><label for="releaseStatus">출고상태</label></th>
+				<td>
+					<select name="releaseStatus" id="releaseStatus" class="select2-selection--single form-control">
+						<option value="0">출고 전</option>
+						<option value="1">출고 완료</option>
+					</select>
+				</td>
+				<td></td>
+				<td></td>
+				<td colspan="2" style="text-align:center;">
+					<button  style="width:350px; height:40px" type="button" class="btn btn-primary" onclick="getList()">검색</button>
+				</td>
+			</tr>
 		</table>
-	</fieldset>
 	</form>
+	</fieldset>
 </div>
 
 
@@ -97,17 +160,9 @@ function popupOpen(){
 <fieldset>
 	<legend class="text-primary">상품 출고 목록</legend>
 	<div>
-	<div class="custom-control custom-checkbox">
-		<input type="checkbox" value="1" id="complete" class="custom-control-input"/><label class="custom-control-label" for="complete">출고</label>
 	</div>
-	<div class="custom-control custom-checkbox">
-		<input type="checkbox" value="2" id="notComplete" class="custom-control-input"/><label class="custom-control-label" for="notComplete">미출고</label>
-	</div>
-	</div>
-	<!-- <div>
-	</div> -->
 	<div style="float:right;">
-		<button class="btn btn-outline-primary">Excel 다운로드</button>
+		<button class="btn btn-outline-success" data-toggle="modal" data-target="#releaseModal">Excel 다운로드</button>
 		<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
 	</div>
 	<table id="myTable" class="display table table-bordered">
@@ -127,3 +182,24 @@ function popupOpen(){
 
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+
+<div id="releaseModal" class="modal fade">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">엑셀 다운로드</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>엑셀을 다운받으시겠습니까?</p>
+        <p>경로 : D:/</p>
+      </div>
+      <div class="modal-footer">
+        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/release/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
