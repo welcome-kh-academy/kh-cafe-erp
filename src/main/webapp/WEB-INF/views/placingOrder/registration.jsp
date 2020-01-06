@@ -2,7 +2,61 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
-<h1>발주등록 페이지</h1>
+<h1>발주등록</h1>
 <hr/>
+
+<style type="text/css">
+
+.placingOrder-info {
+	width : 30%;
+	margin-right : 5%;
+	float : left;
+}
+
+.placingOrder-content {
+	width : 60%;
+	margin-right : 5%;
+	float : left;
+}
+
+</style>
+
+
+<div class="placingOrder-info">
+<h3>발주 정보</h3>
+<table class="table">
+<tr>
+	<td class="thead-dark">발주일자</td>
+	<td></td>
+</tr>	
+<tr>	
+	<td class="thead-dark">납기일자</td>
+	<td></td>
+</tr>
+<tr>
+	<td>매입처명</td>
+	<td></td>
+</tr>
+<tr>
+	<td>요청자</td>
+	<td></td>
+</tr>
+<tr>
+	<td>담당부서</td>
+	<td></td>
+</tr>
+<tr>
+	<td>창고명</td>
+	<td></td>
+</tr>
+
+</table>
+
+
+</div>
+<div class="placingOrder-content">
+<h3>발주 내용</h3>
+</div>
+
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
