@@ -241,10 +241,11 @@ function enter(e){
         </button>
       </div>
       <div class="modal-body">
-        <p>엑셀 다운로드가 완료되었습니다</p>
+        <p>엑셀을 다운받으시겠습니까?</p>
       </div>
       <div class="modal-footer">
         <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/placingorder/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
       </div>
     </div>
   </div>
