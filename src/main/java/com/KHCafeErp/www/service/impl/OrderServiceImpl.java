@@ -50,9 +50,9 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 			if(article.get("H")!= null && !"".equals(article.get("H"))) {
-				orderBase.setRequirement(article.get("H"));				
+				orderBase.setCusReq(article.get("H"));				
 			} else {
-				orderBase.setRequirement("");								
+				orderBase.setCusReq("");								
 			}
 		   
 		   	System.out.println(orderBase);
