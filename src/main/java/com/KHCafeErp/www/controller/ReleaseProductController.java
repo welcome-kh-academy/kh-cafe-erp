@@ -98,6 +98,17 @@ public class ReleaseProductController {
         return view;
 	}
 	
+
+	//출고 등록 페이지
+	@RequestMapping(value="/release/add", method=RequestMethod.GET)
+	public void addRelease() {
+		
+	}
+	//출고가 페이지
+	@RequestMapping(value="/release/releaseCost", method=RequestMethod.GET)
+	public void releaseCostList() {
+	}
+	
 	@RequestMapping(value = "/release/exceldown")
 	public String excelDown() {
 		

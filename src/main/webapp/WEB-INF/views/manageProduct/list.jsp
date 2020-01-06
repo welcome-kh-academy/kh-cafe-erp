@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 <style type="text/css">
 #checkbox {
@@ -339,6 +340,9 @@ function getCategory(e){
 </script>
 
 <div id="searchProduct" style="margin : 10px;">
+<c:set var="now" value="<%=new java.util.Date()%>" />
+<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set> 
+
 <form action="/manageProduct/list" method="get">
 <fieldset>
 <legend class="text-primary"><a href="/manageProduct/list">상품 관리</a></legend>
@@ -462,10 +466,19 @@ function getCategory(e){
       	
       	</td>
       	<td>
-      	<c:choose>
-      		<c:when test="${ p.selStatus eq 0 }">판매중</c:when>
-      		<c:when test="${ p.selStatus eq 1 }">판매종료</c:when>
-		</c:choose>
+      		<c:if test="${ p.selStartDate <= sysdate }">
+      			<c:choose>
+		      		<c:when test="${ p.selEndDate < sysdate }">
+		      			<div>판매종료</div>
+		      		</c:when>
+		      		<c:when test="${ p.selStartDate <= sysdate && p.selEndDate > sysdate }">
+		      			<div>판매중</div>
+		      		</c:when>
+		      		<c:otherwise>
+		      			<div>판매중</div>
+		      		</c:otherwise>
+	      		</c:choose>
+      		</c:if>
       	</td>
 		<!-- Button trigger modal -->
 		<td><button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >

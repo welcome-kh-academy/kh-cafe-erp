@@ -26,6 +26,7 @@ public class ManageProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ManageProductController.class);
 	@Autowired ManageProductService manageProductService;
 	
+	//리스트 불러오기
 	@RequestMapping(value="/manageProduct/list", method=RequestMethod.GET)
 	public void productList(Model model,
 			@RequestParam(defaultValue = "0") int productNo,
@@ -33,6 +34,7 @@ public class ManageProductController {
 			@RequestParam(defaultValue = "0") int categoryNo,
 			@RequestParam(defaultValue = "0") int categoryMapNo,
 			@RequestParam(defaultValue = "0") int shopNo) {
+		
 //		logger.info("상품관리");
 		Product product = new Product();
 		product.setProductNo(productNo);
@@ -60,7 +62,7 @@ public class ManageProductController {
 		model.addAttribute("product", productList);
 		
 	}
-	
+	//카테고리 목록 불러오기
 	@RequestMapping(value="/manageProduct/categoryDetail", method=RequestMethod.GET)
 	public ModelAndView getCategoryDetail(@RequestParam(value = "value")int categoryNo, ModelAndView mav) {
 		
@@ -71,6 +73,7 @@ public class ManageProductController {
 		return mav;
 	}
 	
+	//상품 정보 상세보기
 	@RequestMapping(value="/manageProduct/view", method=RequestMethod.GET)
 	public void getProductView(Model model, int productNo) {		
 
@@ -83,6 +86,7 @@ public class ManageProductController {
 
 	}
 	
+	//상품 정보 수정하기
 	@RequestMapping(value="/manageProduct/update", method=RequestMethod.GET)
 	public ModelAndView updateProduct(Product product, ModelAndView mav) {
 		logger.info("모달 값 : " + product.toString());
@@ -94,7 +98,8 @@ public class ManageProductController {
 		
 		return mav;
 	}
-
+	
+	//상품 판매 시작 날짜 등록하기
 	@RequestMapping(value="/manageProduct/selStartDate", method=RequestMethod.GET)
 	public ModelAndView updateSelStartDate(Product product, ModelAndView mav) {
 		logger.info("판매 시작 등록 모달 값 : " + product.toString());
@@ -107,6 +112,7 @@ public class ManageProductController {
 		return mav;
 	}
 
+	//상품 판매 종료 날짜 등록하기
 	@RequestMapping(value="/manageProduct/selEndDate", method=RequestMethod.GET)
 	public ModelAndView updateSelEndDate(Product product, ModelAndView mav) {
 		logger.info("판매 종료 등록 모달 값 : " + product.toString());
@@ -119,6 +125,7 @@ public class ManageProductController {
 		return mav;
 	}
 
+	//상품 삭제하기
 	@RequestMapping(value="/manageProduct/delete", method=RequestMethod.GET)
 	public ModelAndView deleteProduct(Product product, ModelAndView mav) {
 		logger.info("삭제 모달 값 : " + product.toString());

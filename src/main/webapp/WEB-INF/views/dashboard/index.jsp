@@ -12,6 +12,14 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 
+<style type="text/css">
+/* 헤더 css 지우기 */
+#wrapper{
+	min-height:0px;
+	margin : 0px;
+}
+</style>
+
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
