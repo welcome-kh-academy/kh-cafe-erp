@@ -58,6 +58,11 @@ $(document).ready( function () {
 	    if(month < 10) month = "0" + month;
 	    if(day < 10) day = "0" + day;
 	 
+	    if(month=="00"){
+	    	month="12";
+	    	year = year-1;
+	    }
+	    
 	    return year + "-" + month + "-" + day;
 	}
 	

@@ -31,7 +31,7 @@ public interface OrderDao {
 	 */
 	public void insertOrderProduct(OrderProduct orderProduct);
 
-	public  List<Release> selectOrderList(Paging paging); 
+	public  List<OrderBase> selectOrderList(Paging paging); 
 
 	public int selectOrderListCnt(OrderBase orderBase);
 
