@@ -46,10 +46,10 @@ public class OrderController {
 		logger.info("releaseSearch()");
 		
 		Paging paging = orderService.getPaging(curPage, orderBase);
+		logger.info(paging.toString());
+
 		
-		@SuppressWarnings("unchecked")
 		List<OrderBase> orderBaseList = orderService.getOrderList(paging);
-		System.out.println(orderBaseList);
 		
 		List llist = new ArrayList();
 		List list = null;
@@ -59,8 +59,18 @@ public class OrderController {
 			list.add(r.getOrderNo());
 			list.add(r.getCusNo());
 			list.add(r.getPrdShopNo());
-			list.add(r.getRequirement());
-			list.add(r.getOrderStatus());
+			list.add(r.getOrderDate());		
+			list.add(r.getCusReq());
+			if(r.getOrderStatus()==0){
+				list.add("장바구니");
+			}else if (r.getOrderStatus()==1) {
+					list.add("주문완료");
+				}else  {
+					list.add("결제완료");
+				}
+				
+			
+			
 			
 			llist.add(list);
 		}

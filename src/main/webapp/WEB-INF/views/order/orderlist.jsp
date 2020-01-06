@@ -27,7 +27,10 @@
 </style>
 
 <script type="text/javascript">
-
+function detailview(){
+	window.open
+	
+}
 // datatable
 $(document).ready( function () {
 	
@@ -49,7 +52,8 @@ $(document).ready( function () {
             "targets": -1,
             "data": null,
             "render": function(data, type, row){
-             return '<button class="btn btn-primary" onclick="#">상세보기</button>';
+            	
+             return '<button class="btn btn-primary" onclick="detailview()">상세보기</button>';
       },
       "orderable": false
 
@@ -57,7 +61,7 @@ $(document).ready( function () {
            
     	ajax : {
 			"type" : "GET",
-			"url" : "/placingOrder/search",
+			"url" : "/order/search",
 			"data" : function(d) {
 				d.formData = $("#placingOrderForm").serialize(); //검색조건
 			},
@@ -200,7 +204,7 @@ function popupOpen(){
 				<option value="1">주문완료</option>
 				<option value="2">주문취소</option>
 				<option value="3">보류</option>
-				<option value="4">??</option>
+				
 				
 			</select>
 		</td>
@@ -221,12 +225,11 @@ function popupOpen(){
 <!--         	<th><input type="checkbox"/></th> -->
             <th>주문번호</th>
             <th>유저번호</th>
-            <th>상품갯수</th>
-            <th>보유기준정보</th>
+            <th>지점명</th>     
             <th>주문날짜</th>
             <th>고객요구사항</th>
             <th>진행상태</th>
-            <th></th>
+            <th>주문상세정보</th>
         </tr>
     </thead>
 </table>

@@ -5,12 +5,12 @@ public class OrderBase {
 	private int cusNo;
 	private int prdShopNo;
 	private String orderDate;
-	private String requirement;
+	private String cusReq;
 	private int orderStatus;
 	@Override
 	public String toString() {
 		return "OrderBase [orderNo=" + orderNo + ", cusNo=" + cusNo + ", prdShopNo=" + prdShopNo + ", orderDate="
-				+ orderDate + ", requirement=" + requirement + ", orderStatus=" + orderStatus + "]";
+				+ orderDate + ", cusReq=" + cusReq + ", orderStatus=" + orderStatus + "]";
 	}
 	public int getOrderNo() {
 		return orderNo;
@@ -36,11 +36,11 @@ public class OrderBase {
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
-	public String getRequirement() {
-		return requirement;
+	public String getCusReq() {
+		return cusReq;
 	}
-	public void setRequirement(String requirement) {
-		this.requirement = requirement;
+	public void setCusReq(String cusReq) {
+		this.cusReq = cusReq;
 	}
 	public int getOrderStatus() {
 		return orderStatus;
@@ -48,6 +48,7 @@ public class OrderBase {
 	public void setOrderStatus(int orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+	
 
 	
 }
