@@ -158,8 +158,14 @@ h6 {
    #BACKGROUND
    ========================================================================== */
 .bg-blue {
-  background:#445BA8 ;
-  /*#2c6ed5¿¡¼­ ¼öÁ¤ÇÔ - Çö¼®*/
+/*   background:#445BA8 ; */
+  background: url("/resources/img/main.jpg" )no-repeat center center fixed ; 
+   -webkit-background-size: cover; 
+   -moz-background-size: cover; 
+   -o-background-size: cover; 
+  background-size: cover;
+
+  /*#2c6ed5ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½*/
 }
 
 /* ==========================================================================
