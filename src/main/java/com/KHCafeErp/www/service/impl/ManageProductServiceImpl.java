@@ -65,4 +65,9 @@ public class ManageProductServiceImpl implements ManageProductService{
 	public Product getProduct(int productNo) {
 		return manageProductDao.selectProductByProductNo(productNo);
 	}
+
+	@Override
+	public List<Product> getList() {
+		return manageProductDao.selectList();
+	}
 }

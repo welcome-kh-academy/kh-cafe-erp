@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public Paging getPaging(Paging inData) {
 		
-		int totalCount = noticeDao.selectCntAll();
+		//검색어
+		Map<String, String> search = inData.getSearch(); 
+		
+		int totalCount = noticeDao.selectCntAll(search);
 		
 		Paging paging = new Paging(totalCount, inData.getCurPage());
-				
+		
+		//검색어
+		paging.setSearch(search);
+		
 		return paging;
 	}
 

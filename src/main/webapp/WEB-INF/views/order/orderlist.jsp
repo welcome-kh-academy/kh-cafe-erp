@@ -45,6 +45,16 @@ $(document).ready( function () {
     	"bPaginate" : true, //페이징 처리를 할 것인가
     	"serverSide" : false, //클라이언트에서 처리
     	"processing" : true, 
+    	"columnDefs": [{
+            "targets": -1,
+            "data": null,
+            "render": function(data, type, row){
+             return '<button class="btn btn-primary" onclick="#">상세보기</button>';
+      },
+      "orderable": false
+
+           }],
+           
     	ajax : {
 			"type" : "GET",
 			"url" : "/placingOrder/search",
@@ -61,6 +71,7 @@ $(document).ready( function () {
 		}
     });
 });	
+
 
 
 function getList() {
@@ -117,6 +128,18 @@ function getList() {
 // 	});
 }
 
+// 20-01-02 유진 : 엑셀 업로드 팝업창
+function popupOpen(){
+	var url ="/order/popExcel";
+	var winWidth = 500;
+	var winHeight = 300;
+	
+	
+	var winLeft = Math.ceil(( window.screen.width - winWidth )/2);
+	var winTop = Math.ceil(( window.screen.width - winHeight )/2);
+	var popupOption = "width=" + winWidth+ ", height=" + winHeight +", left=" + winLeft + ", winTop=" + winTop;
+	var myWindow = window.open(url, "", popupOption);
+}
 </script>
 
 <h1>주문 통합 관리</h1>
@@ -188,6 +211,7 @@ function getList() {
 
 <div style="float:right;">
 	<button class="btn btn-outline-success">Excel 다운로드</button>
+	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
 </div>
 <br>
 <h2>주문 리스트</h2>
@@ -196,12 +220,13 @@ function getList() {
         <tr>
 <!--         	<th><input type="checkbox"/></th> -->
             <th>주문번호</th>
-            <th>상품명</th>
+            <th>유저번호</th>
             <th>상품갯수</th>
-            <th>결제금액</th>
-            <th>주문일</th>
+            <th>보유기준정보</th>
+            <th>주문날짜</th>
+            <th>고객요구사항</th>
             <th>진행상태</th>
-            <th>비고</th>
+            <th></th>
         </tr>
     </thead>
 </table>

@@ -5,9 +5,9 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.NoticeDao">
 
-	<select id="selectCntAll" resultType="int">
-		SELECT count(*) FROM noticeboard
-	</select>
+<!-- 	<select id="selectCntAll" resultType="int"> -->
+<!-- 		SELECT count(*) FROM noticeboard -->
+<!-- 	</select> -->
 	
 	<select id="selectPageList" parameterType="com.KHCafeErp.www.util.Paging" resultType="com.KHCafeErp.www.dto.NoticeBoard" >
 		  SELECT * FROM (
@@ -16,7 +16,9 @@
 					nBoardNo, staffNo, shopNo,
 					nBoardTitle, staffName, nBoardDate, nBoardContent
 				FROM noticeBoard
-				WHERE 1=1
+				<if test="search != null">
+    				AND nBoardTitle LIKE '%'||#{search }||'%'
+  				</if>
 				ORDER BY nBoardNo DESC
 			) B
 			ORDER BY rnum
@@ -55,5 +57,15 @@
 		DELETE noticeboard
 		WHERE nBoardNo = #{nBoardNo }
 	</update>
+	
+	<select id="selectCntAll" parameterType="hashmap" resultType="int">
+		SELECT count(*) 
+		FROM noticeboard
+		WHERE 1=1
+		<if test="search != null">
+    		AND nBoardTitle LIKE '%'||#{search }||'%'
+  		</if>
+		
+	</select>
 	
 </mapper>

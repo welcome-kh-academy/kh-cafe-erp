@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ManageProductService;
+import com.KHCafeErp.www.util.ExcelWriter;
 
 @Controller
 public class ManageProductController {
@@ -147,4 +149,19 @@ public class ManageProductController {
 //		return "redirect:/manageProduct/list";
 //	}
 
+	// 20-01-05 유진 : 상품 목록 엑셀 다운
+	@RequestMapping(value = "/manageProduct/exceldown")
+	public String excelDown() {
+		
+		List<Product> productList = manageProductService.getList();
+
+		System.out.println(productList);
+		 
+		 ExcelWriter excelWriter=new ExcelWriter();
+		 excelWriter.productXls(productList);
+		 
+		 logger.info("엑셀 다운 완료");
+		 
+		 return "redirect:/manageProduct/list";
+	}
 }

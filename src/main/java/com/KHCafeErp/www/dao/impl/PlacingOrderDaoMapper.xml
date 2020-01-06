@@ -9,11 +9,36 @@
 		SELECT COUNT(1) FROM PLACINGORDER
 	</select>
  
- 	<select id="selectPlacingOrderList" resultType="com.KHCafeErp.www.dto.PlacingOrder">
+ 	<select id="selectPlacingOrderList" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="com.KHCafeErp.www.dto.PlacingOrder">
 		SELECT PLACINGORDERNO, SHOPNO, PLACINGORDERDATE, PLACINGORDERSTATUS, INSTOCKSTATUS
 		FROM PLACINGORDER
+		WHERE 1=1
+		AND PLACINGORDERDATE BETWEEN #{startDate} AND #{endDate}
+		<if test="placingOrderNo != null">
+    		AND placingOrderNo = #{placingOrderNo}
+  		</if>
+  		<if test="shopNo != null">
+    		AND shopNo = #{shopNo}
+  		</if>
 	</select>
- 
+	
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT SHOPNO, SHOPNAME FROM SHOP
+	</select>
+	
+	<select id="selectPlacingOrderListAll" resultType="com.KHCafeErp.www.dto.PlacingOrder">
+		SELECT A.placingOrderNo, shopName, placingOrderDate, placingOrderStatus, inStockStatus, placingOrderCnt 
+		FROM(
+			SELECT placingOrder.placingOrderNo, shop.shopName, placingOrderDate, placingOrderStatus, inStockStatus 
+			FROM placingOrder, shop 
+			WHERE placingOrder.shopNo=shop.shopNo ORDER BY placingOrder.placingOrderNo) A
+		LEFT OUTER JOIN (
+			SELECT *FROM (
+			SELECT placingOrderNo ,SUM(placingOrderProductCnt) AS placingOrderCnt 
+			FROM placingOrderProduct GROUP BY placingOrderNo ORDER BY placingOrderNo))B 
+		ON A.placingOrderNo=B.placingOrderNo
+	</select>
+
 </mapper>
 
 

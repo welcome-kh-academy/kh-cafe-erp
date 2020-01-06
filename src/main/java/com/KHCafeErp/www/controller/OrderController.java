@@ -2,6 +2,8 @@ package com.KHCafeErp.www.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.OrderBase;
+import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.service.face.OrderService;
+import com.KHCafeErp.www.util.Paging;
 
 
 @Controller
@@ -29,9 +35,49 @@ public class OrderController {
 	public void Orderlist(Model model) {
 		
 	}
+		
+	@RequestMapping(value = "/order/popExcel", method = RequestMethod.GET)
+	public void popExcel() {
+		
+	}
+	
+	@RequestMapping(value="/order/search" ,method=RequestMethod.GET)
+	public ModelAndView releaseSearch(OrderBase orderBase, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
+		logger.info("releaseSearch()");
+		
+		Paging paging = orderService.getPaging(curPage, orderBase);
+		
+		List<Release> releaseList = orderService.getOrderList(paging);
+		System.out.println(releaseList);
+		
+		List llist = new ArrayList();
+		List list = null;
+		
+		for(Release r : releaseList) {
+			list = new ArrayList();
+			list.add(r.getReleaseNo());
+			list.add(r.getPlacingOrderNo());
+			list.add(r.getShopName());
+			if(r.getReleaseStatus()==0) {
+				list.add("출고 전");
+			} else {
+				list.add("출고 완료");
+			}
+			list.add(r.getReleaseDate());
+			
+			llist.add(list);
+		}
+		
+		mav.addObject("data",llist);
+//		mav.addObject("data",data);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
 	
 	// 19-12-31 유진 - 엑셀 업로드
-	@RequestMapping(value = "/order/upload")
+	@RequestMapping(value = "/order/upload", method = RequestMethod.POST)
 	public ModelAndView uploadExcel(MultipartHttpServletRequest request) {
 		logger.info("uploadExcel()");
 		
@@ -52,7 +98,7 @@ public class OrderController {
         
         ModelAndView view = new ModelAndView();
         
-        view.setViewName("redirect:/order/orderlist");
+        view.setViewName("/release/excel-success");
         
         return view;
 	}

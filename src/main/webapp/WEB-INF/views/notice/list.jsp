@@ -6,6 +6,17 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
+<script type="text/javascript">
+$(document).ready(function() {
+		
+	//검색 버틀 클릭
+	$("#btnSearch").click(function() {
+		location.href="/notice/list?search="+$("#search").val();
+	});
+	
+});
+</script>
+
 <style type="text/css">
 table, th {
 	text-align: center;
@@ -48,6 +59,11 @@ table, th {
 
 <button class="btn btn-primary" id="btnWrite" onclick="location.href='/notice/write'" style="float: right">글쓰기</button>
 
+<div class="form-inline text-center">
+	<input class="form-control" type="text" id="search" />
+	<button id="btnSearch" class="btn">검색</button>
 </div>
+
+</div><!-- 컨테이너 끝  -->
 
 <jsp:include page="/WEB-INF/views/layout/paging.jsp" />

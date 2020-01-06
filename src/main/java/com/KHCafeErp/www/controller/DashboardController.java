@@ -1,5 +1,8 @@
 package com.KHCafeErp.www.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,8 +14,7 @@ public class DashboardController {
 	private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
 	
 	@RequestMapping(value="/dashboard/index")
-	public void getPage() {
-		
-		logger.info("대시보드 ");
+	public void getPage(HttpSession session, HttpServletRequest req) {
+			
 	}
 }

@@ -167,16 +167,16 @@ li{
       </li>      
     </ul>
   </div>
-  
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#myModal">로그아웃</a>
+        <a class="nav-link" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
       </li>    
  	</ul>
+ 	
 </nav>
 </div>
 
-<div id="myModal" class="modal fade">
+<div id="logoutModal" class="modal fade">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

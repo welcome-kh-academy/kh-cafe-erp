@@ -28,6 +28,7 @@ public class NoticeController {
 		
 		//페이징 계산
 		Paging paging = noticeService.getPaging(inData);
+		logger.info("inData: " + paging);
 		
 		//페이징 객체를 모델값으로 지정
 		model.addAttribute("paging", paging);
