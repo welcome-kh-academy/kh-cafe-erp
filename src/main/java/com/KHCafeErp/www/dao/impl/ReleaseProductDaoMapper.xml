@@ -5,8 +5,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.KHCafeErp.www.dao.face.ReleaseProductDao">
-	<select id="selectReleaseList" resultType="com.KHCafeErp.www.dto.Release">
-		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate FROM release, placingOrder, shop WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo ORDER BY releaseNo
+	<select id="selectReleaseList" parameterType="com.KHCafeErp.www.dto.Release" resultType="com.KHCafeErp.www.dto.Release">
+		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate 
+		FROM release, placingOrder, shop 
+		WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo 
+		<if test="releaseNo != null and releaseNo!=0">
+    		AND releaseNo = #{releaseNo}
+  		</if>
+		<if test="placingOrderNo != null and placingOrderNo!=0">
+    		AND placingOrder.placingOrderNo = #{placingOrderNo}
+  		</if>
+  		<if test="shopName != null">
+    		AND shopName = #{shopName}
+  		</if>
+  		<if test="releaseDate != null">
+    		AND releaseDate = #{releaseDate}
+  		</if>
+  		<if test="releaseStatus != null and releaseStatus!=0">
+    		AND releaseStatus = #{releaseStatus}
+  		</if>
+		ORDER BY releaseNo
 	</select>
 
 	<insert id="insertRelease" parameterType="com.KHCafeErp.www.dto.Release">
@@ -30,5 +48,9 @@
 	
 	<select id="getList" resultType="com.KHCafeErp.www.dto.Release">
 		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate FROM release, placingOrder, shop WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo ORDER BY releaseNo
+	</select>
+	
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT SHOPNO, SHOPNAME FROM SHOP
 	</select>
 </mapper>

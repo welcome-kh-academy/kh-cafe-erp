@@ -137,7 +137,7 @@ function getList() {
 	
 	//검색조건 가져오기
 // 	var formData = $("#placingOrderForm").serialize(); //검색조건
-	
+	// ajax 한 번 더 실행
 	 $("#myTable").DataTable().ajax.reload();
 	
 }
