@@ -4,13 +4,20 @@ import java.util.List;
 import java.util.Map;
 
 import com.KHCafeErp.www.dto.CategoryBase;
-import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
+import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface AddProductDao {
+	/**
+	 * 20-01-03
+	 * 상품의 이미지파일을 저장한다
+	 * @param imgFile - 저장할 이미지 파일
+	 */
+	public void insertImgfile(ImgFile imgFile);
 	
 	/**
 	 * 19-12-26

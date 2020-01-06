@@ -133,7 +133,8 @@ li{
         <div class="dropdown-menu">
         <ul>
         	<li><a href="/release/list">출고 관리</a></li>
-        	<li><a href="#">출고 등록</a></li>
+        	<li><a href="/release/add">출고 등록</a></li>
+        	<li><a href="/release/releaseCost">출고가 보기</a></li>
         </ul>
         </div>
       </li>
