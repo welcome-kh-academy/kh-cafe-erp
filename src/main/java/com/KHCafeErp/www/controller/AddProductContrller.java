@@ -216,13 +216,13 @@ public class AddProductContrller {
 	
 	@RequestMapping(value="/product/addShop", method=RequestMethod.POST)
 	public String addProductFinal(HttpSession session, @RequestParam(value="shopNo") String[] shopNoArr) {
-		
-		//shopNo 배열로 서버에서 받음.. 아직 처리는 못함
+
 		for(String i : shopNoArr) {
 			logger.info(i);
 		}
 		
 		addProductService.addProduct(session);
+//		addProductService.addPrdShop(shopNoArr);
 		
 		return "redirect:/manageProduct/list";
 	}
