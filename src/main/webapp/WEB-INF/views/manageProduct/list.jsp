@@ -466,11 +466,18 @@ function getCategory(e){
       	
       	</td>
       	<td>
-      		<c:if test="${ p.selEndDate < sysdate }">
-      			<div>판매종료</div>
-      		</c:if>
-      		<c:if test="${ p.selEndDate > sysdate }">
-      			<div>판매중</div>
+      		<c:if test="${ p.selStartDate <= sysdate }">
+      			<c:choose>
+		      		<c:when test="${ p.selEndDate < sysdate }">
+		      			<div>판매종료</div>
+		      		</c:when>
+		      		<c:when test="${ p.selStartDate <= sysdate && p.selEndDate > sysdate }">
+		      			<div>판매중</div>
+		      		</c:when>
+		      		<c:otherwise>
+		      			<div>판매중</div>
+		      		</c:otherwise>
+	      		</c:choose>
       		</c:if>
       	</td>
 		<!-- Button trigger modal -->
