@@ -84,7 +84,7 @@ $(document).ready( function () {
             "info": "현재 _START_ - _END_ / _TOTAL_건",
             "infoEmpty": "데이터 없음",
             "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
-            "search": "에서 검색: ",
+            "search": "빠른검색 : ",
             "emptyTable": "발주 목록이 존재하지 않습니다.",
             "zeroRecords": "일치하는 데이터가 없어요.",
             "loadingRecords": "로딩중...",
