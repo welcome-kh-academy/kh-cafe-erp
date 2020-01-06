@@ -129,7 +129,7 @@ function popupOpen(){
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
 
 <div id="releaseModal" class="modal fade">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">엑셀 다운로드</h5>
@@ -138,10 +138,12 @@ function popupOpen(){
         </button>
       </div>
       <div class="modal-body">
-        <p>엑셀 다운로드가 완료되었습니다</p>
+        <p>엑셀을 다운받으시겠습니까?</p>
+        <p>경로 : D:/</p>
       </div>
       <div class="modal-footer">
         <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/release/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
       </div>
     </div>
   </div>
