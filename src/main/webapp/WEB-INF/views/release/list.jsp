@@ -25,9 +25,47 @@ fieldset, .divReleaseList, .divSearchRelease{
 window.name="listPage"
 $(document).ready( function () {
 	
+	var startDate = getPastDate(1);
+	var endDate = getRecentDate();
+	 
+// 	$("#startDate").val(startDate);
+// 	$("#endDate").val(endDate);
+	 
+	function getRecentDate(){
+	    var dt = new Date();
+	 
+	    var recentYear = dt.getFullYear();
+	    var recentMonth = dt.getMonth() + 1;
+	    var recentDay = dt.getDate();
+	 
+	    if(recentMonth < 10) recentMonth = "0" + recentMonth;
+	    if(recentDay < 10) recentDay = "0" + recentDay;
+	 
+	    return recentYear + "-" + recentMonth + "-" + recentDay;
+	}
+	 
+	function getPastDate(period){
+	    var dt = new Date();
+	 
+	    dt.setMonth((dt.getMonth() + 1) - period);
+	 
+	    var year = dt.getFullYear();
+	    var month = dt.getMonth();
+	    var day = dt.getDate();
+	 
+	    if(month < 10) month = "0" + month;
+	    if(day < 10) day = "0" + day;
+	 
+	    return year + "-" + month + "-" + day;
+	}
+	
 	var curPage = 1; //페이지 변수를 1로 초기화
 	
-    $('.divReleaseList #myTable').DataTable({
+	//select2 실행 코드
+	var $disabledResults = $(".search-select");
+	$disabledResults.select2();
+	
+	table = $('#myTable').DataTable({
     	"scrollY" : 400, //테이블 고정 크기 설정
     	"scrollCollapse" : true, //가변 크기 막기
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
@@ -47,15 +85,17 @@ $(document).ready( function () {
     		    return '<button class="btn btn-primary" onclick="#">출고 등록</button>';
     	},
     	"orderable": false }],
+    	"serverSide" : false, //클라이언트에서 처리
+    	"processing" : true, 
     	ajax : {
 			"type" : "GET",
 			"url" : "/release/search",
 			"dataType":"json",
 			"data" : function() {
-				console.log($("#divSearchRelease").serialize())
-				return $("#divSearchRelease").serialize(); //검색조건 전달
-			}
-// 			"dataSrc" : function(json){
+				console.log($("#releaseForm").serialize())
+				return $("#releaseForm").serialize(); //검색조건 전달
+			},
+			"dataSrc" : function(json){
 				
 // 				for(let i=0; i<json.data.length; i++){
 
@@ -74,8 +114,8 @@ $(document).ready( function () {
 // 				}
 // 				console.log(json.data);
 				
-// 				return json.data;
-// 			}
+				return json.data;
+			}
 		}
     	
     });
@@ -105,7 +145,7 @@ function getList() {
 <div class="divSearchRelease" style="margin : 10px; height:230px">
 	<fieldset>
 		<legend class="text-primary">상품 출고 관리</legend>
-		<form action="/product/option/register" method="post">
+		<form action="/release/search" method="post" id="releaseForm">
 		<table class="table">
 			<tr>
 				<th class="condition"><label for="releaseNo">출고번호</label></th>
@@ -118,7 +158,7 @@ function getList() {
 			<tr>
 			<th class="condition"><label for="shopName">지점명</label></th>
 			<td>
-				<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+				<select name="shopNo" id="shopNo" class="select2-selection--single form-control">
 					<option value="">전체</option>
 					<c:forEach var="shop" items="${shopList }">
 						<option value="${shop.shopNo }">${shop.shopName }</option>
@@ -127,17 +167,22 @@ function getList() {
 			</td>
 			<td></td>
 			<td></td>
-			<th class="condition"><label for="releaseDate">출고일</label></th>
+			<th class="condition"><label for="startDate">출고일</label></th>
 			<td colspan="3">
 				<input class="input--style-1 js-datepicker" type="text"
-					placeholder="" id="releaseDate" name="releaseDate">
-			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+					placeholder="" id="startDate" name="startDate" value="">
+				<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+				<span class="space">~</span> 
+				<input class="input--style-1 js-datepicker" type="text"
+					placeholder="" id="endDate" name="endDate">
+				<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 			</td>
 			</tr>
 			<tr>
 				<th class="condition"><label for="releaseStatus">출고상태</label></th>
 				<td>
 					<select name="releaseStatus" id="releaseStatus" class="select2-selection--single form-control">
+						<option value="" selected>출고 상태</option>
 						<option value="0">출고 전</option>
 						<option value="1">출고 완료</option>
 					</select>

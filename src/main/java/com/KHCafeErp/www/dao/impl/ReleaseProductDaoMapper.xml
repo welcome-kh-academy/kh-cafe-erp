@@ -8,20 +8,23 @@
 	<select id="selectReleaseList" parameterType="com.KHCafeErp.www.dto.Release" resultType="com.KHCafeErp.www.dto.Release">
 		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate 
 		FROM release, placingOrder, shop 
-		WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo 
-		<if test="releaseNo != null and releaseNo!=0">
+		WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo
+		<if test="(startDate != null and endDate != null) and (startDate!='' and endDate!='') ">
+			 AND releaseDate BETWEEN #{startDate} AND #{endDate}
+		</if>
+<!-- 		<if test="releaseNo != null and releaseNo!=0"> -->
+		<if test="releaseNo != null">
     		AND releaseNo = #{releaseNo}
   		</if>
-		<if test="placingOrderNo != null and placingOrderNo!=0">
+<!-- 		<if test="placingOrderNo != null and placingOrderNo!=0"> -->
+		<if test="placingOrderNo != null">
     		AND placingOrder.placingOrderNo = #{placingOrderNo}
   		</if>
-  		<if test="shopName != null">
-    		AND shopName = #{shopName}
+  		<if test="shopNo != null">
+    		AND shop.shopNo = #{shopNo}
   		</if>
-  		<if test="releaseDate != null">
-    		AND releaseDate = #{releaseDate}
-  		</if>
-  		<if test="releaseStatus != null and releaseStatus!=0">
+  		<if test="releaseStatus != null">
+<!--   		<if test="releaseStatus != null and releaseStatus!=0"> -->
     		AND releaseStatus = #{releaseStatus}
   		</if>
 		ORDER BY releaseNo
