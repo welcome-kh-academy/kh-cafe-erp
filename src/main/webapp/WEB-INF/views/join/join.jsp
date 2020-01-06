@@ -133,7 +133,7 @@
 				return false;
 			}else if($.trim($('#staffName').val()) == ''){
 				alert("이름을 입력하세요");
-				$('#name').focus();
+				$('#staffname').focus();
 				return false;
 			}else if($.trim($('#nick').val()) == ''){
 				alert("닉네임을 입력하세요");
