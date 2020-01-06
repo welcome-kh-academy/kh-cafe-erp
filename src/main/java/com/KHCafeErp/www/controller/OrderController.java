@@ -47,23 +47,20 @@ public class OrderController {
 		
 		Paging paging = orderService.getPaging(curPage, orderBase);
 		
-		List<Release> releaseList = orderService.getOrderList(paging);
-		System.out.println(releaseList);
+		@SuppressWarnings("unchecked")
+		List<OrderBase> orderBaseList = orderService.getOrderList(paging);
+		System.out.println(orderBaseList);
 		
 		List llist = new ArrayList();
 		List list = null;
 		
-		for(Release r : releaseList) {
+		for(OrderBase r : orderBaseList) {
 			list = new ArrayList();
-			list.add(r.getReleaseNo());
-			list.add(r.getPlacingOrderNo());
-			list.add(r.getShopName());
-			if(r.getReleaseStatus()==0) {
-				list.add("출고 전");
-			} else {
-				list.add("출고 완료");
-			}
-			list.add(r.getReleaseDate());
+			list.add(r.getOrderNo());
+			list.add(r.getCusNo());
+			list.add(r.getPrdShopNo());
+			list.add(r.getRequirement());
+			list.add(r.getOrderStatus());
 			
 			llist.add(list);
 		}
