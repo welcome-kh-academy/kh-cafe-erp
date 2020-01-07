@@ -4,11 +4,14 @@ import java.util.List;
 
 import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.OrderProduct;
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface OrderDao {
+
+
 
 	/**
 	 * 19-12-31 유진
@@ -32,10 +35,15 @@ public interface OrderDao {
 	 */
 	public void insertOrderProduct(OrderProduct orderProduct);
 
-	public  List<OrderBase> selectOrderList(Paging paging); 
+	public  List<OrderBase> selectOrderList(OrderBase orderBase); 
 
 	public int selectOrderListCnt(OrderBase orderBase);
 
 	public List<Shop> selectShopList();
+
+
+	public List<OrderProduct> selectorderProduct();
+
+	public List<Product> selectProduct();
 
 }
