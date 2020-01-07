@@ -1,5 +1,7 @@
 package com.KHCafeErp.www.dao.face;
 
+import java.util.List;
+
 import com.KHCafeErp.www.dto.Warehousing;
 
 public interface WarehousingDao {
@@ -12,5 +14,7 @@ public interface WarehousingDao {
 	 * @param warehousing - 회원가입 정보
 	 */
 	public void insert(Warehousing warehousing);
+
+	public List<Warehousing> selectWarehousingList(Warehousing wareHousing) ;
 
 }
