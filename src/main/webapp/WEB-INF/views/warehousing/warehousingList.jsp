@@ -107,7 +107,7 @@ $(document).ready( function () {
     	"processing" : true, 
     	ajax : {
 			"type" : "GET",
-			"url" : "/placingOrder/search",
+			"url" : "/warehousing/search",
 			"dataType":"json",
 			"data" : function() {
 				console.log($("#placingOrderForm").serialize())
@@ -116,27 +116,21 @@ $(document).ready( function () {
 			"dataSrc" : function(json){
 				
 				for(let i=0; i<json.data.length; i++){
-
 					if(json.data[i][2] == "11"){
 						json.data[i][2] = "강남점";
 					}
-					
 					if(json.data[i][6] == "0"){
 						json.data[i][6] = "발주완료"
 					}
-					
 					if(json.data[i][7] == "0"){
 						json.data[i][7] = "입고완료"
 					}
-					
 				}
 				console.log(json.data);
-				
 				return json.data;
 			}
 		}
     });
-	
 });	
 
 function getList() {
@@ -156,7 +150,7 @@ function enter(e){
 
 </script>
 
-<h1>발주관리 페이지</h1>
+<h1>입고 관리 페이지</h1>
 <hr/>
 
 <div class="condition-container">
@@ -164,14 +158,14 @@ function enter(e){
 
 <table class="table table-bordered">
 	<tr>
-		<th class="condition"><label for="placingOrderNo">발주번호</label></th>
+		<th class="condition"><label for="placingOrderNo">입고번호</label></th>
 		<td><input type="number" value="${placingOrderList.placingOrderNo }" id="placingOrderNo" name="placingOrderNo"/></td>
-		<th class="condition"><label for="shopName">지점명</label></th>
+		<th class="condition"><label for="shopName">거래 지점</label></th>
 		<td>
 			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
 				<option value="">전체</option>
-				<c:forEach var="shop" items="${shopList }" >
-					<option value="${shop.shopNo }">${shop.shopName }</option>
+				<c:forEach var="warehousing" items="${wareHouseList }" >
+					<option value="${warehousing.dealStore }">${warehousing.dealStore }</option>
 				</c:forEach>
 			</select>
 		</td>
@@ -180,7 +174,7 @@ function enter(e){
 		</td>
 	</tr>
 	<tr>
-		<th class="condition"><label for="startDate">발주날짜</label></th>
+		<th class="condition"><label for="startDate">입고날짜</label></th>
 		<td colspan="3">
 			<input class="input--style-1 js-datepicker" type="text"
 				placeholder="" id="startDate" name="startDate" value="2020-01-01">
@@ -192,25 +186,17 @@ function enter(e){
 		</td>
 	</tr>
 	<tr>
-		<th class="condition"><label for="placingOrderStatus">발주상태</label></th>
+		<th class="condition"><label>입고창고</label></th>
 		<td>
-			<select name="placingOrderStatus" id="placingOrderStatus"
-				class="select2-selection--single form-control">
-				<option value="0">발주확인전</option>
-				<option value="1">발주확인</option>
-				<option value="2">출고대기</option>
-				<option value="3">출고완료</option>
-			</select>
-		</td>
-		<th class="condition"><label for="inStockStatus">입고상태</label></th>
-		<td>
-			<select name="inStockStatus" id="inStockStatus"
-				class="select2-selection--single form-control">
-				<option value="0">입고대기</option>
-				<option value="1">입고완료</option>
+			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+				<option value="">전체</option>
+				<c:forEach var="warehousing" items="${wareHouseList }" >
+					<option value="${warehousing.storageNo }">${warehousing.storageNo }</option>
+				</c:forEach>
 			</select>
 		</td>
 	</tr>
+	
 </table>
 </form>
 </div>
@@ -222,15 +208,14 @@ function enter(e){
 <table id="myTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
-<!--        <th><input type="checkbox"/></th> -->
             <th>no</th>
-            <th>발주번호</th>
-            <th>지점명</th>
-            <th>발주날짜</th>
-            <th>총 발주수량</th>
-            <th>발주금액</th>
-            <th>발주상태</th>
-            <th>입고상태</th>
+            <th>입고번호</th>
+            <th>발주 상품 번호</th>
+            <th>창고 번호</th>
+            <th>총 입고수량</th>
+            <th>입고 등록일</th>
+            <th>입고구분</th>
+            <th>거래처</th>
         </tr>
     </thead>
 </table>
