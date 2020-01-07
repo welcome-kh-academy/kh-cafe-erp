@@ -4,17 +4,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ImgFile {
 	private int fileno;
+	private int productNo;
 	private String originName;
 	private String storedName;
 	
 	private MultipartFile productImage;
 
-	
-
 	@Override
 	public String toString() {
-		return "ImgFile [fileno=" + fileno + ", originName=" + originName + ", storedName=" + storedName
-				+ ", productImage=" + productImage + "]";
+		return "ImgFile [fileno=" + fileno + ", productNo=" + productNo + ", originName=" + originName + ", storedName="
+				+ storedName + ", productImage=" + productImage + "]";
 	}
 
 	public int getFileno() {
@@ -25,6 +24,13 @@ public class ImgFile {
 		this.fileno = fileno;
 	}
 
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
 
 	public String getOriginName() {
 		return originName;

@@ -234,9 +234,11 @@ public class AddProductServiceImpl implements AddProductService {
 		//이미지 등록
 		ImgFile imgFile = new ImgFile();
 		if (map.get("originName") != null) {
+			
+			imgFile.setProductNo(productNo);
 			imgFile.setOriginName((String)map.get("originName"));
 			imgFile.setStoredName((String)map.get("storedName"));
-		addProductDao.insertImgfile(imgFile);		
+			addProductDao.insertImgFile(imgFile);		
 		}
 		
 	}
