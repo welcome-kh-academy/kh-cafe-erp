@@ -1,3 +1,4 @@
+
 package com.KHCafeErp.www.dto;
 
 public class ProductDetail {
@@ -38,3 +39,4 @@ public class ProductDetail {
 	}
 	
 }
+

@@ -61,6 +61,11 @@
 		SELECT productNo FROM product WHERE productName=#{productName}
 	</select>
 	
+
+	<insert id="insertProductDetail" parameterType="com.KHCafeErp.www.dto.ProductDetail">
+		INSERT INTO productDetail(productDetailNo, productNo, optionNo, shopNo) VALUES (productDetailNo_seq.nextval, #{productNo}, #{optionNo}, #{shopNo})
+	</insert>
+	
 	<insert id="insertAllProductDetail" parameterType="com.KHCafeErp.www.dto.ProductDetail">
          <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="select * from dual">
         	INTO productDetail(productDetailNo, productNo,  optionNo, shopNo)

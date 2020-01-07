@@ -5,6 +5,7 @@ import java.util.List;
 import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.OrderProduct;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface OrderDao {
@@ -34,5 +35,7 @@ public interface OrderDao {
 	public  List<OrderBase> selectOrderList(Paging paging); 
 
 	public int selectOrderListCnt(OrderBase orderBase);
+
+	public List<Shop> selectShopList();
 
 }

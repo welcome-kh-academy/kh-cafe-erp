@@ -150,7 +150,6 @@ public class AddProductServiceImpl implements AddProductService {
 			Product product = new Product();
 		   
 			product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
-			product.setShopNo((int)Float.parseFloat(article.get("B")));
 		   	product.setProductName(article.get("D"));
 		   	product.setProductContent(article.get("E"));
 		   	product.setOriginPrice((int)Float.parseFloat(article.get("F")));
@@ -164,18 +163,20 @@ public class AddProductServiceImpl implements AddProductService {
 		   
 		   	addProductDao.insertProduct(product);
 		   	
-		   	ProductOption productOption = new ProductOption();
+//		   	ProductOption productOption = new ProductOption();
+		   	ProductDetail productDetail = new ProductDetail();
 		   	String productName = product.getProductName();
 		   	
 		   	int productNo = addProductDao.getProductNo(productName);
 		   	System.out.println(productNo);
 		   	
-		   	productOption.setProductNo(productNo);
-		   	productOption.setOptionNo((int)Float.parseFloat(article.get("C")));
+		   	productDetail.setProductNo(productNo);
+			productDetail.setShopNo((int)Float.parseFloat(article.get("B")));
+		   	productDetail.setOptionNo((int)Float.parseFloat(article.get("C")));
 		   	
-		   	System.out.println(productOption);
+		   	System.out.println(productDetail);
 		   	
-//		   	addProductDao.insertProductOption(productOption);
+		   	addProductDao.insertProductDetail(productDetail);
 
 		  }
 		System.out.println(excelContent);
@@ -214,7 +215,7 @@ public class AddProductServiceImpl implements AddProductService {
 		List shopNo = (ArrayList)map.get("shopNo");
 		
 		for(Object i : shopNo) {
-			
+		
 			for(Object j : optionNo) {
 				ProductDetail productDetail = new ProductDetail();
 				
@@ -224,6 +225,7 @@ public class AddProductServiceImpl implements AddProductService {
 
 				list.add(productDetail);
 			}
+
 		}
 		
 		//상품 디테일 등록

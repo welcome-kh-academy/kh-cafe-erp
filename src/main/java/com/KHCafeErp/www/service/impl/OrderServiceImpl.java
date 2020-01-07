@@ -11,6 +11,7 @@ import com.KHCafeErp.www.dao.face.OrderDao;
 import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.OrderProduct;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.OrderService;
 import com.KHCafeErp.www.util.ExcelRead;
 import com.KHCafeErp.www.util.Paging;
@@ -96,6 +97,24 @@ public class OrderServiceImpl implements OrderService {
 		Paging paging = new Paging(totalCount, curPage);
 		
 		return paging;
+	}
+
+
+
+
+	@Override
+	public OrderProduct detailView(OrderBase orderBase) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public List<Shop> getShopList() {
+		// TODO Auto-generated method stub
+		return orderDao.selectShopList();
 	}
 
 }

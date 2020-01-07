@@ -5,10 +5,17 @@ import java.util.Map;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
+	/**
+	 * 상품의 사진을 받아온다
+	 * @param productNo - 상품의 사진을 받아올 상품 번호
+	 * @return - 상품의 사진
+	 */
+	public ImgFile selectImgFile(int productNo);
 	
 	public int selectCntAll(Product product);
 	/**

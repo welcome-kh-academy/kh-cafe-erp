@@ -77,6 +77,9 @@ public interface AddProductDao {
 
 	public int getProductNo(String productName);
 
+
+	public void insertProductDetail(ProductDetail productDetail);
+
 	/**
 	 * 상품상세정보 등록하기
 	 * 2020-01-06 서현석
@@ -84,6 +87,7 @@ public interface AddProductDao {
 	 * @param productDetail
 	 */
 	public void insertAllProductDetail(List<ProductDetail> productDetail);
+
 
 	/**
 	 * 상품정보 등록하기
