@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ManageProductService;
@@ -86,9 +87,11 @@ public class ManageProductController {
 
 		List<CategoryBase> category = manageProductService.getcategoryList();
 		Product product = manageProductService.getProduct(productNo);
+		ImgFile imgfile = manageProductService.getImgFile(productNo);
 		
 		model.addAttribute("category", category);
 		model.addAttribute("product", product);
+		model.addAttribute("imgfile", imgfile);
 		
 
 	}

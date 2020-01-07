@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.KHCafeErp.www.dao.face.OrderDao;
 import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.OrderProduct;
+import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.OrderService;
 import com.KHCafeErp.www.util.ExcelRead;
 import com.KHCafeErp.www.util.Paging;
@@ -79,23 +81,55 @@ public class OrderServiceImpl implements OrderService {
 
 
 	@Override
-	public List getOrderList(Paging paging) {
+	public List getOrderList(OrderBase orderBase) {
 		// TODO Auto-generated method stub
-		return orderDao.selectOrderList(paging);
+		return orderDao.selectOrderList(orderBase);
 		
 	}
+
+
+
+
+//	@Override
+//	public Paging getPaging(int curPage, OrderBase orderBase) {
+//		// TODO Auto-generated method stub
+//		int totalCount = orderDao.selectOrderListCnt(orderBase);
+//		
+//		Paging paging = new Paging(totalCount, curPage);
+//		
+//		return paging;
+//	}
+
+
+
+
+
 
 
 
 
 	@Override
-	public Paging getPaging(int curPage, OrderBase orderBase) {
+	public List<Shop> getShopList() {
 		// TODO Auto-generated method stub
-		int totalCount = orderDao.selectOrderListCnt(orderBase);
-		
-		Paging paging = new Paging(totalCount, curPage);
-		
-		return paging;
+		return orderDao.selectShopList();
 	}
+
+
+
+
+@Override
+public List<OrderProduct> selectorderProduct(OrderProduct orderProduct) {
+	// TODO Auto-generated method stub
+	return orderDao.selectorderProduct();
+}
+
+
+
+
+@Override
+public List<Product> selectProduct(Product product) {
+	// TODO Auto-generated method stub
+	return orderDao.selectProduct();
+}
 
 }

@@ -1,38 +1,40 @@
 package com.KHCafeErp.www.dto;
 
 public class OrderBase {
-	private int orderNo;
-	private int cusNo;
-	private int prdShopNo;
+	private Integer orderNo;
+	private Integer cusNo;
+	private Integer shopNo;
 	private String orderDate;
 	private String cusReq;
-	private int orderStatus;
+	private Integer orderStatus;
 	
-	private String prdShopName;
-	
+	private String shopName;
+	private String startDate;
+	private String endDate;
+
 	@Override
 	public String toString() {
-		return "OrderBase [orderNo=" + orderNo + ", cusNo=" + cusNo + ", prdShopNo=" + prdShopNo + ", orderDate="
-				+ orderDate + ", cusReq=" + cusReq + ", orderStatus=" + orderStatus + ", prdShopName=" + prdShopName
-				+ "]";
+		return "OrderBase [orderNo=" + orderNo + ", cusNo=" + cusNo + ", shopNo=" + shopNo + ", orderDate="
+				+ orderDate + ", cusReq=" + cusReq + ", orderStatus=" + orderStatus + ", prdShopName=" + shopName
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-	public int getOrderNo() {
+	public Integer getOrderNo() {
 		return orderNo;
 	}
-	public void setOrderNo(int orderNo) {
+	public void setOrderNo(Integer orderNo) {
 		this.orderNo = orderNo;
 	}
-	public int getCusNo() {
+	public Integer getCusNo() {
 		return cusNo;
 	}
-	public void setCusNo(int cusNo) {
+	public void setCusNo(Integer cusNo) {
 		this.cusNo = cusNo;
 	}
-	public int getPrdShopNo() {
-		return prdShopNo;
+	public Integer getShopNo() {
+		return shopNo;
 	}
-	public void setPrdShopNo(int prdShopNo) {
-		this.prdShopNo = prdShopNo;
+	public void setShopNo(Integer shopNo) {
+		this.shopNo = shopNo;
 	}
 	public String getOrderDate() {
 		return orderDate;
@@ -46,18 +48,30 @@ public class OrderBase {
 	public void setCusReq(String cusReq) {
 		this.cusReq = cusReq;
 	}
-	public int getOrderStatus() {
+	public Integer getOrderStatus() {
 		return orderStatus;
 	}
-	public void setOrderStatus(int orderStatus) {
+	public void setOrderStatus(Integer orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public final String getPrdShopName() {
-		return prdShopName;
+	public final String getshopName() {
+		return shopName;
 	}
-	public final void setPrdShopName(String prdShopName) {
-		this.prdShopName = prdShopName;
+	public final void setshopName(String prdShopName) {
+		this.shopName = prdShopName;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
-
+	
 }

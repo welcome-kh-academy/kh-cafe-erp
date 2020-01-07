@@ -5,10 +5,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.KHCafeErp.www.dao.face.OrderDao">
-	<select id="selectOrderList" resultType="com.KHCafeErp.www.dto.OrderBase" parameterType="com.KHCafeErp.www.util.Paging">
-		SELECT orderNo, cusNo, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName from orderBase, shop WHERE orderBase.shopNo=shop.shopNo
+	<select id="selectOrderList" resultType="com.KHCafeErp.www.dto.OrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
+		SELECT orderNo, cusNo, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName 
+		from orderBase, shop 
+		WHERE orderBase.shopNo=shop.shopNo AND orderDate BETWEEN #{startDate} AND #{endDate}
+		<if test="orderNo != null">
+			AND orderNo = #{orderNo}
+		</if>
+		<if test="shopNo != null">
+			AND orderBase.shopNo = #{shopNo}
+		</if>
+		
 	</select>
 
+<select id = "selectorderProduct" resultType="com.KHCafeErp.www.dto.OrderProduct" parameterType="com.KHCafeErp.www.dto.OrderProduct">
+	SELECT * FROM ORDERPRODUCT WHERE ORDERNO = #{ORDERNO}
+</select>
+
+<select id = "selectProduct" resultType="com.KHCafeErp.www.dto.Product" parameterType="com.KHCafeErp.www.dto.Product">
+	SELECT * FROM PRODUCT WHERE PRODUCTNO = #{PRODUCTNO}
+</select>
 
 <select id="selectOrderListCnt" resultType="int">
 		SELECT COUNT(1) FROM ORDERBASE
@@ -30,4 +46,7 @@
 		INSERT INTO orderProduct(orderPrdNo, orderNo, productOptionNo, productNo, productCnt) VALUES (orderProduct_seq.nextval, #{orderno}, #{productOptionNo}, #{productNo}, #{productCnt}) 
 	</insert>
 	
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT SHOPNO, SHOPNAME FROM SHOP
+	</select>
 </mapper>

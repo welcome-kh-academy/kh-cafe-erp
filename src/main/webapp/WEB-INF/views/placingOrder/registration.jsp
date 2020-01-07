@@ -7,56 +7,70 @@
 
 <style type="text/css">
 
-.placingOrder-info {
-	width : 30%;
-	margin-right : 5%;
-	float : left;
-}
-
-.placingOrder-content {
-	width : 60%;
-	margin-right : 5%;
-	float : left;
+.condition {
+    color: #FFFFFF;
+    background-color: #2C3E50;
+    border-color: #DEE2E6;
+    
+    width : 200px;
 }
 
 </style>
 
+<script type="text/javascript">
+$(document).ready( function () {
 
-<div class="placingOrder-info">
-<h3>발주 정보</h3>
-<table class="table">
-<tr>
-	<td class="thead-dark">발주일자</td>
-	<td></td>
-</tr>	
-<tr>	
-	<td class="thead-dark">납기일자</td>
-	<td></td>
-</tr>
-<tr>
-	<td>매입처명</td>
-	<td></td>
-</tr>
-<tr>
-	<td>요청자</td>
-	<td></td>
-</tr>
-<tr>
-	<td>담당부서</td>
-	<td></td>
-</tr>
-<tr>
-	<td>창고명</td>
-	<td></td>
-</tr>
+//select2 실행 코드
+	var $disabledResults = $(".search-select");
+	$disabledResults.select2();
+	
+});	
+</script>
 
-</table>
-
-
+<div class="placingOrder-enroll">
+<h4>발주 > 발주 입력</h4>
+<br>
+	<div style="margin: 5% 10% 0% 10%;">
+		<div style="margin-bottom : 10%;">
+		<h3>회사선택</h3>
+		<hr/>
+		<table class="table table-bordered">
+			<tr>
+				<td class="condition">지점명</td>
+				<td>본사</td>
+			</tr>
+			<tr>
+				<td class="condition">발주타입</td>
+				<td>
+					<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+						<option value="">전체</option>
+						<c:forEach var="shop" items="${shopList }" >
+							<option value="${shop.shopNo }">${shop.shopName }</option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+		</table>
+		</div>
+		
+		<div>
+		<h3>상품정보</h3>
+		<hr/>
+		<table class="table table-bordered">
+			<tr>
+				<td class="condition">판매상품 선택</td>
+				<td>
+					<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+						<option value="">전체</option>
+						<c:forEach var="shop" items="${shopList }" >
+							<option value="${shop.shopNo }">${shop.shopName }</option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+		</table>
+		</div>
+	</div>
 </div>
-<div class="placingOrder-content">
-<h3>발주 내용</h3>
-</div>
-
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>

@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.OrderBase;
-
+import com.KHCafeErp.www.dto.OrderProduct;
+import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface OrderService {
@@ -20,8 +22,15 @@ public interface OrderService {
 	 * 주문 목록에 나타낼 발주 조회
 	 * @return - 주문 목록
 	 */
-	public List getOrderList(Paging paging);
+	public List getOrderList(OrderBase orderBase);
 
-	public Paging getPaging(int curPage, OrderBase orderBase);
+//	public Paging getPaging(int curPage, OrderBase orderBase);
+	
+
+	public List<Shop> getShopList();
+	
+	public List<OrderProduct> selectorderProduct(OrderProduct orderProduct);
+	
+	public List<Product> selectProduct(Product product);
 
 }

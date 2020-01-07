@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.OrderBase;
-import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.OrderProduct;
+import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.OrderService;
 import com.KHCafeErp.www.util.Paging;
 
@@ -33,6 +37,8 @@ public class OrderController {
 
 	@RequestMapping(value="/order/orderlist" ,method=RequestMethod.GET)
 	public void Orderlist(Model model) {
+		List<Shop> shopList = orderService.getShopList();
+		model.addAttribute(shopList);
 		
 	}
 		
@@ -42,15 +48,10 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/order/search" ,method=RequestMethod.GET)
-	public ModelAndView releaseSearch(OrderBase orderBase, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
-		logger.info("releaseSearch()");
+	public ModelAndView releaseSearch(OrderBase orderBase, ModelAndView mav) {
 		
-		Paging paging = orderService.getPaging(curPage, orderBase);
-		logger.info(paging.toString());
+		List<OrderBase> orderBaseList = orderService.getOrderList(orderBase);
 
-		
-		List<OrderBase> orderBaseList = orderService.getOrderList(paging);
-		
 		List llist = new ArrayList();
 		List list = null;
 		
@@ -58,23 +59,19 @@ public class OrderController {
 			list = new ArrayList();
 			list.add(r.getOrderNo());
 			list.add(r.getCusNo());
-			list.add(r.getPrdShopNo());
+			list.add(r.getshopName());
 			list.add(r.getOrderDate());		
 			list.add(r.getCusReq());
 			if(r.getOrderStatus()==0){
 				list.add("장바구니");
 			}else if (r.getOrderStatus()==1) {
-					list.add("주문완료");
-				}else  {
-					list.add("결제완료");
-				}
-				
-			
-			
-			
+				list.add("주문완료");
+			}else  {
+				list.add("결제완료");
+			}
 			llist.add(list);
 		}
-		
+
 		mav.addObject("data",llist);
 //		mav.addObject("data",data);
 		mav.setViewName("jsonView");
@@ -82,7 +79,19 @@ public class OrderController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value = "/order/detailview" , method = RequestMethod.GET)
+	public void detailview(OrderProduct orderProduct, Product product, Model model) {		
+		System.out.println(orderProduct);
+		
+		List<OrderProduct> orderProductlist =orderService.selectorderProduct(orderProduct);
+		List<Product> productlist = orderService.selectProduct(product);
+		
+		model.addAttribute(orderProduct);
+		model.addAttribute(product);
+		
+		logger.info(orderProductlist.toString());
+		logger.info(productlist.toString());
+	}
 	// 19-12-31 유진 - 엑셀 업로드
 	@RequestMapping(value = "/order/upload", method = RequestMethod.POST)
 	public ModelAndView uploadExcel(MultipartHttpServletRequest request) {

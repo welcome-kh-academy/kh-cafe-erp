@@ -14,17 +14,17 @@
 	<annotation-driven />
 
  	<!-- 인터셉터 설정 -->
-	<interceptors>
-		<interceptor>
-			<mapping path="/**" />
-			<exclude-mapping path="/login/**"/>
-			<exclude-mapping path="/join/**"/>
-			<exclude-mapping path="/findinfo/**"/>
-			<exclude-mapping path="/resources/**"/>
-			<exclude-mapping path="/upload/**"/>
-			<beans:bean class="com.KHCafeErp.www.interceptor.Interceptor" />
-		</interceptor>
-	</interceptors>
+<!-- 	<interceptors> -->
+<!-- 		<interceptor> -->
+<!-- 			<mapping path="/**" /> -->
+<!-- 			<exclude-mapping path="/login/**"/> -->
+<!-- 			<exclude-mapping path="/join/**"/> -->
+<!-- 			<exclude-mapping path="/findinfo/**"/> -->
+<!-- 			<exclude-mapping path="/resources/**"/> -->
+<!-- 			<exclude-mapping path="/upload/**"/> -->
+<!-- 			<beans:bean class="com.KHCafeErp.www.interceptor.Interceptor" /> -->
+<!-- 		</interceptor> -->
+<!-- 	</interceptors> -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -84,6 +84,6 @@
 	
 	<!-- 컴포넌트를 스캔해볼 패키지를 지정하는 태그 -->
 	<context:component-scan
-	 base-package="com.KHCafeErp.www" />
+	 base-package="com.KHCafeErp.www.controller, com.KHCafeErp.www.service" />
 	
 </beans:beans>

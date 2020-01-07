@@ -4,11 +4,18 @@ import java.util.List;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface ManageProductService {
+	/**
+	 * 상품의 사진을 받아온다
+	 * @param productNo - 상품의 사진을 받을 상품 번호
+	 * @return - 상품의 사진
+	 */
+	public ImgFile getImgFile(int productNo);
 	/**
 	 * 페이징
 	 * @param Curpage - 현재 페이지 값 가져오기

@@ -5,4 +5,27 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.WarehousingDao">
 
+<insert id="insert" parameterType="com.KHCafeErp.www.dto.Warehousing">
+INSERT INTO InStockProduct (inStockNo, placingOrderProductNo, inStockDate, productCnt) 
+VALUES (inStockProductNo_seq, #{placingOrderProductNo },#{inStockDate }, #{productCnt } )
+
+<!-- INSERT INTO placingOrder (shopNo)  -->
+<!-- VALUES (#{shopNo } ) -->
+
+<!-- INSERT INTO ingredient (ingredientName, ingredientPrice)  -->
+<!-- VALUES (#{ingredientName }, #{ingredientPrice } ) -->
+</insert>
+	<select id="selectWarehousingList" parameterType="com.KHCafeErp.www.dto.Warehousing">
+		SELECT warehousingNO, placingOrderProductNo, storageNo, productCnt, inStockDate,isAutoInStock,inStockStatus,dealStore
+		FROM PLACINGORDER
+		WHERE 1=1
+		<if test="warehousingNO != null">
+    		AND warehousingNO = #{warehousingNO}
+  		</if>
+  		<if test="dealStore != null">
+    		AND dealStore = #{dealStore}
+  		</if>
+	
+	
+	</select>
 </mapper>
