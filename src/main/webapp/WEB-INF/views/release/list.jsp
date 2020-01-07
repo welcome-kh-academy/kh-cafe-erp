@@ -82,7 +82,7 @@ $(document).ready( function () {
     		   "targets": -1,
     		   "data": null,
     		   "render": function(data, type, row){
-    		    return '<button class="btn btn-primary" onclick="#">출고 등록</button>';
+    		    return '<button class="btn btn-primary" onclick="/release/add=releaseNo?">출고 등록</button>';
     	},
     	"orderable": false }],
     	"serverSide" : false, //클라이언트에서 처리

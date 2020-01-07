@@ -13,6 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Release;
@@ -78,23 +79,25 @@ public class ExcelWriter {
             cell.setCellValue(po.getPlacingOrderCnt());
             
             cell = row.createCell(4);
-            cell.setCellValue("2000");
+            cell.setCellValue(po.getPlacingOrderPrice());
             
             cell = row.createCell(5);
             if(po.getPlacingOrderStatus()==0) {		 
-				 cell.setCellValue("입고 확인");
+				 cell.setCellValue("발주 확인 전");
 			 } else if(po.getPlacingOrderStatus()==1) {
-				 cell.setCellValue("파손");				 				 
+				 cell.setCellValue("발주 확인");				 				 
 			 } else if(po.getPlacingOrderStatus()==2) {
-				 cell.setCellValue("누락");				 				 			 				 				 
+				 cell.setCellValue("출고 대기");				 				 			 				 				 
+			 } else if(po.getPlacingOrderStatus()==3) {
+				 cell.setCellValue("출고 완료");				 				 			 				 				 				 
 			 } else {
 				 cell.setCellValue("");				 				 			 				 				 				 				 				 
 			 }
             
             cell = row.createCell(6);
-            if(po.getInStockStatus()==1) {		 
+            if(po.getInStockStatus()==0) {		 
 				 cell.setCellValue("입고 대기");			 				 
-			 } else if(po.getInStockStatus()==2) {
+			 } else if(po.getInStockStatus()==1) {
 				 cell.setCellValue("입고 완료");				 				 			 				 				 
 			 } else {
 				 cell.setCellValue("");				 				 			 				 				 				 				 				 
@@ -318,5 +321,102 @@ public class ExcelWriter {
     	}
     }
     
+    public void orderXls(List<OrderBase> list) {
+        // 워크북 생성
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        // 워크시트 생성
+        HSSFSheet sheet = workbook.createSheet();
+        // 행 생성
+        HSSFRow row = sheet.createRow(0);
+        // 쎌 생성
+        HSSFCell cell;
+        
+        // 헤더 정보 구성
+        cell = row.createCell(0);
+        cell.setCellValue("주문 번호");
+        
+        cell = row.createCell(1);
+        cell.setCellValue("유저 번호");
+        
+        cell = row.createCell(2);
+        cell.setCellValue("지점명");
+        
+        cell = row.createCell(3);
+        cell.setCellValue("주문 날짜");
+        
+        cell = row.createCell(4);
+        cell.setCellValue("고객 요구사항");
+        
+        cell = row.createCell(5);
+        cell.setCellValue("진행 상태");
+        
+        // 리스트의 size 만큼 row를 생성
+        OrderBase ob;
+//        for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
+//        	ob = list.get(rowIdx);
+//            
+//            // 행 생성
+//            row = sheet.createRow(rowIdx+1);
+//            
+//            cell = row.createCell(0);
+//            cell.setCellValue(ob.getOrderNo());
+//            
+//            cell = row.createCell(1);
+//            cell.setCellValue(ob.getCusNo());
+//            
+//            cell = row.createCell(2);
+//            cell.setCellValue(ob.);
+//            
+//            cell = row.createCell(3);
+//            cell.setCellValue(ob.getPlacingOrderCnt());
+//            
+//            cell = row.createCell(4);
+//            cell.setCellValue("2000");
+//            
+//            cell = row.createCell(5);
+//            if(po.getPlacingOrderStatus()==0) {		 
+//				 cell.setCellValue("입고 확인");
+//			 } else if(po.getPlacingOrderStatus()==1) {
+//				 cell.setCellValue("파손");				 				 
+//			 } else if(po.getPlacingOrderStatus()==2) {
+//				 cell.setCellValue("누락");				 				 			 				 				 
+//			 } else {
+//				 cell.setCellValue("");				 				 			 				 				 				 				 				 
+//			 }
+//            
+//            cell = row.createCell(6);
+//            if(po.getInStockStatus()==1) {		 
+//				 cell.setCellValue("입고 대기");			 				 
+//			 } else if(po.getInStockStatus()==2) {
+//				 cell.setCellValue("입고 완료");				 				 			 				 				 
+//			 } else {
+//				 cell.setCellValue("");				 				 			 				 				 				 				 				 
+//			 }
+//            
+//        }
+        
+        // 입력된 내용 파일로 쓰기
+        String filename=date+"발주 목록.xls";
+    	File file = new File("D:\\"+filename);
+        FileOutputStream fos = null;
+        
+        try {
+            fos = new FileOutputStream(file);
+            workbook.write(fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(workbook!=null) workbook.close();
+                if(fos!=null) fos.close();
+                
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
