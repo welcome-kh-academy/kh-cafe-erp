@@ -27,16 +27,22 @@
 </style>
 
 <script type="text/javascript">
-function detailview(){
-	window.open
+
+var orderNo = 0;
+//팝업창 2/3지점 띄우기
+function detailview(orderNo){
+	var popupX = (document.body.offsetWidth / 2) - 500;
 	
+	var popupY= (document.body.offsetHeight / 2) - 300;
+	
+	window.open("/order/detailview?orderNo="+orderNo,"","width=1000, height=100, resizable=no, scrollbars=no"+", left="+ popupX + ", top="+ popupY)
 }
 // datatable
 $(document).ready( function () {
 	
 	var curPage = 1; //페이지 변수를 1로 초기화
 	
-    $('#myTable').DataTable({
+    table = $('#myTable').DataTable({
     	"scrollY" : 200, //테이블 고정 크기 설정
     	"scrollCollapse" : true, //가변 크기 막기
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
@@ -53,7 +59,7 @@ $(document).ready( function () {
             "data": null,
             "render": function(data, type, row){
             	
-             return '<button class="btn btn-primary" onclick="detailview()">상세보기</button>';
+             return '<button class="btn btn-primary" name = "detailBtn">상세보기</button>';
       },
       "orderable": false
 
@@ -73,6 +79,17 @@ $(document).ready( function () {
 				return json.data;
 			}
 		}
+    	
+    });
+	
+    $('#myTable').on('click', 'button[name="detailBtn"]' , function(){
+    	var outlayId = table.row($(this).parents('tr:first')).data()
+    	orderNo=outlayId[0]
+    	console.log(orderNo)
+    	
+    	detailview(orderNo)
+    	
+    	
     });
 });	
 
@@ -119,7 +136,8 @@ function getList() {
 // 		data : {
 // 			"curPage" : curPage,
 // 			"formData" : formData
-// 		},
+// 		0...0....................................0
+// }
 // 		dataType : "json",
 // 		error : function() {
 // 			alert("ajax오류!");
@@ -150,23 +168,21 @@ function popupOpen(){
 <hr/>
 
 <div class="condition-container">
-<form action="/placingOrder/management" method="post" id="placingOrderForm">
+<form action="/order/orderlist" method="post" id="OrderForm">
 <table class="table table-bordered">
 	<tr>
 		<th class="condition"><label for="placingOrderNo">주문번호</label></th>
 		<td><input type="number" value="${placingOrderList.placingOrderNo }" id="placingOrderNo" name="placingOrderNo"/></td>
 		<th class="condition"><label for="shopName">지점명</label></th>
-		<td><select name="shopName" id="shopName">
-		<option>역삼점</option>
-		<option>강남점</option>
-		<option>일산점</option>
-		<option>용인점</option>
-		<option>광교중앙로점</option>
-		<option>남양주점</option>
-		<option>성남점</option>
-		<option>잠실점</option>
+		<td>
+				<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+				<option value="">전체</option>
+				<c:forEach var="shop" items="${shopList }" >
+					<option value="${shop.shopNo }">${shop.shopName }</option>
+				</c:forEach>
+			</select>
 		
-		</select></td>
+		</td>
 		<td rowspan="3" style="vertical-align : middle;text-align:center;">
 			<button type="button" class="btn btn-primary btn-lg" onclick="getList()">검색</button>
 		</td>

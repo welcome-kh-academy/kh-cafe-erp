@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.OrderBase;
-import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.OrderService;
 import com.KHCafeErp.www.util.Paging;
 
@@ -33,6 +35,8 @@ public class OrderController {
 
 	@RequestMapping(value="/order/orderlist" ,method=RequestMethod.GET)
 	public void Orderlist(Model model) {
+		List<Shop> shopList = orderService.getShopList();
+		model.addAttribute(shopList);
 		
 	}
 		
@@ -64,17 +68,13 @@ public class OrderController {
 			if(r.getOrderStatus()==0){
 				list.add("장바구니");
 			}else if (r.getOrderStatus()==1) {
-					list.add("주문완료");
-				}else  {
-					list.add("결제완료");
-				}
-				
-			
-			
-			
+				list.add("주문완료");
+			}else  {
+				list.add("결제완료");
+			}
 			llist.add(list);
 		}
-		
+
 		mav.addObject("data",llist);
 //		mav.addObject("data",data);
 		mav.setViewName("jsonView");
@@ -82,7 +82,13 @@ public class OrderController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value = "/order/detailview" , method = RequestMethod.GET)
+	public ModelAndView detailview(OrderBase orderBase) {
+		ModelAndView view = new ModelAndView();
+		
+		orderService.detailView(orderBase);
+		return view;
+	}
 	// 19-12-31 유진 - 엑셀 업로드
 	@RequestMapping(value = "/order/upload", method = RequestMethod.POST)
 	public ModelAndView uploadExcel(MultipartHttpServletRequest request) {

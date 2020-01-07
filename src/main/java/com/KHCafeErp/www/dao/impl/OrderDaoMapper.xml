@@ -30,4 +30,7 @@
 		INSERT INTO orderProduct(orderPrdNo, orderNo, productOptionNo, productNo, productCnt) VALUES (orderProduct_seq.nextval, #{orderno}, #{productOptionNo}, #{productNo}, #{productCnt}) 
 	</insert>
 	
+	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT SHOPNO, SHOPNAME FROM SHOP
+	</select>
 </mapper>
