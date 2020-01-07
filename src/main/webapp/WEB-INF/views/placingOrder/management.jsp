@@ -58,6 +58,11 @@ $(document).ready( function () {
 	    if(month < 10) month = "0" + month;
 	    if(day < 10) day = "0" + day;
 	 
+	    if(month=="00"){
+	    	month="12";
+	    	year = year-1;
+	    }
+	    
 	    return year + "-" + month + "-" + day;
 	}
 	
@@ -192,7 +197,7 @@ function enter(e){
 			<select name="placingOrderStatus" id="placingOrderStatus"
 				class="select2-selection--single form-control">
 				<option value="0">발주확인전</option>
-				<option value="1">발주완료</option>
+				<option value="1">발주확인</option>
 				<option value="2">출고대기</option>
 				<option value="3">출고완료</option>
 			</select>

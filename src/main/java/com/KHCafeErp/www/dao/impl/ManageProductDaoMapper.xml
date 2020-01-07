@@ -18,55 +18,72 @@
 	<select id="selectShopAll" resultType="com.KHCafeErp.www.dto.Shop">
 		SELECT * FROM shop
 	</select>
-	<select id="selectProductAll" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.Product">
+	<select id="selectProductAll" parameterType="hashmap" resultType="com.KHCafeErp.www.dto.Product">
 
-<!-- 		SELECT  -->
-<!-- 			productno, -->
-<!-- 			categorymapno, -->
-<!-- 			shopno, -->
-<!-- 			productname, -->
-<!-- 			productcontent, -->
-<!-- 			originprice, -->
-<!-- 			price, -->
-<!-- 			productorigin, -->
-<!-- 			enrolldate, -->
-<!-- 			selstartdate, -->
-<!-- 			selenddate, -->
-<!-- 			selstatus, -->
-<!-- 			(SELECT shopName FROM shop WHERE product.shopNo = shop.shopNo ) AS shopName -->
-<!-- 		 FROM product ORDER BY productNo -->
 	
-			SELECT p.productNo, p.categoryMapNo, p.shopNo, s.shopName, productName, originPrice, price, productOrigin
-				, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo, cd.categoryDetailName
-		FROM product P, categoryDetail CD, categoryBase CB, shop S
-		WHERE 1=1
-			AND p.categoryMapNo = CD.categoryMapNo
-			AND CD.categoryno = cb.categoryNo
-			AND p.shopNo = s.shopNo
-			<if test="productNo != null and productNo != '' and productNo !=0">
-				AND p.productNo = #{ productNo }
-			</if>
-			<if test="productName != null and productName != ''">
-				AND productName LIKE '%'||#{ productName }||'%'
-			</if>
-			<if test="categoryMapNo != 0">
-				AND p.categoryMapNo = #{ categoryMapNo }
-			</if>
-			<if test="shopNo != 0">
-				AND p.shopNo = #{ shopNo }
-			</if>
-			ORDER BY productNo
+<!-- 			SELECT p.productNo, p.categoryMapNo, p.shopNo, s.shopName, productName, originPrice, price, productOrigin -->
+<!-- 				, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo, cd.categoryDetailName -->
+<!-- 		FROM product P, categoryDetail CD, categoryBase CB, shop S -->
+<!-- 		WHERE 1=1 -->
+<!-- 			AND p.categoryMapNo = CD.categoryMapNo -->
+<!-- 			AND CD.categoryno = cb.categoryNo -->
+<!-- 			AND p.shopNo = s.shopNo -->
+<!-- 			<if test="productNo != null and productNo != '' and productNo !=0"> -->
+<!-- 				AND p.productNo = #{ productNo } -->
+<!-- 			</if> -->
+<!-- 			<if test="productName != null and productName != ''"> -->
+<!-- 				AND productName LIKE '%'||#{ productName }||'%' -->
+<!-- 			</if> -->
+<!-- 			<if test="categoryMapNo != 0"> -->
+<!-- 				AND p.categoryMapNo = #{ categoryMapNo } -->
+<!-- 			</if> -->
+<!-- 			<if test="shopNo != 0"> -->
+<!-- 				AND p.shopNo = #{ shopNo } -->
+<!-- 			</if> -->
+<!-- 			ORDER BY productNo -->
+
+		SELECT * FROM (
+			SELECT ROWNUM rnum, B.*FROM (
+				SELECT DISTINCT(p.productNo), p.categoryMapNo, s.shopNo, s.shopName, productName, originPrice, price, productOrigin
+						, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo, cd.categoryDetailName
+				FROM product P, categoryDetail CD, categoryBase CB, shop S, productDetail PD
+				WHERE 1=1
+					AND p.categoryMapNo = CD.categoryMapNo
+					AND CD.categoryno = cb.categoryNo
+					AND P.productNo = pd.productNo
+					AND pd.shopNo = s.shopNo
+					<if test="productNo != null and productNo != 0">
+						AND p.productNo = #{ product.productNo }
+					</if>
+					<if test="productName != null and productName != ''">
+						AND productName LIKE '%'||#{ product.productName }||'%'
+					</if>
+					<if test="categoryMapNo != null and categoryMapNo != 0">
+						AND p.categoryMapNo = #{ product.categoryMapNo }
+					</if>
+					<if test="shopNo != null and shopNo != 0">
+						AND p.shopNo = #{ product.shopNo }
+					</if>
+					ORDER BY p.productNo
+				) B
+				ORDER BY rnum
+			) product
+			WHERE rnum BETWEEN #{ paging.startNo } AND #{ paging.endNo }
+
+
 
 	</select>
 	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT
-		    P.productno, P.categorymapno, P.shopno, productname
+		    P.productno, P.categorymapno, s.shopno, productname
 		    , productcontent, originprice, price, productorigin, enrolldate
 		    , selstartdate, selenddate, selstatus, CB.categoryName, CB.categoryNo, CD.categoryDetailName
-		FROM product P, categoryDetail CD, categoryBase CB
+		FROM product P, categoryDetail CD, categoryBase CB, productDetail PD, shop S
 		WHERE 1=1
 		    AND P.categoryMapNo = CD.categoryMapNo
 		    AND CD.categoryNo = CB.categoryNo
+		    AND P.productNo = PD.productNo
+		    AND PD.shopNo = S.shopNo
 		    AND P.productNo = #{productNo}
 	</select>
 	<update id="updateSelStartDate" parameterType="com.KHCafeErp.www.dto.Product">
@@ -88,18 +105,56 @@
 				productOrigin = #{ productOrigin }
 		WHERE productNo = #{ productNo }
 	</update>
-	<select id="selectSearchList" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.Product">
-		SELECT p.productNo, p.categoryMapNo, p.shopNo, s.shopName, productName, originPrice, price, productOrigin
-				, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo
-		FROM product P, categoryDetail CD, categoryBase CB, shop S
+	<select id="selectSearchList" parameterType="hashmap" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT * FROM (
+			SELECT rownum rnum, B.*FROM (
+				SELECT p.productNo, p.categoryMapNo, p.shopNo, s.shopName, productName, originPrice, price, productOrigin
+						, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo
+				FROM product P, categoryDetail CD, categoryBase CB, shop S
+				WHERE 1=1
+					AND p.categoryMapNo = CD.categoryMapNo
+					AND CD.categoryno = cb.categoryNo
+					AND p.shopNo = s.shopNo
+					<if test="productNo != null and productNo != 0">
+						AND p.productNo = #{ product.productNo }
+					</if>
+					<if test="productName != null and productName != ''">
+						AND productName LIKE '%'||#{ product.productName }||'%'
+					</if>
+					<if test="categoryMapNo != 0">
+						AND p.categoryMapNo = #{ product.categoryMapNo }
+					</if>
+					<if test="shopNo != 0">
+						AND p.shopNo = #{ product.shopNo }
+					</if>
+					ORDER BY p.productNo DESC
+				) B
+				ORDER BY rnum
+			) product
+			WHERE rnum BETWEEN #{ paging.startNo } AND #{ paging.endNo }
+	</select>
+	<delete id="deleteProduct" parameterType="com.KHCafeErp.www.dto.Product">
+		DELETE FROM product WHERE productNo = #{ productNo }
+	</delete>
+	
+	<select id="selectList" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT p.productNo, s.shopno, s.shopName, productName, originPrice, price, productOrigin
+				, selStartDate, enrollDate, selEndDate, selStatus, cd.categoryDetailName
+		FROM product P, categoryDetail CD, categoryBase CB, shop S, productDetail PD
 		WHERE 1=1
 			AND p.categoryMapNo = CD.categoryMapNo
 			AND CD.categoryno = cb.categoryNo
-			AND p.shopNo = s.shopNo
-			<if test="productNo != null">
+			AND P.productNo = PD.productNo
+			AND PD.shopNo = s.shopNo
+		ORDER BY p.productNo
+	</select>
+	<select id="selectCntAll" resultType="int" parameterType="com.KHCafeErp.www.dto.Product">
+		SELECT count(*) FROM product
+		WHERE 1=1
+		<if test="productNo != null and productNo != 0">
 				AND p.productNo = #{ productNo }
 			</if>
-			<if test="productName != ''">
+			<if test="productName != null and productName != '' ">
 				AND productName LIKE '%'||#{ productName }||'%'
 			</if>
 			<if test="categoryMapNo != 0">
@@ -109,18 +164,8 @@
 				AND p.shopNo = #{ shopNo }
 			</if>
 	</select>
-	<delete id="deleteProduct" parameterType="com.KHCafeErp.www.dto.Product">
-		DELETE FROM product WHERE productNo = #{ productNo }
-	</delete>
-	
-	<select id="selectList" resultType="com.KHCafeErp.www.dto.Product">
-		SELECT p.productNo, s.shopName, productName, originPrice, price, productOrigin
-				, selStartDate, enrollDate, selEndDate, selStatus, cd.categoryDetailName
-		FROM product P, categoryDetail CD, categoryBase CB, shop S
-		WHERE 1=1
-			AND p.categoryMapNo = CD.categoryMapNo
-			AND CD.categoryno = cb.categoryNo
-			AND p.shopNo = s.shopNo
-		ORDER BY p.productNo
+	<select id="selectImgFile" parameterType="int" resultType="com.KHCafeErp.www.dto.ImgFile">
+		SELECT * FROM imgFile
+		WHERE productNo = #{ productNo }
 	</select>
 </mapper>

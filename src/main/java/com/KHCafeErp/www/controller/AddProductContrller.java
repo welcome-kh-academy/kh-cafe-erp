@@ -124,14 +124,15 @@ public class AddProductContrller {
 		logger.info("addProductProc()");
 		logger.info(product.toString()); 
 //		logger.info(imgFile.toString());
+		
 		imgFile = addProductService.filesave(imgFile);
 		logger.info(imgFile.toString());
 
 		addProduct.put("productName", product.getProductName());
 		addProduct.put("productOrigin", product.getProductOrigin());
 		addProduct.put("productContent", product.getProductContent());
-		addProduct.put("fileOrigin", imgFile.getOriginName());
-		addProduct.put("fileStored", imgFile.getStoredName());
+		addProduct.put("originName", imgFile.getOriginName());
+		addProduct.put("storedName", imgFile.getStoredName());
 		addProduct.put("originPrice",product.getOriginPrice());
 		addProduct.put("price",product.getPrice());
 
@@ -216,11 +217,15 @@ public class AddProductContrller {
 	
 	@RequestMapping(value="/product/addShop", method=RequestMethod.POST)
 	public String addProductFinal(HttpSession session, @RequestParam(value="shopNo") String[] shopNoArr) {
-		
-		//shopNo 배열로 서버에서 받음.. 아직 처리는 못함
-		for(String i : shopNoArr) {
-			logger.info(i);
+
+		List shopNoList = new ArrayList();
+		for(int i=0;i<shopNoArr.length;i++) {
+			System.out.println(shopNoArr[i]);	
+			shopNoList.add(shopNoArr[i]);
 		}
+		
+		addProduct.put("shopNo", shopNoList);
+		session.setAttribute("addProduct", addProduct);
 		
 		addProductService.addProduct(session);
 		

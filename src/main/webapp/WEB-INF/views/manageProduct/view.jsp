@@ -123,7 +123,7 @@ function getCategory2(e){
         		<th>상품보기</th>
         		<td rowspan="2">
 		    		<div id="divProductImage">
-						<label for="productImage"><img src="/upload/${addProduct.fileStored }" style="width:125px; height:125px"/></label>
+						<label for="productImage"><img src="/upload/${ imgfile.StoredName }" style="width:125px; height:125px"/></label>
 						<input type="file" class="form-control-file" name="productImage" id="productImage">
 					</div>
         		</td>

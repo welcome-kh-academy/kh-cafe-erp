@@ -4,7 +4,8 @@ import java.io.File;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.OrderBase;
-
+import com.KHCafeErp.www.dto.OrderProduct;
+import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface OrderService {
@@ -23,5 +24,8 @@ public interface OrderService {
 	public List getOrderList(Paging paging);
 
 	public Paging getPaging(int curPage, OrderBase orderBase);
+	
+	public OrderProduct detailView(OrderBase orderBase);
+	public List<Shop> getShopList();
 
 }

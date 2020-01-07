@@ -24,6 +24,7 @@ import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.ProductDetail;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
@@ -149,7 +150,6 @@ public class AddProductServiceImpl implements AddProductService {
 			Product product = new Product();
 		   
 			product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
-			product.setShopNo((int)Float.parseFloat(article.get("B")));
 		   	product.setProductName(article.get("D"));
 		   	product.setProductContent(article.get("E"));
 		   	product.setOriginPrice((int)Float.parseFloat(article.get("F")));
@@ -163,18 +163,20 @@ public class AddProductServiceImpl implements AddProductService {
 		   
 		   	addProductDao.insertProduct(product);
 		   	
-		   	ProductOption productOption = new ProductOption();
+//		   	ProductOption productOption = new ProductOption();
+		   	ProductDetail productDetail = new ProductDetail();
 		   	String productName = product.getProductName();
 		   	
 		   	int productNo = addProductDao.getProductNo(productName);
 		   	System.out.println(productNo);
 		   	
-		   	productOption.setProductNo(productNo);
-		   	productOption.setOptionNo((int)Float.parseFloat(article.get("C")));
+		   	productDetail.setProductNo(productNo);
+			productDetail.setShopNo((int)Float.parseFloat(article.get("B")));
+		   	productDetail.setOptionNo((int)Float.parseFloat(article.get("C")));
 		   	
-		   	System.out.println(productOption);
+		   	System.out.println(productDetail);
 		   	
-		   	addProductDao.insertProductOption(productOption);
+		   	addProductDao.insertProductDetail(productDetail);
 
 		  }
 		System.out.println(excelContent);
@@ -195,11 +197,7 @@ public class AddProductServiceImpl implements AddProductService {
 		product.setProductOrigin((String)map.get("productOrigin"));
 		product.setOriginPrice((int)map.get("originPrice"));
 		product.setCategoryName((String)map.get("categoryName"));
-		product.setProductName((String)map.get("productName"));
-
-		//가짜데이터
-		product.setShopNo(9); //지점
-		
+		product.setProductName((String)map.get("productName"));		
 		product.setSelStartDate("20200101");
 		product.setSelEndDate("20200101");
 		product.setSelStatus(1);
@@ -211,24 +209,36 @@ public class AddProductServiceImpl implements AddProductService {
 	   	int productNo = addProductDao.getProductNo((String)map.get("productName"));
 		product.setProductNo(productNo);
 		
-		ProductOption productOption = new ProductOption();
+		List<ProductDetail> list = new ArrayList<ProductDetail>();
 		
 		List optionNo = (ArrayList)map.get("option");
-		for(Object i : optionNo) {
-			
-			productOption.setProductNo(productNo);
-			productOption.setOptionNo(Integer.parseInt((String) i)); 
-			
-			//상품옵션 등록
-			addProductDao.insertProductOption(productOption);
+		List shopNo = (ArrayList)map.get("shopNo");
+		
+		for(Object i : shopNo) {
+		
+			for(Object j : optionNo) {
+				ProductDetail productDetail = new ProductDetail();
+				
+				productDetail.setShopNo(Integer.parseInt((String) i));
+				productDetail.setProductNo(productNo);
+				productDetail.setOptionNo(Integer.parseInt((String) j)); 
+
+				list.add(productDetail);
+			}
+
 		}
 		
+		//상품 디테일 등록
+		addProductDao.insertAllProductDetail(list);
+
 		//이미지 등록
 		ImgFile imgFile = new ImgFile();
 		if (map.get("originName") != null) {
+			
+			imgFile.setProductNo(productNo);
 			imgFile.setOriginName((String)map.get("originName"));
 			imgFile.setStoredName((String)map.get("storedName"));
-		addProductDao.insertImgfile(imgFile);		
+			addProductDao.insertImgFile(imgFile);		
 		}
 		
 	}

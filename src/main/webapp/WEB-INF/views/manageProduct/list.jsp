@@ -4,7 +4,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+
+
 <style type="text/css">
+
+.pagination {
+	text-align: center;
+}
 #checkbox {
     vertical-align: baseline;
 }
@@ -400,7 +406,7 @@ function getCategory(e){
    		</td>
    		<td>
    			<div class="form-group">
-   				<button id="searchSubmit" class="btn btn-primary btn-block"><i class="fas fa-search"></i></button>
+   				<button id="searchSubmit" class="btn btn-primary btn-block"><i class="fas fa-search">검색</i></button>
    				<a href="/manageProduct/list"><i class="fas fa-redo fa-2x"></i></a>
 				<button style="margin-left:20px" id="excelDown" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModalLong">Excel 다운로드</button>
    			</div>
@@ -491,7 +497,7 @@ function getCategory(e){
 		<td><button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
 		  상세 / 수정
 		</button></td>
-      	<td><button id="listDelBtn" class="btn btn-primary delList" data-toggle="modal" data-target="#exampleModalLong" data-productNo="${ p.productNo }">삭제</button></td>
+      	<td><button id="listDelBtn" class="btn btn-primary delList" data-toggle="modal" data-target="#exampleModalLong" data-productNo="${ p.productNo }"><i class="far fa-trash-alt"></i></button></td>
     </tr>
       	</c:forEach>
   </tbody>
@@ -506,7 +512,35 @@ function getCategory(e){
   </div><!-- .modal-dialog -->
 </div>
 
+<!-- 페이징 -->
 
+<jsp:include page="/WEB-INF/views/manageProduct/paging.jsp" />
+
+<!-- <div class=""> -->
+<!--   <ul class="pagination"> -->
+<!--     <li class="page-item disabled"> -->
+<!--       <a class="page-link" href="#">&laquo;</a> -->
+<!--     </li> -->
+<!--     <li class="page-item active"> -->
+<!--       <a class="page-link" href="#">1</a> -->
+<!--     </li> -->
+<!--     <li class="page-item"> -->
+<!--       <a class="page-link" href="#">2</a> -->
+<!--     </li> -->
+<!--     <li class="page-item"> -->
+<!--       <a class="page-link" href="#">3</a> -->
+<!--     </li> -->
+<!--     <li class="page-item"> -->
+<!--       <a class="page-link" href="#">4</a> -->
+<!--     </li> -->
+<!--     <li class="page-item"> -->
+<!--       <a class="page-link" href="#">5</a> -->
+<!--     </li> -->
+<!--     <li class="page-item"> -->
+<!--       <a class="page-link" href="#">&raquo;</a> -->
+<!--     </li> -->
+<!--   </ul> -->
+<!-- </div> -->
 
 
 
