@@ -1,39 +1,43 @@
 package com.KHCafeErp.www.dto;
 
 public class Release {
-	private int releaseNo;
-	private int placingOrderNo;
-	private int releaseStatus;
+	private Integer releaseNo;
+	private Integer placingOrderNo;
+	private Integer releaseStatus;
 	private String releaseDate;
 	private String shopName;
-	
+	private Integer shopNo;
+	private String startDate; //시작일
+	private String endDate; //종료일
+
 	@Override
 	public String toString() {
 		return "Release [releaseNo=" + releaseNo + ", placingOrderNo=" + placingOrderNo + ", releaseStatus="
-				+ releaseStatus + ", releaseDate=" + releaseDate + ", shopName=" + shopName + "]";
+				+ releaseStatus + ", releaseDate=" + releaseDate + ", shopName=" + shopName + ", shopNo=" + shopNo
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 
-	public final int getReleaseNo() {
+	public final Integer getReleaseNo() {
 		return releaseNo;
 	}
 
-	public final void setReleaseNo(int releaseNo) {
+	public final void setReleaseNo(Integer releaseNo) {
 		this.releaseNo = releaseNo;
 	}
 
-	public final int getPlacingOrderNo() {
+	public final Integer getPlacingOrderNo() {
 		return placingOrderNo;
 	}
 
-	public final void setPlacingOrderNo(int placingOrderNo) {
+	public final void setPlacingOrderNo(Integer placingOrderNo) {
 		this.placingOrderNo = placingOrderNo;
 	}
 
-	public final int getReleaseStatus() {
+	public final Integer getReleaseStatus() {
 		return releaseStatus;
 	}
 
-	public final void setReleaseStatus(int releaseStatus) {
+	public final void setReleaseStatus(Integer releaseStatus) {
 		this.releaseStatus = releaseStatus;
 	}
 
@@ -51,6 +55,30 @@ public class Release {
 
 	public final void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+
+	public final String getStartDate() {
+		return startDate;
+	}
+
+	public final void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public final String getEndDate() {
+		return endDate;
+	}
+
+	public final void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public final Integer getShopNo() {
+		return shopNo;
+	}
+
+	public final void setShopNo(Integer shopNo) {
+		this.shopNo = shopNo;
 	}
 
 	

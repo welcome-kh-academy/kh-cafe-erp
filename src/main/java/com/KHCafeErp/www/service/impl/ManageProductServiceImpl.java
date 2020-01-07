@@ -1,6 +1,8 @@
 package com.KHCafeErp.www.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,13 +10,32 @@ import org.springframework.stereotype.Service;
 import com.KHCafeErp.www.dao.face.ManageProductDao;
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ManageProductService;
+import com.KHCafeErp.www.util.Paging;
 @Service
 public class ManageProductServiceImpl implements ManageProductService{
 	
 	@Autowired ManageProductDao manageProductDao;
+	
+	@Override
+	public ImgFile getImgFile(int productNo) {
+		return manageProductDao.selectImgFile(productNo);
+	}
+	
+	@Override
+	public Paging getPaging(Paging page, Product product) {
+		
+		
+		int totalCount = manageProductDao.selectCntAll(product);
+		
+		
+		Paging paging = new Paging (totalCount, page.getCurPage());
+		
+		return paging;
+	}
 	
 	@Override
 	public void deleteProduct(Product product) {
@@ -43,8 +64,13 @@ public class ManageProductServiceImpl implements ManageProductService{
 	}
 	
 	@Override
-	public List<Product> getProductList(Product product) {
-		return manageProductDao.selectProductAll(product);
+	public List<Product> getProductList(Paging paging, Product product) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("paging", paging);
+		map.put("product", product);
+		
+		return manageProductDao.selectProductAll(map);
 	}
 	
 	@Override

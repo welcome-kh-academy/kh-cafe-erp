@@ -5,4 +5,18 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.WarehousingDao">
 
+<insert id="insert" parameterType="com.KHCafeErp.www.dto.Warehousing">
+INSERT INTO InStockProduct (inStockNo, placingOrderProductNo, inStockDate, productCnt) 
+VALUES (inStockProductNo_seq, #{placingOrderProductNo },#{inStockDate }, #{productCnt } )
+
+<!-- INSERT INTO placingOrder (shopNo)  -->
+<!-- VALUES (#{shopNo } ) -->
+
+<!-- INSERT INTO ingredient (ingredientName, ingredientPrice)  -->
+<!-- VALUES (#{ingredientName }, #{ingredientPrice } ) -->
+</insert>
+
+
+
+
 </mapper>

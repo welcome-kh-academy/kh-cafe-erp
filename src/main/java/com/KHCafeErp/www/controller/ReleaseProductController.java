@@ -40,6 +40,7 @@ public class ReleaseProductController {
 	@RequestMapping(value="/release/search" ,method=RequestMethod.GET)
 	public ModelAndView releaseSearch(Release release, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
 		logger.info("releaseSearch()");
+		System.out.println(release);
 		List<Release> releaseList = releaseProductService.getReleaseList(release);
 		System.out.println(releaseList);
 		

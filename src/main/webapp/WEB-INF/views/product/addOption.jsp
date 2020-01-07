@@ -160,7 +160,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<th class="table-primary">사진</th>
-				<td colspan="4"><img src="/upload/${addProduct.fileStored }" style="width:125px; height:125px"/></td>
+				<td colspan="4"><img src="/upload/${addProduct.storedName }" style="width:125px; height:125px"/></td>
 			</tr>
 			<tr>
 				<th class="table-primary" style="width:20%">원가</th>
