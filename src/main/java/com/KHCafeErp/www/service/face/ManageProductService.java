@@ -6,8 +6,15 @@ import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
+import com.KHCafeErp.www.util.Paging;
 
 public interface ManageProductService {
+	/**
+	 * 페이징
+	 * @param Curpage - 현재 페이지 값 가져오기
+	 * @return - 페이지 결과
+	 */
+	public Paging getPaging(Paging page, Product product);
 	/**
 	 * 상품을 목록에서 삭제한다
 	 * @param product - 삭제할 상품 번호
@@ -38,7 +45,7 @@ public interface ManageProductService {
 	 * 등록되있는 상품 목록 불러오기 및 검색조건 
 	 * @return - 상품 목록
 	 */
-	public List<Product> getProductList(Product product);
+	public List<Product> getProductList(Paging paging, Product product);
 	/**
 	 * 지점 목록 불러오기
 	 * @return - 지점 목록
