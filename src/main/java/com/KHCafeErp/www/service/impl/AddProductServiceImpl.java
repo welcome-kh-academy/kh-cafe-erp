@@ -24,6 +24,7 @@ import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.ProductDetail;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.AddProductService;
@@ -149,7 +150,6 @@ public class AddProductServiceImpl implements AddProductService {
 			Product product = new Product();
 		   
 			product.setCategoryMapNo((int)Float.parseFloat(article.get("A")));
-			product.setShopNo((int)Float.parseFloat(article.get("B")));
 		   	product.setProductName(article.get("D"));
 		   	product.setProductContent(article.get("E"));
 		   	product.setOriginPrice((int)Float.parseFloat(article.get("F")));
@@ -163,18 +163,20 @@ public class AddProductServiceImpl implements AddProductService {
 		   
 		   	addProductDao.insertProduct(product);
 		   	
-		   	ProductOption productOption = new ProductOption();
+//		   	ProductOption productOption = new ProductOption();
+		   	ProductDetail productDetail = new ProductDetail();
 		   	String productName = product.getProductName();
 		   	
 		   	int productNo = addProductDao.getProductNo(productName);
 		   	System.out.println(productNo);
 		   	
-		   	productOption.setProductNo(productNo);
-		   	productOption.setOptionNo((int)Float.parseFloat(article.get("C")));
+		   	productDetail.setProductNo(productNo);
+			productDetail.setShopNo((int)Float.parseFloat(article.get("B")));
+		   	productDetail.setOptionNo((int)Float.parseFloat(article.get("C")));
 		   	
-		   	System.out.println(productOption);
+		   	System.out.println(productDetail);
 		   	
-		   	addProductDao.insertProductOption(productOption);
+		   	addProductDao.insertProductDetail(productDetail);
 
 		  }
 		System.out.println(excelContent);
@@ -220,7 +222,7 @@ public class AddProductServiceImpl implements AddProductService {
 			productOption.setOptionNo(Integer.parseInt((String) i)); 
 			
 			//상품옵션 등록
-			addProductDao.insertProductOption(productOption);
+//			addProductDao.insertProductOption(productOption);
 		}
 		
 		//이미지 등록

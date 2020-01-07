@@ -6,7 +6,7 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.OrderDao">
 	<select id="selectOrderList" resultType="com.KHCafeErp.www.dto.OrderBase" parameterType="com.KHCafeErp.www.util.Paging">
-		SELECT * from orderBase
+		SELECT orderNo, cusNo, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName from orderBase, shop WHERE orderBase.shopNo=shop.shopNo
 	</select>
 
 

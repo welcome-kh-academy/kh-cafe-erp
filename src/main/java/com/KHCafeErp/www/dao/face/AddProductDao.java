@@ -8,6 +8,7 @@ import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.OptionBase;
 import com.KHCafeErp.www.dto.Product;
+import com.KHCafeErp.www.dto.ProductDetail;
 import com.KHCafeErp.www.dto.ProductOption;
 import com.KHCafeErp.www.dto.Shop;
 
@@ -76,7 +77,7 @@ public interface AddProductDao {
 
 	public int getProductNo(String productName);
 
-	public void insertProductOption(ProductOption productOption);
+	public void insertProductDetail(ProductDetail productDetail);
 
 	/**
 	 * 상품정보 등록하기
