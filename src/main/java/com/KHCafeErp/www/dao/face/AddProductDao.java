@@ -18,7 +18,7 @@ public interface AddProductDao {
 	 * 상품의 이미지파일을 저장한다
 	 * @param imgFile - 저장할 이미지 파일
 	 */
-	public void insertImgfile(ImgFile imgFile);
+	public void insertImgFile(ImgFile imgFile);
 	
 	/**
 	 * 19-12-26

@@ -124,14 +124,15 @@ public class AddProductContrller {
 		logger.info("addProductProc()");
 		logger.info(product.toString()); 
 //		logger.info(imgFile.toString());
+		
 		imgFile = addProductService.filesave(imgFile);
 		logger.info(imgFile.toString());
 
 		addProduct.put("productName", product.getProductName());
 		addProduct.put("productOrigin", product.getProductOrigin());
 		addProduct.put("productContent", product.getProductContent());
-		addProduct.put("fileOrigin", imgFile.getOriginName());
-		addProduct.put("fileStored", imgFile.getStoredName());
+		addProduct.put("originName", imgFile.getOriginName());
+		addProduct.put("storedName", imgFile.getStoredName());
 		addProduct.put("originPrice",product.getOriginPrice());
 		addProduct.put("price",product.getPrice());
 

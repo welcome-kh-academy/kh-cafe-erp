@@ -70,7 +70,7 @@
 	</insert>
 	
 	<insert id="insertImgFile" parameterType="com.KHCafeErp.www.dto.ImgFile">
-		INSERT INTO imgfile VALUES (fileNo_seq.nextval, #{ originName }, #{ storedName })
+		INSERT INTO imgfile VALUES (imgfileNo_seq.nextval, #{ productNo }, #{ originName }, #{ storedName })
 	</insert>
 	
 	<select id="selectPrdList" resultType="com.KHCafeErp.www.dto.Product">
