@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.KHCafeErp.www.dao.face.ManageProductDao;
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
+import com.KHCafeErp.www.dto.ImgFile;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ManageProductService;
@@ -18,6 +19,11 @@ import com.KHCafeErp.www.util.Paging;
 public class ManageProductServiceImpl implements ManageProductService{
 	
 	@Autowired ManageProductDao manageProductDao;
+	
+	@Override
+	public ImgFile getImgFile(int productNo) {
+		return manageProductDao.selectImgFile(productNo);
+	}
 	
 	@Override
 	public Paging getPaging(Paging page, Product product) {

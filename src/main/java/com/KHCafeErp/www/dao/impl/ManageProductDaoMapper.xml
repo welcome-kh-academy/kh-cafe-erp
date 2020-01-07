@@ -75,13 +75,15 @@
 	</select>
 	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT
-		    P.productno, P.categorymapno, P.shopno, productname
+		    P.productno, P.categorymapno, s.shopno, productname
 		    , productcontent, originprice, price, productorigin, enrolldate
 		    , selstartdate, selenddate, selstatus, CB.categoryName, CB.categoryNo, CD.categoryDetailName
-		FROM product P, categoryDetail CD, categoryBase CB
+		FROM product P, categoryDetail CD, categoryBase CB, productDetail PD, shop S
 		WHERE 1=1
 		    AND P.categoryMapNo = CD.categoryMapNo
 		    AND CD.categoryNo = CB.categoryNo
+		    AND P.productNo = PD.productNo
+		    AND PD.shopNo = S.shopNo
 		    AND P.productNo = #{productNo}
 	</select>
 	<update id="updateSelStartDate" parameterType="com.KHCafeErp.www.dto.Product">
@@ -136,13 +138,14 @@
 	</delete>
 	
 	<select id="selectList" resultType="com.KHCafeErp.www.dto.Product">
-		SELECT p.productNo, s.shopName, productName, originPrice, price, productOrigin
+		SELECT p.productNo, s.shopno, s.shopName, productName, originPrice, price, productOrigin
 				, selStartDate, enrollDate, selEndDate, selStatus, cd.categoryDetailName
-		FROM product P, categoryDetail CD, categoryBase CB, shop S
+		FROM product P, categoryDetail CD, categoryBase CB, shop S, productDetail PD
 		WHERE 1=1
 			AND p.categoryMapNo = CD.categoryMapNo
 			AND CD.categoryno = cb.categoryNo
-			AND p.shopNo = s.shopNo
+			AND P.productNo = PD.productNo
+			AND PD.shopNo = s.shopNo
 		ORDER BY p.productNo
 	</select>
 	<select id="selectCntAll" resultType="int" parameterType="com.KHCafeErp.www.dto.Product">
@@ -160,5 +163,9 @@
 			<if test="shopNo != 0">
 				AND p.shopNo = #{ shopNo }
 			</if>
+	</select>
+	<select id="selectImgFile" parameterType="int" resultType="com.KHCafeErp.www.dto.ImgFile">
+		SELECT * FROM imgFile
+		WHERE productNo = #{ productNo }
 	</select>
 </mapper>
