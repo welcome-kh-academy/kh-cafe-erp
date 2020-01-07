@@ -153,14 +153,8 @@ li{
         	<a class="nav-link" href="#">직 원 관 리</a>
       	</li>    
       </c:if> 
-      <li class="nav-item dropdown">
-        <a class="nav-link" href="#">C&nbsp;&nbsp;&nbsp;S</a>
-        <div class="dropdown-menu">
-        <ul>
-        	<li><a href="#">클레임 내역</a></li>
-        	<li><a href="#">상담 내역</a></li>
-        </ul>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="/cs/list">C&nbsp;&nbsp;&nbsp;S</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/notice/list">공 지 사 항</a>
