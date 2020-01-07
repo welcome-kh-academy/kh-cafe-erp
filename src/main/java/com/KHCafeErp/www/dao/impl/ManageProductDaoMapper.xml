@@ -44,7 +44,7 @@
 
 		SELECT * FROM (
 			SELECT ROWNUM rnum, B.*FROM (
-				SELECT p.productNo, p.categoryMapNo, s.shopNo, s.shopName, productName, originPrice, price, productOrigin
+				SELECT DISTINCT(p.productNo), p.categoryMapNo, s.shopNo, s.shopName, productName, originPrice, price, productOrigin
 						, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo, cd.categoryDetailName
 				FROM product P, categoryDetail CD, categoryBase CB, shop S, productDetail PD
 				WHERE 1=1
