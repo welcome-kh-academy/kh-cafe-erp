@@ -20,20 +20,20 @@ public class WarehousingController {
 	//입고 등록 페이지
 	@RequestMapping(value="/warehousing/registration")
 	public String registration() {
-		
-		logger.info("입고 등록 페이지 확인");
-		
 		return "warehousing/registration";
 	}
+	
+	@RequestMapping(value="/warehousing/prdSearchPopup")
+	public void prdSearch() {
+	}
+	
 	
 	@RequestMapping(value="/warehousing/registration", method = RequestMethod.POST)
 	public String registrationProcess(Warehousing warehousing) {
 		
 		logger.info("입고 처리 페이지 확인");
-		
 		warehousingService.registration(warehousing);
 		
 		return "redirect:/warehousing/registration";
 	}
-	
 }
