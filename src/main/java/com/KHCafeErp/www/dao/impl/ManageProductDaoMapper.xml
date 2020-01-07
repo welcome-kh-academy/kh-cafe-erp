@@ -43,14 +43,15 @@
 <!-- 			ORDER BY productNo -->
 
 		SELECT * FROM (
-			SELECT rownum rnum, B.*FROM (
+			SELECT ROWNUM rnum, B.*FROM (
 				SELECT p.productNo, p.categoryMapNo, s.shopNo, s.shopName, productName, originPrice, price, productOrigin
 						, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo, cd.categoryDetailName
-				FROM product P, categoryDetail CD, categoryBase CB, shop S
+				FROM product P, categoryDetail CD, categoryBase CB, shop S, productDetail PD
 				WHERE 1=1
 					AND p.categoryMapNo = CD.categoryMapNo
 					AND CD.categoryno = cb.categoryNo
-					AND p.shopNo = s.shopNo
+					AND P.productNo = pd.productNo
+					AND pd.shopNo = s.shopNo
 					<if test="productNo != null and productNo != 0">
 						AND p.productNo = #{ product.productNo }
 					</if>
