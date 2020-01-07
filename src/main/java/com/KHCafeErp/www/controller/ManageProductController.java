@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
-import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ManageProductService;
 import com.KHCafeErp.www.util.ExcelWriter;
+import com.KHCafeErp.www.util.Paging;
 
 @Controller
 public class ManageProductController {
@@ -28,12 +28,13 @@ public class ManageProductController {
 	
 	//리스트 불러오기
 	@RequestMapping(value="/manageProduct/list", method=RequestMethod.GET)
-	public void productList(Model model,
+	public void productList(Model model, Paging page,
 			@RequestParam(defaultValue = "0") int productNo,
 			String productName,
 			@RequestParam(defaultValue = "0") int categoryNo,
 			@RequestParam(defaultValue = "0") int categoryMapNo,
 			@RequestParam(defaultValue = "0") int shopNo) {
+		
 		
 //		logger.info("상품관리");
 		Product product = new Product();
@@ -45,10 +46,16 @@ public class ManageProductController {
 		
 		logger.info("검색조건 :" + product);
 
+		//페이징 계산
+		Paging paging = manageProductService.getPaging(page, product);
+		
+		model.addAttribute("paging", paging);
+
 		List<CategoryBase> category = manageProductService.getcategoryList();
 		List<Shop> shop = manageProductService.getShopList();
-		
-		List<Product> productList = manageProductService.getProductList(product);
+//		
+////		List<Product> productList = manageProductService.getProductList(product);
+		List<Product> productList = manageProductService.getProductList(paging, product);
 		
 		logger.info("검색결과 : " + productList);
 		

@@ -217,12 +217,16 @@ public class AddProductContrller {
 	@RequestMapping(value="/product/addShop", method=RequestMethod.POST)
 	public String addProductFinal(HttpSession session, @RequestParam(value="shopNo") String[] shopNoArr) {
 
-		for(String i : shopNoArr) {
-			logger.info(i);
+		List shopNoList = new ArrayList();
+		for(int i=0;i<shopNoArr.length;i++) {
+			System.out.println(shopNoArr[i]);	
+			shopNoList.add(shopNoArr[i]);
 		}
 		
+		addProduct.put("shopNo", shopNoList);
+		session.setAttribute("addProduct", addProduct);
+		
 		addProductService.addProduct(session);
-//		addProductService.addPrdShop(shopNoArr);
 		
 		return "redirect:/manageProduct/list";
 	}

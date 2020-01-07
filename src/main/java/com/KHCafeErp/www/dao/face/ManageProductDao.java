@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
+import java.util.Map;
 
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
@@ -8,11 +9,13 @@ import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
+	
+	public int selectCntAll(Product product);
 	/**
 	 * 상품을 목록에서 삭제한다
 	 * @param prouduct - 삭제할 상품 번호
 	 */
-	public void deleteProduct(Product prouduct);
+	public void deleteProduct(Product product);
 	/**
 	 * 검색조건으로 검색결과를 가져온다
 	 * @param product - 검색 조건 값들
@@ -38,7 +41,7 @@ public interface ManageProductDao {
 	 * 등록되있는 상품 목록 불러오기
 	 * @return - 상품 목록
 	 */
-	public List<Product> selectProductAll(Product product);
+	public List<Product> selectProductAll(Map<String, Object> map);
 	/**
 	 * 지점 목록 불러오기
 	 * @return - 지점 목록

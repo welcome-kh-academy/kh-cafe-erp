@@ -1,48 +1,42 @@
+
 package com.KHCafeErp.www.dto;
 
 public class ProductDetail {
-	private int productDetailNo;
+
+	private int productdetailNo;
 	private int productNo;
-	private int optionNo;
 	private int shopNo;
+	private int optionNo;
 	
 	@Override
 	public String toString() {
-		return "ProductDetail [productDetailNo=" + productDetailNo + ", productNo=" + productNo + ", optionNo="
-				+ optionNo + ", shopNo=" + shopNo + "]";
+		return "ProductDetail [productdetailNo=" + productdetailNo + ", productNo=" + productNo + ", shopNo=" + shopNo
+				+ ", optionNo=" + optionNo + "]";
 	}
-
-	public final int getProductDetailNo() {
-		return productDetailNo;
+	public int getProductdetailNo() {
+		return productdetailNo;
 	}
-
-	public final void setProductDetailNo(int productDetailNo) {
-		this.productDetailNo = productDetailNo;
+	public void setProductdetailNo(int productdetailNo) {
+		this.productdetailNo = productdetailNo;
 	}
-
-	public final int getProductNo() {
+	public int getProductNo() {
 		return productNo;
 	}
-
-	public final void setProductNo(int productNo) {
+	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
-
-	public final int getOptionNo() {
-		return optionNo;
-	}
-
-	public final void setOptionNo(int optionNo) {
-		this.optionNo = optionNo;
-	}
-
-	public final int getShopNo() {
+	public int getShopNo() {
 		return shopNo;
 	}
-
-	public final void setShopNo(int shopNo) {
+	public void setShopNo(int shopNo) {
 		this.shopNo = shopNo;
 	}
-	
+	public int getOptionNo() {
+		return optionNo;
+	}
+	public void setOptionNo(int optionNo) {
+		this.optionNo = optionNo;
+	}
 	
 }
+

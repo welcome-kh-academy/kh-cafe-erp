@@ -197,11 +197,7 @@ public class AddProductServiceImpl implements AddProductService {
 		product.setProductOrigin((String)map.get("productOrigin"));
 		product.setOriginPrice((int)map.get("originPrice"));
 		product.setCategoryName((String)map.get("categoryName"));
-		product.setProductName((String)map.get("productName"));
-
-		//가짜데이터
-		product.setShopNo(9); //지점
-		
+		product.setProductName((String)map.get("productName"));		
 		product.setSelStartDate("20200101");
 		product.setSelEndDate("20200101");
 		product.setSelStatus(1);
@@ -213,18 +209,28 @@ public class AddProductServiceImpl implements AddProductService {
 	   	int productNo = addProductDao.getProductNo((String)map.get("productName"));
 		product.setProductNo(productNo);
 		
-		ProductOption productOption = new ProductOption();
+		List<ProductDetail> list = new ArrayList<ProductDetail>();
 		
 		List optionNo = (ArrayList)map.get("option");
-		for(Object i : optionNo) {
-			
-			productOption.setProductNo(productNo);
-			productOption.setOptionNo(Integer.parseInt((String) i)); 
-			
-			//상품옵션 등록
-//			addProductDao.insertProductOption(productOption);
+		List shopNo = (ArrayList)map.get("shopNo");
+		
+		for(Object i : shopNo) {
+		
+			for(Object j : optionNo) {
+				ProductDetail productDetail = new ProductDetail();
+				
+				productDetail.setShopNo(Integer.parseInt((String) i));
+				productDetail.setProductNo(productNo);
+				productDetail.setOptionNo(Integer.parseInt((String) j)); 
+
+				list.add(productDetail);
+			}
+
 		}
 		
+		//상품 디테일 등록
+		addProductDao.insertAllProductDetail(list);
+
 		//이미지 등록
 		ImgFile imgFile = new ImgFile();
 		if (map.get("originName") != null) {
