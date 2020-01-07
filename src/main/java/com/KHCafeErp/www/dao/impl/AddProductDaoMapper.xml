@@ -62,11 +62,11 @@
 	</select>
 	
 	<insert id="insertAllProductDetail" parameterType="com.KHCafeErp.www.dto.ProductDetail">
-		INSERT INTO productDetail(productDetailNo, productNo,  optionNo, shopNo)
-		VALUES
-             <foreach collection="java.util.List" item="item" index="index" separator=" " open="INSERT ALL" close="select * from dual">
-                (productDetailNo_seq.nextval, #{productNo}, #{optionNo}, #{shopNo})
-             </foreach>
+         <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="select * from dual">
+        	INTO productDetail(productDetailNo, productNo,  optionNo, shopNo)
+        	VALUES
+             (GET_NEXTVAL_productDetailNo(), #{item.productNo}, #{item.optionNo}, #{item.shopNo})
+         </foreach>
 	</insert>
 	
 	<insert id="insertImgFile" parameterType="com.KHCafeErp.www.dto.ImgFile">
