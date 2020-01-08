@@ -80,18 +80,15 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/order/detailview" , method = RequestMethod.GET)
-	public void detailview(OrderProduct orderProduct, Product product, Model model) {		
-		System.out.println(orderProduct);
+	public void detailview(OrderBase orderBase, OrderProduct orderproduct, Model model) {		
 		
-		List<OrderProduct> orderProductlist =orderService.selectorderProduct(orderProduct);
-		List<Product> productlist = orderService.selectProduct(product);
-		
-		model.addAttribute(orderProduct);
-		model.addAttribute(product);
-		
+		List<OrderProduct> orderProductlist =orderService.selectorderProduct(orderBase);
+	
+//		System.out.println(orderBase);
+		model.addAttribute("orderProductlist",orderProductlist);
+
 		logger.info(orderProductlist.toString());
-		logger.info(productlist.toString());
-		logger.info("하기싫당");
+		
 	}
 	// 19-12-31 유진 - 엑셀 업로드
 	@RequestMapping(value = "/order/upload", method = RequestMethod.POST)

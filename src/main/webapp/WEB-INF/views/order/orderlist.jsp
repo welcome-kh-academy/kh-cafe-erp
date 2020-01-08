@@ -90,7 +90,7 @@ $(document).ready( function () {
             "infoEmpty": "데이터 없음",
             "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
             "search": "빠른검색 : ",
-            "emptyTable": "발주 목록이 존재하지 않습니다.",
+            "emptyTable": "주문 목록이 존재하지 않습니다.",
             "zeroRecords": "일치하는 데이터가 없어요.",
             "loadingRecords": "로딩중...",
             "processing":     "잠시만 기다려 주세요...",
@@ -229,7 +229,7 @@ function popupOpen(){
 						<option value="4">카드</option>
 
 
-<!-- 호로로로로롤 -->
+
 				</select></td>
 				<th class="condition"><label for="orderStatus">처리상태</label></th>
 				<td><select name="orderStatus" id="orderStatus"

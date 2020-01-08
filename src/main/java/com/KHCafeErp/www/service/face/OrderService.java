@@ -29,8 +29,9 @@ public interface OrderService {
 
 	public List<Shop> getShopList();
 	
-	public List<OrderProduct> selectorderProduct(OrderProduct orderProduct);
+	public List<OrderProduct> selectorderProduct(OrderBase orderBase);
 	
-	public List<Product> selectProduct(Product product);
+	public List<Product> selectProduct(OrderProduct orderproduct);
+	
 
 }

@@ -42,7 +42,7 @@ public interface OrderDao {
 	public List<Shop> selectShopList();
 
 
-	public List<OrderProduct> selectorderProduct();
+	public List<OrderProduct> selectorderProduct(OrderBase orderBase);
 
 	public List<Product> selectProduct();
 

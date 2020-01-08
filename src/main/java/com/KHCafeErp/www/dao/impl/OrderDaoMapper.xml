@@ -18,12 +18,14 @@
 		
 	</select>
 
-<select id = "selectorderProduct" resultType="com.KHCafeErp.www.dto.OrderProduct" parameterType="com.KHCafeErp.www.dto.OrderProduct">
-	SELECT * FROM ORDERPRODUCT WHERE ORDERNO = #{ORDERNO}
+<select id = "selectorderProduct" resultType="com.KHCafeErp.www.dto.OrderProduct" parameterType="com.KHCafeErp.www.dto.OrderBase">
+	SELECT orderNo, orderProduct.productNo, productCnt,productName,price,productorigin 
+	FROM orderproduct, product
+	WHERE orderproduct.productNo = product.productNo AND orderNo= #{orderNo}	
 </select>
 
-<select id = "selectProduct" resultType="com.KHCafeErp.www.dto.Product" parameterType="com.KHCafeErp.www.dto.Product">
-	SELECT * FROM PRODUCT WHERE PRODUCTNO = #{PRODUCTNO}
+<select id = "selectProduct" resultType="com.KHCafeErp.www.dto.Product" parameterType="com.KHCafeErp.www.dto.OrderProduct">
+	SELECT * FROM PRODUCT WHERE PRODUCTNO = #{productNo}
 </select>
 
 <select id="selectOrderListCnt" resultType="int">

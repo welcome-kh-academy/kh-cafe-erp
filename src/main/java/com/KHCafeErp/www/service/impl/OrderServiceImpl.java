@@ -63,10 +63,9 @@ public class OrderServiceImpl implements OrderService {
 	 		   	
 		   	int orderno = orderDao.selectOrderNo(orderBase);
 		   	System.out.println(orderno);
-		   	
 		   	OrderProduct orderProduct = new OrderProduct();
 		   	
-		   	orderProduct.setOrderno(orderno);
+		   	orderProduct.setOrderNo(orderno);
 		   	orderProduct.setProductNo((int)Float.parseFloat(article.get("E")));
 		   	orderProduct.setProductOptionNo((int)Float.parseFloat(article.get("F")));
 		   	orderProduct.setProductCnt((int)Float.parseFloat(article.get("G")));
@@ -118,18 +117,24 @@ public class OrderServiceImpl implements OrderService {
 
 
 @Override
-public List<OrderProduct> selectorderProduct(OrderProduct orderProduct) {
+public List<OrderProduct> selectorderProduct(OrderBase orderBase) {
 	// TODO Auto-generated method stub
-	return orderDao.selectorderProduct();
+	System.out.println(orderBase);
+	return orderDao.selectorderProduct(orderBase);
 }
 
 
 
 
 @Override
-public List<Product> selectProduct(Product product) {
+public List<Product> selectProduct(OrderProduct orderproduct) {
 	// TODO Auto-generated method stub
 	return orderDao.selectProduct();
 }
+
+
+
+
+
 
 }
