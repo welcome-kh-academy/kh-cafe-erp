@@ -17,7 +17,7 @@ VALUES (inStockProductNo_seq, #{placingOrderProductNo },#{inStockDate }, #{produ
 </insert>
 	<select id="selectWarehousingList" parameterType="com.KHCafeErp.www.dto.Warehousing">
 		SELECT warehousingNO, placingOrderProductNo, storageNo, productCnt, inStockDate,isAutoInStock,inStockStatus,dealStore
-		FROM PLACINGORDER
+		FROM warehousing
 		WHERE 1=1
 		<if test="warehousingNO != null">
     		AND warehousingNO = #{warehousingNO}
@@ -27,5 +27,9 @@ VALUES (inStockProductNo_seq, #{placingOrderProductNo },#{inStockDate }, #{produ
   		</if>
 	
 	
+	</select>
+	
+	<select id="selectDealList" resultType="com.KHCafeErp.www.dto.Warehousing">
+		SELECT dealStore FROM warehousing
 	</select>
 </mapper>
