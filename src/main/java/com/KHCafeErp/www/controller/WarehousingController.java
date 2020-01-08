@@ -30,13 +30,15 @@ public class WarehousingController {
 		
 		logger.info("입고 목록 페이지 확인");
 		List<Warehousing> dealList = warehousingService.getdealList();
-		model.addAttribute(dealList);
+		if(dealList!=null) {
+			model.addAttribute(dealList);
+		}
 		
 	}
 	@RequestMapping(value="/warehousing/search")
 	public ModelAndView search(Warehousing wareHousing, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
 		
-		logger.info("입고 목록 불러오기");
+		logger.info("입고 검색 후 목록 불러오기");
 	List<Warehousing> data = warehousingService.getWareHousingList(wareHousing);
 		
 		List llist = new ArrayList();

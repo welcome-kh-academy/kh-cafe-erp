@@ -174,8 +174,22 @@ function enter(e){
 		</td>
 	</tr>
 	<tr>
+		<th class="condition"><label for="shopName">구분</label></th>
+		<td>
+			비정규
+		</td>
+		<th class="condition"><label for="shopName">상태</label></th>
+		<td>
+			<select name="inStockStatus" id="inStockStatus" class="search-select select2-selection select2-selection--single form-control">
+				<option value="">전체</option>
+				<option value="0">입고대기</option>
+				<option value="1">입고완료</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
 		<th class="condition"><label for="startDate">입고날짜</label></th>
-		<td colspan="3">
+		<td>
 			<input class="input--style-1 js-datepicker" type="text"
 				placeholder="" id="startDate" name="startDate" value="2020-01-01">
 			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
@@ -184,8 +198,6 @@ function enter(e){
 				placeholder="" id="endDate" name="endDate">
 			<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 		</td>
-	</tr>
-	<tr>
 		<th class="condition"><label>입고창고</label></th>
 		<td>
 			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
@@ -196,6 +208,7 @@ function enter(e){
 			</select>
 		</td>
 	</tr>
+	
 	
 </table>
 </form>
