@@ -17,6 +17,7 @@ import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Warehousing;
 
  
 public class ExcelWriter {
@@ -352,51 +353,42 @@ public class ExcelWriter {
         
         // 리스트의 size 만큼 row를 생성
         OrderBase ob;
-//        for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
-//        	ob = list.get(rowIdx);
-//            
-//            // 행 생성
-//            row = sheet.createRow(rowIdx+1);
-//            
-//            cell = row.createCell(0);
-//            cell.setCellValue(ob.getOrderNo());
-//            
-//            cell = row.createCell(1);
-//            cell.setCellValue(ob.getCusNo());
-//            
-//            cell = row.createCell(2);
-//            cell.setCellValue(ob.);
-//            
-//            cell = row.createCell(3);
-//            cell.setCellValue(ob.getPlacingOrderCnt());
-//            
-//            cell = row.createCell(4);
-//            cell.setCellValue("2000");
-//            
-//            cell = row.createCell(5);
-//            if(po.getPlacingOrderStatus()==0) {		 
-//				 cell.setCellValue("입고 확인");
-//			 } else if(po.getPlacingOrderStatus()==1) {
-//				 cell.setCellValue("파손");				 				 
-//			 } else if(po.getPlacingOrderStatus()==2) {
-//				 cell.setCellValue("누락");				 				 			 				 				 
-//			 } else {
-//				 cell.setCellValue("");				 				 			 				 				 				 				 				 
-//			 }
-//            
-//            cell = row.createCell(6);
-//            if(po.getInStockStatus()==1) {		 
-//				 cell.setCellValue("입고 대기");			 				 
-//			 } else if(po.getInStockStatus()==2) {
-//				 cell.setCellValue("입고 완료");				 				 			 				 				 
-//			 } else {
-//				 cell.setCellValue("");				 				 			 				 				 				 				 				 
-//			 }
-//            
-//        }
+        for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
+        	ob = list.get(rowIdx);
+            
+            // 행 생성
+            row = sheet.createRow(rowIdx+1);
+            
+            cell = row.createCell(0);
+            cell.setCellValue(ob.getOrderNo());
+            
+            cell = row.createCell(1);
+            cell.setCellValue(ob.getCusNo());
+            
+            cell = row.createCell(2);
+            cell.setCellValue(ob.getshopName());
+            
+            cell = row.createCell(3);
+            cell.setCellValue(ob.getOrderDate());
+            
+            cell = row.createCell(4);
+            cell.setCellValue(ob.getCusReq());
+            
+            cell = row.createCell(5);
+            if(ob.getOrderStatus()==0) {		 
+				 cell.setCellValue("장바구니");
+			 } else if(ob.getOrderStatus()==1) {
+				 cell.setCellValue("주문완료");				 				 
+			 } else if(ob.getOrderStatus()==2) {
+				 cell.setCellValue("결제완료");				 				 			 				 				 
+			 } else {
+				 cell.setCellValue("");				 				 			 				 				 				 				 				 
+			 }
+            
+        }
         
         // 입력된 내용 파일로 쓰기
-        String filename=date+"발주 목록.xls";
+        String filename=date+"주문 목록.xls";
     	File file = new File("D:\\"+filename);
         FileOutputStream fos = null;
         
@@ -418,5 +410,10 @@ public class ExcelWriter {
             }
         }
     }
+
+	public void wareHouseXls(List<Warehousing> wareHouseList) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

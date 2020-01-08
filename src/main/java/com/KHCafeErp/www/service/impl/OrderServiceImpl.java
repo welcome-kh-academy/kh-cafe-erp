@@ -21,115 +21,127 @@ import com.KHCafeErp.www.util.ReadOption;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-	@Autowired OrderDao orderDao;
-	
-	
-	
-	
-	@Override
-	public void insertMassiveProduct(File destFile) {
-		ReadOption readOption = new ReadOption();
-		readOption.setFilePath(destFile.getAbsolutePath());
-		readOption.setOutputColumns("A","B","C","D","E","F","G","H");
-		readOption.setStartRow(2);
-		  
-		List<Map<String, String>> excelContent = ExcelRead.read(readOption);
-		
-		for(Map<String, String> article : excelContent){
-		   
-			OrderBase orderBase = new OrderBase();
-			
-			orderBase.setCusNo((int)Float.parseFloat(article.get("A")));
-			orderBase.setOrderDate(article.get("B"));			
-			if(article.get("C").equals("장바구니")) {
-				orderBase.setOrderStatus(0);
-			} else if(article.get("C").equals("주문완료")) {
-				orderBase.setOrderStatus(1);
-			} else if(article.get("C").equals("장바구니")){
-				orderBase.setOrderStatus(2);
-			} else {
-				orderBase.setOrderStatus(-1);
-			}
+   @Autowired OrderDao orderDao;
+   
+   
+   
+   
+   @Override
+   public void insertMassiveProduct(File destFile) {
+      ReadOption readOption = new ReadOption();
+      readOption.setFilePath(destFile.getAbsolutePath());
+      readOption.setOutputColumns("A","B","C","D","E","F","G","H");
+      readOption.setStartRow(2);
+        
+      List<Map<String, String>> excelContent = ExcelRead.read(readOption);
+      
+      for(Map<String, String> article : excelContent){
+         
+         OrderBase orderBase = new OrderBase();
+         
+         orderBase.setCusNo((int)Float.parseFloat(article.get("A")));
+         orderBase.setOrderDate(article.get("B"));         
+         if(article.get("C").equals("장바구니")) {
+            orderBase.setOrderStatus(0);
+         } else if(article.get("C").equals("주문완료")) {
+            orderBase.setOrderStatus(1);
+         } else if(article.get("C").equals("결제완료")){
+            orderBase.setOrderStatus(2);
+         } else {
+            orderBase.setOrderStatus(-1);
+         }
 
-			if(article.get("H")!= null && !"".equals(article.get("H"))) {
-				orderBase.setCusReq(article.get("H"));				
-			} else {
-				orderBase.setCusReq("");								
-			}
-		   
-		   	System.out.println(orderBase);
-		   
-		   	orderDao.insertOrderBase(orderBase);
-	 		   	
-		   	int orderno = orderDao.selectOrderNo(orderBase);
-		   	System.out.println(orderno);
-		   	
-		   	OrderProduct orderProduct = new OrderProduct();
-		   	
-		   	orderProduct.setOrderno(orderno);
-		   	orderProduct.setProductNo((int)Float.parseFloat(article.get("E")));
-		   	orderProduct.setProductOptionNo((int)Float.parseFloat(article.get("F")));
-		   	orderProduct.setProductCnt((int)Float.parseFloat(article.get("G")));
-		   	System.out.println(orderProduct);
-		   	
-		   	orderDao.insertOrderProduct(orderProduct);
-		  }
-		System.out.println(excelContent);
-	}
-
-
-
-
-	@Override
-	public List getOrderList(OrderBase orderBase) {
-		// TODO Auto-generated method stub
-		return orderDao.selectOrderList(orderBase);
-		
-	}
+         orderBase.setShopNo((int)Float.parseFloat(article.get("D")));
+         
+         if(article.get("H")!= null && !"".equals(article.get("H"))) {
+            orderBase.setCusReq(article.get("H"));            
+         } else {
+            orderBase.setCusReq("");                        
+         }
+         
+            System.out.println(orderBase);
+         
+            orderDao.insertOrderBase(orderBase);
+                
+            int orderno = orderDao.selectOrderNo(orderBase);
+            System.out.println(orderno);
+            OrderProduct orderProduct = new OrderProduct();
+            
+            orderProduct.setOrderNo(orderno);
+            orderProduct.setProductNo((int)Float.parseFloat(article.get("E")));
+            orderProduct.setProductOptionNo((int)Float.parseFloat(article.get("F")));
+            orderProduct.setProductCnt((int)Float.parseFloat(article.get("G")));
+            System.out.println(orderProduct);
+            
+            orderDao.insertOrderProduct(orderProduct);
+        }
+      System.out.println(excelContent);
+   }
 
 
 
 
-//	@Override
-//	public Paging getPaging(int curPage, OrderBase orderBase) {
-//		// TODO Auto-generated method stub
-//		int totalCount = orderDao.selectOrderListCnt(orderBase);
-//		
-//		Paging paging = new Paging(totalCount, curPage);
-//		
-//		return paging;
-//	}
+   @Override
+   public List getOrderList(OrderBase orderBase) {
+      // TODO Auto-generated method stub
+      return orderDao.selectOrderList(orderBase);
+      
+   }
 
 
 
+
+//   @Override
+//   public Paging getPaging(int curPage, OrderBase orderBase) {
+//      // TODO Auto-generated method stub
+//      int totalCount = orderDao.selectOrderListCnt(orderBase);
+//      
+//      Paging paging = new Paging(totalCount, curPage);
+//      
+//      return paging;
+//   }
 
 
 
 
 
 
-	@Override
-	public List<Shop> getShopList() {
-		// TODO Auto-generated method stub
-		return orderDao.selectShopList();
-	}
+
+
+
+   @Override
+   public List<Shop> getShopList() {
+      // TODO Auto-generated method stub
+      return orderDao.selectShopList();
+   }
 
 
 
 
 @Override
-public List<OrderProduct> selectorderProduct(OrderProduct orderProduct) {
-	// TODO Auto-generated method stub
-	return orderDao.selectorderProduct();
+public List<OrderProduct> selectorderProduct(OrderBase orderBase) {
+   // TODO Auto-generated method stub
+   System.out.println(orderBase);
+   return orderDao.selectorderProduct(orderBase);
 }
 
 
 
 
 @Override
-public List<Product> selectProduct(Product product) {
-	// TODO Auto-generated method stub
-	return orderDao.selectProduct();
+public List<Product> selectProduct(OrderProduct orderproduct) {
+   // TODO Auto-generated method stub
+   return orderDao.selectProduct();
 }
+
+
+
+
+
+@Override
+public List<OrderBase> getList() {
+   return orderDao.getList();
+}
+
 
 }

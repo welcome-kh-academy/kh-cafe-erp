@@ -10,6 +10,26 @@ public class Warehousing {
 	private int isAutoInStock;//입고 구분
 	private int inStockStatus;//입고 상태
 	private String dealStore;//거래지점
+	private String startDate; //시작일
+	private String endDate; //종료일
+
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 
 	public int getWarehousingNo() {
 		return warehousingNo;
@@ -63,7 +83,7 @@ public class Warehousing {
 		return "Warehousing [warehousingNo=" + warehousingNo + ", placingOrderProductNo=" + placingOrderProductNo
 				+ ", storageNo=" + storageNo + ", productCnt=" + productCnt + ", inStockDate=" + inStockDate
 				+ ", isAutoInStock=" + isAutoInStock + ", inStockStatus=" + inStockStatus + ", dealStore=" + dealStore
-				+ "]";
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 
 	public int getProductCnt() {

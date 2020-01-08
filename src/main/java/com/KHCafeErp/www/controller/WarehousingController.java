@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.KHCafeErp.www.dto.Shop;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Warehousing;
 import com.KHCafeErp.www.service.face.WarehousingService;
+import com.KHCafeErp.www.util.ExcelWriter;
 
 @Controller
 public class WarehousingController {
@@ -30,14 +31,16 @@ public class WarehousingController {
 		
 		logger.info("입고 목록 페이지 확인");
 		List<Warehousing> dealList = warehousingService.getdealList();
-		model.addAttribute(dealList);
-		
+		List<Warehousing> wareHouseList = warehousingService.getdwareHouseList();
+		logger.info("거래처 : "+dealList.toString());
+		model.addAttribute("dealList", dealList);
+		model.addAttribute("wareHouseList", wareHouseList);
 	}
 	@RequestMapping(value="/warehousing/search")
 	public ModelAndView search(Warehousing wareHousing, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
 		
-		logger.info("입고 목록 불러오기");
-	List<Warehousing> data = warehousingService.getWareHousingList(wareHousing);
+		logger.info("입고 검색 후 목록 불러오기");
+		List<Warehousing> data = warehousingService.getWareHousingList(wareHousing);
 		
 		List llist = new ArrayList();
 		List list = null;
@@ -82,5 +85,21 @@ public class WarehousingController {
 		warehousingService.registration(warehousing);
 		
 		return "redirect:/warehousing/registration";
+	}
+	
+	
+	@RequestMapping(value = "/warehousing/exceldown")
+	public String excelDown() {
+		
+		List<Warehousing> wareHouseList = warehousingService.getList();
+
+		System.out.println(wareHouseList);
+
+		 ExcelWriter excelWriter=new ExcelWriter();
+		 excelWriter.wareHouseXls(wareHouseList);
+		 
+		 logger.info("엑셀 다운 완료");
+		 
+		 return "redirect:/warehousing/warehousingList";
 	}
 }

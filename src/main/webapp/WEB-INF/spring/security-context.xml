@@ -30,9 +30,9 @@
     	<security:form-login
     		username-parameter="staffNo"
     		password-parameter="pw"
-    		login-processing-url="/login/check"
+    		login-processing-url="/dashboard/index"
     		login-page="/login/main"
-    		default-target-url="/dashboard/index"
+    		default-target-url="/login/check"
     	/>
 		<security:logout invalidate-session="true"
                     logout-url="/login/logout"   

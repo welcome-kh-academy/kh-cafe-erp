@@ -75,15 +75,13 @@
 	</select>
 	<select id="selectProductByProductNo" parameterType="int" resultType="com.KHCafeErp.www.dto.Product">
 		SELECT
-		    P.productno, P.categorymapno, s.shopno, productname
+		    P.productno, P.categorymapno, productname
 		    , productcontent, originprice, price, productorigin, enrolldate
 		    , selstartdate, selenddate, selstatus, CB.categoryName, CB.categoryNo, CD.categoryDetailName
-		FROM product P, categoryDetail CD, categoryBase CB, productDetail PD, shop S
+		FROM product P, categoryDetail CD, categoryBase CB
 		WHERE 1=1
 		    AND P.categoryMapNo = CD.categoryMapNo
 		    AND CD.categoryNo = CB.categoryNo
-		    AND P.productNo = PD.productNo
-		    AND PD.shopNo = S.shopNo
 		    AND P.productNo = #{productNo}
 	</select>
 	<update id="updateSelStartDate" parameterType="com.KHCafeErp.www.dto.Product">
@@ -105,33 +103,38 @@
 				productOrigin = #{ productOrigin }
 		WHERE productNo = #{ productNo }
 	</update>
-	<select id="selectSearchList" parameterType="hashmap" resultType="com.KHCafeErp.www.dto.Product">
-		SELECT * FROM (
-			SELECT rownum rnum, B.*FROM (
-				SELECT p.productNo, p.categoryMapNo, p.shopNo, s.shopName, productName, originPrice, price, productOrigin
-						, selStartDate, enrollDate, selEndDate, selStatus, cb.categoryName, cb.categoryNo
-				FROM product P, categoryDetail CD, categoryBase CB, shop S
+	<insert id="insertImgFile" parameterType="com.KHCafeErp.www.dto.ImgFile">
+		INSERT INTO imgFile (fileNo, productNo, originName, storedName) VALUES (imgfileNo_seq.nextval, #{ productNo }, #{ originName }, #{ storedName } )
+	</insert>
+	<select id="selectCntFileByProductNo" parameterType="int" resultType="int">
+		SELECT count(*) FROM imgFile WHERE productNo = #{ productNo }
+	</select>
+	<delete id="deleteFile" parameterType="int">
+		DELETE FROM imgFile WHERE productNo = #{ productNo }
+	</delete>
+	<select id="selectSearchList" parameterType="com.KHCafeErp.www.dto.Product" resultType="com.KHCafeErp.www.dto.Product">
+				SELECT DISTINCT(p.productNo), productName, originPrice, price, productOrigin
+						, selStartDate, enrollDate, selEndDate
+				FROM product P, categoryDetail CD, categoryBase CB, shop s, productDetail PD
 				WHERE 1=1
-					AND p.categoryMapNo = CD.categoryMapNo
-					AND CD.categoryno = cb.categoryNo
-					AND p.shopNo = s.shopNo
+				AND P.categoryMapNo = CD.categoryMapNo
+		    	AND CD.categoryNo = CB.categoryNo
+		    	AND p.productNo = pd.productNo
+		    	AND PD.shopNo = S.shopNo
+		    	AND s.shopNo = #{ shopNo }
 					<if test="productNo != null and productNo != 0">
-						AND p.productNo = #{ product.productNo }
+						AND p.productNo = #{ productNo }
 					</if>
 					<if test="productName != null and productName != ''">
-						AND productName LIKE '%'||#{ product.productName }||'%'
+						AND productName LIKE '%'||#{ productName }||'%'
 					</if>
-					<if test="categoryMapNo != 0">
-						AND p.categoryMapNo = #{ product.categoryMapNo }
+					<if test="categoryMapNo != null and categoryMapNo != 0">
+						AND p.categoryMapNo = #{ categoryMapNo }
 					</if>
-					<if test="shopNo != 0">
-						AND p.shopNo = #{ product.shopNo }
-					</if>
+<!-- 					<if test="shopNo != null and shopNo != 0"> -->
+<!-- 						AND s.shopNo = #{ shopNo } -->
+<!-- 					</if> -->
 					ORDER BY p.productNo DESC
-				) B
-				ORDER BY rnum
-			) product
-			WHERE rnum BETWEEN #{ paging.startNo } AND #{ paging.endNo }
 	</select>
 	<delete id="deleteProduct" parameterType="com.KHCafeErp.www.dto.Product">
 		DELETE FROM product WHERE productNo = #{ productNo }
@@ -149,8 +152,10 @@
 		ORDER BY p.productNo
 	</select>
 	<select id="selectCntAll" resultType="int" parameterType="com.KHCafeErp.www.dto.Product">
-		SELECT count(*) FROM product
+		SELECT count(*) FROM product p, shop s, productDetail pd
 		WHERE 1=1
+		AND p.productNo = pd.productNo
+		AND pd.shopNo = s.shopNo
 		<if test="productNo != null and productNo != 0">
 				AND p.productNo = #{ productNo }
 			</if>
@@ -161,11 +166,18 @@
 				AND p.categoryMapNo = #{ categoryMapNo }
 			</if>
 			<if test="shopNo != 0">
-				AND p.shopNo = #{ shopNo }
+				AND s.shopNo = #{ shopNo }
 			</if>
 	</select>
 	<select id="selectImgFile" parameterType="int" resultType="com.KHCafeErp.www.dto.ImgFile">
 		SELECT * FROM imgFile
 		WHERE productNo = #{ productNo }
+	</select>
+	<select id="selectProductListAllWithoutPaging" resultType="com.KHCafeErp.www.dto.Product">
+		SELECT * FROM product
+	</select>
+	<select id="selectShopName" parameterType="int" resultType="com.KHCafeErp.www.dto.Shop">
+		SELECT * FROM shop
+		WHERE shopNo = #{ shopNo }
 	</select>
 </mapper>

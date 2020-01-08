@@ -2,9 +2,35 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src="/resources/js/edit.js"></script>
+<!-- <script src="/resources/js/edit.js"></script> -->
+
+<!-- jQuery Form Plugin -->
+<script src="/resources/js/jquery.form.min.js"></script>
 
 <script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$("#updateFile").ajaxForm({
+		data: {
+			productNo : $("#productNo").val()
+		}
+		, dataType: "json"
+		, error: function() {
+			console.log("파일 사진 변경 실패");
+		}
+		, success: function(res) {
+			
+			console.log("성공");
+			if(res.storedName != null){
+				$("#img").attr("src", "/upload/"+res.storedName);
+			}
+		}
+		
+		
+	});
+})
+
 $(document).ready(function() {
 	
 	//select2 실행 코드
@@ -14,7 +40,7 @@ $(document).ready(function() {
 	/* 모달로 카테고리값 받아오기 */
 	$("#categoryBase2").val('${product.categoryNo }').change();
 	
-	
+	/* 모달에서 수정확인 버튼 눌렀을때 업데이트하는 ajax */
 	$("#editBtn").on("click", function(){
 		
 		var selStartDate;
@@ -45,7 +71,8 @@ $(document).ready(function() {
 				selEndDate : selEndDate,
 				selStatus : $("#selStatus").val(),
 				productContent : $("#productContent").val(),
-				categoryMapNo : $("#categoryDetail2").val()
+				categoryMapNo : $("#categoryDetail2").val(),
+// 				productImage : $("#productImage").val()
 			}
 			, dataType : "json"
 			, success : function(data){
@@ -80,7 +107,7 @@ function getCategory2(e){
 		},
 		dataType : "json",
 		error : function(e) {
-			alert("ajax오류!");
+			alert("아이코 에이젝스 투 오류!");
 			console.log(e);
 		},
 		success : function(res) {
@@ -123,8 +150,12 @@ function getCategory2(e){
         		<th>상품보기</th>
         		<td rowspan="2">
 		    		<div id="divProductImage">
-						<label for="productImage"><img src="/upload/${ imgfile.StoredName }" style="width:125px; height:125px"/></label>
+		    			<form id="updateFile" action="/manageProduct/updateFile" method="post" >
+						<label for="productImage"><img id="img" src="/upload/${ imgfile.storedName }" style="width:125px; height:125px"/></label>
+						<input type="hidden" name="productNo" id="productNo" value="${product.productNo }"/> 
 						<input type="file" class="form-control-file" name="productImage" id="productImage">
+						<button id="filebtn">적용</button>
+		    			</form>
 					</div>
         		</td>
         	</tr>
@@ -181,19 +212,19 @@ function getCategory2(e){
         		</c:if>
         	</tr>
         	<tr>
-        		<th>판매상태</th>
-        		<td>
-        			<select class="search-select select2-selection select2-selection--single form-control" id="selStatus">
-	        			<option value="${ product.selStatus }">
-		        			<c:choose>
-		        				<c:when test="${product.selStatus eq 0}">판매중</c:when>
-		        				<c:when test="${product.selStatus eq 1}">판매종료</c:when>
-		        			</c:choose>
-    	    			</option>
-    	    			<option value="0">판매중</option>
-    	    			<option value="1">판매종료</option>
-        			</select>
-        		</td>
+<!--         		<th>판매상태</th> -->
+<!--         		<td> -->
+<!--         			<select class="search-select select2-selection select2-selection--single form-control" id="selStatus"> -->
+<%-- 	        			<option value="${ product.selStatus }"> --%>
+<%-- 		        			<c:choose> --%>
+<%-- 		        				<c:when test="${product.selStatus eq 0}">판매중</c:when> --%>
+<%-- 		        				<c:when test="${product.selStatus eq 1}">판매종료</c:when> --%>
+<%-- 		        			</c:choose> --%>
+<!--     	    			</option> -->
+<!--     	    			<option value="0">판매중</option> -->
+<!--     	    			<option value="1">판매종료</option> -->
+<!--         			</select> -->
+<!--         		</td> -->
         		<th>상세설명</th>
         		<td colspan="2"><textarea id ="productContent" class="form-control">${ product.productContent }</textarea></td>
         	</tr>
