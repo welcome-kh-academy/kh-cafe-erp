@@ -23,17 +23,27 @@ div {
 legend{
 	text-align:left;
 }
+#wrapper{
+	margin : auto;
+	width : 75%;
+	margin-top : 20px;
+}
 </style>
 
 <fieldset>
 	<legend class="text-primary">상담 내역</legend>
 <table class="table table-hover">
 	<tr class="table-primary">
-		<th width="10%">No</th>
-		<th width="40%">제목</th>
-		<th width="15%">고객 아이디</th>
-		<th width="10%">작성자</th>
-		<th width="25%">작성일</th>
+		<th>No</th>
+		<th>제목</th>
+		<th>고객 아이디</th>
+		<th>작성자</th>
+		<th>작성일</th>
+<!-- 		<th width="10%">No</th> -->
+<!-- 		<th width="40%">제목</th> -->
+<!-- 		<th width="15%">고객 아이디</th> -->
+<!-- 		<th width="10%">작성자</th> -->
+<!-- 		<th width="25%">작성일</th> -->
 	</tr>
 	<c:forEach items="${list }" var="list">
 	<tr>

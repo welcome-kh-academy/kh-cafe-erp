@@ -12,29 +12,32 @@ td {
 	text-align : left;
 }
 </style>
-<div class="container">
+<div class="container" style="padding:0">
+	<fieldset>
+	<legend class="text-primary">상담 내역</legend>
 	<table class="table table-bordered">
 		<tr>
-			<th>글번호</th><td colspan="2">${view.cBoardNo }</td>
-			<th>작성일</th><td colspan="4">${view.cBoardDate }</td>
+			<th class="table-primary">글번호</th><td colspan="2">${view.cBoardNo }</td>
+			<th class="table-primary">작성일</th><td colspan="4">${view.cBoardDate }</td>
 		</tr>
 		<tr>
-			<th>제목</th><td colspan="5">${view.cBoardTitle }</td>
+			<th class="table-primary">고객 번호</th><td colspan="2">${view.cusNo }</td>
+			<th class="table-primary">작성자</th><td colspan="4">${view.staffName }</td>
 		</tr>
 		<tr>
-			<th>고객 번호</th><td colspan="2">${view.cusNo }</td>
-			<th>작성자</th><td colspan="4">${view.staffName }</td>
+			<th class="table-primary">제목</th><td colspan="5">${view.cBoardTitle }</td>
 		</tr>
 
 		<tr>
-			<th style="text-align:center;" colspan="6">본문</th>
+			<th class="table-primary" style="text-align:center;" colspan="6">본문</th>
 		</tr>
 		<tr>
-			<td colspan="6">
+			<td colspan="6" style="height:500px; padding:20px">
 				${view.cBoardContent }
 			</td>
 		</tr>
 	</table>
+	</fieldset>
 	<br>
 	<div class="text-right">
 		<c:if test="${staffNo == view.staffNo }">

@@ -24,9 +24,11 @@ public class CsController {
 	private static final Logger logger = LoggerFactory.getLogger(CsController.class);
 	
 	@RequestMapping(value = "/cs/list")
-	public String list(Paging data, Model model) {
+	public String list(Paging data, Model model, HttpSession session) {
 		logger.info("list()");
-		
+		System.out.println("로그인 리스트"
+				+ " : "+session.getAttribute("staffNo"));
+
 		Paging paging = csService.getPaging(data);
 		logger.info("inData: " + paging);
 
@@ -54,7 +56,7 @@ public class CsController {
 	@RequestMapping(value = "/cs/write", method = RequestMethod.GET)
 	public void write(HttpSession session, Model model) {
 		int staffNo = (int)session.getAttribute("staffNo");
-		
+		System.out.println("1223134142344 : "+staffNo);
 		String staffName = csService.getStaffName(staffNo);
 		CounselBoard cBoard = new CounselBoard();
 		cBoard.setStaffName(staffName);
