@@ -46,6 +46,7 @@ public class FindIdPwController {
 		}else 
 			return "/findinfo/findidfail";
 
+		
 	}
 
 //	@Autowired
