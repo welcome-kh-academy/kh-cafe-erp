@@ -45,6 +45,8 @@ public class PlacingOrderController {
 	@RequestMapping(value="/placingOrder/search", method=RequestMethod.GET)
 	public ModelAndView placingOrderSearch(PlacingOrder placingOrder, ModelAndView mav, @RequestParam(defaultValue = "1") int curPage) {
 		
+		logger.info(placingOrder.toString());
+		
 		List<PlacingOrder> data = placingOrderService.getPlacingOrderList(placingOrder);
 		
 		List llist = new ArrayList();

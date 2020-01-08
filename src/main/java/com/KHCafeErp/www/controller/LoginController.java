@@ -37,6 +37,7 @@ public class LoginController {
 	public String loginMain(Staff staff, HttpSession session, Model model) {
 		
 		logger.info(staff.toString());
+		logger.info("되니???????????????????????????????????");
 		
 		boolean isLogin = loginService.loginCheck(staff);
 		
@@ -45,6 +46,7 @@ public class LoginController {
 			session.setAttribute("login", isLogin);
 			session.setAttribute("staffNo", staff.getStaffNo());
 			session.setAttribute("nick", staff.getNick());
+			session.setAttribute("shopNo", staff.getShopNo());
 			
 			// 19-12-31 유진 : 직원 등급 확인
 			session.setAttribute("position", loginService.getPosition(staff));

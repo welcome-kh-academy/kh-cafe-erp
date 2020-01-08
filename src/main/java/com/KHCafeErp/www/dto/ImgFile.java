@@ -1,6 +1,11 @@
 package com.KHCafeErp.www.dto;
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class ImgFile {
 	private int fileno;
@@ -8,6 +13,7 @@ public class ImgFile {
 	private String originName;
 	private String storedName;
 	
+	@JsonIgnore
 	private MultipartFile productImage;
 
 	@Override
@@ -55,5 +61,6 @@ public class ImgFile {
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
 	}
-
+	
+	
 }
