@@ -5,4 +5,44 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.WarehousingDao">
 
+<insert id="insert" parameterType="com.KHCafeErp.www.dto.Warehousing">
+INSERT INTO InStockProduct (inStockNo, placingOrderProductNo, inStockDate, productCnt) 
+VALUES (inStockProductNo_seq, #{placingOrderProductNo },#{inStockDate }, #{productCnt } )
+
+<!-- INSERT INTO placingOrder (shopNo)  -->
+<!-- VALUES (#{shopNo } ) -->
+
+<!-- INSERT INTO ingredient (ingredientName, ingredientPrice)  -->
+<!-- VALUES (#{ingredientName }, #{ingredientPrice } ) -->
+</insert>
+	<select id="selectWarehousingList" parameterType="com.KHCafeErp.www.dto.Warehousing" resultType="com.KHCafeErp.www.dto.Warehousing">
+		SELECT warehousingNO, placingOrderProductNo, storageNo, productCnt, inStockDate,isAutoInStock,inStockStatus,dealStore
+		FROM Warehousing
+		WHERE 1=1
+		<if test="startDate != null">
+		AND inStockDate BETWEEN #{startDate} AND #{endDate}
+		</if>
+		<if test="warehousingNo != 0">
+    		AND warehousingNO = #{warehousingNo}
+  		</if>
+  		<if test="dealStore != '' and dealStore !=null">
+    		AND dealStore = #{dealStore}
+  		</if>
+		<if test="inStockStatus != -1">
+    		AND inStockStatus = #{inStockStatus}
+  		</if>
+		<if test="storageNo != -1">
+    		AND storageNo = #{storageNo}
+  		</if>
+	</select>
+	
+	<select id="selectDealList" resultType="com.KHCafeErp.www.dto.Warehousing">
+		SELECT dealStore FROM warehousing
+	</select>
+	<select id="selectWareHouseList" resultType="com.KHCafeErp.www.dto.Warehousing">
+		SELECT storageNo FROM warehousing
+	</select>
+	<select id="selectWareHouseListAll" resultType="com.KHCafeErp.www.dto.Warehousing">
+		SELECT * FROM warehousing
+	</select>
 </mapper>

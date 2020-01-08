@@ -19,11 +19,22 @@ fieldset, .divReleaseList, .divSearchRelease{
 .divReleaseList tr td:nth-child(6){
 	text-align:center;
 }
+.js-datepicker{
+	width:255px
+}
+label{
+	margin-top : 0.5rem
+}
+.btn-lg {
+	width: 100%;
+	height: 70px;
+}
 </style>
 
 <script type="text/javascript">
 window.name="listPage"
 $(document).ready( function () {
+
 	
 	var startDate = getPastDate(1);
 	var endDate = getRecentDate();
@@ -64,7 +75,7 @@ $(document).ready( function () {
 	//select2 실행 코드
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
-	
+		
 	table = $('#myTable').DataTable({
     	"scrollY" : 400, //테이블 고정 크기 설정
     	"scrollCollapse" : true, //가변 크기 막기
@@ -82,7 +93,7 @@ $(document).ready( function () {
     		   "targets": -1,
     		   "data": null,
     		   "render": function(data, type, row){
-    		    return '<button class="btn btn-primary" onclick="/release/add=releaseNo?">출고 등록</button>';
+    		    return '<button name="registerBtn" class="btn btn-primary data-releaseNo='+releaseNo+'">출고 등록</button>';
     	},
     	"orderable": false }],
     	"serverSide" : false, //클라이언트에서 처리
@@ -100,7 +111,7 @@ $(document).ready( function () {
 // 				for(let i=0; i<json.data.length; i++){
 
 // 					if(json.data[i][2] == "11"){
-// 						json.data[i][2] = "강남점";
+// 						json.data[i][2     ] = "강남점";
 // 					}
 					
 // 					if(json.data[i][6] == "0"){
@@ -119,6 +130,17 @@ $(document).ready( function () {
 		}
     	
     });
+	
+	var releaseNo = 0;
+	
+	$("#myTable").on('click', 'button[name="registerBtn"]',function(){
+		var outlayId = table.row( $(this).parents('tr:first') ).data();
+		console.log(outlayId[0])
+		releaseNo=outlayId[0]
+		console.log(releaseNo)
+		location.href="/release/add?releaseNo="+releaseNo
+	})
+	
 });	
 
 
@@ -148,15 +170,19 @@ function getList() {
 		<form action="/release/search" method="post" id="releaseForm">
 		<table class="table">
 			<tr>
-				<th class="condition"><label for="releaseNo">출고번호</label></th>
+				<th class="condition table-primary"><label for="releaseNo">출고번호</label></th>
 				<td><input type="number" value="" id="releaseNo" name="releaseNo"/></td>
 				<td></td>
 				<td></td>
-				<th class="condition"><label for="placingOrderNo">발주번호</label></th>
+				<th class="condition table-primary"><label for="placingOrderNo">발주번호</label></th>
 				<td><input type="number" value="" id="placingOrderNo" name="placingOrderNo"/></td>
+<!-- 				<td rowspan="3" style="vertical-align: middle; text-align: center;"> -->
+				<td rowspan="3" style="vertical-align: middle; text-align: center;">
+					<button type="button" class="btn btn-primary btn-lg" onclick="getList()">검색</button>
+				</td>
 			</tr>
 			<tr>
-			<th class="condition"><label for="shopName">지점명</label></th>
+			<th class="condition table-primary"><label for="shopName">지점명</label></th>
 			<td>
 				<select name="shopNo" id="shopNo" class="select2-selection--single form-control">
 					<option value="">전체</option>
@@ -167,19 +193,23 @@ function getList() {
 			</td>
 			<td></td>
 			<td></td>
-			<th class="condition"><label for="startDate">출고일</label></th>
-			<td colspan="3">
+			<th class="condition table-primary"><label for="startDate">출고일</label></th>
+			<td style="width:35%">
 				<input class="input--style-1 js-datepicker" type="text"
-					placeholder="" id="startDate" name="startDate" value="">
+					placeholder="" id="startDate" name="startDate" value="" autocomplete="off">
+				<span class="space">&nbsp;&nbsp;</span> 
 				<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+				<span class="space">&nbsp;&nbsp;</span> 
 				<span class="space">~</span> 
+				<span class="space">&nbsp;&nbsp;</span> 
 				<input class="input--style-1 js-datepicker" type="text"
-					placeholder="" id="endDate" name="endDate">
+					placeholder="" id="endDate" name="endDate" autocomplete="off">
+				<span class="space">&nbsp;&nbsp;</span> 
 				<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
 			</td>
 			</tr>
 			<tr>
-				<th class="condition"><label for="releaseStatus">출고상태</label></th>
+				<th class="condition table-primary"><label for="releaseStatus">출고상태</label></th>
 				<td>
 					<select name="releaseStatus" id="releaseStatus" class="select2-selection--single form-control">
 						<option value="" selected>출고 상태</option>
@@ -189,9 +219,6 @@ function getList() {
 				</td>
 				<td></td>
 				<td></td>
-				<td colspan="2" style="text-align:center;">
-					<button  style="width:350px; height:40px" type="button" class="btn btn-primary" onclick="getList()">검색</button>
-				</td>
 			</tr>
 		</table>
 	</form>

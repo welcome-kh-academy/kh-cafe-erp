@@ -101,14 +101,8 @@ li{
         </ul>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item">
         <a class="nav-link" href="/order/orderlist">주&nbsp;&nbsp;&nbsp;문</a>
-        <div class="dropdown-menu">
-        <ul>
-        	<li><a href="/order/orderlist">주문 관리</a></li>
-        	<li><a href="#">주문 등록</a></li>
-        </ul>
-        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link" href="/placingOrder/management">발&nbsp;&nbsp;&nbsp;주</a>
@@ -123,6 +117,7 @@ li{
         <a class="nav-link" href="#">입&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
         <ul>
+        	<li><a href="/warehousing/registration">입고 등록</a></li>
         	<li><a href="#">입고 관리</a></li>
         	<li><a href="#">단가 현황</a></li>
         </ul>
@@ -153,14 +148,8 @@ li{
         	<a class="nav-link" href="#">직 원 관 리</a>
       	</li>    
       </c:if> 
-      <li class="nav-item dropdown">
-        <a class="nav-link" href="#">C&nbsp;&nbsp;&nbsp;S</a>
-        <div class="dropdown-menu">
-        <ul>
-        	<li><a href="#">클레임 내역</a></li>
-        	<li><a href="#">상담 내역</a></li>
-        </ul>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="/cs/list">C&nbsp;&nbsp;&nbsp;S</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/notice/list">공 지 사 항</a>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.KHCafeErp.www.dao.face.CsDao">
+
+	<select id="selectCntAll" parameterType="hashmap" resultType="int">
+		SELECT count(*) 
+		FROM counselBoard
+		WHERE 1=1
+		<if test="search != null">
+    		AND cBoardTitle LIKE '%'||#{search }||'%'
+  		</if>
+	</select>
+	
+	<select id="selectPageList" parameterType="com.KHCafeErp.www.util.Paging" resultType="com.KHCafeErp.www.dto.CounselBoard" >
+		  SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
+				SELECT
+					cBoardNo, counselBoard.staffNo, counselBoard.cusNo, cusId,
+					cBoardTitle, staffName, cBoardDate, cBoardContent
+				FROM counselBoard, staff, customer
+				WHERE counselBoard.staffNo=staff.staffNo AND customer.cusNo=counselBoard.cusNo
+				<if test="search != null">
+    				AND cBoardTitle LIKE '%'||#{search }||'%'
+  				</if>
+				ORDER BY cBoardNo DESC
+			) B
+			ORDER BY rnum
+		 ) counselBoard
+		 WHERE rnum BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="selectBoardByBoardNo" parameterType="com.KHCafeErp.www.dto.CounselBoard" resultType="com.KHCafeErp.www.dto.CounselBoard">
+		SELECT cBoardNo, cusNo, counselBoard.staffNo, staffName, cBoardTitle, cBoardDate, cBoardContent 
+		FROM counselBoard, staff
+  		WHERE counselBoard.staffNo=staff.staffNo
+  		AND cBoardNo = #{cBoardNo }
+	</select>
+	
+	<select id="selectStaffName" parameterType="int" resultType="String">
+		SELECT staffName FROM staff WHERE staffNo=#{staffNo}
+	</select>
+	
+	<select id="selectShopNo" resultType="int" parameterType="int">
+		SELECT shopNo FROM staff
+		WHERE staffNo = #{staffNo }
+	</select>
+	
+	<select id="selectCusNo" parameterType="String" resultType="com.KHCafeErp.www.dto.CounselBoard">
+		SELECT cusNo FROM customer WHERE cusId=#{cusId} 
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.KHCafeErp.www.dto.CounselBoard">
+		INSERT INTO counselBoard (cBoardNo, cusNo, staffNo, cBoardTitle, cBoardDate, cBoardContent)
+		VALUES (cBoardNo_seq.nextval, #{cusNo}, #{staffNo}, #{cBoardTitle}, #{cBoardDate}, #{cBoardContent})
+	</insert>
+
+	<delete id="delete" parameterType="com.KHCafeErp.www.dto.CounselBoard">
+		DELETE counselBoard WHERE cBoardNo=#{cBoardNo}
+	</delete>
+	
+	<update id="update" parameterType="com.KHCafeErp.www.dto.CounselBoard">
+		UPDATE counselBoard
+			SET cBoardContent = #{cBoardContent }, cBoardTitle=#{cBoardTitle}
+			WHERE cBoardNo = #{cBoardNo }	
+	</update>
+</mapper>
