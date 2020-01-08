@@ -45,12 +45,14 @@ public class OrderServiceImpl implements OrderService {
 				orderBase.setOrderStatus(0);
 			} else if(article.get("C").equals("주문완료")) {
 				orderBase.setOrderStatus(1);
-			} else if(article.get("C").equals("장바구니")){
+			} else if(article.get("C").equals("결제완료")){
 				orderBase.setOrderStatus(2);
 			} else {
 				orderBase.setOrderStatus(-1);
 			}
 
+			orderBase.setShopNo((int)Float.parseFloat(article.get("D")));
+			
 			if(article.get("H")!= null && !"".equals(article.get("H"))) {
 				orderBase.setCusReq(article.get("H"));				
 			} else {
@@ -66,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
 		   	
 		   	OrderProduct orderProduct = new OrderProduct();
 		   	
-		   	orderProduct.setOrderno(orderno);
+		   	orderProduct.setOrderNo(orderno);
 		   	orderProduct.setProductNo((int)Float.parseFloat(article.get("E")));
 		   	orderProduct.setProductOptionNo((int)Float.parseFloat(article.get("F")));
 		   	orderProduct.setProductCnt((int)Float.parseFloat(article.get("G")));
@@ -130,6 +132,14 @@ public List<OrderProduct> selectorderProduct(OrderProduct orderProduct) {
 public List<Product> selectProduct(Product product) {
 	// TODO Auto-generated method stub
 	return orderDao.selectProduct();
+}
+
+
+
+
+@Override
+public List<OrderBase> getList() {
+	return orderDao.getList();
 }
 
 }

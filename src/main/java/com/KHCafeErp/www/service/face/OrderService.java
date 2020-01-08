@@ -32,5 +32,6 @@ public interface OrderService {
 	public List<OrderProduct> selectorderProduct(OrderProduct orderProduct);
 	
 	public List<Product> selectProduct(Product product);
+	public List<OrderBase> getList();
 
 }

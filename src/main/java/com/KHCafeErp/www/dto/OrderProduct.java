@@ -2,14 +2,14 @@ package com.KHCafeErp.www.dto;
 
 public class OrderProduct {
 	private int orderPrdno;
-	private int orderno;
+	private int orderNo;
 	private int productOptionNo;
 	private int productNo;
 	private int productCnt;
 	
 	@Override
 	public String toString() {
-		return "OrderProduct [orderPrdno=" + orderPrdno + ", orderno=" + orderno + ", productOptionNo="
+		return "OrderProduct [orderPrdno=" + orderPrdno + ", orderNo=" + orderNo + ", productOptionNo="
 				+ productOptionNo + ", productNo=" + productNo + ", productCnt=" + productCnt + "]";
 	}
 
@@ -21,12 +21,12 @@ public class OrderProduct {
 		this.orderPrdno = orderPrdno;
 	}
 
-	public final int getOrderno() {
-		return orderno;
+	public final int getOrderNo() {
+		return orderNo;
 	}
 
-	public final void setOrderno(int orderno) {
-		this.orderno = orderno;
+	public final void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
 	}
 
 	public final int getProductOptionNo() {

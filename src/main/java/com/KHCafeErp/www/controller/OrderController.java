@@ -24,6 +24,7 @@ import com.KHCafeErp.www.dto.OrderProduct;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.OrderService;
+import com.KHCafeErp.www.util.ExcelWriter;
 import com.KHCafeErp.www.util.Paging;
 
 
@@ -118,5 +119,18 @@ public class OrderController {
         view.setViewName("/release/excel-success");
         
         return view;
+	}
+	
+	@RequestMapping(value = "/order/exceldown")
+	public String orderDown() {
+		List<OrderBase> orderList = orderService.getList();
+		System.out.println(orderList);
+		
+		ExcelWriter excelWriter = new ExcelWriter();
+		excelWriter.orderXls(orderList);
+		
+		logger.info("엑셀 다운 완료");
+		
+		return "redirect:/order/orderlist";
 	}
 }
