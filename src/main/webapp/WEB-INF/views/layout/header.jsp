@@ -101,14 +101,8 @@ li{
         </ul>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item">
         <a class="nav-link" href="/order/orderlist">주&nbsp;&nbsp;&nbsp;문</a>
-        <div class="dropdown-menu">
-        <ul>
-        	<li><a href="/order/orderlist">주문 관리</a></li>
-        	<li><a href="#">주문 등록</a></li>
-        </ul>
-        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link" href="/placingOrder/management">발&nbsp;&nbsp;&nbsp;주</a>
