@@ -2,6 +2,7 @@ package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
 
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Warehousing;
 
 public interface WarehousingDao {
@@ -27,5 +28,9 @@ public interface WarehousingDao {
 	 * @return
 	 */
 	public List<Warehousing> selectDealList();
+
+	public List<Warehousing> selectWareHouseList();
+
+	public List<Warehousing> selectWareHouseListAll();
 
 }

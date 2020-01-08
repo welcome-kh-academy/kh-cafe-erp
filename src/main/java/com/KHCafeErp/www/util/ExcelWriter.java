@@ -17,6 +17,7 @@ import com.KHCafeErp.www.dto.OrderBase;
 import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Product;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.Warehousing;
 
  
 public class ExcelWriter {
@@ -418,5 +419,10 @@ public class ExcelWriter {
             }
         }
     }
+
+	public void wareHouseXls(List<Warehousing> wareHouseList) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

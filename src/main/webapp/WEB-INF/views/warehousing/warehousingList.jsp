@@ -75,12 +75,13 @@ $(document).ready( function () {
     	"columnDefs" : [
     	      { width: '5%', targets : [0] },
     	      { width: '7%', targets : [1] },
-    	      { width: '15%', targets : [2] },
+    	      { width: '7%', targets : [2] },
     	      { width: '15%', targets : [3] },
     	      { width: '15%', targets : [4] },
     	      { width: '15%', targets : [5] },
     	      { width: '14%', targets : [6] },
-    	      { width: '14%', targets : [7] }
+    	      { width: '14%', targets : [7] },
+    	      { width: '8%', targets : [8] }
     	],
     	"scrollCollapse" : true, //가변 크기 막기
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
@@ -110,20 +111,23 @@ $(document).ready( function () {
 			"url" : "/warehousing/search",
 			"dataType":"json",
 			"data" : function() {
-				console.log($("#placingOrderForm").serialize())
-				return $("#placingOrderForm").serialize(); //검색조건 전달
+				console.log($("#warehousingForm").serialize())
+				return $("#warehousingForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
 				
 				for(let i=0; i<json.data.length; i++){
-					if(json.data[i][2] == "11"){
-						json.data[i][2] = "강남점";
-					}
 					if(json.data[i][6] == "0"){
-						json.data[i][6] = "발주완료"
+						json.data[i][6] = "비정규"
+					}
+					if(json.data[i][6] == "1"){
+						json.data[i][6] = "정규"
+					}
+					if(json.data[i][7] == "1"){
+						json.data[i][7] = "입고완료"
 					}
 					if(json.data[i][7] == "0"){
-						json.data[i][7] = "입고완료"
+						json.data[i][7] = "입고대기"
 					}
 				}
 				console.log(json.data);
@@ -154,18 +158,18 @@ function enter(e){
 <hr/>
 
 <div class="condition-container">
-<form action="/placingOrder/management" method="post" id="placingOrderForm">
+<form action="/warehousing/search" method="post" id="warehousingForm">
 
 <table class="table table-bordered">
 	<tr>
-		<th class="condition"><label for="placingOrderNo">입고번호</label></th>
-		<td><input type="number" value="${placingOrderList.placingOrderNo }" id="placingOrderNo" name="placingOrderNo"/></td>
-		<th class="condition"><label for="shopName">거래 지점</label></th>
+		<th class="condition"><label for="warehousingNo">입고번호</label></th>
+		<td><input type="number" value=0 id="warehousingNo" name="warehousingNo"/></td>
+		<th class="condition"><label for="dealStore">거래 지점</label></th>
 		<td>
-			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
+			<select name="dealStore" id="dealStore" class="search-select select2-selection select2-selection--single form-control">
 				<option value="">전체</option>
-				<c:forEach var="warehousing" items="${wareHouseList }" >
-					<option value="${warehousing.dealStore }">${warehousing.dealStore }</option>
+				<c:forEach var="deal" items="${dealList}" >
+					<option value="${deal.dealStore }">${deal.dealStore }</option>
 				</c:forEach>
 			</select>
 		</td>
@@ -174,14 +178,14 @@ function enter(e){
 		</td>
 	</tr>
 	<tr>
-		<th class="condition"><label for="shopName">구분</label></th>
+		<th class="condition"><label for="isAutoInStock">구분</label></th>
 		<td>
 			비정규
 		</td>
-		<th class="condition"><label for="shopName">상태</label></th>
+		<th class="condition"><label for="inStockStatus">상태</label></th>
 		<td>
 			<select name="inStockStatus" id="inStockStatus" class="search-select select2-selection select2-selection--single form-control">
-				<option value="">전체</option>
+				<option value=-1>전체</option>
 				<option value="0">입고대기</option>
 				<option value="1">입고완료</option>
 			</select>
@@ -200,8 +204,8 @@ function enter(e){
 		</td>
 		<th class="condition"><label>입고창고</label></th>
 		<td>
-			<select name="shopNo" id="shopNo" class="search-select select2-selection select2-selection--single form-control">
-				<option value="">전체</option>
+			<select name="storageNo" id="storageNo" class="search-select select2-selection select2-selection--single form-control">
+				<option value=-1>전체</option>
 				<c:forEach var="warehousing" items="${wareHouseList }" >
 					<option value="${warehousing.storageNo }">${warehousing.storageNo }</option>
 				</c:forEach>
@@ -228,6 +232,7 @@ function enter(e){
             <th>총 입고수량</th>
             <th>입고 등록일</th>
             <th>입고구분</th>
+            <th>입고상태</th>
             <th>거래처</th>
         </tr>
     </thead>
@@ -235,7 +240,7 @@ function enter(e){
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
 
-<div id="placingOrderModal" class="modal fade">
+<div id="wareousingModal" class="modal fade">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -249,7 +254,7 @@ function enter(e){
         <p>경로 : D:/</p>
       </div>
       <div class="modal-footer">
-        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/placingorder/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/wareousing/exceldown'">확인</button>
         <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
       </div>
     </div>
