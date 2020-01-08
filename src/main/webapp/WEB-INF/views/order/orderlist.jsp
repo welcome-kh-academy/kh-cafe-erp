@@ -229,7 +229,7 @@ function popupOpen(){
 						<option value="4">카드</option>
 
 
-
+<!-- 호로로로로롤 -->
 				</select></td>
 				<th class="condition"><label for="orderStatus">처리상태</label></th>
 				<td><select name="orderStatus" id="orderStatus"

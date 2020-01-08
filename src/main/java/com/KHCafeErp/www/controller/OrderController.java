@@ -91,6 +91,7 @@ public class OrderController {
 		
 		logger.info(orderProductlist.toString());
 		logger.info(productlist.toString());
+		logger.info("하기싫당");
 	}
 	// 19-12-31 유진 - 엑셀 업로드
 	@RequestMapping(value = "/order/upload", method = RequestMethod.POST)
