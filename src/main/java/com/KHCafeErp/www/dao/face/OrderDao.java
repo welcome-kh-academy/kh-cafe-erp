@@ -46,4 +46,6 @@ public interface OrderDao {
 
 	public List<Product> selectProduct();
 
+	public List<OrderBase> getList();
+
 }

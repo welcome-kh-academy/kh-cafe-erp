@@ -246,7 +246,7 @@ function popupOpen(){
 </div>
 
 <div style="float: right;">
-	<button class="btn btn-outline-success">Excel 다운로드</button>
+	<button class="btn btn-outline-success" data-toggle="modal" data-target="#orderModal">Excel 다운로드</button>
 	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel
 		업로드</button>
 </div>
@@ -267,25 +267,26 @@ function popupOpen(){
 </table>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
+
+<div id="orderModal" class="modal fade">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">엑셀 다운로드</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>엑셀을 다운받으시겠습니까?</p>
+        <p>경로 : D:/</p>
+      </div>
+      <div class="modal-footer">
+        <button id="downBtn" type="button" class="btn btn-primary" onclick="location.href='/order/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+

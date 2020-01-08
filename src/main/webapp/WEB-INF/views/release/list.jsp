@@ -64,7 +64,7 @@ $(document).ready( function () {
 	//select2 실행 코드
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
-	
+		
 	table = $('#myTable').DataTable({
     	"scrollY" : 400, //테이블 고정 크기 설정
     	"scrollCollapse" : true, //가변 크기 막기
@@ -82,7 +82,7 @@ $(document).ready( function () {
     		   "targets": -1,
     		   "data": null,
     		   "render": function(data, type, row){
-    		    return '<button class="btn btn-primary" onclick="/release/add=releaseNo?">출고 등록</button>';
+    		    return '<button name="registerBtn" class="btn btn-primary data-releaseNo='+releaseNo+'">출고 등록</button>';
     	},
     	"orderable": false }],
     	"serverSide" : false, //클라이언트에서 처리
@@ -100,7 +100,7 @@ $(document).ready( function () {
 // 				for(let i=0; i<json.data.length; i++){
 
 // 					if(json.data[i][2] == "11"){
-// 						json.data[i][2] = "강남점";
+// 						json.data[i][2     ] = "강남점";
 // 					}
 					
 // 					if(json.data[i][6] == "0"){
@@ -119,6 +119,17 @@ $(document).ready( function () {
 		}
     	
     });
+	
+	var releaseNo = 0;
+	
+	$("#myTable").on('click', 'button[name="registerBtn"]',function(){
+		var outlayId = table.row( $(this).parents('tr:first') ).data();
+		console.log(outlayId[0])
+		releaseNo=outlayId[0]
+		console.log(releaseNo)
+		location.href="/release/add?releaseNo="+releaseNo
+	})
+	
 });	
 
 

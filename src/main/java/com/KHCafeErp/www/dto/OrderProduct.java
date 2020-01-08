@@ -11,9 +11,11 @@ public class OrderProduct {
 	private String productorigin;
 	@Override
 	public String toString() {
+
 		return "OrderProduct [orderPrdno=" + orderPrdno + ", orderno=" + orderNo + ", productOptionNo="
 				+ productOptionNo + ", productNo=" + productNo + ", productCnt=" + productCnt + ", productName="
 				+ productName + ", price=" + price + ", productorigin=" + productorigin + "]";
+
 	}
 	public int getOrderPrdno() {
 		return orderPrdno;
@@ -21,10 +23,14 @@ public class OrderProduct {
 	public void setOrderPrdno(int orderPrdno) {
 		this.orderPrdno = orderPrdno;
 	}
+
 	public int getOrderNo() {
+
 		return orderNo;
 	}
+
 	public void setOrderNo(int orderNo) {
+
 		this.orderNo = orderNo;
 	}
 	public int getProductOptionNo() {

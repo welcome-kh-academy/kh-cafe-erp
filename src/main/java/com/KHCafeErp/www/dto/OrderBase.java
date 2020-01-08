@@ -15,7 +15,7 @@ public class OrderBase {
 	@Override
 	public String toString() {
 		return "OrderBase [orderNo=" + orderNo + ", cusNo=" + cusNo + ", shopNo=" + shopNo + ", orderDate="
-				+ orderDate + ", cusReq=" + cusReq + ", orderStatus=" + orderStatus + ", prdShopName=" + shopName
+				+ orderDate + ", cusReq=" + cusReq + ", orderStatus=" + orderStatus + ", shopName=" + shopName
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 	public Integer getOrderNo() {

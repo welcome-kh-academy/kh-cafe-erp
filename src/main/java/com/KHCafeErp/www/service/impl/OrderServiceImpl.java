@@ -45,12 +45,14 @@ public class OrderServiceImpl implements OrderService {
 				orderBase.setOrderStatus(0);
 			} else if(article.get("C").equals("주문완료")) {
 				orderBase.setOrderStatus(1);
-			} else if(article.get("C").equals("장바구니")){
+			} else if(article.get("C").equals("결제완료")){
 				orderBase.setOrderStatus(2);
 			} else {
 				orderBase.setOrderStatus(-1);
 			}
 
+			orderBase.setShopNo((int)Float.parseFloat(article.get("D")));
+			
 			if(article.get("H")!= null && !"".equals(article.get("H"))) {
 				orderBase.setCusReq(article.get("H"));				
 			} else {
@@ -135,6 +137,11 @@ public List<Product> selectProduct(OrderProduct orderproduct) {
 
 
 
+
+@Override
+public List<OrderBase> getList() {
+	return orderDao.getList();
+}
 
 
 }
