@@ -14,9 +14,18 @@ small, .small {
 table{
 
 }
+#wrapper{
+	margin : 20px;
+}
 </style>
-
+<script type="text/javascript">
+function closePop(){
+	console.log("dfdfsa")
+	window.close();
+}
+</script>
 <body>
+<div id="wrapper">
 <h5><b>주문 상세정보</b></h5>
 <table id="myTable" class="display table table-bordered">
     <thead class="thead-dark">
@@ -46,4 +55,8 @@ table{
         
     </thead>
 </table>
+	<div style="text-align:center">
+		<button class="btn btn-primary btn-sm" onclick="closePop()">닫기</button>
+	</div>
+</div>
 </body>

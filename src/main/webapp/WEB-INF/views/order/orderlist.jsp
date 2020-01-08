@@ -13,6 +13,9 @@
 .condition-container {
 	margin: 20px;
 }
+.container {
+	margin: 20px;
+}
 
 .space {
 	margin-left: 20px;
@@ -169,7 +172,7 @@ function detailview(orderNo){
 		 	
 	var popupY= (document.body.offsetHeight / 2) - 300;
 		 	
-	window.open("/order/detailview?orderNo="+orderNo,"","width=1000, height=100, resizable=no, scrollbars=no"+", left="+ popupX + ", top="+ popupY)
+	window.open("/order/detailview?orderNo="+orderNo,"","width=1000, height=500, resizable=no, scrollbars=no"+", left="+ popupX + ", top="+ popupY)
 }
 
 // 20-01-02 유진 : 엑셀 업로드 팝업창
@@ -186,10 +189,12 @@ function popupOpen(){
 }
 </script>
 
-<h1>주문 통합 관리</h1>
-<hr />
+<!-- <h1>주문 통합 관리</h1> -->
+<!-- <hr /> -->
 
 <div class="condition-container">
+	<fieldset>
+	<legend class="text-primary">주문 통합 관리</legend>
 	<form action="/order/search" method="post" id="orderForm">
 		<table class="table table-bordered">
 			<tr>
@@ -243,6 +248,7 @@ function popupOpen(){
 			</tr>
 		</table>
 	</form>
+	</fieldset>
 </div>
 
 <div style="float: right;">
@@ -251,9 +257,12 @@ function popupOpen(){
 		업로드</button>
 </div>
 <br>
-<h2>주문 리스트</h2>
-<table id="myTable" class="display table table-bordered">
-	<thead class="thead-dark">
+<!-- <h2>주문 리스트</h2> -->
+<div class="condition-container">
+<fieldset>
+	<legend class="text-primary">주문 리스트</legend>
+	<table id="myTable" class="display table table-bordered">
+	<thead class="table-primary">
 		<tr>
 			<th>주문번호</th>
 			<th>유저번호</th>
@@ -265,6 +274,8 @@ function popupOpen(){
 		</tr>
 	</thead>
 </table>
+</fieldset>
+</div>
 
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
