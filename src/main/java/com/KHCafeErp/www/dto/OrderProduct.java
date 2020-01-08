@@ -2,57 +2,74 @@ package com.KHCafeErp.www.dto;
 
 public class OrderProduct {
 	private int orderPrdno;
-	private int orderno;
+	private int orderNo;
 	private int productOptionNo;
 	private int productNo;
 	private int productCnt;
-	
+	private String productName;
+	private int price;
+	private String productorigin;
 	@Override
 	public String toString() {
-		return "OrderProduct [orderPrdno=" + orderPrdno + ", orderno=" + orderno + ", productOptionNo="
-				+ productOptionNo + ", productNo=" + productNo + ", productCnt=" + productCnt + "]";
-	}
 
-	public final int getOrderPrdno() {
+		return "OrderProduct [orderPrdno=" + orderPrdno + ", orderno=" + orderNo + ", productOptionNo="
+				+ productOptionNo + ", productNo=" + productNo + ", productCnt=" + productCnt + ", productName="
+				+ productName + ", price=" + price + ", productorigin=" + productorigin + "]";
+
+	}
+	public int getOrderPrdno() {
 		return orderPrdno;
 	}
-
-	public final void setOrderPrdno(int orderPrdno) {
+	public void setOrderPrdno(int orderPrdno) {
 		this.orderPrdno = orderPrdno;
 	}
 
-	public final int getOrderno() {
-		return orderno;
+	public int getOrderNo() {
+
+		return orderNo;
 	}
 
-	public final void setOrderno(int orderno) {
-		this.orderno = orderno;
-	}
+	public void setOrderNo(int orderNo) {
 
-	public final int getProductOptionNo() {
+		this.orderNo = orderNo;
+	}
+	public int getProductOptionNo() {
 		return productOptionNo;
 	}
-
-	public final void setProductOptionNo(int productOptionNo) {
+	public void setProductOptionNo(int productOptionNo) {
 		this.productOptionNo = productOptionNo;
 	}
-
-	public final int getProductNo() {
+	public int getProductNo() {
 		return productNo;
 	}
-
-	public final void setProductNo(int productNo) {
+	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
-
-	public final int getProductCnt() {
+	public int getProductCnt() {
 		return productCnt;
 	}
-
-	public final void setProductCnt(int productCnt) {
+	public void setProductCnt(int productCnt) {
 		this.productCnt = productCnt;
 	}
-
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getProductorigin() {
+		return productorigin;
+	}
+	public void setProductorigin(String productorigin) {
+		this.productorigin = productorigin;
+	}
+	
 	
 	
 }
