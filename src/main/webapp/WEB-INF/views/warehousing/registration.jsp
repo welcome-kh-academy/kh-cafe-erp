@@ -172,9 +172,9 @@ $(document).ready( function () {
     	scrollCollapse : true, //가변 크기 막기
     	columnDefs : [
     	{
-    		 orderable: false,
-             className: 'select-checkbox',
-             targets:   0
+    		orderable: false,
+            className: 'select-checkbox',
+            targets:   0
     	 }],
 		select: {
 			style: 'multi',

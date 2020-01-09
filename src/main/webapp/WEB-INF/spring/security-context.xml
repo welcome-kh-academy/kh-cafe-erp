@@ -15,6 +15,7 @@
 	<mvc:annotation-driven />
 
     <security:http auto-config='true' use-expressions="true">
+		<!-- 로그인 권한 부여 -->
 		<security:intercept-url pattern="/dashboard/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/order/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/notice/**" access="isAuthenticated()" />
@@ -24,10 +25,15 @@
 		<security:intercept-url pattern="/placingOrder/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/upload/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/cs/**" access="isAuthenticated()" />
+    	<security:intercept-url pattern="/warehousing/**" access="isAuthenticated()" />
+    	
+		<!-- 모든 권한 부여 -->
     	<security:intercept-url pattern="/findinfo/**" access="permitAll()" />
     	<security:intercept-url pattern="/join/**" access="permitAll()" />
     	<security:intercept-url pattern="/login/**" access="permitAll()" />
     	<security:intercept-url pattern="/resources/**" access="permitAll()" />
+    	
+		<!-- 모든 권한 취소 -->
     	<security:intercept-url pattern="/**" access="denyAll()" />
 <!--     	<security:intercept-url pattern="/**" access="permitAll()" /> -->
     	<security:form-login
