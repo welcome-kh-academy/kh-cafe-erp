@@ -45,7 +45,7 @@ public class CustomAuthenticationProvider  implements AuthenticationProvider {
         staff.setPw(user_pw);
         boolean isLogin = loginService.loginCheckSecu(staff);
 
-//		if(isLogin) {
+		if(isLogin) {
         	staff = loginService.selectByStaffNo(staff);
 			List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 
@@ -59,10 +59,10 @@ public class CustomAuthenticationProvider  implements AuthenticationProvider {
 
 			return result;
 			
-//		} 
-//		else {
-//			return null;
-//		}
+		} 
+		else {
+			return null;
+		}
 	
 
         

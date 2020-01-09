@@ -17,11 +17,13 @@
     <security:http auto-config='true' use-expressions="true">
 		<security:intercept-url pattern="/dashboard/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/order/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/notice/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/manageProduct/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/release/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/product/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/placingOrder/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/upload/**" access="isAuthenticated()" />
+    	<security:intercept-url pattern="/cs/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/findinfo/**" access="permitAll()" />
     	<security:intercept-url pattern="/join/**" access="permitAll()" />
     	<security:intercept-url pattern="/login/**" access="permitAll()" />
@@ -33,7 +35,7 @@
     		password-parameter="pw"
     		login-processing-url="/login/check"
     		login-page="/login/main"
-    		default-target-url="/dashboard/index"
+    		default-target-url="/login/check"
     	/>
 		<security:logout invalidate-session="true"
                     logout-url="/login/logout"   
