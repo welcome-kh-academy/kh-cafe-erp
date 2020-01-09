@@ -183,7 +183,6 @@ public class ManageProductController {
 	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
 	public ModelAndView search(ModelAndView mav, @RequestParam(defaultValue = "1") int curPage, Product product, HttpSession session) {
 		
-		
 		int shopNo = (int)session.getAttribute("shopNo");
 		product.setShopNo(shopNo);
 		List<Product> data = manageProductService.getProductList(product);

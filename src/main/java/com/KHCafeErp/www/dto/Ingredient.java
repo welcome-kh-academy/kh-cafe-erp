@@ -9,11 +9,14 @@ public class Ingredient {
 	private String maker; //제조사
 	private String ingredientOption; //원자재 옵션
 	
+	private int placingOrderProductCnt;	// 수량
+	private int releaseNo;	// 출고 번호
+
 	@Override
 	public String toString() {
 		return "Ingredient [ingredientNo=" + ingredientNo + ", ingredientName=" + ingredientName + ", ingredientPrice="
 				+ ingredientPrice + ", origin=" + origin + ", maker=" + maker + ", ingredientOption=" + ingredientOption
-				+ "]";
+				+ ", placingOrderProductCnt=" + placingOrderProductCnt + ", releaseNo=" + releaseNo + "]";
 	}
 
 	public int getIngredientNo() {
@@ -63,7 +66,23 @@ public class Ingredient {
 	public void setIngredientOption(String ingredientOption) {
 		this.ingredientOption = ingredientOption;
 	}
-	
+
+	public int getPlacingOrderProductCnt() {
+		return placingOrderProductCnt;
+	}
+
+	public void setPlacingOrderProductCnt(int placingOrderProductCnt) {
+		this.placingOrderProductCnt = placingOrderProductCnt;
+	}
+
+	public int getReleaseNo() {
+		return releaseNo;
+	}
+
+	public void setReleaseNo(int releaseNo) {
+		this.releaseNo = releaseNo;
+	}	
 	
 	
 }
+
