@@ -58,6 +58,7 @@ public class LoginController {
 			session.setAttribute("login", isLogin);
 			session.setAttribute("staffNo", staff.getStaffNo());
 			session.setAttribute("nick", staff.getNick());
+			session.setAttribute("shopNo", staff.getShopNo());
 			
 			// 19-12-31 유진 : 직원 등급 확인
 			session.setAttribute("position", loginService.getPosition(staff));

@@ -1,10 +1,10 @@
 package com.KHCafeErp.www.dto;
 
 public class Product {
-	private int productNo;
-	private int categoryMapNo;
+	private Integer productNo;
+	private Integer categoryMapNo;
 	private int optionNo;
-	private int shopNo;
+	private Integer shopNo;
 	private String shopName;
 	private String productName;
 	private String productContent;
@@ -16,8 +16,9 @@ public class Product {
 	private String selEndDate;
 	private int selStatus;
 	private String categoryName;
-	private int categoryNo;
+	private Integer categoryNo;
 	private String categoryDetailName;
+	
 	
 	
 	@Override
@@ -29,16 +30,16 @@ public class Product {
 				+ selEndDate + ", selStatus=" + selStatus + ", categoryName=" + categoryName + ", categoryNo="
 				+ categoryNo + ", categoryDetailName=" + categoryDetailName + "]";
 	}
-	public int getProductNo() {
+	public Integer getProductNo() {
 		return productNo;
 	}
-	public void setProductNo(int productNo) {
+	public void setProductNo(Integer productNo) {
 		this.productNo = productNo;
 	}
-	public int getCategoryMapNo() {
+	public Integer getCategoryMapNo() {
 		return categoryMapNo;
 	}
-	public void setCategoryMapNo(int categoryMapNo) {
+	public void setCategoryMapNo(Integer categoryMapNo) {
 		this.categoryMapNo = categoryMapNo;
 	}
 	public int getOptionNo() {
@@ -47,10 +48,10 @@ public class Product {
 	public void setOptionNo(int optionNo) {
 		this.optionNo = optionNo;
 	}
-	public int getShopNo() {
+	public Integer getShopNo() {
 		return shopNo;
 	}
-	public void setShopNo(int shopNo) {
+	public void setShopNo(Integer shopNo) {
 		this.shopNo = shopNo;
 	}
 	public String getShopName() {
@@ -119,10 +120,10 @@ public class Product {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	public int getCategoryNo() {
+	public Integer getCategoryNo() {
 		return categoryNo;
 	}
-	public void setCategoryNo(int categoryNo) {
+	public void setCategoryNo(Integer categoryNo) {
 		this.categoryNo = categoryNo;
 	}
 	public String getCategoryDetailName() {
@@ -131,6 +132,9 @@ public class Product {
 	public void setCategoryDetailName(String categoryDetailName) {
 		this.categoryDetailName = categoryDetailName;
 	}
+	
+	
+	
 	
 	
 	

@@ -11,6 +11,11 @@ import com.KHCafeErp.www.dto.Shop;
 
 public interface ManageProductDao {
 	/**
+	 * 페이징없는 목록 리스트 불러오기
+	 * @return - 목록
+	 */
+	public List<Product> selectProductListAllWithoutPaging();
+	/**
 	 * 상품의 사진을 받아온다
 	 * @param productNo - 상품의 사진을 받아올 상품 번호
 	 * @return - 상품의 사진
@@ -73,4 +78,44 @@ public interface ManageProductDao {
 	 * @return - 상품 전체 목록
 	 */
 	public List<Product> selectList();
+	/**
+	 * 검색조건으로 상품목록을 가져온다
+	 * @param product - 검색조건
+	 * @return - 조건에 맞는 상품목록
+	 */
+	public List<Product> selectSearchList(Product product);
+	/**
+	 * 리스트를 전체 불러온다 . 페이징 없이
+	 * @param product - 
+	 * @return
+	 */
+	public List<Product> selectProductListAll(Product product);
+	/**
+	 * 샵번호로 샵정보를 받아온다
+	 * @param shopNo - 로그인한 샵 번호
+	 * @return - 샵 정보
+	 */
+	public Shop selectShopName(int shopNo);
+	/**
+	 * 상품 정보 수정 시, 이미지 파일도 수정한다
+	 * @param product - 이미지 파일을 수정 할 상품 번호
+	 * @param map 
+	 */
+//	public void updateImgFile(Map<String, Object> map);
+	/**
+	 * 사진만 따로 업로드....
+	 * @param newfile - 업데이트할 사진
+	 */
+	public void insertImgFile(ImgFile newfile);
+	/**
+	 * 해당 상품 정보에 기존의 이미지가 존재하는지 확인한다
+	 * @param productNo - 해당 상품의 번호
+	 * @return - 헤당 상품의 파일 정보
+	 */
+	public int selectCntFileByProductNo(int productNo);
+	/**
+	 * 해당 상품 정보의 기존 이미지를 삭제한다
+	 * @param productNo - 해당 상품의 상품번호
+	 */
+	public void deleteFile(int productNo);
 }
