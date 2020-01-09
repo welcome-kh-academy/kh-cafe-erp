@@ -33,6 +33,13 @@ function getList() {
 	
 }
 
+//리스트 추가
+// function addList() {
+// // 	var rows_selected = table.column(0).checkboxes.selected();
+	
+// 	console.log(rows_selected);
+// }
+
 //datatable
 $(document).ready( function () {
 
@@ -79,6 +86,21 @@ $(document).ready( function () {
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
 	
+	//탭 이동
+	$('#myTab a').on('click', function (e) {
+  		e.preventDefault()
+  		$(this).tab('show')
+	})
+	
+	//현재날짜로
+	$("#inStockDate").attr("value",getRecentDate());
+	
+	$("#product_search").click(function(){
+		// ajax 한 번 더 실행
+		 $("#searchProduct").DataTable().ajax.reload();
+	});
+	
+	
 	//insert 테이블
 	$('#warehousing').DataTable({
 		"paging" : false,
@@ -101,55 +123,64 @@ $(document).ready( function () {
         }
 	});
 	
-	//검색 테이블
+	//상품검색 테이블
 	$('#searchProduct').DataTable({
-		"paging" : false,
-		"ordering" : true,
-		"info" : true,
-		"filter" : false,
-		"lengthChange" : true,
-		"order" : false,
-		"language": {
+		
+    	"scrollY" : 200, //테이블 고정 크기 설정
+    	"scrollCollapse" : true, //가변 크기 막기
+    	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
+    	"language": {
             "emptyTable": "데이터가 없어요.",
             "lengthMenu": "페이지당 _MENU_ 개씩 보기",
             "info": "현재 _START_ - _END_ / _TOTAL_건",
             "infoEmpty": "데이터 없음",
             "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
-            "search": "빠른검색 : ",
-            "emptyTable": "상품 목록이 존재하지 않습니다.",
+            "search": "간편검색 : ",
+            "emptyTable": "발주 목록이 존재하지 않습니다.",
             "zeroRecords": "일치하는 데이터가 없어요.",
             "loadingRecords": "로딩중...",
-            "processing":     "잠시만 기다려 주세요..."
-        }
-	});
+            "processing":     "잠시만 기다려 주세요...",
+            "paginate": {
+            	"first": "<<",
+                "last": ">>",
+                "next": "다음",
+                "previous": "이전"
+            }
+        },
+    	"length" : 5, //한페이지에 보여줄 페이지 갯수
+    	"serverSide" : false, //클라이언트에서 처리
+    	"processing" : true, 
+    	ajax : {
+			"type" : "GET",
+			"url" : "/manageProduct/search",
+			"dataType" : "json",
+			"data" : function() {
+				console.log($("#productSearch").serialize())
+				return $("#productSearch").serialize(); //검색조건 전달
+			},
+			"dataSrc" : function(json){
+				
+				
+				return json.data;
+			}
+		}
 
-	//탭 이동
-	$('#myTab a').on('click', function (e) {
-  		e.preventDefault()
-  		$(this).tab('show')
-	})
-	
-	//현재날짜로
-	$("#inStockDate").attr("value",getRecentDate());
-	
-	$("#product_search").click(function(){
-		// ajax 한 번 더 실행
-		 $("#searchProduct").DataTable().ajax.reload();
-	});
-	
+    });
+
 	$('#placingProduct').DataTable({
-    	"scrollY" : 200, //테이블 고정 크기 설정
-    	"columnDefs" : [
-    	      { width: '5%', targets : [0] },
-    	      { width: '7%', targets : [1] },
-    	      { width: '15%', targets : [2] },
-    	      { width: '15%', targets : [3] },
-    	      { width: '15%', targets : [4] },
-    	      { width: '15%', targets : [5] },
-    	      { width: '14%', targets : [6] },
-    	      { width: '14%', targets : [7] }
-    	],
-    	"scrollCollapse" : true, //가변 크기 막기
+    	scrollY : 200, //테이블 고정 크기 설정
+    	scrollCollapse : true, //가변 크기 막기
+    	columnDefs : [
+    	{
+    		 orderable: false,
+             className: 'select-checkbox',
+             targets:   0
+    	 }],
+		select: {
+			style: 'multi',
+			selector: 'td:first-child'
+		},
+		order: [[ 1, 'asc' ]],
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
     	"language": {
             "emptyTable": "데이터가 없어요.",
@@ -177,7 +208,6 @@ $(document).ready( function () {
 			"url" : "/placingOrder/search",
 			"dataType":"json",
 			"data" : function() {
-				console.log($("#placingOrderForm").serialize())
 				return $("#placingOrderForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
@@ -192,10 +222,11 @@ $(document).ready( function () {
     });
 	
 	$("#placingOrder-tab").click(function(){
-		console.log("aaaaaaaaaaa")
 		$('.dataTables_scrollHeadInner').attr("style","box-sizing: content-box; width: 100%; padding-right: 0px;");
 		$('.dataTables_scrollHeadInner').children().attr("style","margin-left: 0px;width: 100%;");
 	})
+	
+	
 	
 });	
 	
@@ -251,6 +282,7 @@ $(document).ready( function () {
 	width:650px;
 }
 
+
 </style>
 
 <h1>입고 등록</h1>
@@ -305,7 +337,7 @@ $(document).ready( function () {
 <table id="warehousing" class="table table-bordered">
 		<thead class="thead-dark">
 			<tr>
-				<th><input type="checkbox"/></th>
+				<th></th>
 				<th>상품번호</th>
 				<th>옵션번호</th>
 				<th>상품코드</th>
@@ -398,14 +430,14 @@ $(document).ready( function () {
 	<table id="searchProduct" class="table table-bordered">
 	<thead class="thead-dark">
 		<tr>
-			<th><input type="checkbox"/></th>
+			<th></th>
 			<th>상품이름</th>
 			<th>이미지</th>
 			<th>옵션</th>
 			<th>수량</th>
-			<th colspan=2>단가</th>
+<!-- 			<th colspan=2>단가</th> -->
 			<th>금액</th>
-			<th colspan=2>부과세</th>
+<!-- 			<th colspan=2>부과세</th> -->
 		</tr>
 	</thead>
 	</table>
@@ -416,13 +448,12 @@ $(document).ready( function () {
   <!--  -->
   
   <div class="tab-pane fade" id="placingOrder" role="tabpanel" aria-labelledby="placingOrder-tab">
-  	<h3 class="search-header">발주검색</h3>
+<div class="condition-container">
+ 	<h3 class="search-header">발주검색</h3>
   	<div class="button-bar">
 		<button class="btn btn-outline-info" onclick="addList()">리스트 추가</button>
 	</div>
   	<hr/>
-  	
-<div class="condition-container">
 <form action="/placingOrder/management" method="post" id="placingOrderForm">
 
 <table class="table table-bordered">
@@ -483,6 +514,7 @@ $(document).ready( function () {
 <table id="placingProduct" class="table table-bordered">
     <thead class="thead-dark">
         <tr>
+        	<th></th>
             <th>no</th>
             <th>발주번호</th>
             <th>지점명</th>

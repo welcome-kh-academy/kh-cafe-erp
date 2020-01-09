@@ -23,7 +23,13 @@
 <!-- 게시판(테이블) dataTable 1.10.19 & 부트스트랩4 버전 -->
 <script src="/resources/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
+<!-- dataTabke checkbox -->
+<script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+
+<!-- dataTable tr 선택시 파랗게 -->
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
 </body>
 </html>

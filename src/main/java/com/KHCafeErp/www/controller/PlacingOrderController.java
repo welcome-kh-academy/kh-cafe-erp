@@ -52,6 +52,7 @@ public class PlacingOrderController {
 		int i=1;
 		for(PlacingOrder po : data) {
 			list = new ArrayList();
+			list.add(null);
 			list.add(i++);
 			list.add(po.getPlacingOrderNo());
 			list.add(po.getShopNo());

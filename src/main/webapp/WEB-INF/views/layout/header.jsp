@@ -32,6 +32,9 @@
 
 <!-- 게시판(테이블) dataTable 1.10.19 & 부트스트랩4 버전 -->
 <link href="/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet">
+<!-- dataTable checkbox -->
+<!-- <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet" /> -->
 
 
 <title>: : : KH-CAFE ERP : : :</title>

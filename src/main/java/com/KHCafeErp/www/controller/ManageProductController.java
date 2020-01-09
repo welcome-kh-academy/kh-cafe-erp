@@ -183,9 +183,17 @@ public class ManageProductController {
 	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
 	public ModelAndView search(ModelAndView mav, @RequestParam(defaultValue = "1") int curPage, Product product, HttpSession session) {
 		
-		
-		int shopNo = (int)session.getAttribute("shopNo");
-		product.setShopNo(shopNo);
+		// 매장번호 유효성 검사
+	    int shopNo = 0;
+	    String id = "";
+	    if( session.getAttribute("shopNo")!=null && !"".equals(session.getAttribute("shopNo")) ) {
+	    	shopNo = (int)session.getAttribute("shopNo");
+	    	id = (String)session.getAttribute("nick");
+	    }
+	    
+	    
+	    logger.info(shopNo+"으으으ㅡ으아아아    :"+id);
+	      
 		List<Product> data = manageProductService.getProductList(product);
 		List llist = new ArrayList();
 		List list = null;
