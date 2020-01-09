@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.ReleaseProductDao;
+import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
@@ -92,5 +93,32 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 	public List<Shop> getShopList() {
 		return releaseProductDao.selectShopList();
 	}
+
+	@Override
+	public List<Integer> getPlacingOrderNo() {
+		return releaseProductDao.selectPlacingOrderNo();
+	}
+
+	@Override
+	public void insertRelease(int placingOrderNo) {
+		releaseProductDao.insertNewRelease(placingOrderNo);
+	}
+
+	@Override
+	public void insertReleaseProduct(Ingredient ingredient) {
+		releaseProductDao.insertNewReleaseProduct(ingredient);		
+	}
+
+	@Override
+	public int getReleaseNo(int placingOrderNo) {
+		return releaseProductDao.selectReleaseNo(placingOrderNo);
+	}
+
+	@Override
+	public List<Ingredient> getReleaseProductList(int placingOrderNo) {
+		return releaseProductDao.selectReleaseProductList(placingOrderNo);
+	}
+
+
 
 }

@@ -56,4 +56,31 @@
 	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
 		SELECT SHOPNO, SHOPNAME FROM SHOP
 	</select>
+	
+	<select id="selectPlacingOrderNo" resultType="int">
+		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus IN (2,3) ORDER BY placingOrderNo
+	</select>
+	
+	<insert id="insertNewRelease" parameterType="int">
+		INSERT INTO release (releaseNo, placingOrderNo)
+		SELECT release_seq.nextval, #{placingOrderNo}
+		FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM release WHERE placingOrderNo=#{placingOrderNo})
+	</insert>
+	
+	<select id="selectReleaseNo" parameterType="int" resultType="int">
+		SELECT releaseNo FROM release WHERE placingOrderNo=#{placingOrderNo}
+	</select>
+	
+	<insert id="insertNewReleaseProduct" parameterType="com.KHCafeErp.www.dto.Ingredient">
+		INSERT INTO releaseProduct (releaseProductNo, releaseNo, releaseProductName, productCnt, productPrice)
+		SELECT releaseProduct_seq.nextval, #{releaseNo}, #{ingredientName}, #{placingOrderProductCnt}, #{ingredientPrice}
+		FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM releaseProduct WHERE releaseNo=#{releaseNo} AND releaseProductName=#{ingredientName} )
+	</insert>
+
+	<select id="selectReleaseProductList" parameterType="int" resultType="com.KHCafeErp.www.dto.Ingredient">
+		SELECT placingOrderProduct.ingredientNo, ingredientName, ingredientPrice, placingOrderProductCnt FROM placingOrderProduct, ingredient WHERE placingOrderProduct.ingredientNo=ingredient.ingredientNo AND placingOrderNo=#{placingOrderNo}
+	</select>
+	
 </mapper>

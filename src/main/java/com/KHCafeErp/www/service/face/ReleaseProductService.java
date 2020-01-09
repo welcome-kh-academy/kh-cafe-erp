@@ -3,7 +3,9 @@ package com.KHCafeErp.www.service.face;
 import java.io.File;
 import java.util.List;
 
+import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
@@ -35,5 +37,15 @@ public interface ReleaseProductService {
 	public List<Release> getList();
 
 	public List<Shop> getShopList();
+
+	public List<Integer> getPlacingOrderNo();
+
+	public void insertRelease(int placingOrderNo);
+
+	public void insertReleaseProduct(Ingredient ingredient);
+
+	public int getReleaseNo(int placingOrderNo);
+
+	public List<Ingredient> getReleaseProductList(int placingOrderNo);
 
 }
