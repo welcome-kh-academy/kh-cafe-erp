@@ -37,4 +37,16 @@ public class LoginServiceImpl implements LoginService{
 	public Object getPosition(Staff staff) {
 		return loginDao.getPosition(staff);
 	}
+
+	@Override
+	public boolean loginCheckSecu(Staff staff) {
+		int cnt = 0;
+		
+		cnt = loginDao.cntAccountSecu(staff);
+		if(cnt>=1) {
+			return true; //직원임
+		} else {
+			return false; //직원이 아니거나 오류
+		}
+	}
 }
