@@ -1,6 +1,9 @@
 package com.KHCafeErp.www.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,37 +40,39 @@ public class ManageProductController {
 			@RequestParam(defaultValue = "0") int shopNo) {
 		
 		
-//		logger.info("상품관리");
-		Product product = new Product();
-		product.setProductNo(productNo);
-		product.setProductName(productName);
-		product.setCategoryNo(categoryNo);
-		product.setCategoryMapNo(categoryMapNo);
-		product.setShopNo(shopNo);
-		
-		logger.info("검색조건 :" + product);
-
-		//페이징 계산
-		Paging paging = manageProductService.getPaging(page, product);
-		
-		model.addAttribute("paging", paging);
-
-		List<CategoryBase> category = manageProductService.getcategoryList();
-		List<Shop> shop = manageProductService.getShopList();
+////		logger.info("상품관리");
+//		Product product = new Product();
+//		product.setProductNo(productNo);
+//		product.setProductName(productName);
+//		product.setCategoryNo(categoryNo);
+//		product.setCategoryMapNo(categoryMapNo);
+//		product.setShopNo(shopNo);
 //		
-////		List<Product> productList = manageProductService.getProductList(product);
-		List<Product> productList = manageProductService.getProductList(paging, product);
-		
-		logger.info("검색결과 : " + productList);
-		
-//		mav.setViewName("jsonView");
-//		mav.addObject("product", productList);
+//		logger.info("검색조건 :" + product);
+//
+//		//페이징 계산
+//		Paging paging = manageProductService.getPaging(page, product);
+//		
+//		model.addAttribute("paging", paging);
+//
+		List<CategoryBase> category = manageProductService.getcategoryList();
+//		List<Shop> shop = manageProductService.getShopList();
+////		
+//		List<Product> productList = manageProductService.getProductListAll();
+////		List<Product> productList = manageProductService.getProductList(paging, product);
+//		
+//		logger.info("검색결과 : " + productList);
+//		
+////		mav.setViewName("jsonView");
+////		mav.addObject("product", productList);
 //		mav.addObject("category", category);
-//		mav.addObject("shop", shop);
-//		mav.addObject("redirect", "/manageProduct/list");
+////		mav.addObject("shop", shop);
+////		mav.addObject("redirect", "/manageProduct/list");
 		model.addAttribute("category", category);
-		model.addAttribute("shop", shop);
-		model.addAttribute("product", productList);
+//		model.addAttribute("shop", shop);
+//		model.addAttribute("product", productList);
+		
+		
 		
 	}
 	//카테고리 목록 불러오기
@@ -89,6 +94,7 @@ public class ManageProductController {
 		Product product = manageProductService.getProduct(productNo);
 		ImgFile imgfile = manageProductService.getImgFile(productNo);
 		
+		logger.info("view - " + category);
 		model.addAttribute("category", category);
 		model.addAttribute("product", product);
 		model.addAttribute("imgfile", imgfile);
@@ -107,6 +113,32 @@ public class ManageProductController {
 		mav.addObject("redirect", "/manageProduct/list");
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="manageProduct/updateFile")
+	public ModelAndView updateFile(ImgFile file, ModelAndView mav) {
+		
+		logger.info("확인..." + file);
+		logger.info("확인..." + file.getProductImage().getOriginalFilename());
+		logger.info("확인..." + file.getProductImage().getSize());
+		
+		ImgFile imgFile = manageProductService.editFile(file, file.getProductNo());
+		
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+//		
+//		try {
+//			String jsonString = mapper.writeValueAsString(new ImgFile());
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		mav.addObject("storedName", imgFile.getStoredName());
+		mav.setViewName("jsonView");
+		
+		return mav;
+//		return "redirect:/manageProduct/view?productNo="+file.getProductNo();
 	}
 	
 	//상품 판매 시작 날짜 등록하기
@@ -148,16 +180,43 @@ public class ManageProductController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
-//	public String search(Model model, Product product) {
-//		
-//		logger.info("검색조건 :" + product);
-//		List<Product> searchList = manageProductService.searchList(product);
-//		
-//		logger.info("검색결과 : " + searchList);
-//		model.addAttribute("searchList", searchList);
-//		return "redirect:/manageProduct/list";
-//	}
+	@RequestMapping(value="/manageProduct/search", method=RequestMethod.GET)
+	public ModelAndView search(ModelAndView mav, @RequestParam(defaultValue = "1") int curPage, Product product, HttpSession session) {
+		
+		
+		int shopNo = (int)session.getAttribute("shopNo");
+		product.setShopNo(shopNo);
+		List<Product> data = manageProductService.getProductList(product);
+		List llist = new ArrayList();
+		List list = null;
+		
+		Shop shop =  manageProductService.getShopName(shopNo);
+		
+		//번호
+		int i=1;
+		for(Product pro : data) {
+			list = new ArrayList();
+			list.add(shop.getShopName());
+			list.add(pro.getProductNo());
+			list.add(pro.getProductName());
+			list.add(pro.getOriginPrice());
+			list.add(pro.getPrice());
+			list.add(pro.getProductOrigin());
+			list.add(pro.getEnrollDate());
+			list.add(pro.getSelStartDate());
+			list.add(pro.getSelEndDate());
+			list.add(0);
+			list.add(0);
+			list.add(0);
+			
+			llist.add(list);
+		}
+		
+		mav.addObject("data",llist);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
 
 	// 20-01-05 유진 : 상품 목록 엑셀 다운
 	@RequestMapping(value = "/manageProduct/exceldown")

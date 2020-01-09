@@ -26,7 +26,9 @@
    <link rel="stylesheet" type="text/css" href="/resources/css/util.css">
    <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 <!--===============================================================================================-->
-
+<script type="text/javascript">
+console.log(${position})
+</script>
 
 </head>
 <body>

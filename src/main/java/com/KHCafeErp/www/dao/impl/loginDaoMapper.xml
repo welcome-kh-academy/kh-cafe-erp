@@ -8,6 +8,9 @@
 	<select id="cntAccount" parameterType="com.KHCafeErp.www.dto.Staff" resultType="int">
 		SELECT COUNT(*) FROM staff WHERE staffNo = #{ staffNo } AND pw = #{ pw } AND shopNo = #{ shopNo }
 	</select>
+	<select id="cntAccountSecu" parameterType="com.KHCafeErp.www.dto.Staff" resultType="int">
+		SELECT COUNT(*) FROM staff WHERE staffNo = #{ staffNo } AND pw = #{ pw }
+	</select>
 	
 	<select id="selectByStaffNo" parameterType="com.KHCafeErp.www.dto.Staff" resultType="com.KHCafeErp.www.dto.Staff">
 		SELECT * FROM staff WHERE staffNo = #{ staffNo }

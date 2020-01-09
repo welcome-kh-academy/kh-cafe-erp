@@ -23,5 +23,8 @@ public interface LoginDao {
 	 * @return - 직원등급
 	 */
 	public Object getPosition(Staff staff);
+	
+	
+	public int cntAccountSecu(Staff staff);
 
 }

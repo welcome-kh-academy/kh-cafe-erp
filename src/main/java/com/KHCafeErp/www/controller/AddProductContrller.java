@@ -125,7 +125,7 @@ public class AddProductContrller {
 		logger.info(product.toString()); 
 //		logger.info(imgFile.toString());
 		
-		imgFile = addProductService.filesave(imgFile);
+		imgFile = addProductService.filesave(imgFile); 
 		logger.info(imgFile.toString());
 
 		addProduct.put("productName", product.getProductName());
