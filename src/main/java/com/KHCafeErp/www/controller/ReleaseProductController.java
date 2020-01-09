@@ -17,11 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.Ingredient;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Release;
+import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.ReleaseProductService;
 import com.KHCafeErp.www.util.ExcelWriter;
-import com.KHCafeErp.www.util.Paging;
 
 @Controller
 public class ReleaseProductController {
@@ -35,6 +37,27 @@ public class ReleaseProductController {
 		logger.info("releaseList()");
 		List<Shop> shopList = releaseProductService.getShopList();
 		model.addAttribute(shopList);
+		
+		List<Integer> placingOrderNoList = releaseProductService.getPlacingOrderNo();
+		System.out.println(placingOrderNoList);
+		
+		for(int i=0; i<placingOrderNoList.size(); i++) {
+			System.out.println(placingOrderNoList.get(i));
+			int placingOrderNo = placingOrderNoList.get(i);
+			releaseProductService.insertRelease(placingOrderNo);
+			
+			int releaseNo = releaseProductService.getReleaseNo(placingOrderNo);
+			System.out.println("releaseNo "+releaseNo);
+			List<Ingredient> releaseProductList = releaseProductService.getReleaseProductList(placingOrderNo);
+			System.out.println(releaseProductList);
+			for(int j=0;j<releaseProductList.size();j++) {
+//				System.out.println(releaseProductList.get(j));
+				Ingredient ingredient = releaseProductList.get(j);
+				ingredient.setReleaseNo(releaseNo);
+				System.out.println(ingredient);
+				releaseProductService.insertReleaseProduct(ingredient);
+			}
+		}
 	}
 	
 	@RequestMapping(value="/release/search" ,method=RequestMethod.GET)

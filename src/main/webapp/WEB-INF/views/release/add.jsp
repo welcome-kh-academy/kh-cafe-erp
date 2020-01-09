@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
-<h1>발주등록</h1>
-<hr/>
 
 <style type="text/css">
 
@@ -21,6 +19,8 @@
 
 </style>
 
+<h1>발주등록</h1>
+<hr/>
 
 <div class="placingOrder-info">
 <h3>출고 정보</h3>

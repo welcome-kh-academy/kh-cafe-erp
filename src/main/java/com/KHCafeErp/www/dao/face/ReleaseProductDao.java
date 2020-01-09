@@ -2,10 +2,10 @@ package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
 
+import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
-import com.KHCafeErp.www.util.Paging;
 
 public interface ReleaseProductDao {
 	
@@ -49,4 +49,14 @@ public interface ReleaseProductDao {
 	public List<Release> getList();
 
 	public List<Shop> selectShopList();
+
+	public List<Integer> selectPlacingOrderNo();
+
+	public void insertNewRelease(int placingOrderNo);
+
+	public void insertNewReleaseProduct(Ingredient ingredient);
+
+	public int selectReleaseNo(int placingOrderNo);
+
+	public List<Ingredient> selectReleaseProductList(int placingOrderNo);
 }
