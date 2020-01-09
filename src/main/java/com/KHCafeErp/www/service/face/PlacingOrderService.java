@@ -2,6 +2,8 @@ package com.KHCafeErp.www.service.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.PlacingOrderProduct;
@@ -58,7 +60,7 @@ public interface PlacingOrderService {
 	 * 발주 등록 
 	 * @param placingorder - 발주 정보, placingorderproduct - 발주 상품 정보
 	 */
-	public void add(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct);
+	public void add(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct, HttpSession session);
 	
 	/**
 	 * 20-01-08 지재용

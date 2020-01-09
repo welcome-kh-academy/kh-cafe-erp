@@ -3,6 +3,8 @@ package com.KHCafeErp.www.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +59,12 @@ public class PlacingOrderController {
 	}
 	
 	@RequestMapping(value="/placingOrder/registration", method=RequestMethod.POST)
-	public String placingOrderAddProcess(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct) {
+	public String placingOrderAddProcess(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct, HttpSession session) {
 		
 		logger.info("발주등록 처리 페이지");
 		
 		//발주등록처리
-		placingOrderService.add(placingorder, placingorderproduct);
+		placingOrderService.add(placingorder, placingorderproduct, session);
 		
 		return "redirect:/placingOrder/registration";
 	}

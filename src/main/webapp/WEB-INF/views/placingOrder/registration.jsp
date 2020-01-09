@@ -56,10 +56,11 @@ $(document).ready( function () {
 	
 });	
 </script>
-
+<form action="/placingOrder/registration" method="post">
 <div class="placingOrder-enroll">
 <h4>발주 > 발주 입력</h4>
 <br>
+	
 	<div style="margin: 5% 10% 0% 10%;">
 		<div style="margin-bottom : 10%;">
 		<h3>지점 선택</h3>
@@ -120,10 +121,10 @@ $(document).ready( function () {
     </thead>
 </table>
 		
-		<button id="excelDown" class="btn btn-outline-success" data-toggle="modal" data-target="#placingOrderModal">엑셀 등록</button>
-		<button id="excelDown" class="btn btn-outline-danger" data-toggle="modal" data-target="#placingOrderModal">저장</button>
+		<button id="excelDown" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#placingOrderModal">엑셀 등록</button>
+		<button id="placingOrderInsert" type="submit" class="btn btn-outline-danger" data-toggle="modal" data-target="#placingOrderModal">저장</button>
 		</div>
 	</div>
 </div>
-
+</form>
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>

@@ -2,6 +2,8 @@ package com.KHCafeErp.www.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,10 +60,16 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 	}
 
 	@Override
-	public void add(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct) {
+	public void add(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct, HttpSession session) {
 		
 		//발주번호 가져오기(nextval)
 		int placingOrderNo = placingOrderDao.selectNextVal();
+		
+		placingorder.setPlacingOrderNo(placingOrderNo);
+		
+		
+		
+		placingorder.setShopNo((int) session.getAttribute("shopNo"));
 		
 		//발주 정보 등록
 		placingOrderDao.placingOrderInsert(placingorder);

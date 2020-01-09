@@ -43,7 +43,7 @@
 	
 	<insert id="placingOrderInsert" parameterType="com.KHCafeErp.www.dto.PlacingOrder">
 		INSERT INTO placingOrder (placingOrderNo, shopNo, placingOrderStatus, inStockStatus, placingOrderDate)
-		VALUES (placingOrderNo_seq, session.getAttribute("shopNo"), 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		VALUES (#{placingOrderNo }, #{shopNo }, 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="placingOrderProductInsert" parameterType="com.KHCafeErp.www.dto.PlacingOrderProduct">
@@ -60,7 +60,7 @@
 	</select>
 	
 	<select id="selectNextVal" resultType="int">
-		SELECT placingOrderNo_seq.nextval FROM dual;
+		SELECT placingOrderNo_seq.nextval FROM dual
 	</select>
 	
 </mapper>
