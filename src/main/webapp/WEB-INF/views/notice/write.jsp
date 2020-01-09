@@ -13,7 +13,7 @@
 <script type="text/javascript">
 //<form>이 submit되면
 // 스마트 에디터 내용을 <textarea>반영해주는 함수
-
+//
 // ‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
 
 function submitContents(elClickedObj) {

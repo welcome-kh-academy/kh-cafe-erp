@@ -67,15 +67,13 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		
 		placingorder.setPlacingOrderNo(placingOrderNo);
 		
-		
-		
 		placingorder.setShopNo((int) session.getAttribute("shopNo"));
 		
 		//발주 정보 등록
 		placingOrderDao.placingOrderInsert(placingorder);
 		
 		//발주 상품 정보 등록
-		placingOrderDao.placingOrderProductInsert(placingorderproduct);
+//		placingOrderDao.placingOrderProductInsert(placingorderproduct);
 		
 	}
 
