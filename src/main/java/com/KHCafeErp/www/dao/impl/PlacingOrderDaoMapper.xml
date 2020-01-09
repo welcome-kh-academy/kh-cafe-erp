@@ -40,7 +40,29 @@
 			GROUP BY placingOrderNo)C
 		WHERE A.placingOrderNo=B.placingOrderNo AND A.placingOrderNo=c.placingorderno
 	</select>
-
+	
+	<insert id="placingOrderInsert" parameterType="com.KHCafeErp.www.dto.PlacingOrder">
+		INSERT INTO placingOrder (placingOrderNo, shopNo, placingOrderStatus, inStockStatus, placingOrderDate)
+		VALUES (placingOrderNo_seq, session.getAttribute("shopNo"), 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+	</insert>
+	
+	<insert id="placingOrderProductInsert" parameterType="com.KHCafeErp.www.dto.PlacingOrderProduct">
+		INSERT INTO placingOrderProduct (placingOrderProductNo, placingOrderNo, IngredientNo, placingOrderProductStatus, placingOrderProductCnt )
+		VALUES (PLACINGORDERPRODUCTNO_SEQ, placingOrderNo_seq, #{IngredientNo}, 0, #{placingOrderProductCnt })
+	</insert>
+	
+	<select id="selectIngredientList" resultType="com.KHCafeErp.www.dto.Ingredient">
+		SELECT ingredientNo, ingredientName, ingredientPrice, origin, maker  FROM Ingredient
+	</select>
+	
+	<select id="selectIngredientInfo" resultType="com.KHCafeErp.www.dto.Ingredient" parameterType="int">
+		SELECT ingredientNo, ingredientName, ingredientPrice, origin, maker  FROM Ingredient WHERE ingredientNo=#{ingredientNo}
+	</select>
+	
+	<select id="selectNextVal" resultType="int">
+		SELECT placingOrderNo_seq.nextval FROM dual;
+	</select>
+	
 </mapper>
 
 

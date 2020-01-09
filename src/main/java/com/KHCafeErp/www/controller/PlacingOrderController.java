@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.PlacingOrder;
+import com.KHCafeErp.www.dto.PlacingOrderProduct;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.service.face.PlacingOrderService;
 import com.KHCafeErp.www.util.ExcelWriter;
@@ -25,8 +27,44 @@ public class PlacingOrderController {
 	@Autowired PlacingOrderService placingOrderService;
 	
 	@RequestMapping(value="/placingOrder/registration", method=RequestMethod.GET)
-	public void placingOrderAdd() {
+	public void placingOrderAdd(Model model) {
 		logger.info("발주등록 페이지");
+		
+		
+		List<Shop> shopList = placingOrderService.getShopList();
+		model.addAttribute(shopList);
+			
+		List<Ingredient> ingredientList = placingOrderService.getIngredientList();
+		model.addAttribute(ingredientList);
+		
+		PlacingOrderProduct placingOrderProduct = new PlacingOrderProduct();
+		model.addAttribute(placingOrderProduct);
+		
+
+	}
+	
+	@RequestMapping(value="/placingOrder/addTable", method=RequestMethod.GET)
+	public ModelAndView placingOrderAddTable(ModelAndView mav,@RequestParam(value="ingredientNo") int ingredientNo) {
+		logger.info("발주등록 원자재 추가 ajax 페이지");
+				
+		Ingredient ingredient = placingOrderService.getIngredientInfo(ingredientNo);
+		System.out.println(ingredient);
+	
+		mav.addObject("ingredient", ingredient);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/placingOrder/registration", method=RequestMethod.POST)
+	public String placingOrderAddProcess(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct) {
+		
+		logger.info("발주등록 처리 페이지");
+		
+		//발주등록처리
+		placingOrderService.add(placingorder, placingorderproduct);
+		
+		return "redirect:/placingOrder/registration";
 	}
 	
 	@RequestMapping(value="/placingOrder/management", method=RequestMethod.GET)
