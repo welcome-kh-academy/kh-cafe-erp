@@ -2,7 +2,9 @@ package com.KHCafeErp.www.service.face;
 
 import java.util.List;
 
+import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.PlacingOrder;
+import com.KHCafeErp.www.dto.PlacingOrderProduct;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
@@ -50,5 +52,30 @@ public interface PlacingOrderService {
 	 * @return 발주 리스트
 	 */
 	public List<PlacingOrder> getList();
+
+	/**
+	 * 20-01-08 지재용 
+	 * 발주 등록 
+	 * @param placingorder - 발주 정보, placingorderproduct - 발주 상품 정보
+	 */
+	public void add(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct);
+	
+	/**
+	 * 20-01-08 지재용
+	 * 원자재 등록 리스트 가져오기
+	 * @return List<Ingredient> - 원자재 등록 정보
+	 */
+	public List<Ingredient> getIngredientList();
+	
+	/**
+	 * 20-01-08 장유진, 지재용
+	 * 원자재 추가 시 원자재 정보 가져오기 
+	 * @return Ingredient - 원자재 정보 
+	 */
+	public Ingredient getIngredientInfo(int ingredientNo);
+	
+
+
+	
 
 }

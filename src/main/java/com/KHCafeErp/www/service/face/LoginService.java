@@ -23,5 +23,13 @@ public interface LoginService {
 	 * @return position
 	 */
 	public Object getPosition(Staff staff);
+	
+	/**
+	 * 
+	 * 가입되어있는 직원인지 확인한다 -scurity
+	 * @param staff - 로그인 하려는 정보
+	 * @return - true : 직원 / false : 아님
+	 */
+	public boolean loginCheckSecu(Staff staff);
 
 }

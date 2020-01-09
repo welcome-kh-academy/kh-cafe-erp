@@ -1,16 +1,17 @@
 package com.KHCafeErp.www.dto;
 
 public class Ingredient {
-	private int ingredientNo;
-	private String ingredientName;
-	private int ingredientPrice;
-	private String origin;
-	private String maker;
-	private String ingredientOption;
 	
-	private int placingOrderProductCnt;
-	private int releaseNo;
+	private int ingredientNo; //원자재 번호
+	private String ingredientName; //원자재 이름
+	private int ingredientPrice; //원자재 가격
+	private String origin; //원산지
+	private String maker; //제조사
+	private String ingredientOption; //원자재 옵션
 	
+	private int placingOrderProductCnt;	// 수량
+	private int releaseNo;	// 출고 번호
+
 	@Override
 	public String toString() {
 		return "Ingredient [ingredientNo=" + ingredientNo + ", ingredientName=" + ingredientName + ", ingredientPrice="
@@ -80,8 +81,8 @@ public class Ingredient {
 
 	public void setReleaseNo(int releaseNo) {
 		this.releaseNo = releaseNo;
-	}
-
+	}	
 	
 	
 }
+
