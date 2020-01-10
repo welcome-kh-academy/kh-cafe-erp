@@ -54,6 +54,7 @@ public class CustomAuthenticationProvider  implements AuthenticationProvider {
 	        UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(user_id, user_pw, roles);
 
 	        result.setDetails(staff);
+	        logger.info("setDetails : "+staff.toString());
 	        logger.info("직위 : "+roles.toString());
 	        //user session 생성 후 반환
 
@@ -61,6 +62,7 @@ public class CustomAuthenticationProvider  implements AuthenticationProvider {
 			
 		} 
 		else {
+			System.out.println("CustomAuthenticationProvider - !isLogin");
 			return null;
 		}
 	
