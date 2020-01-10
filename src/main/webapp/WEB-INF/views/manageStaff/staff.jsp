@@ -4,13 +4,13 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <body>
-<h1> 직원 관리 </h1>
+<h2> 직원 관리 </h2>
 
-<h2>주문 리스트</h2>
+
 <table id="myTable" class="display table table-bordered">
 	<thead class="thead-dark">
 		<tr>
-			<th>지점명</th>
+			<th>지점</th>
 			<th>직원번호</th>
 			<th>이름</th>
 			<th>성별</th>
@@ -19,8 +19,26 @@
 			<th>퇴사날짜</th>
 			<th>이메일</th>
 			<th>전화번호</th>
-			<th>급여</th>
+        	 <th>급여</th>
+			
 		</tr>
+		
+		<c:forEach items="${staffList}"  var="staffList">        
+		                        
+		<tr>
+		<td>${staffList.shopName}</td>
+		<td>${staffList.staffNo}</td>
+		<td>${staffList.staffName}</td>
+		<td>${staffList.gender}</td>
+		<td>${staffList.status}</td>
+		<td>${staffList.hiredDate}</td>
+		<td>${staffList.leaveDate}</td>
+		<td>${staffList.email}</td>
+		<td>${staffList.cellNum}</td>
+		<td>${staffList.salary}</td>
+		
+		</tr>
+		</c:forEach>
 	</thead>
 </table>
 

@@ -60,7 +60,7 @@ public class OrderController {
 			list = new ArrayList();
 			list.add(r.getOrderNo());
 			list.add(r.getCusNo());
-			list.add(r.getshopName());
+			list.add(r. getshopName());
 			list.add(r.getOrderDate());		
 			list.add(r.getCusReq());
 			if(r.getOrderStatus()==0){

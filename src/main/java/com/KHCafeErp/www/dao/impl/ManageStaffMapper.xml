@@ -8,4 +8,10 @@
   
   <mapper namespace="com.KHCafeErp.www.dao.face.ManageStaffDao">
   
+ 	<select id="getStaffList" resultType="com.KHCafeErp.www.dto.Staff">
+ 		select staff.shopno, shopname,staffno,gender,status,staffname,hireddate,leavedate,email,cellnum,salary
+ 		from staff,shop 
+ 		where staff.shopno = shop.shopno
+ 		
+ 	</select>
   </mapper>

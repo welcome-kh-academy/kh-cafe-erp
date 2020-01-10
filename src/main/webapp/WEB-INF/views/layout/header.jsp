@@ -145,7 +145,7 @@ li{
       <!-- 매니저, 지점장만 직원관리 가능 -->
       <c:if test="${position eq '2' or position eq '3' }">
       	<li class="nav-item">
-        	<a class="nav-link" href="#">직 원 관 리</a>
+        	<a class="nav-link" href="/manageStaff/staff">직 원 관 리</a>
       	</li>    
       </c:if> 
       <li class="nav-item">
