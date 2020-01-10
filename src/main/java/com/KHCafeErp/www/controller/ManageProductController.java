@@ -191,6 +191,7 @@ public class ManageProductController {
 	    	
 	    	product.setShopNo(shopNo);
 	    }
+	    logger.info("aaaaaaaaaaa"+product.getShopNo());
 	     
 		List<Product> data = manageProductService.getProductList(product);
 		List llist = new ArrayList();
