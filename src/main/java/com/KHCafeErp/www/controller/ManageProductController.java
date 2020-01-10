@@ -191,6 +191,7 @@ public class ManageProductController {
 	    	System.out.println("------------------------------shopNo : " + shopNo);
 	    	product.setShopNo(shopNo);
 	    }
+	    logger.info("aaaaaaaaaaa"+product.getShopNo());
 	     
 	    System.out.println("------------------------------shopNo : " + product);
 		List<Product> data = manageProductService.getProductList(product);
