@@ -20,8 +20,8 @@ public class LoginController {
 	@Autowired LoginService loginService;
 	
 	@RequestMapping(value="/login/main")
-	public void login() {
-		
+	public void login(HttpSession session) { 
+		session.invalidate();
 	}
 	
 	@RequestMapping(value="/login/main2")
@@ -38,7 +38,6 @@ public class LoginController {
 			Model model) {
 		
 		Staff staff = (Staff)SecurityContextHolder.getContext().getAuthentication().getDetails();
-		
 		
 		logger.info("로그인 실행"+staff.toString());
 

@@ -34,27 +34,32 @@ function closePop(){
             <th>상품번호</th>     
             <th>상품명</th>
             <th>상품수량</th>
-            <th>총금액</th>
+            <th>금액</th>
             <th>제조사</th>
         </tr>
       
+
+	<c:set var="sum" scope="page" value="0"/>
       <c:forEach items="${orderProductlist}" var="orderProductlist">
+		<c:set var="sum" scope="page" value="${sum + orderProductlist.price * orderProductlist.productCnt}"/>
+      
         <tr>
       <td>${orderProductlist.orderNo}</td>
       <td>${orderProductlist.productNo}</td>
       <td>${orderProductlist.productName}</td>
       <td>${orderProductlist.productCnt}</td>
-      <td>
-      <fmt:formatNumber groupingUsed="true" value="${orderProductlist.price * orderProductlist.productCnt}" />  
-        <small>(단위: 원)</small>
+      <td><fmt:formatNumber groupingUsed="true" value="${orderProductlist.price * orderProductlist.productCnt}" />  
+        <small>(단위: 원)</small></td>
 <%-- 통화표시 하는 같은값,다른방법  <fmt:formatNumber pattern="0,000.0" value="${orderProductlist.price * orderProductlist.productCnt}"/> --%>  
-      </td>
-      <td>${orderProductlist.productorigin}</td>
+    <td>${orderProductlist.productorigin}</td>
       </tr>
       </c:forEach>
         
     </thead>
 </table>
+<div style="text-align:right">
+<h3>합계 : <fmt:formatNumber groupingUsed="true" value="${sum}" /></h3></div>
+<br><br>
 	<div style="text-align:center">
 		<button class="btn btn-primary btn-sm" onclick="closePop()">닫기</button>
 	</div>
