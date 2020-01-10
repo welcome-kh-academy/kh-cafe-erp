@@ -9,12 +9,14 @@ public class Release {
 	private Integer shopNo;
 	private String startDate; //시작일
 	private String endDate; //종료일
+	private int placingOrderStatus;
 
 	@Override
 	public String toString() {
 		return "Release [releaseNo=" + releaseNo + ", placingOrderNo=" + placingOrderNo + ", releaseStatus="
 				+ releaseStatus + ", releaseDate=" + releaseDate + ", shopName=" + shopName + ", shopNo=" + shopNo
-				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", placingOrderStatus=" + placingOrderStatus
+				+ "]";
 	}
 
 	public final Integer getReleaseNo() {
@@ -81,7 +83,14 @@ public class Release {
 		this.shopNo = shopNo;
 	}
 
-	
+	public int getPlacingOrderStatus() {
+		return placingOrderStatus;
+	}
+
+	public void setPlacingOrderStatus(int placingOrderStatus) {
+		this.placingOrderStatus = placingOrderStatus;
+	}
+
 	
 	
 }

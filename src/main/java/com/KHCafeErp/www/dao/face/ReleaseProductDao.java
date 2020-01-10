@@ -3,6 +3,7 @@ package com.KHCafeErp.www.dao.face;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.Ingredient;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
@@ -59,4 +60,8 @@ public interface ReleaseProductDao {
 	public int selectReleaseNo(int placingOrderNo);
 
 	public List<Ingredient> selectReleaseProductList(int placingOrderNo);
+
+	public List<ReleaseProduct> selectReleaseProduct(Release release);
+
+	public PlacingOrder selectReleseInfo(Release release);
 }

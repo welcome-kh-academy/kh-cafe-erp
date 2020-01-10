@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.Ingredient;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
@@ -47,5 +48,9 @@ public interface ReleaseProductService {
 	public int getReleaseNo(int placingOrderNo);
 
 	public List<Ingredient> getReleaseProductList(int placingOrderNo);
+
+	public List<ReleaseProduct> getReleseProduct(Release release);
+
+	public PlacingOrder getReleaseInfo(Release release);
 
 }

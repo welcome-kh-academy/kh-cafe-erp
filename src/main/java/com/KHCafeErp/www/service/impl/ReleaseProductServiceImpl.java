@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.ReleaseProductDao;
 import com.KHCafeErp.www.dto.Ingredient;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
@@ -117,6 +118,16 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 	@Override
 	public List<Ingredient> getReleaseProductList(int placingOrderNo) {
 		return releaseProductDao.selectReleaseProductList(placingOrderNo);
+	}
+
+	@Override
+	public List<ReleaseProduct> getReleseProduct(Release release) {
+		return releaseProductDao.selectReleaseProduct(release);
+	}
+
+	@Override
+	public PlacingOrder getReleaseInfo(Release release) {
+		return releaseProductDao.selectReleseInfo(release);
 	}
 
 
