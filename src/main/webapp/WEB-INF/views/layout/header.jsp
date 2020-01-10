@@ -7,14 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<!-- 제이쿼리 3.2.1 버전 -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!--   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+<!--   <meta name="description" content=""> -->
+<!--   <meta name="author" content=""> -->
 
 <!-- 헤더 -->
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <!-- select2 4.0.5 버전 -->
 <link rel="stylesheet" href="/resources/vendor/select2/select2.min.css" />
@@ -36,6 +35,13 @@
 <!-- dataTable checkbox -->
 <!-- <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet" /> -->
 
+<!-- 제이쿼리 3.2.1 버전 -->
+<!-- Bootstrap core JavaScript -->
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript -->
+<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
@@ -81,6 +87,13 @@ li{
 }
 .nav-link{
 	font-size : 17px;
+}
+
+/* 검색조건 색상 */
+.condition {
+    color: #FFFFFF;
+    background-color: #2C3E50;
+    border-color: #DEE2E6;
 }
 </style>
 
@@ -141,7 +154,7 @@ li{
         <div class="dropdown-menu">
         <ul>
         	<li><a href="#">정산 통계</a></li>
-        	<li><a href="#">매출 통계</a></li>
+        	<li><a href="/statistics/sales">매출 통계</a></li>
         </ul>
         </div>
       </li>    
