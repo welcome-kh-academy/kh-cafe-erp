@@ -156,10 +156,10 @@ public class ReleaseProductController {
 		List list = null;
 		
 		for(int i=0; i<releaseStatus.length;i++) {
-			System.out.println("releeaseProductNo : "+releeaseProductNo[i]);			
-			System.out.println("releaseProductCnt : "+releaseProductCnt[i]);			
-			System.out.println("releaseStatus : "+releaseStatus[i]);			
-			System.out.println("releaseRemark : "+releaseRemark[i]);
+//			System.out.println("releeaseProductNo : "+releeaseProductNo[i]);			
+//			System.out.println("releaseProductCnt : "+releaseProductCnt[i]);			
+//			System.out.println("releaseStatus : "+releaseStatus[i]);			
+//			System.out.println("releaseRemark : "+releaseRemark[i]);
 			list = new ArrayList();
 			list.add(releeaseProductNo[i]);
 			list.add(releaseProductCnt[i]);
@@ -170,6 +170,10 @@ public class ReleaseProductController {
 		}
 		
 		System.out.println(releaselist);
+		
+		releaseProductService.updateRelease(releaselist);
+		
+//		int releaseCnt = releaseProductService.getCnt()
 		
 		return "redirect:/release/list";
 	}

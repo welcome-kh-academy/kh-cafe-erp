@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="selectPlacingOrderNo" resultType="int">
-		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus=2 ORDER BY placingOrderNo
+		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus IN=2 ORDER BY placingOrderNo
 	</select>
 	
 	<insert id="insertNewRelease" parameterType="int">
@@ -91,8 +91,11 @@
 	<select id="selectReleaseProduct" parameterType="com.KHCafeErp.www.dto.Release" resultType="com.KHCafeErp.www.dto.ReleaseProduct">
 		SELECT releaseProductNo, releaseNo, releaseProductName, productCnt, productStatus, productPrice
 		FROM releaseProduct
-		WHERE releaseNo=#{releaseNo}
+		WHERE releaseNo=#{releaseNo} AND productStatus != 2
 	</select>
 	
+	<update id="updateRelease" parameterType="com.KHCafeErp.www.dto.ReleaseProduct">
+		UPDATE releaseProduct SET productCnt = productCnt-#{productCnt}, productStatus=#{productStatus}, productRemark=#{productRemark} WHERE releaseProductno=#{releaseProductNo}
+	</update>
 	
 </mapper>

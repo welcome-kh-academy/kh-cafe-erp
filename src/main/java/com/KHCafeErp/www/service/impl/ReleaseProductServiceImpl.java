@@ -130,6 +130,25 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 		return releaseProductDao.selectReleseInfo(release);
 	}
 
+	@Override
+	public void updateRelease(List releaselist) {
+		System.out.println("서비스 : " + releaselist);
+		for(int i=0;i<releaselist.size();i++) {
+			ReleaseProduct releaseProduct = new ReleaseProduct();
+			List list = (List) releaselist.get(i);
+			releaseProduct.setReleaseProductNo(Integer.parseInt((String)list.get(0)));
+			releaseProduct.setProductCnt(Integer.parseInt((String)list.get(1)));
+			releaseProduct.setProductStatus(Integer.parseInt((String)list.get(2)));
+			if((String)list.get(3)!=null && !"".equals((String)list.get(3))) {
+				releaseProduct.setProductRemark((String)list.get(3));				
+			} else {
+				releaseProduct.setProductRemark("");
+			}
+			System.out.println("dsdfsdfsdfsd : "+releaseProduct);
+			releaseProductDao.updateRelease(releaseProduct);
+		}
+	}
+
 
 
 }

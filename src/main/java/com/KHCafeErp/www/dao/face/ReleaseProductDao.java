@@ -64,4 +64,6 @@ public interface ReleaseProductDao {
 	public List<ReleaseProduct> selectReleaseProduct(Release release);
 
 	public PlacingOrder selectReleseInfo(Release release);
+
+	public void updateRelease(ReleaseProduct releaseProduct);
 }

@@ -53,4 +53,6 @@ public interface ReleaseProductService {
 
 	public PlacingOrder getReleaseInfo(Release release);
 
+	public void updateRelease(List releaselist);
+
 }

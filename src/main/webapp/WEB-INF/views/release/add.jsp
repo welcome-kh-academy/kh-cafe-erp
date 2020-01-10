@@ -117,8 +117,8 @@ $(document).ready(function(){
 			<td>
 				<select name="productStatus" class="form-control">
 					<option value="0" selected>미출고</option>
-					<option value="1">출고</option>
-					<option value="2">부분 출고</option>
+					<option value="1">부분 출고</option>
+					<option value="2">출고</option>
 				</select>
 			</td>
 			<td><textarea name="remark" form="releaseForm"></textarea></td>
