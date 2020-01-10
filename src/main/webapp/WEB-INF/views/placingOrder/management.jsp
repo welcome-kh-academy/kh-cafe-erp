@@ -5,11 +5,6 @@
 
 
 <style type="text/css">
-.condition {
-    color: #FFFFFF;
-    background-color: #2C3E50;
-    border-color: #DEE2E6;
-}
 
 .space {
 	margin-left : 20px;
