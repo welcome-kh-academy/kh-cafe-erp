@@ -2,7 +2,9 @@ package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
 
+import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.PlacingOrder;
+import com.KHCafeErp.www.dto.PlacingOrderProduct;
 import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
@@ -40,5 +42,42 @@ public interface PlacingOrderDao {
 	 * @return - 발주 리스트
 	 */
 	public List<PlacingOrder> selectPlacingOrderListAll();
+
+	/**
+	 * 20-01-08 지재용
+	 * 발주 정보 등록 
+	 * @param placingorder - 발주 정보
+	 */
+	public void placingOrderInsert(PlacingOrder placingorder);
+	
+	/**
+	 * 20-01-08 지재용
+	 * 발주 상품 정보 등록
+	 * @param placingorderproduct - 발주 상품 정보
+	 */
+	public void placingOrderProductInsert(PlacingOrderProduct placingorderproduct);
+	
+	/**
+	 * 20-01-08 지재용
+	 * 원자재 이름 조회
+	 * @return List<Ingredient> - 원자재 이름
+	 */
+	public List<Ingredient> selectIngredientList();
+	
+	/**
+	 * 20-01-08 장유진,지재용
+	 * 원자재 추가 시 원자재 정보  가져오기
+	 * @return Ingredient - 원자재 정보 
+	 */
+	public Ingredient selectIngredientInfo(int ingredientNo);
+	
+	/**
+	 * 20-01-08 지재용
+	 * nextval 발주번호  가져오기
+	 * @return placingOrderNo - 발주번호
+	 */
+	public int selectNextVal();
+	
+
 
 }

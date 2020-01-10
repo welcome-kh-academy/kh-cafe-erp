@@ -28,6 +28,11 @@ public class WarehousingServiceImpl implements WarehousingService{
 
 	@Override
 	public List<Warehousing> getWareHousingList(Warehousing wareHousing) {
+		logger.info("검색 조건 : "+wareHousing.toString());
+		if(wareHousing.getStartDate() == null) {
+			wareHousing.setInStockStatus(-1);
+			wareHousing.setStorageNo(-1);
+		}
 		List<Warehousing> warehousingList = warehousingDao.selectWarehousingList(wareHousing);
 		
 		return warehousingList;
@@ -38,6 +43,18 @@ public class WarehousingServiceImpl implements WarehousingService{
 		List<Warehousing> dealList = warehousingDao.selectDealList();
 		logger.info(dealList.toString());
 		return dealList;
+	}
+
+	@Override
+	public List<Warehousing> getdwareHouseList() {
+		List<Warehousing> wareHouseList = warehousingDao.selectWareHouseList();
+		return wareHouseList;
+	}
+
+	@Override
+	public List<Warehousing> getList() {
+		// TODO Auto-generated method stub
+		return warehousingDao.selectWareHouseListAll();
 	}
 
 }

@@ -5,58 +5,58 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.KHCafeErp.www.dao.face.OrderDao">
-	<select id="selectOrderList" resultType="com.KHCafeErp.www.dto.OrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
-		SELECT orderNo, cusNo, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName 
-		from orderBase, shop 
-		WHERE orderBase.shopNo=shop.shopNo AND orderDate BETWEEN #{startDate} AND #{endDate}
-		<if test="orderNo != null">
-			AND orderNo = #{orderNo}
-		</if>
-		<if test="shopNo != null">
-			AND orderBase.shopNo = #{shopNo}
-		</if>
-		
-	</select>
+   <select id="selectOrderList" resultType="com.KHCafeErp.www.dto.OrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
+      SELECT orderNo, cusNo, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName 
+      from orderBase, shop 
+      WHERE orderBase.shopNo=shop.shopNo AND orderDate BETWEEN #{startDate} AND #{endDate}
+      <if test="orderNo != null">
+         AND orderNo = #{orderNo}
+      </if>
+      <if test="shopNo != null">
+         AND orderBase.shopNo = #{shopNo}
+      </if>
+      
+   </select>
 
 <select id = "selectorderProduct" resultType="com.KHCafeErp.www.dto.OrderProduct" parameterType="com.KHCafeErp.www.dto.OrderBase">
-	SELECT orderNo, orderProduct.productNo, productCnt,productName,price,productorigin 
-	FROM orderproduct, product
-	WHERE orderproduct.productNo = product.productNo AND orderNo= #{orderNo}	
+   SELECT orderNo, orderProduct.productNo, productCnt,productName,price,productorigin 
+   FROM orderproduct, product
+   WHERE orderproduct.productNo = product.productNo AND orderNo= #{orderNo}   
 </select>
 
 <select id = "selectProduct" resultType="com.KHCafeErp.www.dto.Product" parameterType="com.KHCafeErp.www.dto.OrderProduct">
-	SELECT * FROM PRODUCT WHERE PRODUCTNO = #{productNo}
+   SELECT * FROM PRODUCT WHERE PRODUCTNO = #{productNo}
 </select>
 
 <select id="selectOrderListCnt" resultType="int">
-		SELECT COUNT(1) FROM ORDERBASE
-	</select>
-	
-	<!-- 엑셀파일 업로드 -->
-	<insert id="insertOrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
-		INSERT INTO orderBase(orderNo, cusNo, orderDate, cusReq, orderStatus, shopNo)
-		SELECT orderNo_seq.nextval, #{cusNo}, #{orderDate}, #{cusReq}, #{orderStatus}, #{shopNo}
-		FROM DUAL A
-		WHERE NOT EXISTS (SELECT 0 FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}) 
-	</insert>
-	
-	<select id="selectOrderNo" parameterType="com.KHCafeErp.www.dto.OrderBase" resultType="int">
-		SELECT orderNo FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}
-	</select>
-	
-	<insert id="insertOrderProduct" parameterType="com.KHCafeErp.www.dto.OrderProduct">
-		INSERT INTO orderProduct(orderPrdNo, orderNo, productNo, productCnt) 
-		VALUES (orderProduct_seq.nextval, #{orderNo}, #{productNo}, #{productCnt}) 
-	</insert>
-	
-	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
-		SELECT SHOPNO, SHOPNAME FROM SHOP
-	</select>
-	
-	<!-- 엑셀파일 다운로드 -->
-	<select id="getList" resultType="com.KHCafeErp.www.dto.OrderBase">
-		SELECT orderNo, cusNo, orderBase.shopNo, shopName, orderDate, cusReq, orderStatus 
-		FROM orderBase, shop
-		WHERE orderBase.shopNo=shop.shopNo
-	</select>
+      SELECT COUNT(1) FROM ORDERBASE
+   </select>
+   
+   <!-- 엑셀파일 업로드 -->
+   <insert id="insertOrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
+      INSERT INTO orderBase(orderNo, cusNo, orderDate, cusReq, orderStatus, shopNo)
+      SELECT orderNo_seq.nextval, #{cusNo}, #{orderDate}, #{cusReq}, #{orderStatus}, #{shopNo}
+      FROM DUAL A
+      WHERE NOT EXISTS (SELECT 0 FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}) 
+   </insert>
+   
+   <select id="selectOrderNo" parameterType="com.KHCafeErp.www.dto.OrderBase" resultType="int">
+      SELECT orderNo FROM orderBase WHERE cusNo=#{cusNo} AND orderDate=#{orderDate}
+   </select>
+   
+   <insert id="insertOrderProduct" parameterType="com.KHCafeErp.www.dto.OrderProduct">
+      INSERT INTO orderProduct(orderPrdNo, orderNo, productNo, productCnt) 
+      VALUES (orderProduct_seq.nextval, #{orderNo}, #{productNo}, #{productCnt}) 
+   </insert>
+   
+   <select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
+      SELECT SHOPNO, SHOPNAME FROM SHOP
+   </select>
+   
+   <!-- 엑셀파일 다운로드 -->
+   <select id="getList" resultType="com.KHCafeErp.www.dto.OrderBase">
+      SELECT orderNo, cusNo, orderBase.shopNo, shopName, orderDate, cusReq, orderStatus 
+      FROM orderBase, shop
+      WHERE orderBase.shopNo=shop.shopNo
+   </select>
 </mapper>

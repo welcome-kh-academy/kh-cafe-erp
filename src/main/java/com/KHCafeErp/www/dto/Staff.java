@@ -1,6 +1,8 @@
 package com.KHCafeErp.www.dto;
 
-public class Staff {
+import java.io.Serializable;
+
+public class Staff implements Serializable {
 	
 	private int staffNo;
 	private int shopNo;

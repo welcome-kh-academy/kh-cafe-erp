@@ -42,20 +42,6 @@ $(document).ready(function() {
 	$("#shop option[value='${ param.shopNo }']").attr("selected", true);
 	$("#categoryBase option[value='${ param.categoryNo }']").attr("selected", true);
 	$("#categoryBase").change();
-	
-	/* 오늘 날짜 구하는 함수 */
-	function getRecentDate(){
-	    var dt = new Date();
-	 
-	    var recentYear = dt.getFullYear();
-	    var recentMonth = dt.getMonth() + 1;
-	    var recentDay = dt.getDate();
-	 
-	    if(recentMonth < 10) recentMonth = "0" + recentMonth;
-	    if(recentDay < 10) recentDay = "0" + recentDay;
-	 
-	    return recentYear + "-" + recentMonth + "-" + recentDay;
-	}
 
 	
 	/* 판매등록일 모달 */
@@ -63,7 +49,7 @@ $(document).ready(function() {
 		
 		$("#exampleModalLong .modal-content").html("");
 		
-		var productNo = $(this).attr('data-productno');
+		var productNo = $(this).attr('data-productNo');
 
 		$("#exampleModalLong .modal-content").html(
 		'	      <div class="modal-header">'
@@ -109,7 +95,7 @@ $(document).ready(function() {
 		
 		$("#exampleModalLong .modal-content").html("");
 		
-		var productNo = $(this).attr('data-productno');
+		var productNo = $(this).attr('data-productNo');
 
 		$("#exampleModalLong .modal-content").html(
 		'	      <div class="modal-header">'
@@ -179,7 +165,7 @@ $(document).ready(function() {
 	/* 삭제 모달 */
 	$("#prodList").on("click",".delList", function(){
 		$("#exampleModalLong .modal-content").html("")
-		var productNo = $(this).attr('data-productno');
+		var productNo = $(this).attr('data-productNo');
 		$("#exampleModalLong .modal-content").html(
 		'	<div class="modal-header">'
 		+' 		<h5 class="modal-title">상품 삭제</h5>'
@@ -205,14 +191,10 @@ $(document).ready(function() {
 		
 		$("#exampleModalLong .modal-content").html( "" )
 		
-		var productNo = $(this).attr("data-productno");
-		console.log(productNo);
-		
 		$.ajax({
 			type: "get"
 			, url: "/manageProduct/view"
-// 			, data: { productNo: $(this).parent().parent("tr").attr("data-productno") }
-			, data: { productNo: productNo }
+			, data: { productNo: $(this).parent().parent("tr").attr("data-productNo") }
 			, dataType: "html"
 			, success: function( data ) {
 				console.log("success");
@@ -298,101 +280,31 @@ $(document).ready(function() {
 	var $disabledResults = $(".search-select");
 	$disabledResults.select2();
 	
-	table = $('#myTable').DataTable({
-	
-    	"scrollY" : 200, //테이블 고정 크기 설정
-    	"columnDefs" : [
-    	      { width: '6%', targets : [0] }, //지점명
-    	      { width: '7%', targets : [1] }, //상품번호
-    	      { width: '15%', targets : [2] }, //상품명
-    	      { width: '5%', targets : [3] }, //원가
-    	      { width: '5%', targets : [4] },  //판매가
-    	      { width: '8%', targets : [5] }, //제조사
-    	      { width: '7%', targets : [6] }, //상품등록일
-    	      { width: '7%', targets : [7] },  //판매등록일
-    	      { width: '7%', targets : [8] },  //판매종료일
-    	      { width: '5%', targets : [9] }, //판매상태
-    	      { width: '10%', targets : [10] },//수정버튼 자리
-    	      { width: '5%', targets : [11] } //삭제버튼 자리
-    	],
-    	"scrollCollapse" : true, //가변 크기 막기
-    	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
-    	"language": {
-            "emptyTable": "데이터가 없어요.",
-            "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-            "info": "현재 _START_ - _END_ / _TOTAL_건",
-            "infoEmpty": "데이터 없음",
-            "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
-            "search": "간편검색 : ",
-            "emptyTable": "발주 목록이 존재하지 않습니다.",
-            "zeroRecords": "일치하는 데이터가 없어요.",
-            "loadingRecords": "로딩중...",
-            "processing":     "잠시만 기다려 주세요...",
-            "paginate": {
-            	"first": "<<",
-                "last": ">>",
-                "next": "다음",
-                "previous": "이전"
-            }
-        },
-    	"length" : 5, //한페이지에 보여줄 페이지 갯수
-    	"serverSide" : false, //클라이언트에서 처리
-    	"processing" : true, 
-    	ajax : {
-			"type" : "GET",
-			"url" : "/manageProduct/search",
-			"dataType" : "json",
-			"data" : function() {
-				console.log($("#productSearch").serialize())
-				return $("#productSearch").serialize(); //검색조건 전달
-			},
-			"dataSrc" : function(json){
-				
-				for(let i=0; i<json.data.length; i++){
-				
-				/* 판매 날짜에 따른 판매 상태 변경  */
-				if(json.data[i][6] != null){
-					
-					if(json.data[i][7] <= getRecentDate()){
+	/* 검색 ajax */
+// 	$("#searchSubmit").on("click", function(e){
 		
-						if(json.data[i][8] < getRecentDate()){
-							json.data[i][9] = "판매종료";
-						} else if(json.data[i][7] <= getRecentDate() && json.data[i][8] > getRecentDate()){
-							json.data[i][9] = "판매중";
-						} else {
-						json.data[i][9] = "판매중";
-						}
-					} else {
-							json.data[i][9] = "상품준비중";
-						}
-					
-					}
-				if(json.data[i][7] == null){
-					json.data[i][7] = '<button class="btn btn-default selStart" data-toggle="modal" data-target="#exampleModalLong" data-productno="'+json.data[i][1]+'"><i class="far fa-calendar-plus fa-lg"></i></button>';
-				}
-				if(json.data[i][8] == null){
-					json.data[i][8] = '<button class="btn btn-default selEnd" data-toggle="modal" data-target="#exampleModalLong" data-productno="'+json.data[i][1]+'"><i class="far fa-calendar-plus fa-lg"></i></button>';
-				}
-				json.data[i][10] = '<button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" data-productno="'+json.data[i][1]+'" >상세 / 수정</button>';
-				json.data[i][11] = '<button id="listDelBtn" class="btn btn-primary delList" data-toggle="modal" data-target="#exampleModalLong" data-productno="'+json.data[i][1]+'"><i class="far fa-trash-alt"></i></button>';
-				} //for문 끝
-				
-				return json.data;
-			}
-		}
-
-    });
+// 		console.log($("#categoryDetail").val());
+// 		$.ajax({
+// 			type: "get"
+// 			, url: "/manageProduct/list"
+// 			, data: {
+// 				productNo : $('#searchProductNo').val() ,
+// 				productName : $('#searchProductName').val() ,
+// 				categoryMapNo : $("#categoryDetail").val(),
+// 				shopNo : $('#shop').val()
+// 			}
+// 			, dataType:"html"
+// 			, success: function( data ){
+// 				console.log(data);
+// // 				$("#productList").html(data)
+// // 				location.href=data.redirect;
+// 			}
+// 			, error: function(e){
+// 				console.log("search error");
+// 			}
+// 		});
+// 	});
 });
-
-//버튼을 누르면 작동..?
-function getList() {
-	
-	//검색조건 가져오기
-// 	var formData = $("#placingOrderForm").serialize(); //검색조건
-	// ajax 한 번 더 실행
-	 $("#myTable").DataTable().ajax.reload();
-	
-}
 
 //상품관리(list) 카테고리
 function getCategory(e){
@@ -437,7 +349,7 @@ function getCategory(e){
 <c:set var="now" value="<%=new java.util.Date()%>" />
 <c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set> 
 
-<form id="productSearch" action="/manageProduct/search" method="GET">
+<form action="/manageProduct/list" method="get">
 <fieldset>
 <legend class="text-primary"><a href="/manageProduct/list">상품 관리</a></legend>
 <table>
@@ -479,22 +391,22 @@ function getCategory(e){
     </tr>
     <tr>
     	<td>
-<!--    			 <div class="form-group"> -->
-<!-- 		      <label for="shop">입점매장</label> -->
-<!-- 		      <select class="search-select select2-selection select2-selection--single form-control" id="shop" name="shopNo"> -->
-<%-- 		      	<c:if test="${ param.shopNo ne null }"> --%>
-<%-- 		      		<option value="${ param.shopNo }"></option> --%>
-<%-- 		      	</c:if> --%>
-<!-- 		      	<option value="0"></option> -->
-<%-- 		      	<c:forEach items="${ shop }" var="s"> --%>
-<%-- 		        <option value="${ s.shopNo }">${ s.shopName }</option> --%>
-<%-- 				</c:forEach> --%>
-<!-- 		      </select> -->
-<!-- 		    </div> -->
+   			 <div class="form-group">
+		      <label for="shop">입점매장</label>
+		      <select class="search-select select2-selection select2-selection--single form-control" id="shop" name="shopNo">
+		      	<c:if test="${ param.shopNo ne null }">
+		      		<option value="${ param.shopNo }"></option>
+		      	</c:if>
+		      	<option value="0"></option>
+		      	<c:forEach items="${ shop }" var="s">
+		        <option value="${ s.shopNo }">${ s.shopName }</option>
+				</c:forEach>
+		      </select>
+		    </div>
    		</td>
    		<td>
    			<div class="form-group">
-   				<button type=button id="searchSubmit" class="btn btn-primary btn-block" onclick="getList()"><i class="fas fa-search">검색</i></button>
+   				<button id="searchSubmit" class="btn btn-primary btn-block"><i class="fas fa-search">검색</i></button>
    				<a href="/manageProduct/list"><i class="fas fa-redo fa-2x"></i></a>
 				<button style="margin-left:20px" id="excelDown" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModalLong">Excel 다운로드</button>
    			</div>
@@ -510,26 +422,88 @@ function getCategory(e){
 
 
 
-<div id="prodList">
-<table id="myTable" class="display table table-bordered" >
-    <thead class="thead-dark">
-        <tr>
-<!--        <th><input type="checkbox"/></th> -->
-            <th>지점명</th>
-            <th>상품번호</th>
-            <th>상품명</th>
-            <th>원가</th>
-            <th>판매가</th>
-            <th>제조사</th>
-            <th>상품등록일</th>
-            <th>판매등록일</th>
-            <th>판매종료일</th>
-            <th>판매상태</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-</table>
+<div id="productList">
+<table class="table">
+    <tr class = table-primary>
+<!-- 	  <th id="checkbox" scope="col" class="text-center"> -->
+<!--           <input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked=""> -->
+<!-- 	  </th> -->
+      <th scope="col">상품코드</th>
+      <th scope="col">상품카테고리</th>
+<!--       <th scope="col">상세카테고리</th> -->
+      <th scope="col">상품명</th>
+      <th scope="col">지점명</th>
+      <th scope="col">원가</th>
+      <th scope="col">판매가</th>
+      <th scope="col">제조사</th>
+      <th scope="col">상품등록일</th>
+      <th scope="col">판매등록일</th>
+      <th scope="col">판매종료일</th>
+      <th scope="col">판매상태</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <tbody id="prodList">
+   		<c:if test="${ product eq null }">
+   			<div> 검색 결과가 없습니다</div>
+   		</c:if>
+    	<c:forEach items="${ product }" var="p">
+    <tr class="table-light" data-productNo="${ p.productNo }">
+<!--     	<td style="text-align: center"><input style="height:20px; width:20px;" class="form-check-input" type="checkbox" value="" checked=""></td> -->
+      	<td>${ p.productNo }</td>
+      	<td>${ p.categoryDetailName }</td>
+      	<td>${ p.productName }</td>
+      	<td>${ p.shopName }</td>
+      	<td>${ p.originPrice }</td>
+      	<td>${ p.price }</td>
+      	<td>${ p.productOrigin }</td>
+      	<td>${ p.enrollDate }</td>
+      	<td>
+      	<c:choose>
+      		<c:when test="${ p.selStartDate ne null }">${ p.selStartDate }</c:when>
+      		<c:when test="${ p.selStartDate eq null }"><button class="btn btn-default selStart" data-toggle="modal" data-target="#exampleModalLong" data-productNo="${ p.productNo }"><i class="far fa-calendar-plus fa-lg"></i></button></c:when>
+      	</c:choose>
+      	</td>
+      	<td>
+      	<c:choose>
+      		<c:when test="${ p.selEndDate ne null }">${ p.selEndDate }</c:when>
+      		<c:when test="${ p.selEndDate eq null }"><button class="btn btn-default selEnd" data-toggle="modal" data-target="#exampleModalLong" data-productNo="${ p.productNo }"><i class="far fa-calendar-plus fa-lg"></i></button></c:when>
+      	</c:choose>
+      	
+      	</td>
+      	<td>
+      		<c:if test="${ p.enrollDate ne null }">
+	      		<c:choose>
+		      		<c:when test="${ p.selStartDate <= sysdate }">
+		      			<c:choose>
+				      		<c:when test="${ p.selEndDate < sysdate }">
+				      			<div>판매종료</div>
+				      		</c:when>
+				      		<c:when test="${ p.selStartDate <= sysdate && p.selEndDate > sysdate }">
+				      			<div>판매중</div>
+				      		</c:when>
+				      		<c:otherwise>
+				      			<div>판매중</div>
+				      		</c:otherwise>
+			      		</c:choose>
+		      		</c:when>
+		      		<c:otherwise>
+		      			<div>상품 준비중</div>
+		      		</c:otherwise>
+		      	</c:choose>
+      		</c:if>
+      	</td>
+		<!-- Button trigger modal -->
+		<td><button type="button" id="listEditBtn" class="btn btn-primary edit" data-toggle="modal" data-target="#exampleModalLong" >
+		  상세 / 수정
+		</button></td>
+      	<td><button id="listDelBtn" class="btn btn-primary delList" data-toggle="modal" data-target="#exampleModalLong" data-productNo="${ p.productNo }"><i class="far fa-trash-alt"></i></button></td>
+    </tr>
+      	</c:forEach>
+  </tbody>
+</table> 
+
+
 </div>
 
 <!-- 수정 Modal -->
@@ -542,7 +516,7 @@ function getCategory(e){
 
 <!-- 페이징 -->
 
-<%-- <jsp:include page="/WEB-INF/views/manageProduct/paging.jsp" /> --%>
+<jsp:include page="/WEB-INF/views/manageProduct/paging.jsp" />
 
 <!-- <div class=""> -->
 <!--   <ul class="pagination"> -->
@@ -570,7 +544,11 @@ function getCategory(e){
 <!--   </ul> -->
 <!-- </div> -->
 
+
+
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+
+
 
 
 

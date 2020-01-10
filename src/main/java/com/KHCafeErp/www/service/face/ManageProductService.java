@@ -2,6 +2,8 @@ package com.KHCafeErp.www.service.face;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.KHCafeErp.www.dto.CategoryBase;
 import com.KHCafeErp.www.dto.CategoryDetail;
 import com.KHCafeErp.www.dto.ImgFile;
@@ -10,6 +12,8 @@ import com.KHCafeErp.www.dto.Shop;
 import com.KHCafeErp.www.util.Paging;
 
 public interface ManageProductService {
+	
+	
 	/**
 	 * 상품의 사진을 받아온다
 	 * @param productNo - 상품의 사진을 받을 상품 번호
@@ -46,6 +50,8 @@ public interface ManageProductService {
 	/**
 	 * 상품 정보를 수정한다
 	 * @param product - 수정할 상품 데이터
+	 * @param imgFile 
+	 * @param imgFile 
 	 */
 	public void editProduct(Product product);
 	/**
@@ -77,4 +83,27 @@ public interface ManageProductService {
 	 * @return - 상품 전체 목록
 	 */
 	public List<Product> getList();
+	/**
+	 * 검색 조건으로 목록을 가져온다
+	 * @param product - 검색조건
+	 * @return - 조건에 맞는 목록
+	 */
+	public List<Product> getProductList(Product product);
+	/**기본 리스트를 불러온다 (페이징 없이)
+	 * 
+	 * @return - 상품 목록리스트
+	 */
+	public List<Product> getProductListAll();
+	/**
+	 * 샵 번호로 샵 이름을 가져온다
+	 * @param shopNo - 로그인한 샵 번호
+	 * @return - 샵에대한 정보
+	 */
+	public Shop getShopName(int shopNo);
+	/**
+	 * 이미지 파일을 수정한다
+	 * @param file - 수정할 파일 정보
+	 * @return 
+	 */
+	public ImgFile editFile(ImgFile file, int productNo);
 }
