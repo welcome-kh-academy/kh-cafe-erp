@@ -55,4 +55,16 @@ public interface ReleaseProductService {
 
 	public void updateRelease(List releaselist);
 
+	public void updateReleaseTotalCnt(int releaseNo);
+
+	public String getReleaseTotalCnt(int releaseNo);
+
+	public String getAfterReleaseCnt(int releaseNo);
+
+	public void updateReleaseStatus1(int releaseNo);
+
+	public void updateReleaseStatus2(int releaseNo);
+
+	public void updatePlacingOrderStatus(int placingOrderNo);
+
 }

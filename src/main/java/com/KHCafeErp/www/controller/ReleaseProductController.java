@@ -40,28 +40,48 @@ public class ReleaseProductController {
 		logger.info("releaseList()");
 		List<Shop> shopList = releaseProductService.getShopList();
 		model.addAttribute(shopList);
+		List released = new ArrayList();
 		
 		List<Integer> placingOrderNoList = releaseProductService.getPlacingOrderNo();
 		System.out.println(placingOrderNoList);
 		
 		for(int i=0; i<placingOrderNoList.size(); i++) {
-			System.out.println(placingOrderNoList.get(i));
+//			System.out.println(placingOrderNoList.get(i));
 			int placingOrderNo = placingOrderNoList.get(i);
 			releaseProductService.insertRelease(placingOrderNo);
 //			System.out.println(placingOrderNoList.get(i));
 			
 			int releaseNo = releaseProductService.getReleaseNo(placingOrderNo);
-			System.out.println("releaseNo "+releaseNo);
+//			System.out.println("releaseNo "+releaseNo);
 			List<Ingredient> releaseProductList = releaseProductService.getReleaseProductList(placingOrderNo);
-			System.out.println(releaseProductList);
+//			System.out.println(releaseProductList);
 			for(int j=0;j<releaseProductList.size();j++) {
 //				System.out.println(releaseProductList.get(j));
 				Ingredient ingredient = releaseProductList.get(j);
 				ingredient.setReleaseNo(releaseNo);
-				System.out.println(ingredient);
+//				System.out.println(ingredient);
 				releaseProductService.insertReleaseProduct(ingredient);
 			}
+			
+			String releaseProductCnt = releaseProductService.getReleaseTotalCnt(releaseNo);
+//			System.out.println(releaseProductCnt);
+			String afterReleaseCnt = releaseProductService.getAfterReleaseCnt(releaseNo);
+//			System.out.println(afterReleaseCnt);
+			
+			if(releaseProductCnt==null) {
+				releaseProductService.updateReleaseTotalCnt(releaseNo);				
+			} else {
+				if(Integer.parseInt(afterReleaseCnt)==0) {
+					releaseProductService.updateReleaseStatus1(releaseNo);
+					releaseProductService.updatePlacingOrderStatus(placingOrderNo);
+					released.add(releaseNo);
+				} else if(Integer.parseInt(releaseProductCnt) > Integer.parseInt(afterReleaseCnt)) {
+					releaseProductService.updateReleaseStatus2(releaseNo);
+				}
+			}
+			
 		}
+		model.addAttribute("release", released);
 	}
 	
 	@RequestMapping(value="/release/search" ,method=RequestMethod.GET)
@@ -69,7 +89,7 @@ public class ReleaseProductController {
 		logger.info("releaseSearch()");
 		System.out.println(release);
 		List<Release> releaseList = releaseProductService.getReleaseList(release);
-		System.out.println(releaseList);
+//		System.out.println(releaseList);
 		
 		List llist = new ArrayList();
 		List list = null;
@@ -81,8 +101,10 @@ public class ReleaseProductController {
 			list.add(r.getShopName());
 			if(r.getReleaseStatus()==0) {
 				list.add("출고 전");
-			} else {
+			} else if(r.getReleaseStatus()==1) {
 				list.add("출고 완료");
+			} else if(r.getReleaseStatus()==2) {
+				list.add("부분 출고");				
 			}
 			list.add(r.getReleaseDate());
 			
@@ -90,7 +112,6 @@ public class ReleaseProductController {
 		}
 		
 		mav.addObject("data",llist);
-//		mav.addObject("data",data);
 		mav.setViewName("jsonView");
 		
 		return mav;
@@ -134,11 +155,11 @@ public class ReleaseProductController {
 		logger.info(release.toString());
 		
 		PlacingOrder releaseInfo = releaseProductService.getReleaseInfo(release);
-		System.out.println(releaseInfo);
+//		System.out.println(releaseInfo);
 		model.addAttribute("releaseInfo", releaseInfo);
 		
 		List<ReleaseProduct> releaseProductList = releaseProductService.getReleseProduct(release);
-		System.out.println(releaseProductList);
+//		System.out.println(releaseProductList);
 		model.addAttribute("releaseProductList", releaseProductList);
 		
 	}
@@ -146,7 +167,7 @@ public class ReleaseProductController {
 	@RequestMapping(value = "/release/add", method=RequestMethod.POST)
 	public String addRelease(ReleaseProduct releaseProduct, HttpServletRequest req) {
 		logger.info("addRelease POST");
-		System.out.println(releaseProduct);
+//		System.out.println(releaseProduct);
 		String[] releeaseProductNo = req.getParameterValues("releeaseProductNo");
 		String[] releaseProductCnt = req.getParameterValues("productCnt");
 		String[] releaseStatus = req.getParameterValues("productStatus");
@@ -169,7 +190,7 @@ public class ReleaseProductController {
 			releaselist.add(list);
 		}
 		
-		System.out.println(releaselist);
+//		System.out.println(releaselist);
 		
 		releaseProductService.updateRelease(releaselist);
 		
@@ -188,7 +209,7 @@ public class ReleaseProductController {
 		
 		List<Release> releaseList = releaseProductService.getList();
 
-		System.out.println(releaseList);
+//		System.out.println(releaseList);
 		 
 		 ExcelWriter excelWriter=new ExcelWriter();
 		 excelWriter.releasetXls(releaseList);

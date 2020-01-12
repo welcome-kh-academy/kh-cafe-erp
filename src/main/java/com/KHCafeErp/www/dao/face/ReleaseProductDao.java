@@ -66,4 +66,16 @@ public interface ReleaseProductDao {
 	public PlacingOrder selectReleseInfo(Release release);
 
 	public void updateRelease(ReleaseProduct releaseProduct);
+
+	public void updateReleaseTotalCnt(int releaseNo);
+
+	public String getReleaseTotalCnt(int releaseNo);
+
+	public String getAfterReleaseCnt(int releaseNo);
+
+	public void updateReleaseStatus1(int releaseNo);
+	
+	public void updateReleaseStatus2(int releaseNo);
+
+	public void updatePlacingOrderStatus(int placingOrderNo);
 }

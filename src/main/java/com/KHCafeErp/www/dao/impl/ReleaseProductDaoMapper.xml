@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="selectPlacingOrderNo" resultType="int">
-		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus IN=2 ORDER BY placingOrderNo
+		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus=2 ORDER BY placingOrderNo
 	</select>
 	
 	<insert id="insertNewRelease" parameterType="int">
@@ -98,4 +98,27 @@
 		UPDATE releaseProduct SET productCnt = productCnt-#{productCnt}, productStatus=#{productStatus}, productRemark=#{productRemark} WHERE releaseProductno=#{releaseProductNo}
 	</update>
 	
+	<select id="getReleaseTotalCnt" parameterType="int" resultType="String">
+		SELECT releaseTotalCnt FROM release WHERE releaseNo=#{releaseNo}
+	</select>
+	
+	<update id="updateReleaseTotalCnt" parameterType="int">
+		UPDATE release SET releaseTotalCnt=(SELECT SUM(productCnt) FROM releaseProduct WHERE releaseNo=#{releaseNo}) WHERE releaseNo=#{releaseNo}
+	</update>
+	
+	<select id="getAfterReleaseCnt" parameterType="int" resultType="String">
+		SELECT SUM(productCnt) FROM releaseProduct WHERE releaseNo=#{releaseNo}
+	</select>
+	
+	<update id="updateReleaseStatus1" parameterType="int">
+		UPDATE release SET releaseStatus = 1, releaseDate=TO_CHAR(sysdate,'yyyy-mm-dd') WHERE releaseNo=#{releaseNo}
+	</update>
+
+	<update id="updateReleaseStatus2" parameterType="int">
+		UPDATE release SET releaseStatus = 2 WHERE releaseNo=#{releaseNo}
+	</update>
+	
+	<update id="updatePlacingOrderStatus" parameterType="int">
+		UPDATE placingOrder SET placingOrderStatus=3 WHERE placingOrderNo=#{placingOrderNo}
+	</update>
 </mapper>
