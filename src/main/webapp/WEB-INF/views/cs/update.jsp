@@ -85,6 +85,14 @@ div {
 
 	<input type="hidden" name="cBoardDate" value="${sysdate }"/>
 	<input type="hidden" name="cBoardNo" value="${update.cBoardNo }"/>
+	<div class="form-group" style="float:left; width:49%; margin-right:10px">
+		<label for="staffName">작성자</label>
+		<input type="text" id="staffName" name="staffName" value="${update.staffName }" readonly="readonly" class="form-control"/>
+	</div>
+	<div class="form-group" id="divCusId" style="float:right; width:49%">
+		<label for="cusId">고객 아이디</label>
+		<input type="text" id="cusId" name="cusId" class="form-control" value="${update.cusId }" readonly="readonly"/>
+	</div>
 	<div class="form-group">
 		<label for="cBoardTitle">제목</label>
 		<input type="text" id="cBoardTitle" name="cBoardTitle" class="form-control" value="${update.cBoardTitle }"/>

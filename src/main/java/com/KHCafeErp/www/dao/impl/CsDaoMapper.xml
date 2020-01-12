@@ -33,9 +33,9 @@
 	</select>
 	
 	<select id="selectBoardByBoardNo" parameterType="com.KHCafeErp.www.dto.CounselBoard" resultType="com.KHCafeErp.www.dto.CounselBoard">
-		SELECT cBoardNo, cusNo, counselBoard.staffNo, staffName, cBoardTitle, cBoardDate, cBoardContent 
-		FROM counselBoard, staff
-  		WHERE counselBoard.staffNo=staff.staffNo
+		SELECT cBoardNo, counselBoard.cusNo, cusId,counselBoard.staffNo, staffName, cBoardTitle, cBoardDate, cBoardContent 
+		FROM counselBoard, staff, customer
+  		WHERE counselBoard.staffNo=staff.staffNo AND customer.cusNo=counselBoard.cusNo
   		AND cBoardNo = #{cBoardNo }
 	</select>
 	
