@@ -12,6 +12,7 @@
 <script type="text/javascript">
 
 $(document).ready( function () {
+	
 var startDate = getPastDate(1);
 var endDate = getRecentDate();
  
@@ -61,7 +62,7 @@ $('.js-example-basic-multiple').select2({ width: '500px'});
 	<hr/>
 	
 	<div class="condition-container">
-<form action="/placingOrder/management" method="post" id="placingOrderForm">
+<form action="/placingOrder/management" method="get" id="placingOrderForm">
 
 <table class="table table-bordered">
 	<tr>
@@ -136,150 +137,9 @@ $('.js-example-basic-multiple').select2({ width: '500px'});
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
-var r = Math.floor(Math.random() * 255);
-var g = Math.floor(Math.random() * 255);
-var b = Math.floor(Math.random() * 255);
-
-var dynamicColors = "rgb(" + r + "," + g + "," + b + ")";
-var dynamicColors2 = "rgb(" + r + "," + g + "," + b + ")";
-// //랜덤 색 지정
-// var dynamicColors = function() {
-	
-//     var r = Math.floor(Math.random() * 255);
-//     var g = Math.floor(Math.random() * 255);
-//     var b = Math.floor(Math.random() * 255);
-    
-//     return "rgb(" + r + "," + g + "," + b + ")";
-    
-//  };
-
-// 연간 매출 차트
-var ctx = document.getElementById("myBarChart");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "#66ADFF",
-      borderColor: "#66ADFF",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
-  }
-});
-
-//월간 매출 차트
-var ctx = document.getElementById("myBarChart2");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: dynamicColors,
-      borderColor: dynamicColors,
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
-  }
-});
-
-//월간 매출 차트
-var ctx = document.getElementById("myBarChart3");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: dynamicColors2,
-      borderColor: dynamicColors2,
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5
-        },
-        gridLines: {
-          display: true
-        }
-      }],
-    },
-    legend: {
-      display: false
-    }
-  }
-});
-
 </script>
+
+ <!-- Demo scripts for this page -->
+ <script type="text/javascript" src="/resources/js/monthly.js"></script>
+ <script type="text/javascript" src="/resources/js/weekly.js"></script>
+ <script type="text/javascript" src="/resources/js/daily.js"></script> 

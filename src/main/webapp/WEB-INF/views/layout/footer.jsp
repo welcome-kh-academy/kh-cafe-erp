@@ -41,5 +41,9 @@
 <!-- 폰트어썸 5.12 버전 -->
 <script src="https://kit.fontawesome.com/a1cb5a2b66.js" crossorigin="anonymous"></script>
 
+<!-- 자바스크립트 공통 메소드 모임 -->
+<script type="text/javascript" src="/resources/js/common.js"></script>
+
+
 </body>
 </html>

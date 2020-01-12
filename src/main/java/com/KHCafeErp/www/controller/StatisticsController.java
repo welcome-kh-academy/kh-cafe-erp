@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class StatisticsController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AddProductContrller.class);
+	private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
 
 	@RequestMapping(value = "/statistics/sales", method=RequestMethod.GET)
-	public void salesStatistics() {	}
+	public void salesStatistics() {	
+		
+		logger.info("gdgd");
+		
+	}
 }
