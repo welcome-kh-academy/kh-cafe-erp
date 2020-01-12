@@ -149,6 +149,36 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 		}
 	}
 
+	@Override
+	public void updateReleaseTotalCnt(int releaseNo) {
+		releaseProductDao.updateReleaseTotalCnt(releaseNo);
+	}
 
+	@Override
+	public String getReleaseTotalCnt(int releaseNo) {
+		return releaseProductDao.getReleaseTotalCnt(releaseNo);
+	}
+
+	@Override
+	public String getAfterReleaseCnt(int releaseNo) {
+		return releaseProductDao.getAfterReleaseCnt(releaseNo);
+	}
+
+	@Override
+	public void updateReleaseStatus1(int releaseNo) {
+		releaseProductDao.updateReleaseStatus1(releaseNo);
+	}
+
+	@Override
+	public void updateReleaseStatus2(int releaseNo) {
+		releaseProductDao.updateReleaseStatus2(releaseNo);
+	}
+
+	@Override
+	public void updatePlacingOrderStatus(int placingOrderNo) {
+		releaseProductDao.updatePlacingOrderStatus(placingOrderNo);
+	}
+
+	
 
 }

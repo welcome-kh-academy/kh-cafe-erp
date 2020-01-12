@@ -324,7 +324,7 @@ $(document).ready(function() {
             "infoEmpty": "데이터 없음",
             "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
             "search": "간편검색 : ",
-            "emptyTable": "발주 목록이 존재하지 않습니다.",
+            "emptyTable": "상품 목록이 존재하지 않습니다.",
             "zeroRecords": "일치하는 데이터가 없어요.",
             "loadingRecords": "로딩중...",
             "processing":     "잠시만 기다려 주세요...",

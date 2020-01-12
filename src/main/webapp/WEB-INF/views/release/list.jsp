@@ -36,6 +36,7 @@ window.name="listPage"
 $(document).ready( function () {
 
 	
+	
 	var startDate = getPastDate(1);
 	var endDate = getRecentDate();
 	 
@@ -93,7 +94,7 @@ $(document).ready( function () {
     		   "targets": -1,
     		   "data": null,
     		   "render": function(data, type, row){
-    		    return '<button name="registerBtn" class="btn btn-primary data-releaseNo='+releaseNo+'">출고 등록</button>';
+    		    return '<button id="registerBtn" name="registerBtn" class="btn btn-primary data-releaseNo='+releaseNo+'">출고 등록</button>';
     	},
     	"orderable": false }],
     	"serverSide" : false, //클라이언트에서 처리
@@ -107,26 +108,18 @@ $(document).ready( function () {
 				return $("#releaseForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
-				
-// 				for(let i=0; i<json.data.length; i++){
-
-// 					if(json.data[i][2] == "11"){
-// 						json.data[i][2     ] = "강남점";
-// 					}
-					
-// 					if(json.data[i][6] == "0"){
-// 						json.data[i][6] = "발주완료"
-// 					}
-					
-// 					if(json.data[i][7] == "0"){
-// 						json.data[i][7] = "입고완료"
-// 					}
-					
-// 				}
-// 				console.log(json.data);
-				
+				console.log(json.data.length);
+				console.log(json.data[3]);
+				console.log(json.data[1][3]);
+				for(var i=0; i<json.data.length;i++){
+					console.log(json.data[i][3])
+					if(json.data[i][3] == "출고 완료"){
+						console.log("1232331")
+						
+					}
+				}
 				return json.data;
-			}
+			} 
 		}
     	
     });
@@ -135,14 +128,12 @@ $(document).ready( function () {
 	
 	$("#myTable").on('click', 'button[name="registerBtn"]',function(){
 		var outlayId = table.row( $(this).parents('tr:first') ).data();
-		console.log(outlayId[0])
 		releaseNo=outlayId[0]
 		console.log(releaseNo)
 		location.href="/release/add?releaseNo="+releaseNo
 	})
-	
-});	
 
+});	
 
 function popupOpen(){
 	var url ="/release/popExcel";
