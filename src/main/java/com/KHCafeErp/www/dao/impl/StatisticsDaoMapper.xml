@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 마이바티스 3 Mapper DOCTYPE -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.KHCafeErp.www.dao.face.StatisticsDao">
+
+	<select id="selectStatistics" parameterType="int" resultType="hashmap">
+		select p.paymentDate, sum(p.paymentPrice) sumPrice
+		from orderBase o, payment p
+		where 1=1
+		AND o.orderNo = p.orderNo
+		AND o.orderStatus = 2
+		AND o.shopNo = #{shopNo}
+		group by paymentDate
+		order by paymentDate
+	</select>
+	
+</mapper>

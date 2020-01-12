@@ -48,7 +48,6 @@ public class LoginController {
 		if(isLogin) {
 			staff = loginService.selectByStaffNo(staff);
 			
-			
 			session.setAttribute("login", isLogin);
 			session.setAttribute("staffNo", staff.getStaffNo());
 			session.setAttribute("nick", staff.getNick());
