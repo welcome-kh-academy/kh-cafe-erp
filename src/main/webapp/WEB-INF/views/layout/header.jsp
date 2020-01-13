@@ -141,7 +141,7 @@ li{
         <div class="dropdown-menu">
         <ul>
         	<li><a href="#">정산 통계</a></li>
-        	<li><a href="#">매출 통계</a></li>
+        	<li><a href="/statistics/sales">매출 통계</a></li>
         </ul>
         </div>
       </li>    
