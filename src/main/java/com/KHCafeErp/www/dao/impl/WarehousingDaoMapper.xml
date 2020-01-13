@@ -45,4 +45,9 @@ VALUES (inStockProductNo_seq, #{placingOrderProductNo },#{inStockDate }, #{produ
 	<select id="selectWareHouseListAll" resultType="com.KHCafeErp.www.dto.Warehousing">
 		SELECT * FROM warehousing
 	</select>
+	
+	<insert id="insertWarehousing" parameterType="com.KHCafeErp.www.dto.Warehousing">
+		INSERT INTO warehousing(warehousingNo, placingOrderProductNo, storageNo, productCnt, inStockDate, isAutoInStock, inStockStatus, dealStore)
+		VALUES (warehousingNo_seq.nextval, #{placingOrderProductNo}, #{storageNo}, #{productCnt}, #{inStockDate}, #{isAutoInStock}, #{inStockStatus}, #{dealStore})
+	</insert>
 </mapper>
