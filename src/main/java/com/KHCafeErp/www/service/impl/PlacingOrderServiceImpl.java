@@ -159,6 +159,16 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		
 	}
 
+	@Override
+	public int sumPlacingOrderPrice(PlacingOrder placingProduct) {
+		return placingOrderDao.sumPlacingOrderPrice(placingProduct);
+	}
+
+	@Override
+	public int sumPlacingOrderCnt(PlacingOrder placingProduct) {
+		return placingOrderDao.sumPlacingOrderCnt(placingProduct);
+	}
+
 
 
 

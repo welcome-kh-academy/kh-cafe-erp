@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
+<style type="text/css">
+#divReleaseCost{
+	margin:20px;
+}
+</style>
+
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -73,7 +79,9 @@ $(document).ready(function(){
 
 
 
-<div>
+<div id="divReleaseCost">
+<fieldset>
+<legend class="text-primary">출고가 관리</legend>
 	<table id="releaseCost" class="display table table-bordered">
 		<thead class="thead-dark">
 			<tr>
@@ -86,6 +94,8 @@ $(document).ready(function(){
 				<th>비고</th>
 			</tr>
 	</table>
+</fieldset>
+
 </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>

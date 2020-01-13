@@ -10,9 +10,9 @@
 	</select>
  
  	<select id="selectPlacingOrderList" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="com.KHCafeErp.www.dto.PlacingOrder">
-		SELECT PLACINGORDERNO, SHOPNO, PLACINGORDERDATE, PLACINGORDERSTATUS, INSTOCKSTATUS
-		FROM PLACINGORDER
-		WHERE 1=1
+		SELECT PLACINGORDERNO, SHOP.SHOPNO, SHOPNAME, PLACINGORDERDATE, PLACINGORDERSTATUS, INSTOCKSTATUS
+		FROM PLACINGORDER, SHOP
+		WHERE PLACINGORDER.SHOPNO = SHOP.SHOPNO
 		AND PLACINGORDERDATE BETWEEN #{startDate} AND #{endDate}
 		<if test="placingOrderNo != null">
     		AND placingOrderNo = #{placingOrderNo}
@@ -20,6 +20,7 @@
   		<if test="shopNo != null">
     		AND shopNo = #{shopNo}
   		</if>
+  		ORDER BY PLACINGORDERNO
 	</select>
 	
 	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
@@ -81,6 +82,14 @@
 	<insert id="insertPlacingOrderProduct" parameterType="com.KHCafeErp.www.dto.PlacingOrderProduct">
 		INSERT INTO placingOrderProduct(placingOrderProductNo, placingOrderNo, ingredientNo, placingOrderProductStatus, placingOrderProductCnt) VALUES (placingOrderProductNo_seq.nextval, #{placingOrderNo}, #{ingredientNo}, #{placingOrderProductStatus}, #{placingOrderProductCnt})
 	</insert>
+	
+	<select id="sumPlacingOrderPrice" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="int">
+		SELECT sum(ingredientPrice) FROM placingOrder, placingOrderProduct, ingredient WHERE placingOrder.placingOrderNo=placingOrderProduct.placingOrderNo AND placingOrderProduct.ingredientNo=ingredient.ingredientNo AND placingOrder.placingOrderNo=#{placingOrderNo}
+	</select>
+	
+	<select id="sumPlacingOrderCnt" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="int">
+		SELECT sum(placingOrderProductCnt) FROM placingOrderProduct WHERE placingOrderNo=#{placingOrderNo}
+	</select>
 </mapper>
 
 

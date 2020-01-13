@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
-<h1>발주등록</h1>
-<hr/>
 
 <style type="text/css">
 
@@ -58,9 +56,9 @@ $(document).ready( function () {
 </script>
 <form action="/placingOrder/registration" method="post">
 <div class="placingOrder-enroll">
-<h4>발주 > 발주 입력</h4>
-<br>
-	
+	<fieldset style="margin:20px;">
+		<legend class="text-primary">발주 등록</legend>
+	</fieldset>
 	<div style="margin: 5% 10% 0% 10%;">
 		<div style="margin-bottom : 10%;">
 		<h3>지점 선택</h3>
@@ -127,4 +125,5 @@ $(document).ready( function () {
 	</div>
 </div>
 </form>
+
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>

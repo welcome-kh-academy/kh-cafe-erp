@@ -15,6 +15,13 @@
 	width: 100%;
 	height : 70px;
 }
+.condition-container{
+	margin:20px;
+}
+#divReleaseList{
+	margin : 20px;
+	margin-top:70px;
+}
 </style>
 
 <script type="text/javascript">
@@ -66,7 +73,7 @@ $(document).ready( function () {
 	$disabledResults.select2();
 	
 	table = $('#myTable').DataTable({
-    	"scrollY" : 200, //테이블 고정 크기 설정
+    	"scrollY" : 400, //테이블 고정 크기 설정
     	"columnDefs" : [
     	      { width: '5%', targets : [0] },
     	      { width: '7%', targets : [1] },
@@ -160,12 +167,10 @@ function popupOpen(){
 }
 </script>
 
-<h1>발주관리 페이지</h1>
-<hr/>
-
 <div class="condition-container">
 <form id="placingOrderForm">
-
+<fieldset>
+<legend class="text-primary">발주 관리</legend>
 <table class="table table-bordered">
 	<tr>
 		<th class="condition"><label for="placingOrderNo">발주번호</label></th>
@@ -216,6 +221,7 @@ function popupOpen(){
 		</td>
 	</tr>
 </table>
+</fieldset>
 </form>
 </div>
 
@@ -224,6 +230,9 @@ function popupOpen(){
 	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
 </div>
 
+<div id="divReleaseList">
+<fieldset>
+<legend class="text-primary">발주 리스트</legend>
 <table id="myTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
@@ -239,7 +248,8 @@ function popupOpen(){
         </tr>
     </thead>
 </table>
-
+</fieldset>
+</div>
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
 
 <div id="placingOrderModal" class="modal fade">
