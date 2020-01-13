@@ -121,4 +121,14 @@
 	<update id="updatePlacingOrderStatus" parameterType="int">
 		UPDATE placingOrder SET placingOrderStatus=3 WHERE placingOrderNo=#{placingOrderNo}
 	</update>
+	
+	<select id="selectReleaseProductListAll" resultType="com.KHCafeErp.www.dto.ReleaseProduct">
+		SELECT rp.releaseNo, r.releaseDate, r.releaseTotalCnt, rp.releaseProductName, rp.productPrice, s.shopName, rp.productRemark
+		FROM releaseProduct RP, release r, placingOrder PO, shop s
+		WHERE 1=1
+		AND RP.releaseNo = r.releaseNo
+		AND r.placingOrderNo = po.placingOrderNo
+		AND po.shopno = s.shopno
+		AND r.releaseStatus = 1
+	</select>
 </mapper>

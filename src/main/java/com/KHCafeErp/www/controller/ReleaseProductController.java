@@ -107,6 +107,7 @@ public class ReleaseProductController {
 				list.add("부분 출고");				
 			}
 			list.add(r.getReleaseDate());
+			list.add("");
 			
 			llist.add(list);
 		}
@@ -202,8 +203,36 @@ public class ReleaseProductController {
 	//출고가 페이지
 	@RequestMapping(value="/release/releaseCost", method=RequestMethod.GET)
 	public void releaseCostList() {
+		
+		
+		
 	}
-	
+	@RequestMapping(value="/release/costList", method=RequestMethod.GET)
+	public ModelAndView costList(ModelAndView mav){
+		
+		List<ReleaseProduct> releaseProduct = releaseProductService.getReleaseProductListAll();
+		
+		List llist = new ArrayList();
+		List list = null;
+		
+		for(ReleaseProduct rp : releaseProduct) {
+			list = new ArrayList();
+			list.add(rp.getReleaseNo());
+			list.add(rp.getReleaseDate());
+			list.add(rp.getReleaseProductName());
+			list.add(rp.getProductPrice());
+			list.add(rp.getReleaseTotalCnt()*rp.getProductPrice());
+			list.add(rp.getShopName());
+			list.add(rp.getProductRemark());
+			
+			llist.add(list);
+		}
+		mav.addObject("data", llist);
+		mav.setViewName("jsonView");
+		
+		return mav;
+		
+	}
 	@RequestMapping(value = "/release/exceldown")
 	public String excelDown() {
 		
