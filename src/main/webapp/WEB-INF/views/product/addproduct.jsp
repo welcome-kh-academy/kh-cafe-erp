@@ -277,6 +277,22 @@ $(document).ready(function(){
 						</div>
 					</td>
 				</tr>
+				 <tr>
+               <td>
+                  <div>
+                     <label for="selStartDate">판매 시작일</label>
+                     <input type="text" class="form-control" id="selStartDate" name="selStartDate">
+                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                  </div>
+               </td>
+               <td>
+                  <div>
+                     <label for="selEndDate">판매 종료일</label>
+                     <input type="text" class="form-control" id="selEndDate" name="selEndDate">
+                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                  </div>
+               </td>
+				</tr>
 				</table>
 		</form>
 	</fieldset>
@@ -299,5 +315,39 @@ $(document).ready(function(){
           </div>
       </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
 
+	$('input[name="selStartDate"]').daterangepicker({
+		singleDatePicker : true,
+		showDropdowns : true,
+		minYear : 1960,
+		maxYear : parseInt(moment().format('YYYY'), 10),
+		autoUpdateInput: false,
+		locale: {
+			format : "YYYY-MM-DD"
+		}
+	});
+	//등록 날짜값 지정
+	$('input[name="selStartDate"]').on('apply.daterangepicker', function(ev, picker) {
+	    $(this).val(picker.startDate.format('YYYY-MM-DD'));
+	});
+
+	  
+	$('input[name="selEndDate"]').daterangepicker({
+		singleDatePicker : true,
+		showDropdowns : true,
+		minYear : 1960,
+		maxYear : parseInt(moment().format('YYYY'), 10),
+		autoUpdateInput: false,
+		locale: {
+			format : "YYYY-MM-DD"
+		}
+	});
+	//종료 날짜값 지정
+	$('input[name="selEndDate"]').on('apply.daterangepicker', function(ev, picker) {
+	    $(this).val(picker.startDate.format('YYYY-MM-DD'));
+	});
+})
+</script>
 <jsp:include page="/WEB-INF/views/layout/product-footer.jsp"/>
