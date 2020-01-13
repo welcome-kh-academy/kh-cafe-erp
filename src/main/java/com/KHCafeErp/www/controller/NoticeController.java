@@ -2,6 +2,7 @@ package com.KHCafeErp.www.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -24,10 +25,10 @@ public class NoticeController {
 	private static final Logger logger = LoggerFactory.getLogger(JoinStaffController.class);
 	
 	@RequestMapping(value="/notice/list")
-	public String list(Paging inData, Model model) {
+	public String list(Paging inData, Model model, HttpServletRequest req) {
 		
 		//페이징 계산
-		Paging paging = noticeService.getPaging(inData);
+		Paging paging = noticeService.getPaging(inData, req);
 		logger.info("inData: " + paging);
 		
 		//페이징 객체를 모델값으로 지정
@@ -38,7 +39,7 @@ public class NoticeController {
 		model.addAttribute("list", list);
 		
 		
-		return "notice/list";
+		return "/notice/list";
 		
 	}
 	

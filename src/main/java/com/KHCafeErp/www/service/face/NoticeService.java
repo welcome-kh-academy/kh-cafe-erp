@@ -2,6 +2,8 @@ package com.KHCafeErp.www.service.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.KHCafeErp.www.dto.NoticeBoard;
 import com.KHCafeErp.www.util.Paging;
 
@@ -14,7 +16,7 @@ public interface NoticeService {
 	 * @param inData - 요청정보 객체
 	 * @return Paging - 페이징 정보
 	 */
-	public Paging getPaging(Paging inData);
+	public Paging getPaging(Paging inData, HttpServletRequest req);
 	
 	/**
 	 * 지재용

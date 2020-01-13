@@ -1,7 +1,10 @@
 package com.KHCafeErp.www.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,18 +20,31 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired private NoticeDao noticeDao;
 	
 	@Override
-	public Paging getPaging(Paging inData) {
-		
+	public Paging getPaging(Paging data, HttpServletRequest req) {
 		//검색어
-		Map<String, String> search = inData.getSearch(); 
+		Map<String, String> map = new HashMap<String, String>();
+				
+		String searchType = req.getParameter("searchType");
+		System.out.println(searchType);
+		String searchContent = req.getParameter("searchContent");
+		System.out.println(searchContent);
 		
-		int totalCount = noticeDao.selectCntAll(search);
-		
-		Paging paging = new Paging(totalCount, inData.getCurPage());
-		
+		if(searchType!=null & !"".equals(searchType)) {
+	         map.put("searchType",searchType);
+	      }
+	      
+	      if(searchContent!=null && !"".equals(searchContent)) {
+	         map.put("searchContent", searchContent);
+	      }
+		System.out.println(map);
+		int totalCount = noticeDao.selectCntAll(map);
+				
+		Paging paging = new Paging(totalCount, data.getCurPage());
+		paging.setSearch(map);
+				
 		//검색어
-		paging.setSearch(search);
-		
+		System.out.println("MAP : " +map);
+
 		return paging;
 	}
 
