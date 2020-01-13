@@ -10,6 +10,6 @@ public interface StatisticsService {
 	 * @param shopNo
 	 * @return 통계자료
 	 */
-	List<Map> getStatistics(int shopNo);
+	List<Map<String, Integer>> getStatistics(int shopNo);
 
 }

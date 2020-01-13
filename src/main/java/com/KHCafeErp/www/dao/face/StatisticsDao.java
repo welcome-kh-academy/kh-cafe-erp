@@ -12,6 +12,6 @@ public interface StatisticsDao {
 	 * @param shopNo
 	 * @return map : 통계자료
 	 */
-	List<Map> selectStatistics(int shopNo);
+	List<Map<String, Integer>> selectStatistics(int shopNo);
 
 }

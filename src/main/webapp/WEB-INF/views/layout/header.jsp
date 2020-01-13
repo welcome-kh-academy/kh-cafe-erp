@@ -43,6 +43,9 @@
 <!-- Core plugin JavaScript -->
 <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+<!-- 자바스크립트 공통 메소드 모임 -->
+<script type="text/javascript" src="/resources/js/common.js"></script>
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #container{

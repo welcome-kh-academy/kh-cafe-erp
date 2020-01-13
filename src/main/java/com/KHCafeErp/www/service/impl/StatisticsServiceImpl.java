@@ -15,7 +15,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 	@Autowired StatisticsDao statisticsDao;
 	
 	@Override
-	public List<Map> getStatistics(int shopNo) {
+	public List<Map<String, Integer>> getStatistics(int shopNo) {
 
 		return statisticsDao.selectStatistics(shopNo);
 	}

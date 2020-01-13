@@ -56,6 +56,10 @@ function getPastDate(period){
 $('.js-example-basic-multiple').select2({ width: '500px'});
 
 });	
+
+
+
+
 </script>
 
 	<h1>매출통계</h1>
