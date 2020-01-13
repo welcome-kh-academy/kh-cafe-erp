@@ -5,11 +5,6 @@
 
 
 <style type="text/css">
-.condition {
-    color: #FFFFFF;
-    background-color: #2C3E50;
-    border-color: #DEE2E6;
-}
 
 .space {
 	margin-left : 20px;
@@ -117,7 +112,7 @@ $(document).ready( function () {
 				
 				for(let i=0; i<json.data.length; i++){
 
-					if(json.data[i][2] == "11"){
+					if(json.data[i][2] == "1"){
 						json.data[i][2] = "강남점";
 					}
 					
@@ -154,6 +149,15 @@ function enter(e){
 	 }
 }
 
+function popupOpen(){
+	var url ="/placingOrder/popExcel";
+	var winWidth = 500;
+	var winHeight = 300;
+	var winLeft = Math.ceil(( window.screen.width - winWidth )/2);
+	var winTop = Math.ceil(( window.screen.width - winHeight )/2);
+	var popupOption = "width=" + winWidth+ ", height=" + winHeight +", left=" + winLeft + ", winTop=" + winTop;
+	var myWindow = window.open(url, "", popupOption);
+}
 </script>
 
 <h1>발주관리 페이지</h1>
@@ -217,6 +221,7 @@ function enter(e){
 
 <div style="float:right;">
 	<button id="excelDown" class="btn btn-outline-success"  data-toggle="modal" data-target="#placingOrderModal">Excel 다운로드</button>
+	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
 </div>
 
 <table id="myTable" class="display table table-bordered" >
@@ -251,7 +256,7 @@ function enter(e){
         <p>경로 : D:/</p>
       </div>
       <div class="modal-footer">
-        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/placingorder/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/placingOrder/exceldown'">확인</button>
         <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
       </div>
     </div>

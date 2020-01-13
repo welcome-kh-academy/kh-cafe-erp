@@ -63,6 +63,24 @@
 		SELECT placingOrderNo_seq.nextval FROM dual
 	</select>
 	
+	<select id="getShopNo" parameterType="String" resultType="int">
+		SELECT shopNo FROM shop WHERE shopName=#{shopName}
+	</select>
+	
+	<insert id="insertPlacingOrder" parameterType="com.KHCafeErp.www.dto.PlacingOrder">
+		INSERT INTO placingOrder (placingOrderNo, shopNo, placingOrderStatus, inStockStatus, placingOrderDate)
+		SELECT placingOrderNo_seq.nextval, #{shopNo}, #{placingOrderStatus}, #{inStockStatus}, #{placingOrderDate}
+		FROM DUAL A
+		WHERE NOT EXISTS (SELECT 0 FROM placingOrder WHERE shopNo=#{shopNo} AND placingOrderDate=#{placingOrderDate})
+	</insert>
+	
+	<select id="selectPlacingOrderNo" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="int">
+		SELECT placingOrderNo FROM placingOrder WHERE shopNo=#{shopNo} AND placingOrderDate=#{placingOrderDate}
+	</select>
+	
+	<insert id="insertPlacingOrderProduct" parameterType="com.KHCafeErp.www.dto.PlacingOrderProduct">
+		INSERT INTO placingOrderProduct(placingOrderProductNo, placingOrderNo, ingredientNo, placingOrderProductStatus, placingOrderProductCnt) VALUES (placingOrderProductNo_seq.nextval, #{placingOrderNo}, #{ingredientNo}, #{placingOrderProductStatus}, #{placingOrderProductCnt})
+	</insert>
 </mapper>
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.KHCafeErp.www.dao.face.ReleaseProductDao;
 import com.KHCafeErp.www.dto.Ingredient;
+import com.KHCafeErp.www.dto.PlacingOrder;
 import com.KHCafeErp.www.dto.Release;
 import com.KHCafeErp.www.dto.ReleaseProduct;
 import com.KHCafeErp.www.dto.Shop;
@@ -119,6 +120,65 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 		return releaseProductDao.selectReleaseProductList(placingOrderNo);
 	}
 
+	@Override
+	public List<ReleaseProduct> getReleseProduct(Release release) {
+		return releaseProductDao.selectReleaseProduct(release);
+	}
 
+	@Override
+	public PlacingOrder getReleaseInfo(Release release) {
+		return releaseProductDao.selectReleseInfo(release);
+	}
+
+	@Override
+	public void updateRelease(List releaselist) {
+		System.out.println("서비스 : " + releaselist);
+		for(int i=0;i<releaselist.size();i++) {
+			ReleaseProduct releaseProduct = new ReleaseProduct();
+			List list = (List) releaselist.get(i);
+			releaseProduct.setReleaseProductNo(Integer.parseInt((String)list.get(0)));
+			releaseProduct.setProductCnt(Integer.parseInt((String)list.get(1)));
+			releaseProduct.setProductStatus(Integer.parseInt((String)list.get(2)));
+			if((String)list.get(3)!=null && !"".equals((String)list.get(3))) {
+				releaseProduct.setProductRemark((String)list.get(3));				
+			} else {
+				releaseProduct.setProductRemark("");
+			}
+			System.out.println("dsdfsdfsdfsd : "+releaseProduct);
+			releaseProductDao.updateRelease(releaseProduct);
+		}
+	}
+
+	@Override
+	public void updateReleaseTotalCnt(int releaseNo) {
+		releaseProductDao.updateReleaseTotalCnt(releaseNo);
+	}
+
+	@Override
+	public String getReleaseTotalCnt(int releaseNo) {
+		return releaseProductDao.getReleaseTotalCnt(releaseNo);
+	}
+
+	@Override
+	public String getAfterReleaseCnt(int releaseNo) {
+		return releaseProductDao.getAfterReleaseCnt(releaseNo);
+	}
+
+	@Override
+	public void updateReleaseStatus1(int releaseNo) {
+		releaseProductDao.updateReleaseStatus1(releaseNo);
+	}
+
+	@Override
+	public void updateReleaseStatus2(int releaseNo) {
+		releaseProductDao.updateReleaseStatus2(releaseNo);
+	}
+
+	@Override
+	public void updatePlacingOrderStatus(int placingOrderNo) {
+		releaseProductDao.updatePlacingOrderStatus(placingOrderNo);
+	}
+
+	
 
 }

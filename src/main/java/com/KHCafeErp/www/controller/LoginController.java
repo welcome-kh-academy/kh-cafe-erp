@@ -20,8 +20,8 @@ public class LoginController {
 	@Autowired LoginService loginService;
 	
 	@RequestMapping(value="/login/main")
-	public void login() {
-		
+	public void login(HttpSession session) { 
+		session.invalidate();
 	}
 	
 	@RequestMapping(value="/login/main2")
@@ -39,7 +39,6 @@ public class LoginController {
 		
 		Staff staff = (Staff)SecurityContextHolder.getContext().getAuthentication().getDetails();
 		
-		
 		logger.info("로그인 실행"+staff.toString());
 
 		//CustomAuthenticationProvider에서 set한 값을 로드
@@ -48,7 +47,6 @@ public class LoginController {
 		
 		if(isLogin) {
 			staff = loginService.selectByStaffNo(staff);
-			
 			
 			session.setAttribute("login", isLogin);
 			session.setAttribute("staffNo", staff.getStaffNo());

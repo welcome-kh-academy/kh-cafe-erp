@@ -6,7 +6,7 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.ReleaseProductDao">
 	<select id="selectReleaseList" parameterType="com.KHCafeErp.www.dto.Release" resultType="com.KHCafeErp.www.dto.Release">
-		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate 
+		SELECT releaseNo, placingOrder.placingOrderNo, shopName, releaseStatus, releaseDate, placingOrderStatus 
 		FROM release, placingOrder, shop 
 		WHERE placingOrder.placingOrderNo=release.placingOrderNo AND placingOrder.shopNo=shop.shopNo
 		<if test="(startDate != null and endDate != null) and (startDate!='' and endDate!='') ">
@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="selectPlacingOrderNo" resultType="int">
-		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus IN (2,3) ORDER BY placingOrderNo
+		SELECT placingOrderNo FROM placingOrder WHERE placingOrderStatus=2 ORDER BY placingOrderNo
 	</select>
 	
 	<insert id="insertNewRelease" parameterType="int">
@@ -82,5 +82,43 @@
 	<select id="selectReleaseProductList" parameterType="int" resultType="com.KHCafeErp.www.dto.Ingredient">
 		SELECT placingOrderProduct.ingredientNo, ingredientName, ingredientPrice, placingOrderProductCnt FROM placingOrderProduct, ingredient WHERE placingOrderProduct.ingredientNo=ingredient.ingredientNo AND placingOrderNo=#{placingOrderNo}
 	</select>
+
+	<select id="selectReleseInfo" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="com.KHCafeErp.www.dto.PlacingOrder">
+		SELECT release.placingOrderNo, placingOrderDate, shopName, placingOrderStatus, inStockStatus FROM placingOrder, shop, release 
+		WHERE placingOrder.shopNo=shop.shopNo AND placingOrder.placingOrderNo=release.placingOrderNo AND releaseNo=#{releaseNo}
+	</select>
+
+	<select id="selectReleaseProduct" parameterType="com.KHCafeErp.www.dto.Release" resultType="com.KHCafeErp.www.dto.ReleaseProduct">
+		SELECT releaseProductNo, releaseNo, releaseProductName, productCnt, productStatus, productPrice
+		FROM releaseProduct
+		WHERE releaseNo=#{releaseNo} AND productStatus != 2
+	</select>
 	
+	<update id="updateRelease" parameterType="com.KHCafeErp.www.dto.ReleaseProduct">
+		UPDATE releaseProduct SET productCnt = productCnt-#{productCnt}, productStatus=#{productStatus}, productRemark=#{productRemark} WHERE releaseProductno=#{releaseProductNo}
+	</update>
+	
+	<select id="getReleaseTotalCnt" parameterType="int" resultType="String">
+		SELECT releaseTotalCnt FROM release WHERE releaseNo=#{releaseNo}
+	</select>
+	
+	<update id="updateReleaseTotalCnt" parameterType="int">
+		UPDATE release SET releaseTotalCnt=(SELECT SUM(productCnt) FROM releaseProduct WHERE releaseNo=#{releaseNo}) WHERE releaseNo=#{releaseNo}
+	</update>
+	
+	<select id="getAfterReleaseCnt" parameterType="int" resultType="String">
+		SELECT SUM(productCnt) FROM releaseProduct WHERE releaseNo=#{releaseNo}
+	</select>
+	
+	<update id="updateReleaseStatus1" parameterType="int">
+		UPDATE release SET releaseStatus = 1, releaseDate=TO_CHAR(sysdate,'yyyy-mm-dd') WHERE releaseNo=#{releaseNo}
+	</update>
+
+	<update id="updateReleaseStatus2" parameterType="int">
+		UPDATE release SET releaseStatus = 2 WHERE releaseNo=#{releaseNo}
+	</update>
+	
+	<update id="updatePlacingOrderStatus" parameterType="int">
+		UPDATE placingOrder SET placingOrderStatus=3 WHERE placingOrderNo=#{placingOrderNo}
+	</update>
 </mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- 마이바티스 3 Mapper DOCTYPE -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.KHCafeErp.www.dao.face.ManageStaffDao">
+  
+ 	<select id="getStaffList" resultType="com.KHCafeErp.www.dto.Staff">
+ 		select staff.shopno, shopname,staffno,gender,status,staffname,hireddate,leavedate,email,cellnum,salary
+ 		from staff,shop 
+ 		where staff.shopno = shop.shopno
+ 		
+ 	</select>
+  </mapper>

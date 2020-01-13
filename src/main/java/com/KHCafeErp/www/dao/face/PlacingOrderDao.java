@@ -77,6 +77,36 @@ public interface PlacingOrderDao {
 	 * @return placingOrderNo - 발주번호
 	 */
 	public int selectNextVal();
+
+	/**
+	 * 20-01-12 유진
+	 * 엑셀 파일 업로드
+	 * @param placingOrder - 발주번호
+	 */
+	public void insertPlacingOrder(PlacingOrder placingOrder);
+
+	/**
+	 * 20-01-12 유진
+	 * shopNo 조회
+	 * @param shopName - 엑셀에서 받아온 shopName
+	 * @return - 해당하는 shopNo
+	 */
+	public int getShopNo(String shopName);
+
+	/**
+	 * 20-01-12 유진
+	 * 발주번호 조회
+	 * @param placingOrder - 엑셀 업로드로 생성 된 placingOrderNo
+	 * @return - 해당하는 placingOrderNo
+	 */
+	public int selectPlacingOrderNo(PlacingOrder placingOrder);
+
+	/**
+	 * 20-01-12 유진
+	 * 엑셀 파일 업로드
+	 * @param placingOrderProduct - 엑셀에서 얻어온 placingOrderProduct
+	 */
+	public void insertPlacingOrderProduct(PlacingOrderProduct placingOrderProduct);
 	
 
 

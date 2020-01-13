@@ -1,5 +1,6 @@
 package com.KHCafeErp.www.service.face;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -75,6 +76,13 @@ public interface PlacingOrderService {
 	 * @return Ingredient - 원자재 정보 
 	 */
 	public Ingredient getIngredientInfo(int ingredientNo);
+
+	/**
+	 * 20-01-12 유진
+	 * 엑셀 파일 업로드
+	 * @param destFile - 엑셀 파일
+	 */
+	public void insertMassiveProduct(File destFile);
 	
 
 

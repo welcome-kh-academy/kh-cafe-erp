@@ -6,12 +6,14 @@ public class ReleaseProduct {
 	private String releaseProductName;
 	private int productCnt;
 	private int productStatus;
+	private int productPrice;
+	private String productRemark;
 	
 	@Override
 	public String toString() {
 		return "ReleaseProduct [releaseProductNo=" + releaseProductNo + ", releaseNo=" + releaseNo
 				+ ", releaseProductName=" + releaseProductName + ", productCnt=" + productCnt + ", productStatus="
-				+ productStatus + "]";
+				+ productStatus + ", productPrice=" + productPrice + ", productRemark=" + productRemark + "]";
 	}
 
 	public final int getReleaseProductNo() {
@@ -52,6 +54,22 @@ public class ReleaseProduct {
 
 	public final void setProductStatus(int productStatus) {
 		this.productStatus = productStatus;
+	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductRemark() {
+		return productRemark;
+	}
+
+	public void setProductRemark(String productRemark) {
+		this.productRemark = productRemark;
 	}
 	
 	

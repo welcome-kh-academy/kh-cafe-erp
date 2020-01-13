@@ -188,10 +188,12 @@ public class ManageProductController {
 	    String id = "";
 	    if( session.getAttribute("shopNo")!=null && !"".equals(session.getAttribute("shopNo")) ) {
 	    	shopNo = (int)session.getAttribute("shopNo");
-	    	
+	    	System.out.println("------------------------------shopNo : " + shopNo);
 	    	product.setShopNo(shopNo);
 	    }
+	    logger.info("aaaaaaaaaaa"+product.getShopNo());
 	     
+	    System.out.println("------------------------------shopNo : " + product);
 		List<Product> data = manageProductService.getProductList(product);
 		List llist = new ArrayList();
 		List list = null;
