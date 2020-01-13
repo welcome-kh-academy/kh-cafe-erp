@@ -164,7 +164,7 @@ function popupOpen(){
 <hr/>
 
 <div class="condition-container">
-<form action="/placingOrder/management" method="post" id="placingOrderForm">
+<form id="placingOrderForm">
 
 <table class="table table-bordered">
 	<tr>
