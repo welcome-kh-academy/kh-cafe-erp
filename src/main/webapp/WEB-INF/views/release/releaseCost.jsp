@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
 	var curPage =1;
 	var table = $('#releaseCost').DataTable({
-		"scrollY" : 200,
+		"scrollY" : 600,
 		"scrollCollapse" : true,
 		"pagingType" : "full_numbers",
 		"language" : {
@@ -40,7 +40,29 @@ $(document).ready(function(){
 				
 			},
 			"dataSrc" : function(json){
-				console.log(json.data);
+				console.log(json.data[1][4].size);
+				var sum = 0;
+				var last = 0;
+				for(let i=0; i<json.data.length; i++){
+					console.log(i)
+					if(json.data[i][6] == null){
+						sum = sum + json.data[i][4];
+						console.log(sum);
+						if(i+1<json.data.length){
+							if(json.data[i][0] != json.data[i+1][0]){
+								json.data[i][6] = '총합'+sum;
+								sum=0;
+							}	
+						} 
+// 						for(let j=0; j<json.data[i].length; j++){
+// 						sum = sum + json.data[i][4];
+// 						console.log(sum);
+// 							json.data[i][6] = '출고번호'+json.data[i][0]+'의 총 출고가: '+(json.data[i][4]+=json.data[i][j]);
+// 						}
+					}
+					last = i
+				}
+				json.data[last][6] = '총합 '+sum;
 				return json.data;
 			}
 		}
