@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,22 +54,53 @@ public class StatisticsController {
 		
 		int shopNo = (int)session.getAttribute("shopNo");
 		
-		List<Map> dailyStatisticsMap = new ArrayList<Map>();
-		
+		List<Map> dailyStatisticsList = new ArrayList<Map>();
+		Map dailyStatisticsMap = new HashMap();
 		
 //		본사일 경우 지점리스트 볼 수 있게
-//		if(shopNoArr != null)
-//			dailyStatisticsMap = statisticsService.getStatistics(shopNoArr, dateTerm);
-//		else
-			dailyStatisticsMap = statisticsService.getStatistics(shopNo);
+		if(shopNoArr != null) 
+			dailyStatisticsList = statisticsService.getStatistics(shopNoArr, dateTerm);
+		else 
+			dailyStatisticsList = statisticsService.getStatistics(shopNo);
+		
+		List shopListWithStatistics = new ArrayList();
+		
+		//지점별 리스트로 변경	
+		for(int i=0; i<dailyStatisticsList.size(); i++) {
+			
+			if(i == 0) {
+				//지점별 통계
+				shopListWithStatistics.add(dailyStatisticsList.get(i).get("SHOPNO"));
+				shopListWithStatistics.add(dailyStatisticsList.get(i));
+				
+				dailyStatisticsMap.put(dailyStatisticsList.get(i).get("SHOPNO"), shopListWithStatistics);
+				
+				logger.info(i+"");
+			}
+			else if(dailyStatisticsList.get(i).get("SHOPNO") != dailyStatisticsList.get(i-1).get("SHOPNO")) {
+				
+				shopListWithStatistics = new ArrayList();
+				//지점별 통계
+				shopListWithStatistics.add(dailyStatisticsList.get(i).get("SHOPNO"));
+				shopListWithStatistics.add(dailyStatisticsList.get(i));
+				
+				dailyStatisticsMap.put(dailyStatisticsList.get(i).get("SHOPNO"), shopListWithStatistics);
+				
+			} else {
+				shopListWithStatistics.add(dailyStatisticsList.get(i).get("SHOPNO"));
+				shopListWithStatistics.add(dailyStatisticsList.get(i));
+			
+			}
+			
+		}
 		
 		logger.info(dailyStatisticsMap+"");
 		
-		List<Map> monthlyStatisticsMap = statisticsService.getStatistics(dailyStatisticsMap);
+//		List<Map> monthlyStatisticsMap = statisticsService.getStatistics(dailyStatisticsMap);
 //		List<Map> weeklyStatisticsMap = statisticsService.getStatistics(weeklyStatisticsMap);
 		
 		mav.addObject("dailyStatistics",dailyStatisticsMap);
-		mav.addObject("monthlyStatistics",monthlyStatisticsMap);
+//		mav.addObject("monthlyStatistics",monthlyStatisticsMap);
 		mav.setViewName("jsonView");
 		
 		return mav;

@@ -24,11 +24,11 @@
 		where 1=1
 		AND o.orderNo = p.orderNo
 		AND o.orderStatus = 2
-		AND o.shopNo IN
+<!-- 		AND o.shopNo IN -->
 		
-		<foreach collection="o.shopNo" item="item" index="index" open="(" close=")" separator=",">
-			#{item}
-		</foreach>
+<!-- 		<foreach collection="o.shopNo" item="item" index="index" open="(" close=")" separator=","> -->
+<!-- 			#{item} -->
+<!-- 		</foreach> -->
 		
 		group by o.shopNo, paymentDate
 		order by paymentDate
