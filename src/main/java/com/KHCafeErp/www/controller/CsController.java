@@ -2,8 +2,7 @@ package com.KHCafeErp.www.controller;
 
 import java.util.List;
 
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,12 +25,13 @@ public class CsController {
 	private static final Logger logger = LoggerFactory.getLogger(CsController.class);
 	
 	@RequestMapping(value = "/cs/list")
-	public String list(Paging data, Model model, HttpSession session) {
+	public String list(Paging data, Model model, HttpSession session, HttpServletRequest req) {
 		logger.info("list()");
+		System.out.println("dfafdfdfadfadfadfasdf " + data);
 		System.out.println("로그인 리스트"
 				+ " : "+session.getAttribute("staffNo"));
 
-		Paging paging = csService.getPaging(data);
+		Paging paging = csService.getPaging(data, req);
 		logger.info("inData: " + paging);
 
 		model.addAttribute("paging",paging);
@@ -42,6 +42,37 @@ public class CsController {
 		return "/cs/list";
 	}
 	
+//	@RequestMapping(value="/cs/list")
+//	public void listP() {
+//		
+//	}
+	
+//	@RequestMapping(value = "/cs/list", method=RequestMethod.GET)
+//	public ModelAndView list(CounselBoard counselBoard, ModelAndView mav) {
+//		logger.info("list()");
+//		List<CounselBoard> counselList = csService.getCsList(counselBoard);
+//		System.out.println(counselList);
+//		
+//		List llist = new ArrayList();
+//		List list = null;
+//		
+//		for(CounselBoard c : counselList) {
+//			list = new ArrayList();
+//			list.add(c.getcBoardNo());
+//			list.add(c.getcBoardTitle());
+//			list.add(c.getCusId());
+//			list.add(c.getStaffName());
+//			list.add(c.getcBoardDate());
+//			
+//			llist.add(list);
+//		}
+//		
+//		mav.addObject("data", llist);
+//		mav.setViewName("/cs/list");
+//		
+//		return mav;
+//	}
+//	
 	@RequestMapping(value = "/cs/view", method=RequestMethod.GET)
 	public String view(CounselBoard cBoard, Model model) {
 		
@@ -58,7 +89,7 @@ public class CsController {
 	@RequestMapping(value = "/cs/write", method = RequestMethod.GET)
 	public void write(HttpSession session, Model model) {
 		int staffNo = (int)session.getAttribute("staffNo");
-		System.out.println("1223134142344 : "+staffNo);
+//		System.out.println("1223134142344 : "+staffNo);
 		String staffName = csService.getStaffName(staffNo);
 		CounselBoard cBoard = new CounselBoard();
 		cBoard.setStaffName(staffName);
