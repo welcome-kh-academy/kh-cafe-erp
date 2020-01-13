@@ -6,6 +6,7 @@
 $.ajax({
     url: "/statistics/salesSearch",
     method: "GET",
+    data : $("#statisticsForm").serialize(),
     success: function (result) {
         
     	var paymentDate = [];
@@ -16,7 +17,6 @@ $.ajax({
             sumPrice.push(result.dailyStatistics[i].SUMPRICE);
             
         }
-        console.log(paymentDate);
         
         var ctx = document.getElementById("myBarChart3");
         var myLineChart = new Chart(ctx, {
