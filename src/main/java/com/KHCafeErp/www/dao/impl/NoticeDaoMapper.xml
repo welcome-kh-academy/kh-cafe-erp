@@ -5,19 +5,24 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.NoticeDao">
 
-<!-- 	<select id="selectCntAll" resultType="int"> -->
-<!-- 		SELECT count(*) FROM noticeboard -->
-<!-- 	</select> -->
+	<select id="selectCntAll" parameterType="hashmap" resultType="int">
+		SELECT count(*) FROM noticeboard
+		WHERE 1=1
+		<if test="searchType != null">
+			AND noticeBoard.${searchType} LIKE '%'||#{searchContent}||'%'
+		</if>
+	</select>
 	
 	<select id="selectPageList" parameterType="com.KHCafeErp.www.util.Paging" resultType="com.KHCafeErp.www.dto.NoticeBoard" >
 		  SELECT * FROM (
 			SELECT rownum rnum, B.* FROM (
 				SELECT
-					nBoardNo, staffNo, shopNo,
+					nBoardNo, staffNo, noticeBoard.shopNo, shopName,
 					nBoardTitle, staffName, nBoardDate, nBoardContent
-				FROM noticeBoard
-				<if test="search != null">
-    				AND nBoardTitle LIKE '%'||#{search }||'%'
+				FROM noticeBoard, shop
+				WHERE noticeBoard.shopNo=shop.shopNo
+				<if test="search.searchType != null">
+    				AND noticeBoard.${search.searchType} LIKE '%'||#{search.searchContent}||'%'
   				</if>
 				ORDER BY nBoardNo DESC
 			) B
@@ -56,16 +61,5 @@
 	<update id="delete" parameterType="com.KHCafeErp.www.dto.NoticeBoard">
 		DELETE noticeboard
 		WHERE nBoardNo = #{nBoardNo }
-	</update>
-	
-	<select id="selectCntAll" parameterType="hashmap" resultType="int">
-		SELECT count(*) 
-		FROM noticeboard
-		WHERE 1=1
-		<if test="search != null">
-    		AND nBoardTitle LIKE '%'||#{search }||'%'
-  		</if>
-		
-	</select>
-	
+	</update>	
 </mapper>

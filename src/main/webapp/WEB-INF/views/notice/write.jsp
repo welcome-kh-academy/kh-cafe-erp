@@ -86,7 +86,7 @@ div {
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
 <c:set var="now" value="<%=new java.util.Date()%>" />
-<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set> 
+<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
 
 <div class="container">
 

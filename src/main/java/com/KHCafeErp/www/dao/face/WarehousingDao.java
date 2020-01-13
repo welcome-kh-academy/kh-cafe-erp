@@ -33,4 +33,6 @@ public interface WarehousingDao {
 
 	public List<Warehousing> selectWareHouseListAll();
 
+	public void insertWarehousing(Warehousing warehousing);
+
 }

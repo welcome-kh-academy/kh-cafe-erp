@@ -52,7 +52,23 @@
 
 	<insert id="insertProduct" parameterType="com.KHCafeErp.www.dto.Product">
 		INSERT INTO product (productNo, categoryMapNo, productName, productContent, originPrice, price, productOrigin, enrollDate, selStartDate, selEndDate, selStatus)
-		SELECT productNo_seq.nextval, #{categoryMapNo}, #{productName}, #{productContent}, #{originPrice}, #{price}, #{productOrigin}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{selStartDate}, #{selEndDate}, #{selStatus}
+		SELECT productNo_seq.nextval, #{categoryMapNo}, #{productName}, #{productContent}, #{originPrice}, #{price}, #{productOrigin}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), 
+		
+		<if test="selStartDate != null and selStartDate != ''">
+		#{selStartDate},
+		</if>
+		<if test="selStartDate == null">
+		null,
+		</if>
+
+		<if test="selEndDate != null and selEndDate != ''">
+		 #{selEndDate},
+		</if>
+		<if test="selEndDate == null">
+		null,
+		</if>
+		
+		#{selStatus}
 		FROM DUAL A
 		WHERE NOT EXISTS (SELECT 0 FROM product WHERE productName=#{productName})
 	</insert>

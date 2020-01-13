@@ -130,10 +130,10 @@ li{
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">입&nbsp;&nbsp;&nbsp;고</a>
+        <a class="nav-link" href="/warehousing/warehousingList">입&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
         <ul>
-        	<li><a href="#">입고 관리</a></li>
+        	<li><a href="/warehousing/warehousingList">입고 관리</a></li>
         	<li><a href="/warehousing/registration">입고 등록</a></li>
         	<li><a href="#">단가 현황</a></li>
         </ul>

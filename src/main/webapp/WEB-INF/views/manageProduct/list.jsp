@@ -32,6 +32,9 @@ thead tr td {
 	float : left;
 /* 	position : absolute; */
 }
+#prodList{
+	margin : 10px;
+}
 </style>
 <!-- <h1>상품관리</h1> -->
 <!-- <hr> -->
@@ -300,7 +303,7 @@ $(document).ready(function() {
 	
 	table = $('#myTable').DataTable({
 	
-    	"scrollY" : 200, //테이블 고정 크기 설정
+    	"scrollY" : 400, //테이블 고정 크기 설정
     	"columnDefs" : [
     	      { width: '6%', targets : [0] }, //지점명
     	      { width: '7%', targets : [1] }, //상품번호
@@ -439,7 +442,7 @@ function getCategory(e){
 
 <form id="productSearch" action="/manageProduct/search" method="GET">
 <fieldset>
-<legend class="text-primary"><a href="/manageProduct/list">상품 관리</a></legend>
+<legend class="text-primary"><a class="text-primary" href="/manageProduct/list">상품 관리</a></legend>
 <table>
   <thead>
     <tr>
@@ -511,6 +514,8 @@ function getCategory(e){
 
 
 <div id="prodList">
+<fieldset>
+<legend>상품 리스트</legend>
 <table id="myTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
@@ -530,6 +535,7 @@ function getCategory(e){
         </tr>
     </thead>
 </table>
+</fieldset>
 </div>
 
 <!-- 수정 Modal -->

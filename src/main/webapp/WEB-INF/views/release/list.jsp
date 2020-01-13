@@ -16,6 +16,9 @@ td div{
 fieldset, .divReleaseList, .divSearchRelease{
 	margin : 20px;
 }
+.divReleaseList{
+	margin-top:75px;
+}
 .divReleaseList tr td:nth-child(6){
 	text-align:center;
 }
@@ -90,13 +93,13 @@ $(document).ready( function () {
     	"serverSide" : false, //클라이언트에서 처리
     	"processing" : true, 
     	"bInfo" : false,
-    	"columnDefs": [{
-    		   "targets": -1,
-    		   "data": null,
-    		   "render": function(data, type, row){
-    		    return '<button id="registerBtn" name="registerBtn" class="btn btn-primary data-releaseNo='+releaseNo+'">출고 등록</button>';
-    	},
-    	"orderable": false }],
+//     	"columnDefs": [{
+//     		   "targets": -1,
+//     		   "data": null,
+// //     		   "render": function(data, type, row){
+// //     		    return '<button id="registerBtn" name="registerBtn" class="btn btn-primary data-releaseNo='+releaseNo+'">출고 등록</button>';
+// //     	},
+//     	"orderable": false }],
     	"serverSide" : false, //클라이언트에서 처리
     	"processing" : true, 
     	ajax : {
@@ -108,14 +111,18 @@ $(document).ready( function () {
 				return $("#releaseForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
-				console.log(json.data.length);
-				console.log(json.data[3]);
-				console.log(json.data[1][3]);
+				console.log(json.data)
+// 				console.log(json.data.length);
+// 				console.log(json.data[3]);
+// 				console.log(json.data[1][3]);
 				for(var i=0; i<json.data.length;i++){
-					console.log(json.data[i][3])
-					if(json.data[i][3] == "출고 완료"){
-						console.log("1232331")
-						
+					console.log(json.data)
+					if(json.data[i][3] == "출고 전"){
+						json.data[i][5] = '<button name="registerBtn" class="btn btn-primary data-releaseNo='+json.data[i][0]+'">출고 등록</button>';
+					} else if(json.data[i][3] == "부분 출고") {
+						json.data[i][5] = '<button name="registerBtn" class="btn btn-primary data-releaseNo='+json.data[i][0]+'">출고 등록</button>';
+					} else {
+						json.data[i][5] = '';						
 					}
 				}
 				return json.data;
@@ -206,6 +213,7 @@ function getList() {
 						<option value="" selected>출고 상태</option>
 						<option value="0">출고 전</option>
 						<option value="1">출고 완료</option>
+						<option value="2">부분 출고</option>
 					</select>
 				</td>
 				<td></td>
@@ -214,6 +222,10 @@ function getList() {
 		</table>
 	</form>
 	</fieldset>
+	<div style="float:right; margin-top:-35px">
+		<button class="btn btn-outline-success" data-toggle="modal" data-target="#releaseModal">Excel 다운로드</button>
+		<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
+	</div>
 </div>
 
 
@@ -222,12 +234,6 @@ function getList() {
 <div class="divReleaseList">
 <fieldset>
 	<legend class="text-primary">상품 출고 목록</legend>
-	<div>
-	</div>
-	<div style="float:right;">
-		<button class="btn btn-outline-success" data-toggle="modal" data-target="#releaseModal">Excel 다운로드</button>
-		<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
-	</div>
 	<table id="myTable" class="display table table-bordered">
     	<thead class="thead-dark">
         	<tr class="table-primary">
