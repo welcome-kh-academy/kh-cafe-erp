@@ -198,8 +198,8 @@ public class AddProductServiceImpl implements AddProductService {
 		product.setOriginPrice((int)map.get("originPrice"));
 		product.setCategoryName((String)map.get("categoryName"));
 		product.setProductName((String)map.get("productName"));		
-		product.setSelStartDate("20200101");
-		product.setSelEndDate("20200101");
+		product.setSelStartDate("2020-01-01");
+		product.setSelEndDate("2020-01-13");
 		product.setSelStatus(1);
 		
 		//상품등록
