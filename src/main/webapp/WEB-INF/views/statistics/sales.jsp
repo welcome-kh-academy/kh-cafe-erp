@@ -159,9 +159,12 @@ function getStatistics() {
 	  	var paymentDate = [];
 	  	var sumPrice = [];
 	  	
-	    for (var i in result.dailyStatistics) {
-	        paymentDate.push(result.dailyStatistics[i].PAYMENTDATE);
-	        sumPrice.push(result.dailyStatistics[i].SUMPRICE);
+	  	console.log(result);
+	  	console.log(result.dailyStatistics);
+	  	
+	    for (var shopNo in result.dailyStatistics) {
+	    	paymentDate.push(result.dailyStatistics[shopNo].PAYMENTDATE);
+	        sumPrice.push(result.dailyStatistics[shopNo].SUMPRICE);
 	    }
 	      
 	    var ctx = document.getElementById("myBarChart3");
