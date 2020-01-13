@@ -20,6 +20,13 @@
 	width: 100%;
 	height : 70px;
 }
+.condition-container{
+	margin:20px;
+}
+#divWarehousing{
+	margin : 20px;
+	margin-top:70px;
+}
 </style>
 
 <script type="text/javascript">
@@ -152,12 +159,20 @@ function enter(e){
 	 }
 }
 
+function popupOpen(){
+	var url ="/warehousing/popExcel";
+	var winWidth = 500;
+	var winHeight = 300;
+	var winLeft = Math.ceil(( window.screen.width - winWidth )/2);
+	var winTop = Math.ceil(( window.screen.width - winHeight )/2);
+	var popupOption = "width=" + winWidth+ ", height=" + winHeight +", left=" + winLeft + ", winTop=" + winTop;
+	var myWindow = window.open(url, "", popupOption);
+}
 </script>
 
-<h1>입고 관리 페이지</h1>
-<hr/>
-
 <div class="condition-container">
+<fieldset>
+<legend>입고 관리</legend>
 <form action="/warehousing/search" method="post" id="warehousingForm">
 
 <table class="table table-bordered">
@@ -216,13 +231,18 @@ function enter(e){
 	
 </table>
 </form>
-</div>
-
+</fieldset>
 <div style="float:right;">
-	<button id="excelDown" class="btn btn-outline-success"  data-toggle="modal" data-target="#placingOrderModal">Excel 다운로드</button>
+	<button id="excelDown" class="btn btn-outline-success"  data-toggle="modal" data-target="#warehousingModal">Excel 다운로드</button>
+	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel 업로드</button>
+</div>
 </div>
 
-<table id="myTable" class="display table table-bordered" >
+
+<div id="divWarehousing">
+<fieldset>
+<legend>입고 리스트</legend>
+<table id="myTable" class="display table table-bordered">
     <thead class="thead-dark">
         <tr>
             <th>no</th>
@@ -237,10 +257,11 @@ function enter(e){
         </tr>
     </thead>
 </table>
-
+</fieldset>
+</div>
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
 
-<div id="wareousingModal" class="modal fade">
+<div id="warehousingModal" class="modal fade">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -254,7 +275,7 @@ function enter(e){
         <p>경로 : D:/</p>
       </div>
       <div class="modal-footer">
-        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/wareousing/exceldown'">확인</button>
+        <button id="downBtn" type="button" class="btn btn-primary"  onclick="location.href='/warehousing/exceldown'">확인</button>
         <button id="downBtn" type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
       </div>
     </div>

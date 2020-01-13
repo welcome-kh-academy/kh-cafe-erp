@@ -76,7 +76,7 @@ $(document).ready( function () {
 	$disabledResults.select2();
 	
 	table = $('#myTable').DataTable({
-    	"scrollY" : 200, //테이블 고정 크기 설정
+    	"scrollY" : 400, //테이블 고정 크기 설정
 		"columnDefs": [{
     		   "targets": -1,
     		   "data": null,
@@ -249,13 +249,13 @@ function popupOpen(){
 		</table>
 	</form>
 	</fieldset>
-</div>
-
 <div style="float: right;">
 	<button class="btn btn-outline-success" data-toggle="modal" data-target="#orderModal">Excel 다운로드</button>
 	<button class="btn btn-outline-primary" onclick="popupOpen()">Excel
 		업로드</button>
 </div>
+</div>
+
 <br>
 <!-- <h2>주문 리스트</h2> -->
 <div class="condition-container">

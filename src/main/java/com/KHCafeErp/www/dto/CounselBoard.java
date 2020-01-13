@@ -9,12 +9,13 @@ public class CounselBoard {
 	private String cBoardTitle;
 	private String cBoardDate;
 	private String cBoardContent;
+	private String shopName;
 
 	@Override
 	public String toString() {
 		return "CounselBoard [cBoardNo=" + cBoardNo + ", cusNo=" + cusNo + ", cusId=" + cusId + ", staffNo=" + staffNo
 				+ ", staffName=" + staffName + ", cBoardTitle=" + cBoardTitle + ", cBoardDate=" + cBoardDate
-				+ ", cBoardContent=" + cBoardContent + "]";
+				+ ", cBoardContent=" + cBoardContent + ", shopName=" + shopName + "]";
 	}
 
 	public final int getcBoardNo() {
@@ -81,4 +82,12 @@ public class CounselBoard {
 		this.cusId = cusId;
 	}
 
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	
 }

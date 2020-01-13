@@ -78,4 +78,9 @@ public interface ReleaseProductDao {
 	public void updateReleaseStatus2(int releaseNo);
 
 	public void updatePlacingOrderStatus(int placingOrderNo);
+	/**
+	 * 출고가 목록을 불러온다
+	 * @return - 출고가 목록
+	 */
+	public List<ReleaseProduct> selectReleaseProductListAll();
 }

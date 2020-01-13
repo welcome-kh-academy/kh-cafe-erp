@@ -1,7 +1,10 @@
 package com.KHCafeErp.www.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,20 +20,39 @@ public class CsServiceImpl implements CsService {
 	@Autowired CsDao csDao;
 	
 	@Override
-	public Paging getPaging(Paging data) {
+	public Paging getPaging(Paging data, HttpServletRequest req) {
 		//검색어
-		Map<String, String> search = data.getSearch(); 
+		Map<String, String> map = new HashMap<String, String>();
 				
-		int totalCount = csDao.selectCntAll(search);
+		String searchType = req.getParameter("searchType");
+		System.out.println(searchType);
+		String searchContent = req.getParameter("searchContent");
+		System.out.println(searchContent);
+		
+		if(searchType!=null & !"".equals(searchType)) {
+	         map.put("searchType",searchType);
+	      }
+	      
+	      if(searchContent!=null && !"".equals(searchContent)) {
+	         map.put("searchContent", searchContent);
+	      }
+		System.out.println(map);
+		int totalCount = csDao.selectCntAll(map);
 				
 		Paging paging = new Paging(totalCount, data.getCurPage());
+		paging.setSearch(map);
 				
 		//검색어
-		paging.setSearch(search);
-				
+		System.out.println("MAP : " +map);
+
 		return paging;
 	}
 
+	@Override
+	public List<CounselBoard> getCsList(CounselBoard counselBoard) {
+		return csDao.selectCsList(counselBoard);
+	}
+	
 	@Override
 	public List<CounselBoard> list(Paging paging) {
 		return csDao.selectPageList(paging);
@@ -56,8 +78,6 @@ public class CsServiceImpl implements CsService {
 		if(cBoard.getcBoardTitle()==null || "".equals(cBoard.getcBoardTitle())) {
 			cBoard.setcBoardTitle("[제목 없음]");	
 		}
-
-		System.out.println("cccccccccccccccccc "+cBoard);
 		csDao.insertBoard(cBoard);
 	}
 

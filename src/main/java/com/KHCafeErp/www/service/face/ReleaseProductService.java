@@ -66,5 +66,11 @@ public interface ReleaseProductService {
 	public void updateReleaseStatus2(int releaseNo);
 
 	public void updatePlacingOrderStatus(int placingOrderNo);
+	/**
+	 * 출고가 목록 불러오기
+	 * @return - 출고가 목록
+	 */
+	public List<ReleaseProduct> getReleaseProductListAll();
+
 
 }
