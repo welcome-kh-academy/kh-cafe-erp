@@ -412,7 +412,104 @@ public class ExcelWriter {
     }
 
 	public void wareHouseXls(List<Warehousing> wareHouseList) {
-		// TODO Auto-generated method stub
+		// 워크북 생성
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        // 워크시트 생성
+        HSSFSheet sheet = workbook.createSheet();
+        // 행 생성
+        HSSFRow row = sheet.createRow(0);
+        // 쎌 생성
+        HSSFCell cell;
+        
+        // 헤더 정보 구성
+        cell = row.createCell(0);
+        cell.setCellValue("입고 번호");
+        
+        cell = row.createCell(1);
+        cell.setCellValue("발주 상품 번호");
+        
+        cell = row.createCell(2);
+        cell.setCellValue("창고 번호");
+        
+        cell = row.createCell(3);
+        cell.setCellValue("총 입고 수량");
+        
+        cell = row.createCell(4);
+        cell.setCellValue("입고 등록일");
+        
+        cell = row.createCell(5);
+        cell.setCellValue("입고 구분");
+        
+        cell = row.createCell(6);
+        cell.setCellValue("입고 상태");
+        
+        cell = row.createCell(7);
+        cell.setCellValue("거래처");
+        
+        // 리스트의 size 만큼 row를 생성
+        Warehousing ob;
+        for(int rowIdx=0; rowIdx < wareHouseList.size(); rowIdx++) {
+        	ob = wareHouseList.get(rowIdx);
+            
+            // 행 생성
+            row = sheet.createRow(rowIdx+1);
+            
+            cell = row.createCell(0);
+            cell.setCellValue(ob.getWarehousingNo());
+            
+            cell = row.createCell(1);
+            cell.setCellValue(ob.getPlacingOrderProductNo());
+            
+            cell = row.createCell(2);
+            cell.setCellValue(ob.getStorageNo());
+            
+            cell = row.createCell(3);
+            cell.setCellValue(ob.getProductCnt());
+            
+            cell = row.createCell(4);
+            cell.setCellValue(ob.getInStockDate());
+            
+            cell = row.createCell(5);
+            if(ob.getIsAutoInStock()==0) {		 
+				 cell.setCellValue("비정규");
+			 } else if(ob.getIsAutoInStock()==1) {
+				 cell.setCellValue("정규");				 				 
+			 } 
+            
+            cell = row.createCell(6);
+            if(ob.getInStockStatus()==0) {		 
+            	cell.setCellValue("비정규");
+            } else if(ob.getInStockStatus()==1) {
+            	cell.setCellValue("정규");				 				 
+            } 
+            
+            cell = row.createCell(7);
+            cell.setCellValue(ob.getDealStore());
+            
+        }
+        
+        // 입력된 내용 파일로 쓰기
+        String filename=date+"주문 목록.xls";
+    	File file = new File("D:\\"+filename);
+        FileOutputStream fos = null;
+        
+        try {
+            fos = new FileOutputStream(file);
+            workbook.write(fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(workbook!=null) workbook.close();
+                if(fos!=null) fos.close();
+                
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 		
 	}
 }
