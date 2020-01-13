@@ -63,43 +63,37 @@ public class StatisticsController {
 		else 
 			dailyStatisticsList = statisticsService.getStatistics(shopNo);
 		
-		List shopListWithStatistics = new ArrayList();
+		//빈 해쉬맵
+		HashMap<Integer, ArrayList<String>> newMap = new HashMap<Integer, ArrayList<String>>();
 		
 		//지점별 리스트로 변경	
 		for(int i=0; i<dailyStatisticsList.size(); i++) {
 			
-			if(i == 0) {
-				//지점별 통계
-				shopListWithStatistics.add(dailyStatisticsList.get(i).get("SHOPNO"));
-				shopListWithStatistics.add(dailyStatisticsList.get(i));
-				
-				dailyStatisticsMap.put(dailyStatisticsList.get(i).get("SHOPNO"), shopListWithStatistics);
-				
-				logger.info(i+"");
-			}
-			else if(dailyStatisticsList.get(i).get("SHOPNO") != dailyStatisticsList.get(i-1).get("SHOPNO")) {
-				
-				shopListWithStatistics = new ArrayList();
-				//지점별 통계
-				shopListWithStatistics.add(dailyStatisticsList.get(i).get("SHOPNO"));
-				shopListWithStatistics.add(dailyStatisticsList.get(i));
-				
-				dailyStatisticsMap.put(dailyStatisticsList.get(i).get("SHOPNO"), shopListWithStatistics);
-				
-			} else {
-				shopListWithStatistics.add(dailyStatisticsList.get(i).get("SHOPNO"));
-				shopListWithStatistics.add(dailyStatisticsList.get(i));
-			
-			}
-			
-		}
+			String strKey = dailyStatisticsList.get(i).get("SHOPNO")+"";
+			int key = Integer.parseInt(strKey);
 		
-		logger.info(dailyStatisticsMap+"");
+			ArrayList list = new ArrayList();
+			
+			if (newMap.containsKey(key)) {
+				
+                // 이미 해당 key가 맵에 있을 때에는 value를 불러온 뒤 넣음
+                list = newMap.get(key);
+                list.add(dailyStatisticsList.get(i));
+            } else {
+            	
+                // 맵에 key가 없다면 새로 value를 추가
+                list.add(dailyStatisticsList.get(i));
+            }
+            newMap.put(key, list);
+            
+		}
+        
+		
 		
 //		List<Map> monthlyStatisticsMap = statisticsService.getStatistics(dailyStatisticsMap);
 //		List<Map> weeklyStatisticsMap = statisticsService.getStatistics(weeklyStatisticsMap);
 		
-		mav.addObject("dailyStatistics",dailyStatisticsMap);
+		mav.addObject("dailyStatistics",newMap);
 //		mav.addObject("monthlyStatistics",monthlyStatisticsMap);
 		mav.setViewName("jsonView");
 		

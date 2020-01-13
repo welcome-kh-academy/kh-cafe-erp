@@ -155,16 +155,31 @@ function getStatistics() {
 	  data : $("#statisticsForm").serialize(),
 	  success: function (result) {
 		  
-	  	//daily
-	  	var paymentDate = [];
-	  	var sumPrice = [];
-	  	
-	  	console.log(result);
-	  	console.log(result.dailyStatistics);
+// 		var chartData = { 
+// 				labels: ["S", "M", "T", "W", "T", "F", "S"],
+// 				datasets: [
+// 					{ data: [589, 445, 483, 503, 689, 692, 634], backgroundColor: colors[0] }, 
+// 					{ data: [209, 245, 383, 403, 589, 692, 580], backgroundColor: colors[1] }, 
+// 					{ data: [489, 135, 483, 290, 189, 603, 600], backgroundColor: colors[2] }, { data: [639, 465, 493, 478, 589, 632, 674], backgroundColor: colors[4] }] }; var myChart = new Chart(chBar, { // 챠트 종류를 선택 type: 'bar', // 챠트를 그릴 데이타 data: chartData, // 옵션 options: { legend: { display: false } } });
+
+		  
+	  	//색상지정
+		var datasets = [];
 	  	
 	    for (var shopNo in result.dailyStatistics) {
-	    	paymentDate.push(result.dailyStatistics[shopNo].PAYMENTDATE);
-	        sumPrice.push(result.dailyStatistics[shopNo].SUMPRICE);
+	    	
+	    	//daily
+		  	var paymentDate = [];
+		  	var sumPrice = [];
+	    	
+	    	for(var i in shopNo){
+	    		paymentDate.push(result.dailyStatistics[shopNo][i].PAYMENTDATE);
+	    		sumPrice.push(result.dailyStatistics[shopNo][i].SUMPRICE);
+	    	}
+	        
+	        datasets.push({label: "총 매출액",
+           		backgroundColor: getRandomColor(),
+           		data: sumPrice});
 	    }
 	      
 	    var ctx = document.getElementById("myBarChart3");
@@ -173,12 +188,7 @@ function getStatistics() {
 	        type: 'bar',
 	        data: {
 	            labels: paymentDate,
-	            datasets: [{
-	               label: "총 매출액",
-	               backgroundColor: getRandomColor(),
-	               borderColor: getRandomColor(),
-	               data: sumPrice,
-	            }],
+	            datasets: datasets,
 	        },
 	        options: {
 	          scales: {
