@@ -151,14 +151,8 @@ li{
         </ul>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link" href="#">정산 · 통계</a>
-        <div class="dropdown-menu">
-        <ul>
-        	<li><a href="#">정산 통계</a></li>
-        	<li><a href="/statistics/sales">매출 통계</a></li>
-        </ul>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="/statistics/sales">매출 통계</a>
       </li>    
       <!-- 매니저, 지점장만 직원관리 가능 -->
       <c:if test="${position eq '2' or position eq '3' }">
