@@ -48,14 +48,14 @@ public class CustomAuthenticationProvider  implements AuthenticationProvider {
 		if(isLogin) {
         	staff = loginService.selectByStaffNo(staff);
 			List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-
-	        roles.add(new SimpleGrantedAuthority(Integer.toString(staff.getPosition())));
+	        roles.add(new SimpleGrantedAuthority("ROLE_"+staff.getPosition()));
 
 	        UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(user_id, user_pw, roles);
 
+	        logger.info("직위 : "+result.getAuthorities());
 	        result.setDetails(staff);
 	        logger.info("setDetails : "+staff.toString());
-	        logger.info("직위 : "+roles.toString());
+	        logger.info("접속 정보 : "+roles.toString());
 	        //user session 생성 후 반환
 
 			return result;

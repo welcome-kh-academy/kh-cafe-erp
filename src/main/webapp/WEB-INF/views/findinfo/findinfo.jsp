@@ -205,7 +205,7 @@ to {
 				<div class="form-group">
 					<button type="submit" id="searchBtn" name="searchBtn"
 						class="btn btn-primary btn-block">확인</button>
-					<button onclick="location.href='/login/main'">취소</button>
+					<button type="button" onclick="location.href='/login/main'">취소</button>
 				</div>
 			</div>
 		</form>
