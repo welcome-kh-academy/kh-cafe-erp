@@ -6,14 +6,20 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.OrderDao">
    <select id="selectOrderList" resultType="com.KHCafeErp.www.dto.OrderBase" parameterType="com.KHCafeErp.www.dto.OrderBase">
-      SELECT orderNo, cusNo, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName 
-      from orderBase, shop 
-      WHERE orderBase.shopNo=shop.shopNo AND orderDate BETWEEN #{startDate} AND #{endDate}
+      SELECT orderNo, orderBase.cusNo, cusId, orderDate, cusReq, orderStatus, orderBase.shopNo, shopName 
+      from orderBase, shop, customer
+      WHERE orderBase.shopNo=shop.shopNo AND orderBase.cusNo=customer.cusNo AND orderDate BETWEEN #{startDate} AND #{endDate}
       <if test="orderNo != null">
          AND orderNo = #{orderNo}
       </if>
+      <if test="cusId != null and cusId != ''">
+         AND cusId = #{cusId}
+      </if>
       <if test="shopNo != null">
          AND orderBase.shopNo = #{shopNo}
+      </if>
+      <if test="orderStatus != null">
+         AND orderStatus = #{orderStatus}
       </if>
       
    </select>

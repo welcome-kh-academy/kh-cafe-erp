@@ -195,20 +195,15 @@ function popupOpen(){
 <div class="condition-container">
 	<fieldset>
 	<legend class="text-primary">주문 통합 관리</legend>
-	<form action="/order/search" method="post" id="orderForm">
+	<form id="orderForm">
 		<table class="table table-bordered">
 			<tr>
 				<th class="condition"><label for="orderNo">주문번호</label></th>
-				<td><input type="number" 
+				<td style="width:35%"><input style="width:50%" class="form-control" type="number" 
 					id="orderNo" name="orderNo" /></td>
-				<th class="condition"><label for="shopName">지점명</label></th>
-				<td><select name="shopNo" id="shopNo"
-					class="search-select select2-selection select2-selection--single form-control">
-						<option value="">전체</option>
-						<c:forEach var="shop" items="${shopList }">
-							<option value="${shop.shopNo }">${shop.shopName }</option>
-						</c:forEach>
-				</select></td>
+				<th class="condition"><label for="cusId">유저아이디</label></th>
+				<td><input style="width:50%" class="form-control" type="text" 
+					id="cusId" name="cusId"/></td>
 				<td rowspan="3" style="vertical-align: middle; text-align: center;">
 					<button type="button" class="btn btn-primary btn-lg"
 						onclick="getList()">검색</button>
@@ -225,23 +220,21 @@ function popupOpen(){
 					class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i></td>
 			</tr>
 			<tr>
-				<th class="condition"><label for="categoryBase">상품카테고리</label></th>
-				<td><select name="categoryBase" id="categoryBase"
-					class="select2-selection--single form-control">
-						<option value="1">음료</option>
-						<option value="2">상품</option>
-						<option value="3">푸드</option>
-						<option value="4">카드</option>
-
-
-
+				<th class="condition"><label for="shopName">지점명</label></th>
+				<td><select name="shopNo" id="shopNo"
+					class="search-select select2-selection select2-selection--single form-control">
+						<option value="">전체</option>
+						<c:forEach var="shop" items="${shopList }">
+							<option value="${shop.shopNo }">${shop.shopName }</option>
+						</c:forEach>
 				</select></td>
 				<th class="condition"><label for="orderStatus">처리상태</label></th>
 				<td><select name="orderStatus" id="orderStatus"
 					class="select2-selection--single form-control">
+						<option value="" selected>처리상태</option>
+						<option value="0">장바구니</option>
 						<option value="1">주문완료</option>
-						<option value="2">주문취소</option>
-						<option value="3">보류</option>
+						<option value="2">결제완료</option>
 
 
 				</select></td>
@@ -265,7 +258,7 @@ function popupOpen(){
 	<thead class="table-primary">
 		<tr>
 			<th>주문번호</th>
-			<th>유저번호</th>
+			<th>유저아이디</th>
 			<th>지점명</th>
 			<th>주문날짜</th>
 			<th>고객요구사항</th>

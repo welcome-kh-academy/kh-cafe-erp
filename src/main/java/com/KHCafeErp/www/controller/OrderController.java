@@ -50,17 +50,17 @@ public class OrderController {
 	
 	@RequestMapping(value="/order/search" ,method=RequestMethod.GET)
 	public ModelAndView releaseSearch(OrderBase orderBase, ModelAndView mav) {
+		logger.info(orderBase.toString());
 		
 		List<OrderBase> orderBaseList = orderService.getOrderList(orderBase);
-
 		List llist = new ArrayList();
 		List list = null;
 		
 		for(OrderBase r : orderBaseList) {
 			list = new ArrayList();
 			list.add(r.getOrderNo());
-			list.add(r.getCusNo());
-			list.add(r.getshopName());
+			list.add(r.getCusId());
+			list.add(r.getShopName());
 			list.add(r.getOrderDate());		
 			list.add(r.getCusReq());
 			if(r.getOrderStatus()==0){
