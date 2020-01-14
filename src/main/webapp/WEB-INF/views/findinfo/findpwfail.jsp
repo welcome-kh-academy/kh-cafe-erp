@@ -47,7 +47,7 @@
 				<br><br>
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
-						일치하는 사원번호가 없습니다. 
+						일치하는 비밀번호가 없습니다. 
 					</div>
 					
 

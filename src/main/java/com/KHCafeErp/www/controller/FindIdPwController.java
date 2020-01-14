@@ -82,7 +82,7 @@ public class FindIdPwController {
 			return "/login/main";
 		}   else {
 			
-			return "/findinfo/findidfail";
+			return "/findinfo/findpwfail";
 		}
 	
 	
