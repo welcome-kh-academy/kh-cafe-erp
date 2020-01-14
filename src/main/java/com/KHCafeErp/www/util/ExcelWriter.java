@@ -366,7 +366,7 @@ public class ExcelWriter {
             cell.setCellValue(ob.getCusNo());
             
             cell = row.createCell(2);
-            cell.setCellValue(ob.getshopName());
+            cell.setCellValue(ob.getShopName());
             
             cell = row.createCell(3);
             cell.setCellValue(ob.getOrderDate());

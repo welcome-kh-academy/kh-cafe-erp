@@ -180,4 +180,12 @@
 		SELECT * FROM shop
 		WHERE shopNo = #{ shopNo }
 	</select>
+	
+	<delete id="deleteProductDetail" parameterType="com.KHCafeErp.www.dto.Product">
+		DELETE FROM productDetail WHERE productNo=#{productNo}
+	</delete>
+	
+	<delete id="deleteOrderProduct" parameterType="com.KHCafeErp.www.dto.Product">
+		DELETE FROM orderProduct WHERE productNo=#{productNo}
+	</delete>
 </mapper>

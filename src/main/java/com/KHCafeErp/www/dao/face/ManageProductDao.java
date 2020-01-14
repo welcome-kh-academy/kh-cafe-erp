@@ -118,4 +118,8 @@ public interface ManageProductDao {
 	 * @param productNo - 해당 상품의 상품번호
 	 */
 	public void deleteFile(int productNo);
+	
+	public void deleteProductDetail(Product product);
+	
+	public void deleteOrderProduct(Product product);
 }

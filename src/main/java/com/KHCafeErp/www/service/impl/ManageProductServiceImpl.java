@@ -116,6 +116,8 @@ public class ManageProductServiceImpl implements ManageProductService{
 	@Override
 	public void deleteProduct(Product product) {
 		manageProductDao.deleteFile(product.getProductNo());
+		manageProductDao.deleteProductDetail(product);
+		manageProductDao.deleteOrderProduct(product);
 		manageProductDao.deleteProduct(product);
 	}
 	
