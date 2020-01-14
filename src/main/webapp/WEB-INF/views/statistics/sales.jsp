@@ -87,11 +87,17 @@ getStatistics();
 		<c:if test="${position eq 3}">
 			<th class="condition"><label for="startDate">지점선택</label></th>
 			<td>
-			<select class="js-example-basic-multiple" name="shopNoArr[]" multiple="multiple">
-  				<option value="${shop.shopNo }" selected>${shop.shopName }</option>
-					<c:forEach var="shopT" items="${shopList }" >
-						<option value="${shopT.shopNo }">${shopT.shopName }</option>
-					</c:forEach>
+			<select class="js-example-basic-multiple" id="shopNoArr" name="shopNoArr[]" multiple="multiple">
+				<c:forEach var="shopT" items="${shopList }" >
+					<c:choose>
+						<c:when test="${shopT.shopNo eq shop.shopNo}">
+							<option value="${shopT.shopNo }" selected>${shopT.shopName }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${shopT.shopNo }">${shopT.shopName }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 			</select>
 			</td>
 		</c:if>
@@ -155,33 +161,28 @@ function getStatistics() {
 	  data : $("#statisticsForm").serialize(),
 	  success: function (result) {
 		  
-// 		var chartData = { 
-// 				labels: ["S", "M", "T", "W", "T", "F", "S"],
-// 				datasets: [
-// 					{ data: [589, 445, 483, 503, 689, 692, 634], backgroundColor: colors[0] }, 
-// 					{ data: [209, 245, 383, 403, 589, 692, 580], backgroundColor: colors[1] }, 
-// 					{ data: [489, 135, 483, 290, 189, 603, 600], backgroundColor: colors[2] }, { data: [639, 465, 493, 478, 589, 632, 674], backgroundColor: colors[4] }] }; var myChart = new Chart(chBar, { // 챠트 종류를 선택 type: 'bar', // 챠트를 그릴 데이타 data: chartData, // 옵션 options: { legend: { display: false } } });
-
-		  
 	  	//색상지정
 		var datasets = [];
+		var paymentDateS = new Set();
 	  	
 	    for (var shopNo in result.dailyStatistics) {
 	    	
-	    	//daily
-		  	var paymentDate = [];
+	    	var resObject = result.dailyStatistics[shopNo];
 		  	var sumPrice = [];
-	    	
-	    	for(var i in shopNo){
-	    		paymentDate.push(result.dailyStatistics[shopNo][i].PAYMENTDATE);
-	    		sumPrice.push(result.dailyStatistics[shopNo][i].SUMPRICE);
+		  	
+	    	for(var i in resObject){
+	    		
+	    		paymentDateS.add(resObject[i].PAYMENTDATE);
+	    		sumPrice.push(resObject[i].SUMPRICE);
 	    	}
-	        
-	        datasets.push({label: "총 매출액",
+	    	
+	        datasets.push({label:  $("#shopNoArr option[value="+shopNo+"]").text(),
            		backgroundColor: getRandomColor(),
            		data: sumPrice});
 	    }
-	      
+	    
+	    //중복 제거한 set을 배열로 다시 변환
+	    var paymentDate = Array.from(paymentDateS);
 	    var ctx = document.getElementById("myBarChart3");
 	      
 	    var myLineChart = new Chart(ctx, {
@@ -220,26 +221,36 @@ function getStatistics() {
 	        }
 	      });
 	      
+	    
 	      //monthly
-	    var paymentDate2 = [];
-	  	var sumPrice2 = [];
+	    var datasets = [];
+	  	var paymentDateS2 = new Set();
 	  	
-	      for (var i in result.monthlyStatistics) {
-	          paymentDate2.push(result.monthlyStatistics[i].PAYMENTDATE);
-	          sumPrice2.push(result.monthlyStatistics[i].SUMPRICE);
+	  	for (var shopNo in result.monthlyStatistics) {
+	  		
+	  		var resObject = result.monthlyStatistics[shopNo];
+		  	var sumPrice2 = [];
+		  	
+			for(var i in resObject){
+	    		
+	    		paymentDateS2.add(resObject[i].PAYMENTDATE);
+	    		sumPrice2.push(resObject[i].SUMPRICE);
+	    	}
+
+			 datasets.push({label:  $("#shopNoArr option[value="+shopNo+"]").text(),
+	           		backgroundColor: getRandomColor(),
+	           		data: sumPrice});
+			
 	      }
-	      
+	  	
+	  	 //중복 제거한 set을 배열로 다시 변환
+	    var paymentDate2 = Array.from(paymentDateS2);
 	      var ctx = document.getElementById("myBarChart");
 	      var myLineChart = new Chart(ctx, {
 	        type: 'bar',
 	        data: {
 	            labels: paymentDate2,
-	            datasets: [{
-	               label: "총 매출액",
-	               backgroundColor: getRandomColor(),
-	               borderColor: getRandomColor(),
-	               data: sumPrice2,
-	            }],
+	            datasets: datasets
 	         },
 	        options: {
 	          scales: {

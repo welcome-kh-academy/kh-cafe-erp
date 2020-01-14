@@ -11,6 +11,7 @@
 	<thead class="thead-dark">
 		<tr>
 			<th>지점</th>
+			<th>직원등급</th>
 			<th>직원번호</th>
 			<th>이름</th>
 			<th>성별</th>
@@ -27,6 +28,17 @@
 		                        
 		<tr>
 		<td>${staffList.shopName}</td>
+			
+		<c:if test="${staffList.position==1}" >
+			<td>직원</td>
+			
+		</c:if>
+		<c:if test="${staffList.position==2}" >
+			<td><font color = "blue">지점장</font></td>
+		</c:if>
+		<c:if test="${staffList.position==3}" >
+			<td><font color = "red">본사</font></td>
+		</c:if>		
 		<td>${staffList.staffNo}</td>
 		<td>${staffList.staffName}</td>
 		<td>${staffList.gender}</td>

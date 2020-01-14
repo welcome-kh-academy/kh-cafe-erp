@@ -24,12 +24,14 @@
 		where 1=1
 		AND o.orderNo = p.orderNo
 		AND o.orderStatus = 2
-<!-- 		AND o.shopNo IN -->
-		
-<!-- 		<foreach collection="o.shopNo" item="item" index="index" open="(" close=")" separator=","> -->
-<!-- 			#{item} -->
-<!-- 		</foreach> -->
-		
+		<choose>
+			<when test="shopNoArr.length != 0">
+				and o.shopNo in 
+				<foreach collection="shopNoArr" item="item" index="index" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+			</when>
+		</choose>
 		group by o.shopNo, paymentDate
 		order by paymentDate
 	</select>

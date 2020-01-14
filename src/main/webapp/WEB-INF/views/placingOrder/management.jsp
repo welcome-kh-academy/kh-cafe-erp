@@ -74,16 +74,17 @@ $(document).ready( function () {
 	
 	table = $('#myTable').DataTable({
     	"scrollY" : 400, //테이블 고정 크기 설정
-    	"columnDefs" : [
-    	      { width: '5%', targets : [0] },
-    	      { width: '7%', targets : [1] },
-    	      { width: '15%', targets : [2] },
-    	      { width: '15%', targets : [3] },
-    	      { width: '15%', targets : [4] },
-    	      { width: '15%', targets : [5] },
-    	      { width: '14%', targets : [6] },
-    	      { width: '14%', targets : [7] }
-    	],
+    	columnDefs : [
+        	{
+        		orderable: false,
+                className: 'select-checkbox',
+                targets:   0
+        	 }],
+    		select: {
+    			style: 'multi',
+    			selector: 'td:first-child'
+    		},
+    		order: [[ 1, 'asc' ]],
     	"scrollCollapse" : true, //가변 크기 막기
     	"pagingType" : "full_numbers", //다음, 이전, 맨끝으로
     	"language": {
@@ -112,28 +113,10 @@ $(document).ready( function () {
 			"url" : "/placingOrder/search",
 			"dataType":"json",
 			"data" : function() {
-				console.log($("#placingOrderForm").serialize())
 				return $("#placingOrderForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
-				
-				for(let i=0; i<json.data.length; i++){
-
-					if(json.data[i][2] == "1"){
-						json.data[i][2] = "강남점";
-					}
-					
-					if(json.data[i][6] == "0"){
-						json.data[i][6] = "발주완료"
-					}
-					
-					if(json.data[i][7] == "0"){
-						json.data[i][7] = "입고완료"
-					}
-					
-				}
 				console.log(json.data);
-				
 				return json.data;
 			}
 		}
@@ -236,7 +219,7 @@ function popupOpen(){
 <table id="myTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
-<!--        <th><input type="checkbox"/></th> -->
+       		<th></th>
             <th>no</th>
             <th>발주번호</th>
             <th>지점명</th>

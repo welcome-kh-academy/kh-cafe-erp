@@ -33,12 +33,7 @@ function getList() {
 	
 }
 
-//리스트 추가
-// function addList() {
-// // 	var rows_selected = table.column(0).checkboxes.selected();
-	
-// 	console.log(rows_selected);
-// }
+var placingProduct = "";
 
 //datatable
 $(document).ready( function () {
@@ -167,13 +162,16 @@ $(document).ready( function () {
 
     });
 
-	$('#placingProduct').DataTable({
+	placingProduct = $('#placingProduct').DataTable({
     	scrollY : 200, //테이블 고정 크기 설정
     	scrollCollapse : true, //가변 크기 막기
     	columnDefs : [
     	{
     		orderable: false,
             className: 'select-checkbox',
+//             checkboxes: {
+//             'selectRow': true
+//          	},
             targets:   0
     	 }],
 		select: {
@@ -226,10 +224,26 @@ $(document).ready( function () {
 		$('.dataTables_scrollHeadInner').children().attr("style","margin-left: 0px;width: 100%;");
 	})
 	
-	
-	
 });	
 	
+//리스트 추가
+function addList() {
+	
+	var checkbox = placingProduct.rows('.selected').data();
+
+	for(var i=0; i<checkbox.length; i++){
+		console.log(checkbox[i][2]);
+	}
+	
+	
+	
+	
+// 	console.log($("#placingProduct").select.selector( 'td:first-child' ));
+// 	$("#placingProduct).select.selector( 'td:first-child' );
+// 	$("#placingProduct tbody tr.selected")
+	
+	
+}
 
 </script>
 
