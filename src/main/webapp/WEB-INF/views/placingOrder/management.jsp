@@ -20,7 +20,7 @@
 }
 #divReleaseList{
 	margin : 20px;
-	margin-top:70px;
+	margin-top:56px;
 }
 </style>
 

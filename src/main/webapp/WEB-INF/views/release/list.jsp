@@ -17,7 +17,7 @@ fieldset, .divReleaseList, .divSearchRelease{
 	margin : 20px;
 }
 .divReleaseList{
-	margin-top:75px;
+	margin-top:40px;
 }
 .divReleaseList tr td:nth-child(6){
 	text-align:center;
