@@ -107,6 +107,22 @@ public interface PlacingOrderDao {
 	 * @param placingOrderProduct - 엑셀에서 얻어온 placingOrderProduct
 	 */
 	public void insertPlacingOrderProduct(PlacingOrderProduct placingOrderProduct);
+
+	/**
+	 * 20-01-13 유진
+	 * 총 발주 금액 구하기
+	 * @param placingProduct - 해당하는 발주 
+	 * @return - 금액의 총합
+	 */
+	public int sumPlacingOrderPrice(PlacingOrder placingProduct);
+
+	/**
+	 * 20-01-13 유진
+	 * 총 발주 수량 구하기
+	 * @param placingProduct - 해당하는 발주
+	 * @return - 총 발주 수량
+	 */
+	public int sumPlacingOrderCnt(PlacingOrder placingProduct);
 	
 
 

@@ -170,7 +170,7 @@
 			</if>
 	</select>
 	<select id="selectImgFile" parameterType="int" resultType="com.KHCafeErp.www.dto.ImgFile">
-		SELECT * FROM imgFile
+		SELECT DISTINCT(productNo), fileNo, originName, storedName FROM imgFile
 		WHERE productNo = #{ productNo }
 	</select>
 	<select id="selectProductListAllWithoutPaging" resultType="com.KHCafeErp.www.dto.Product">

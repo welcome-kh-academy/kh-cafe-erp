@@ -8,69 +8,85 @@ public class ReleaseProduct {
 	private int productStatus;
 	private int productPrice;
 	private String productRemark;
+	private String releaseDate;
+	private int releaseTotalCnt;
+	private String shopName;
+	
 	
 	@Override
 	public String toString() {
 		return "ReleaseProduct [releaseProductNo=" + releaseProductNo + ", releaseNo=" + releaseNo
 				+ ", releaseProductName=" + releaseProductName + ", productCnt=" + productCnt + ", productStatus="
-				+ productStatus + ", productPrice=" + productPrice + ", productRemark=" + productRemark + "]";
+				+ productStatus + ", productPrice=" + productPrice + ", productRemark=" + productRemark
+				+ ", releaseDate=" + releaseDate + ", releaseTotalCnt=" + releaseTotalCnt + ", shopName=" + shopName
+				+ "]";
 	}
-
-	public final int getReleaseProductNo() {
+	public int getReleaseProductNo() {
 		return releaseProductNo;
 	}
-
-	public final void setReleaseProductNo(int releaseProductNo) {
+	public void setReleaseProductNo(int releaseProductNo) {
 		this.releaseProductNo = releaseProductNo;
 	}
-
-	public final int getReleaseNo() {
+	public int getReleaseNo() {
 		return releaseNo;
 	}
-
-	public final void setReleaseNo(int releaseNo) {
+	public void setReleaseNo(int releaseNo) {
 		this.releaseNo = releaseNo;
 	}
-
-	public final String getReleaseProductName() {
+	public String getReleaseProductName() {
 		return releaseProductName;
 	}
-
-	public final void setReleaseProductName(String releaseProductName) {
+	public void setReleaseProductName(String releaseProductName) {
 		this.releaseProductName = releaseProductName;
 	}
-
-	public final int getProductCnt() {
+	public int getProductCnt() {
 		return productCnt;
 	}
-
-	public final void setProductCnt(int productCnt) {
+	public void setProductCnt(int productCnt) {
 		this.productCnt = productCnt;
 	}
-
-	public final int getProductStatus() {
+	public int getProductStatus() {
 		return productStatus;
 	}
-
-	public final void setProductStatus(int productStatus) {
+	public void setProductStatus(int productStatus) {
 		this.productStatus = productStatus;
 	}
-
 	public int getProductPrice() {
 		return productPrice;
 	}
-
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-
 	public String getProductRemark() {
 		return productRemark;
 	}
-
 	public void setProductRemark(String productRemark) {
 		this.productRemark = productRemark;
 	}
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+	public int getReleaseTotalCnt() {
+		return releaseTotalCnt;
+	}
+	public void setReleaseTotalCnt(int releaseTotalCnt) {
+		this.releaseTotalCnt = releaseTotalCnt;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

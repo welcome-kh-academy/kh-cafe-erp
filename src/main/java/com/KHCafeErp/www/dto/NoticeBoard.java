@@ -5,6 +5,7 @@ public class NoticeBoard {
 	private int nBoardNo;
 	private int staffNo;
 	private int shopNo;
+	private String shopName;
 	private String nBoardTitle;
 	private String staffName;
 	private String nBoardDate;
@@ -12,9 +13,9 @@ public class NoticeBoard {
 	
 	@Override
 	public String toString() {
-		return "NoticeBoard [nBoardNo=" + nBoardNo + ", staffNo=" + staffNo + ", shopNo=" + shopNo + ", nBoardTitle="
-				+ nBoardTitle + ", staffName=" + staffName + ", nBoardDate=" + nBoardDate + ", nBoardContent="
-				+ nBoardContent + "]";
+		return "NoticeBoard [nBoardNo=" + nBoardNo + ", staffNo=" + staffNo + ", shopNo=" + shopNo + ", shopName="
+				+ shopName + ", nBoardTitle=" + nBoardTitle + ", staffName=" + staffName + ", nBoardDate=" + nBoardDate
+				+ ", nBoardContent=" + nBoardContent + "]";
 	}
 
 	public int getnBoardNo() {
@@ -72,9 +73,14 @@ public class NoticeBoard {
 	public void setnBoardContent(String nBoardContent) {
 		this.nBoardContent = nBoardContent;
 	}
-	
-	
-	
-	
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+		
 	
 }

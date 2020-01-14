@@ -4,9 +4,9 @@ import java.util.Map;
 
 import java.util.List;
 
-//공백 또는 null 체크
 public class CommonUtils {		
 
+	//공백 또는 null 체크
 	public static boolean isEmpty(Object obj) {
 
 		if(obj == null) return true;

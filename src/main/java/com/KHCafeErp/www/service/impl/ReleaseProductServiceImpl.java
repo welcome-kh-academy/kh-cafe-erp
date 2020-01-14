@@ -24,6 +24,11 @@ public class ReleaseProductServiceImpl implements ReleaseProductService {
 	@Autowired ReleaseProductDao releaseProductDao;
 	
 	@Override
+	public List<ReleaseProduct> getReleaseProductListAll() {
+		return releaseProductDao.selectReleaseProductListAll();
+	}
+	
+	@Override
 	public List<Release> getReleaseList(Release release) {
 		return releaseProductDao.selectReleaseList(release);
 	}

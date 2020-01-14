@@ -1,5 +1,6 @@
 package com.KHCafeErp.www.service.face;
 
+import java.io.File;
 import java.util.List;
 
 import com.KHCafeErp.www.dto.PlacingOrder;
@@ -52,5 +53,7 @@ public interface WarehousingService {
 	 * @return
 	 */
 	public List<Warehousing> getList();
+
+	public void insertMassiveProduct(File destFile);
 
 }

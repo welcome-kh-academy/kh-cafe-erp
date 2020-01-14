@@ -7,10 +7,21 @@
 
 	<select id="selectCntAll" parameterType="hashmap" resultType="int">
 		SELECT count(*) 
-		FROM counselBoard
-		WHERE 1=1
-		<if test="search != null">
-    		AND cBoardTitle LIKE '%'||#{search }||'%'
+		FROM counselBoard, staff, customer, shop
+		WHERE counselBoard.staffNo=staff.staffNo AND customer.cusNo=counselBoard.cusNo AND staff.shopNo=shop.shopNo
+		<if test="searchType != null">
+			<if test="searchType == 'cBoardNo' or searchType == 'cBoardTitle'">
+	    		AND counselBoard.${searchType} LIKE '%'||#{searchContent}||'%'
+	    	</if>
+			<if test="searchType == 'cusId'">
+	    		AND customer.${searchType} LIKE '%'||#{searchContent}||'%'
+	    	</if>
+			<if test="searchType == 'staffName'">
+	    		AND staff.${searchType} LIKE '%'||#{searchContent}||'%'
+	    	</if>
+			<if test="searchType == 'shopName'">
+	    		AND shop.${searchType} LIKE '%'||#{searchContent}||'%'
+	    	</if>
   		</if>
 	</select>
 	
@@ -19,17 +30,46 @@
 			SELECT rownum rnum, B.* FROM (
 				SELECT
 					cBoardNo, counselBoard.staffNo, counselBoard.cusNo, cusId,
-					cBoardTitle, staffName, cBoardDate, cBoardContent
-				FROM counselBoard, staff, customer
-				WHERE counselBoard.staffNo=staff.staffNo AND customer.cusNo=counselBoard.cusNo
-				<if test="search != null">
-    				AND cBoardTitle LIKE '%'||#{search }||'%'
+					cBoardTitle, staffName, cBoardDate, cBoardContent, shopName
+				FROM counselBoard, staff, customer, shop
+				WHERE counselBoard.staffNo=staff.staffNo AND customer.cusNo=counselBoard.cusNo AND staff.shopNo=shop.shopNo
+				<if test="search.searchType != null">
+					<if test="search.searchType == 'cBoardNo' or search.searchType == 'cBoardTitle'">
+	    				AND counselBoard.${search.searchType} LIKE '%'||#{search.searchContent}||'%'
+	    			</if>
+	    			<if test="search.searchType == 'cusId'">
+	    				AND customer.${search.searchType} LIKE '%'||#{search.searchContent}||'%'
+	    			</if>
+	    			<if test="search.searchType == 'staffName'">
+	    				AND staff.${search.searchType} LIKE '%'||#{search.searchContent}||'%'
+	    			</if>
+	    			<if test="search.searchType == 'shopName'">
+	    				AND shop.${search.searchType} LIKE '%'||#{search.searchContent}||'%'
+	    			</if>
   				</if>
 				ORDER BY cBoardNo DESC
 			) B
 			ORDER BY rnum
 		 ) counselBoard
 		 WHERE rnum BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="selectCsList" parameterType="com.KHCafeErp.www.dto.CounselBoard" resultType="com.KHCafeErp.www.dto.CounselBoard">
+		SELECT cBoardNo, counselBoard.staffNo, counselBoard.cusNo, cusId, cBoardTitle, staffName, cBoardDate, cBoardContent
+		FROM counselBoard, staff, customer
+		WHERE counselBoard.staffNo=staff.staffNo AND customer.cusNo=counselBoard.cusNo
+		<if test="cBoardNo != null and cBoardNo != 0">
+			AND cBoardNo = #{cBoardNo}
+		</if>
+		<if test="cBoardTitle != null">
+			AND cBoardTitle = #{cBoardTitle}
+		</if>
+		<if test="cusId != null">
+			AND cusId = #{cusId}
+		</if>
+		<if test="staffName != null">
+			AND staffName = #{staffName}
+		</if>
 	</select>
 	
 	<select id="selectBoardByBoardNo" parameterType="com.KHCafeErp.www.dto.CounselBoard" resultType="com.KHCafeErp.www.dto.CounselBoard">

@@ -89,6 +89,18 @@ public class PlacingOrderController {
 		
 		List<PlacingOrder> data = placingOrderService.getPlacingOrderList(placingOrder);
 		
+		// 20-01-13 유진 : 총 발주 금액, 총 발주 수량 구하기
+		for(int i=0;i<data.size();i++) {
+			PlacingOrder placingProduct = data.get(i);
+//			System.out.println(placingProduct);
+			int placingOrderPrice = placingOrderService.sumPlacingOrderPrice(placingProduct);
+//			System.out.println(placingProduct.getPlacingOrderNo()+" : "+placingOrderPrice);
+			placingProduct.setPlacingOrderPrice(placingOrderPrice);
+			int placingOrderCnt = placingOrderService.sumPlacingOrderCnt(placingProduct);
+//			System.out.println(placingOrderCnt);
+			placingProduct.setPlacingOrderCnt(placingOrderCnt);
+		}
+		
 		List llist = new ArrayList();
 		List list = null;
 		
@@ -99,7 +111,7 @@ public class PlacingOrderController {
 //			list.add(null);
 			list.add(i++);
 			list.add(po.getPlacingOrderNo());
-			list.add(po.getShopNo());
+			list.add(po.getShopName());
 			
 //			StringBuffer sb = new StringBuffer(po.getPlacingOrderDate());
 //			sb.insert(4, "년 ");
@@ -107,8 +119,8 @@ public class PlacingOrderController {
 //			sb.insert(10, "일");
 //			list.add(sb);
 			list.add(po.getPlacingOrderDate());
-			list.add(0);
-			list.add(0);
+			list.add(po.getPlacingOrderCnt());
+			list.add(po.getPlacingOrderPrice());
 			// 20-01-12 유진 : 상태 표시 변경
 			if(po.getPlacingOrderStatus()==0) {
 				list.add("발주 확인 전");

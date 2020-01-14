@@ -43,6 +43,9 @@
 <!-- Core plugin JavaScript -->
 <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+<!-- 자바스크립트 공통 메소드 모임 -->
+<script type="text/javascript" src="/resources/js/common.js"></script>
+
 <title>: : : KH-CAFE ERP : : :</title>
 <style type="text/css">
 #container{
@@ -130,10 +133,10 @@ li{
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">입&nbsp;&nbsp;&nbsp;고</a>
+        <a class="nav-link" href="/warehousing/warehousingList">입&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
         <ul>
-        	<li><a href="#">입고 관리</a></li>
+        	<li><a href="/warehousing/warehousingList">입고 관리</a></li>
         	<li><a href="/warehousing/registration">입고 등록</a></li>
         	<li><a href="#">단가 현황</a></li>
         </ul>

@@ -26,4 +26,6 @@ public interface CsDao {
 
 	public void update(CounselBoard cBoard);
 
+	public List<CounselBoard> selectCsList(CounselBoard counselBoard);
+
 }
