@@ -52,21 +52,21 @@ public class StatisticsController {
 	@RequestMapping(value = "/statistics/salesSearch", method=RequestMethod.GET)
 	public ModelAndView salesSearchStatistics(HttpSession session, ModelAndView mav, DateTerm dateTerm, @RequestParam(value="shopNoArr[]", required=false) int[] shopNoArr) {	
 		
-		int shopNo = (int)session.getAttribute("shopNo");
-		
 		List<Map> dailyStatisticsList = new ArrayList<Map>();
-		Map dailyStatisticsMap = new HashMap();
 		
 //		본사일 경우 지점리스트 볼 수 있게
-		if(shopNoArr != null) 
+		if(shopNoArr != null)
 			dailyStatisticsList = statisticsService.getStatistics(shopNoArr, dateTerm);
-		else 
+			
+		else {
+			int shopNo = (int)session.getAttribute("shopNo");
 			dailyStatisticsList = statisticsService.getStatistics(shopNo);
+		}
 		
 		//빈 해쉬맵
-		HashMap<Integer, ArrayList<String>> newMap = new HashMap<Integer, ArrayList<String>>();
+		HashMap<Integer, ArrayList<Map>> newMap = new HashMap<Integer, ArrayList<Map>>();
 		
-		//지점별 리스트로 변경	
+		//지점별 리스트로 변경
 		for(int i=0; i<dailyStatisticsList.size(); i++) {
 			
 			String strKey = dailyStatisticsList.get(i).get("SHOPNO")+"";
@@ -87,14 +87,14 @@ public class StatisticsController {
             newMap.put(key, list);
             
 		}
-        
 		
+		logger.info(newMap.toString());
 		
-//		List<Map> monthlyStatisticsMap = statisticsService.getStatistics(dailyStatisticsMap);
+		Map monthlyStatisticsMap = statisticsService.getStatistics(newMap);
 //		List<Map> weeklyStatisticsMap = statisticsService.getStatistics(weeklyStatisticsMap);
 		
 		mav.addObject("dailyStatistics",newMap);
-//		mav.addObject("monthlyStatistics",monthlyStatisticsMap);
+		mav.addObject("monthlyStatistics",monthlyStatisticsMap);
 		mav.setViewName("jsonView");
 		
 		return mav;

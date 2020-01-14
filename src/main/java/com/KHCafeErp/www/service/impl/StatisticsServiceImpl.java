@@ -30,49 +30,62 @@ public class StatisticsServiceImpl implements StatisticsService {
 	}
 
 	@Override
-	public List<Map> getStatistics(List<Map> dailyStatisticsMap) {
+	public Map getStatistics(HashMap<Integer, ArrayList<Map>> dailyStatisticsMap) {
 		
 		//빈 맵 생성
 		Map monthlyStatisticsMap = new HashMap<>();
 		
-		//빈 리스트 생성
-		List<Map> monthlyStatistics = new ArrayList<Map>();
-		
-		int sumPrice = 0;
-		
-		//일별 매출통계를 월별로 바꾸기
-		for(int i=0; i<dailyStatisticsMap.size(); i++) {
+		Iterator<Integer> keys = dailyStatisticsMap.keySet().iterator();
+		while ( keys.hasNext() ) {
 			
-			String month = ((String) dailyStatisticsMap.get(i).get("PAYMENTDATE")).substring(0, 7);
-			
-			monthlyStatisticsMap.put("PAYMENTDATE",month);
-			
-			String sumPriceStr = dailyStatisticsMap.get(i).get("SUMPRICE")+"";
-			
-			if(i==0) {
-				sumPrice = Integer.parseInt(sumPriceStr);
-				monthlyStatisticsMap.put("SUMPRICE", sumPrice);
-				monthlyStatistics.add(monthlyStatisticsMap);
+			//지점번호
+		    Integer key = keys.next();
+		    
+		    //지점번호에 해당하는 통계 자료 리스트 불러오기
+			List dailyStatistics = dailyStatisticsMap.get(key);
+		    List monthlyStatistics = new ArrayList();
+		    
+		    int sumPrice = 0;
+		    Map monthMap = new HashMap();
+		    
+		    for(int i=0; i<dailyStatistics.size(); i++) {
+				
+				Map dailyMap = (Map) dailyStatistics.get(i);
+				
+				String month = ((String) dailyMap.get("PAYMENTDATE")).substring(0, 7);
+				
+				monthMap.put("PAYMENTDATE",month);
+				String sumPriceStr = dailyMap.get("SUMPRICE")+"";
+				
+				if(i==0) {
+					sumPrice = Integer.parseInt(sumPriceStr);
+					monthMap.put("SUMPRICE", sumPrice);
+					monthlyStatistics.add(monthMap);
+				} else if(((String)dailyMap.get("PAYMENTDATE")).substring(0, 7).equals(month)) {
+					sumPrice += Integer.parseInt(sumPriceStr);
+					monthMap.put("SUMPRICE", sumPrice);
+					
+				} else {
+					sumPrice = Integer.parseInt(sumPriceStr);
+					monthMap.put("SUMPRICE", sumPrice);
+					monthlyStatistics.add(monthMap);
+				}
+				
 			}
-			else if(((String)dailyStatisticsMap.get(i-1).get("PAYMENTDATE")).substring(0, 7).equals(month)) {
-				sumPrice += Integer.parseInt(sumPriceStr);
-				monthlyStatisticsMap.put("SUMPRICE", sumPrice);
-			} else {
-				sumPrice = Integer.parseInt(sumPriceStr);
-				monthlyStatisticsMap.put("SUMPRICE", sumPrice);
-				monthlyStatistics.add(monthlyStatisticsMap);
-			}
+		    
+			monthlyStatisticsMap.put(key,monthlyStatistics);
+		    
+		}   
 
-		}
-		
-		return monthlyStatistics;
+		return monthlyStatisticsMap;
 	}
 
 	@Override
 	public List<Map> getStatistics(int[] shopNoArr, DateTerm dateTerm) {
 
-		Map map = new HashMap();
-		map.put("shopNo", shopNoArr);
+		Map<String, Object> map = new HashMap<>(); 
+		
+		map.put("shopNoArr", shopNoArr);
 		map.put("startDate", dateTerm.getStartDate());
 		map.put("endDate", dateTerm.getEndDate());
 		

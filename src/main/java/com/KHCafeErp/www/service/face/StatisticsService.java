@@ -1,5 +1,7 @@
 package com.KHCafeErp.www.service.face;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +25,7 @@ public interface StatisticsService {
 	 * @param dailyStatisticsMap
 	 * @return
 	 */
-	List<Map> getStatistics(List<Map> dailyStatisticsMap);
+	Map getStatistics(HashMap<Integer, ArrayList<Map>> newMap);
 
 	/**
 	 * 일별 통계자료 가져오기(+검색조건)
@@ -34,5 +36,7 @@ public interface StatisticsService {
 	 * @return List<Map>
 	 */
 	List<Map> getStatistics(int[] shopNoArr, DateTerm dateTerm);
+
+	
 
 }
