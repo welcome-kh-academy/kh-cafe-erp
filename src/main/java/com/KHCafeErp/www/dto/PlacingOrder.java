@@ -5,8 +5,8 @@ public class PlacingOrder {
 	private Integer placingOrderNo; //기본키
 	private Integer shopNo; //외래키
 	private String placingOrderDate; //발주일
-	private int placingOrderStatus; //발주상태
-	private int inStockStatus; //입고상태
+	private Integer placingOrderStatus; //발주상태
+	private Integer inStockStatus; //입고상태
 	private int placingOrderPrice;	// 발주 금액
 	private int placingOrderCnt;	// 발주 수량
 	
@@ -44,16 +44,16 @@ public class PlacingOrder {
 	public void setPlacingOrderDate(String placingOrderDate) {
 		this.placingOrderDate = placingOrderDate;
 	}
-	public int getPlacingOrderStatus() {
+	public Integer getPlacingOrderStatus() {
 		return placingOrderStatus;
 	}
-	public void setPlacingOrderStatus(int placingOrderStatus) {
+	public void setPlacingOrderStatus(Integer placingOrderStatus) {
 		this.placingOrderStatus = placingOrderStatus;
 	}
-	public int getInStockStatus() {
+	public Integer getInStockStatus() {
 		return inStockStatus;
 	}
-	public void setInStockStatus(int inStockStatus) {
+	public void setInStockStatus(Integer inStockStatus) {
 		this.inStockStatus = inStockStatus;
 	}
 	public String getStartDate() {

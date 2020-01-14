@@ -113,6 +113,7 @@ $(document).ready( function () {
 			"url" : "/placingOrder/search",
 			"dataType":"json",
 			"data" : function() {
+				console.log($("#placingOrderForm").serialize())
 				return $("#placingOrderForm").serialize(); //검색조건 전달
 			},
 			"dataSrc" : function(json){
@@ -188,6 +189,7 @@ function popupOpen(){
 		<td>
 			<select name="placingOrderStatus" id="placingOrderStatus"
 				class="select2-selection--single form-control">
+				<option value="" selected>발주 상태</option>
 				<option value="0">발주확인전</option>
 				<option value="1">발주확인</option>
 				<option value="2">출고대기</option>
@@ -198,6 +200,7 @@ function popupOpen(){
 		<td>
 			<select name="inStockStatus" id="inStockStatus"
 				class="select2-selection--single form-control">
+				<option value="" selected>입고상태</option>
 				<option value="0">입고대기</option>
 				<option value="1">입고완료</option>
 			</select>

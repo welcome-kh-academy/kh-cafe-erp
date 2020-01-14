@@ -18,7 +18,13 @@
     		AND placingOrderNo = #{placingOrderNo}
   		</if>
   		<if test="shopNo != null">
-    		AND shopNo = #{shopNo}
+    		AND shop.shopNo = #{shopNo}
+  		</if>
+  		<if test="placingOrderStatus != null">
+    		AND placingOrderStatus = #{placingOrderStatus}
+  		</if>
+  		<if test="inStockStatus != null">
+    		AND inStockStatus = #{inStockStatus}
   		</if>
   		ORDER BY PLACINGORDERNO
 	</select>
