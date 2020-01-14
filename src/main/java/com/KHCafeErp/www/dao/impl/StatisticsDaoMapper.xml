@@ -8,13 +8,29 @@
 <mapper namespace="com.KHCafeErp.www.dao.face.StatisticsDao">
 
 	<select id="selectStatistics" parameterType="int" resultType="hashmap">
-		select p.paymentDate, sum(p.paymentPrice) sumPrice
+		select o.shopNo, p.paymentDate, sum(p.paymentPrice) sumPrice
 		from orderBase o, payment p
 		where 1=1
 		AND o.orderNo = p.orderNo
 		AND o.orderStatus = 2
 		AND o.shopNo = #{shopNo}
-		group by paymentDate
+		group by o.shopNo, paymentDate
+		order by paymentDate
+	</select>
+	
+	<select id="selectStatisticsCondition" parameterType="hashmap" resultType="hashmap">
+		select o.shopNo, p.paymentDate, sum(p.paymentPrice) sumPrice
+		from orderBase o, payment p
+		where 1=1
+		AND o.orderNo = p.orderNo
+		AND o.orderStatus = 2
+<!-- 		AND o.shopNo IN -->
+		
+<!-- 		<foreach collection="o.shopNo" item="item" index="index" open="(" close=")" separator=","> -->
+<!-- 			#{item} -->
+<!-- 		</foreach> -->
+		
+		group by o.shopNo, paymentDate
 		order by paymentDate
 	</select>
 	
