@@ -177,42 +177,18 @@ to {
 }
 </style>
 <meta charset="UTF-8">
-<title>사원번호/이모티콘 찾기</title>
+<title>사원번호 찾기</title>
 <script type="text/javascript">
-	//체크 버튼에 따라 아이디/비밀번호 기능이 달라진다
-	function search_check(num) {
-		if (num == '1') {
-			document.getElementById("searchPw").style.display = "none";
-			document.getElementById("searchId").style.display = "";
-		} else {
-			document.getElementById("searchId").style.display = "none";
-			document.getElementById("searchPw").style.display = "";
-		}
-	}
+
 </script>
 </head>
 <body>
 	<div class="container">
 
 		<h2>
-			사원번호 / 비밀번호 찾기<small>KH-CAFE</small>
+			사원번호 찾기<small>KH-CAFE</small>
 		</h2>
 
-
-
-		<div style="margin-bottom: 10px;">
-
-			<input type="radio" id="search_1" name="search_total"
-				onclick="search_check(1)" checked="checked">사원번호 찾기
-
-		</div>
-
-
-
-		<div>
-			비밀번호 찾기<input type="radio" id="search_2" name="search_total"
-				onclick="search_check(2)">
-		</div>
 		<form action="/findinfo/findinfo" method="post">
 			<div id="searchId">
 				<div class="group">
@@ -229,30 +205,11 @@ to {
 				<div class="form-group">
 					<button type="submit" id="searchBtn" name="searchBtn"
 						class="btn btn-primary btn-block">확인</button>
-					<button onclick="javascript:history.go(-1)">취소</button>
+					<button onclick="location.href='/login/main'">취소</button>
 				</div>
 			</div>
 		</form>
-		<form action="/findinfo/findinfo" method="post">
-			<div id="searchPw" style="display: none;">
-				<div class="group">
-					<input type="text" name="staffNo" id="staffNo"> <span
-						class="highlight"></span> <span class="bar"></span> <label>사원번호</label>
-
-				</div>
-
-				<div class="group">
-					<input type="text" name="email" id="email"> <span
-						class="highlight"></span> <span class="bar"></span> <label>Email</label>
-				</div>
-
-				<div class="form-group">
-					<button type="submit" id="searchBtn" name="searchBtn"
-						class="btn btn-primary btn-block">확인</button>
-					<button onclick="javascript:history.go(-1)">취소</button>
-				</div>
-			</div>
-		</form>
+		
 
 
 

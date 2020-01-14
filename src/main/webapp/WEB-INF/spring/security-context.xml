@@ -33,7 +33,7 @@
     	<security:intercept-url pattern="/cs/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/warehousing/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/statistics/**" access="isAuthenticated()" />
-    	<security:intercept-url pattern="/manageStaff/**" access="isAuthenticated()" />
+    	<security:intercept-url pattern="/manageStaff/**" access="hasAnyRole('2, 3')" />
     	
 		<!-- 모든 권한 부여 -->
     	<security:intercept-url pattern="/findinfo/**" access="permitAll()" />

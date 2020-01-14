@@ -19,12 +19,13 @@ public class Staff implements Serializable {
 	private String gender;
 	private String userKey;
 	private String shopName;
+	private String key;
 	@Override
 	public String toString() {
 		return "Staff [staffNo=" + staffNo + ", shopNo=" + shopNo + ", position=" + position + ", staffName="
 				+ staffName + ", hiredDate=" + hiredDate + ", leaveDate=" + leaveDate + ", salary=" + salary
 				+ ", status=" + status + ", pw=" + pw + ", nick=" + nick + ", email=" + email + ", cellNum=" + cellNum
-				+ ", gender=" + gender + ", userKey=" + userKey + ", shopName=" + shopName + "]";
+				+ ", gender=" + gender + ", userKey=" + userKey + ", shopName=" + shopName + ", key=" + key + "]";
 	}
 	public int getStaffNo() {
 		return staffNo;
@@ -116,9 +117,12 @@ public class Staff implements Serializable {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-	
-	
-
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 	
 	
 	

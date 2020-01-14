@@ -80,7 +80,7 @@ console.log(${position})
                   <a class="txt2" href="/findinfo/findinfo">
                      아이디 찾기
                   </a>
-                  <a class="txt2" href="/findinfo/findinfopw">
+                  <a class="txt2" href="/findinfo/findpwinfo">
                      패스워드 찾기
                   </a>
                   
