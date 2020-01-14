@@ -71,21 +71,6 @@ $(document).ready(function(){
 		<td>출고 완료</td> 	
 	</c:if>
 </tr>
-<tr>
-	<th class="table-primary">입고 상태</th>
-	<c:if test="${releaseInfo.inStockStatus == 0 }">
-		<td>입고 대기 중</td>
-	</c:if>
-	<c:if test="${releaseInfo.inStockStatus == 2 }">
-		<td>입고 확인</td>
-	</c:if>
-	<c:if test="${releaseInfo.inStockStatus == 3 }">
-		<td>파손</td>
-	</c:if>
-	<c:if test="${releaseInfo.inStockStatus == 4 }">
-		<td>누락</td>
-	</c:if>
-</tr>
 
 </table>
 </fieldset>
