@@ -40,6 +40,8 @@
     	<security:intercept-url pattern="/join/**" access="permitAll()" />
     	<security:intercept-url pattern="/login/**" access="permitAll()" />
     	<security:intercept-url pattern="/resources/**" access="permitAll()" />
+    	<security:intercept-url pattern="/privacyRegulation.jsp" access="permitAll()" />
+    	<security:intercept-url pattern="/useRegulation.jsp" access="permitAll()" />
     	
 		<!-- 테스트 -->
     	<security:intercept-url pattern="/dataTable-test.jsp" access="permitAll()" />

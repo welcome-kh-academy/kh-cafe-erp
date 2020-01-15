@@ -2,6 +2,7 @@ package com.KHCafeErp.www.service.face;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -99,6 +100,10 @@ public interface PlacingOrderService {
 	 * @return - 총 발주 수량
 	 */
 	public int sumPlacingOrderCnt(PlacingOrder placingProduct);
+
+	public void addPlacingOrder(PlacingOrder placingorder);
+
+	public void addPlacingOrderProduct(PlacingOrderProduct placingorderproduct);
 	
 
 

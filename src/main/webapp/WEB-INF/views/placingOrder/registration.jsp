@@ -12,7 +12,11 @@
     
     width : 200px;
 }
-
+#ingredientSelect{
+	width:70%;
+	margin-right:20px;
+	vertical-align:center;
+}
 </style>
 
 <script type="text/javascript">
@@ -44,7 +48,9 @@ $(document).ready( function () {
 			$("#ingredientAddTable").append(
 				"<tr><td>"+res.ingredient.ingredientNo+"</td><td>"+res.ingredient.ingredientName+
 				"</td><td>"+ingredientCnt+"</td><td>"+res.ingredient.ingredientPrice+
-				"</td><td>"+res.ingredient.ingredientPrice*ingredientCnt+"</td></tr>");
+				"</td><td>"+res.ingredient.ingredientPrice*ingredientCnt+"</td></tr>"+
+				"<input type='hidden' name='ingredientNo' value='"+res.ingredient.ingredientNo+"'/>"+
+				"<input type='hidden' name='placingOrderProductCnt' value='"+ingredientCnt+"'/>");
 			}
 	
 	})
@@ -91,6 +97,7 @@ $(document).ready( function () {
 			<tr>
 				<td class="condition">원자재</td>
 				<td>
+				
 					<select name="ingredientSelect" id="ingredientSelect" class="search-select select2-selection select2-selection--single form-control">
 						<option value="">전체</option>
 						<c:forEach var="ingredient" items="${ingredientList }" >
@@ -98,8 +105,10 @@ $(document).ready( function () {
 						</c:forEach>
 						
 					</select>
+					<div style="float:right">
 					<input type="number" id="ingredientCnt" name="ingredientCnt"/>
 					<input class="btn btn-outline-success" type="button" id="ingredientAdd" name="ingredientAdd" value="추가">
+					</div>
 				</td>
 				
 			</tr>
@@ -108,7 +117,6 @@ $(document).ready( function () {
 		<table id="ingredientAddTable" class="display table table-bordered" >
     <thead class="thead-dark">
         <tr>
-<!--        <th><input type="checkbox"/></th> -->
             <th>원자재 번호</th>
             <th>원자재명</th>
             <th>수량</th>
@@ -118,9 +126,7 @@ $(document).ready( function () {
         </tr>
     </thead>
 </table>
-		
-		<button id="excelDown" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#placingOrderModal">엑셀 등록</button>
-		<button id="placingOrderInsert" type="submit" class="btn btn-outline-danger" data-toggle="modal" data-target="#placingOrderModal">저장</button>
+		<button id="placingOrderInsert" type="submit" class="btn btn-outline-danger" style="float:right">등록</button>
 		</div>
 	</div>
 </div>

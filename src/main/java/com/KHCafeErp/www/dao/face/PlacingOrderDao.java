@@ -1,6 +1,7 @@
 package com.KHCafeErp.www.dao.face;
 
 import java.util.List;
+import java.util.Map;
 
 import com.KHCafeErp.www.dto.Ingredient;
 import com.KHCafeErp.www.dto.PlacingOrder;
@@ -123,6 +124,12 @@ public interface PlacingOrderDao {
 	 * @return - 총 발주 수량
 	 */
 	public int sumPlacingOrderCnt(PlacingOrder placingProduct);
+
+	public void insertNewPlacingOrder(PlacingOrder placingorder);
+
+	public void insertNewPlacingOrderProduct(PlacingOrderProduct placingOrderProduct);
+
+	public int getPlacingOrderNo();
 	
 
 

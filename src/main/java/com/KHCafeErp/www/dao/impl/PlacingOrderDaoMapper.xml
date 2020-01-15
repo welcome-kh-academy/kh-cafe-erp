@@ -26,7 +26,7 @@
   		<if test="inStockStatus != null">
     		AND inStockStatus = #{inStockStatus}
   		</if>
-  		ORDER BY PLACINGORDERNO
+  		ORDER BY PLACINGORDERNO DESC
 	</select>
 	
 	<select id="selectShopList" resultType="com.KHCafeErp.www.dto.Shop">
@@ -50,12 +50,12 @@
 	
 	<insert id="placingOrderInsert" parameterType="com.KHCafeErp.www.dto.PlacingOrder">
 		INSERT INTO placingOrder (placingOrderNo, shopNo, placingOrderStatus, inStockStatus, placingOrderDate)
-		VALUES (#{placingOrderNo }, #{shopNo }, 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		VALUES (placingOrderNo_seq.nextval, #{shopNo }, 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
 	<insert id="placingOrderProductInsert" parameterType="com.KHCafeErp.www.dto.PlacingOrderProduct">
 		INSERT INTO placingOrderProduct (placingOrderProductNo, placingOrderNo, IngredientNo, placingOrderProductStatus, placingOrderProductCnt )
-		VALUES (PLACINGORDERPRODUCTNO_SEQ, placingOrderNo_seq, #{IngredientNo}, 0, #{placingOrderProductCnt })
+		VALUES (PLACINGORDERPRODUCTNO_SEQ.nextval, #{placingOrderNo }, #{ingredientNo}, 0, #{placingOrderProductCnt })
 	</insert>
 	
 	<select id="selectIngredientList" resultType="com.KHCafeErp.www.dto.Ingredient">
@@ -96,6 +96,15 @@
 	<select id="sumPlacingOrderCnt" parameterType="com.KHCafeErp.www.dto.PlacingOrder" resultType="int">
 		SELECT sum(placingOrderProductCnt) FROM placingOrderProduct WHERE placingOrderNo=#{placingOrderNo}
 	</select>
+
+	<select id="getPlacingOrderNo" resultType="int">
+		 select max(placingorderno) from placingorder
+	</select>
+
+	<insert id="insertNewPlacingOrderProduct" parameterType="com.KHCafeErp.www.dto.PlacingOrderProduct">
+		INSERT INTO placingOrderProduct (placingOrderProductNo, placingOrderNo, IngredientNo, placingOrderProductStatus, placingOrderProductCnt ) 
+		VALUES (placingOrderProductNo_seq.nextval, #{placingOrderNo}, #{ingredientNo}, 0, #{placingOrderProductCnt})
+	</insert>
 </mapper>
 
 

@@ -3,8 +3,11 @@ package com.KHCafeErp.www.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -63,14 +66,22 @@ public class PlacingOrderController {
 	}
 	
 	@RequestMapping(value="/placingOrder/registration", method=RequestMethod.POST)
-	public String placingOrderAddProcess(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct, HttpSession session) {
-		
+	public String placingOrderAddProcess(PlacingOrder placingorder, PlacingOrderProduct placingorderproduct, HttpSession session, HttpServletRequest req) {
+
 		logger.info("발주등록 처리 페이지");
 		
-		//발주등록처리
-		placingOrderService.add(placingorder, placingorderproduct, session);
+		//발주등록처리	
+		placingOrderService.addPlacingOrder(placingorder);
 		
-		return "redirect:/placingOrder/registration";
+		String[] ingredientNo = req.getParameterValues("ingredientNo");
+		String[] placingOrderProductCnt = req.getParameterValues("placingOrderProductCnt");
+		for(int i=0; i < ingredientNo.length; i++) {
+			placingorderproduct.setIngredientNo(Integer.parseInt(ingredientNo[i]));
+			placingorderproduct.setPlacingOrderProductCnt(Integer.parseInt(placingOrderProductCnt[i]));
+			placingOrderService.addPlacingOrderProduct(placingorderproduct);
+		}	
+		
+		return "redirect:/placingOrder/management";
 	}
 	
 	@RequestMapping(value="/placingOrder/management", method=RequestMethod.GET)

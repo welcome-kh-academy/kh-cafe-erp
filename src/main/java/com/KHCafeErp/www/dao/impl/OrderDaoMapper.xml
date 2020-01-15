@@ -64,5 +64,6 @@
       SELECT orderNo, cusNo, orderBase.shopNo, shopName, orderDate, cusReq, orderStatus 
       FROM orderBase, shop
       WHERE orderBase.shopNo=shop.shopNo
+      ORDER BY orderNo
    </select>
 </mapper>

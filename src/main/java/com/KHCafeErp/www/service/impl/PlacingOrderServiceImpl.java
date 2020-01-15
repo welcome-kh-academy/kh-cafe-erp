@@ -70,14 +70,13 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 		int placingOrderNo = placingOrderDao.selectNextVal();
 		
 		placingorder.setPlacingOrderNo(placingOrderNo);
-		
-		placingorder.setShopNo((int) session.getAttribute("shopNo"));
+		placingorderproduct.setPlacingOrderNo(placingOrderNo);
 		
 		//발주 정보 등록
 		placingOrderDao.placingOrderInsert(placingorder);
 		
 		//발주 상품 정보 등록
-//		placingOrderDao.placingOrderProductInsert(placingorderproduct);
+		placingOrderDao.placingOrderProductInsert(placingorderproduct);
 		
 	}
 
@@ -167,6 +166,19 @@ public class PlacingOrderServiceImpl implements PlacingOrderService {
 	@Override
 	public int sumPlacingOrderCnt(PlacingOrder placingProduct) {
 		return placingOrderDao.sumPlacingOrderCnt(placingProduct);
+	}
+
+	@Override
+	public void addPlacingOrder(PlacingOrder placingorder) {
+		placingOrderDao.placingOrderInsert(placingorder);
+	}
+
+	@Override
+	public void addPlacingOrderProduct(PlacingOrderProduct placingorderproduct) {
+		int placingOrderNo = placingOrderDao.getPlacingOrderNo();
+		System.out.println("111111111111111111111111111111 : "+placingOrderNo);
+		placingorderproduct.setPlacingOrderNo(placingOrderNo);
+		placingOrderDao.insertNewPlacingOrderProduct(placingorderproduct);
 	}
 
 

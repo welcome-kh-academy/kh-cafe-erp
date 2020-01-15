@@ -281,14 +281,14 @@ $(document).ready(function(){
                <td>
                   <div>
                      <label for="selStartDate">판매 시작일</label>
-                     <input type="text" class="form-control" id="selStartDate" name="selStartDate">
+                     <input type="text" class="form-control" id="selStartDate" name="selStartDate" autocomplete="off">
                      <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                   </div>
                </td>
                <td>
                   <div>
                      <label for="selEndDate">판매 종료일</label>
-                     <input type="text" class="form-control" id="selEndDate" name="selEndDate">
+                     <input type="text" class="form-control" id="selEndDate" name="selEndDate" autocomplete="off">
                      <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                   </div>
                </td>
