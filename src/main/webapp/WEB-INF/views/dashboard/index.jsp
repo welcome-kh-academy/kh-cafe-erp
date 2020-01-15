@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
 <!-- Custom fonts for this template-->
@@ -204,29 +205,29 @@ $(document).ready( function () {
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                  <tr>
-                    <th>서비스 준비중</th>
-                    <th>서비스 준비중</th>
-                    <th>서비스 준비중</th>
-                    <th>서비스 준비중</th>
-                    <th>서비스 준비중</th>
-                    <th>서비스 준비중</th>
+                  <tr class="text-white bg-primary">
+                    <th>No</th>
+                    <th>제목</th>
+                    <th>지점</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${notice }" var="notice">
                   <tr>
-                    <td>서비스 준비중</td>
-                    <td>서비스 준비중</td>
-                    <td>서비스 준비중</td>
-                    <td>서비스 준비중</td>
-                    <td>서비스 준비중</td>
-                    <td>서비스 준비중</td>
+					<td>${notice.nBoardNo }</td>
+					<td><a style="color:black" href="/notice/view?nBoardNo=${notice.nBoardNo }">${notice.nBoardTitle }</a></td>
+					<td>${notice.shopName }</td>
+					<td>${notice.staffName }</td>
+					<td>${notice.nBoardDate }</td>
                   </tr>
+                 </c:forEach>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+<!--           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
         </div>
 
       </div>

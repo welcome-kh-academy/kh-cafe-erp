@@ -56,7 +56,7 @@ legend{
 	<c:forEach items="${list }" var="notice">
 	<tr>
 		<td>${notice.nBoardNo}</td>
-		<td><a href="/notice/view?nBoardNo=${notice.nBoardNo }">${notice.nBoardTitle}</a></td>
+		<td><a class="text-primary" href="/notice/view?nBoardNo=${notice.nBoardNo }">${notice.nBoardTitle}</a></td>
  		<td>${notice.shopName }</td>
 		<td>${notice.staffName }</td>
 		<td>${notice.nBoardDate }</td>

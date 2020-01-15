@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.KHCafeErp.www.dto.NoticeBoard;
 import com.KHCafeErp.www.service.face.DashboardService;
 import com.KHCafeErp.www.service.face.StatisticsService;
 
@@ -28,9 +29,12 @@ public class DashboardController {
 	
 	@RequestMapping(value="/dashboard/index")
 	public void getPage(HttpSession session, HttpServletRequest req, Model model) {
-		
-		logger.info("대쉬보드 접속");
-		
+			logger.info("대쉬보드 접속");
+			
+			List<NoticeBoard> noticeList = dashboardService.getNoticeList();
+			System.out.println(noticeList);
+			
+			model.addAttribute("notice", noticeList);
 	}
 	
 	@RequestMapping(value="/dashboard/barChart", method=RequestMethod.GET)
