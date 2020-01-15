@@ -273,7 +273,6 @@ function getStatistics() {
 			 datasets2.push({label:  $("#shopNoArr option[value="+shopNo+"]").text(),
 	           		backgroundColor: getRandomColor(),
 	           		data: sumPrice2});
-			
 	      }
 	  	
 	  	 //중복 제거한 set을 배열로 다시 변환
