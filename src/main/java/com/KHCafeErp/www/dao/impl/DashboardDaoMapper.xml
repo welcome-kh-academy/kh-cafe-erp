@@ -5,4 +5,10 @@
 
 <mapper namespace="com.KHCafeErp.www.dao.face.DashboardDao">
 
+	<select id="getNoticeList" resultType="com.KHCafeErp.www.dto.NoticeBoard">
+		SELECT rownum rnum, B.* 
+		FROM (SELECT nboardNo, staffName, shopName, nboardTitle, nboardDate FROM noticeBoard, shop WHERE noticeBoard.shopNo=shop.shopNo ORDER BY nboardNo DESC)B 
+		WHERE rownum BETWEEN 1 AND 5
+	</select>
+		
 </mapper>
