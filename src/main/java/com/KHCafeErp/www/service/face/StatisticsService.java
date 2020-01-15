@@ -37,6 +37,23 @@ public interface StatisticsService {
 	 */
 	List<Map> getStatistics(int[] shopNoArr, DateTerm dateTerm);
 
+	/**
+	 * 최근 일주일 통계자료 가져오기
+	 * 2020-01-15 서현석
+	 * 
+	 * @return
+	 */
+	List<Map> getWeekSalesStatistics(int shopNo);
+
+	/**
+	 * BEST3 상품 판매순위 통계자료 가져오기
+	 * 2020-01-15 서현석
+	 * 
+	 * @param shopNo
+	 * @return
+	 */
+	List<Map> getBest3SalesStatistics(int shopNo);
+
 	
 
 }

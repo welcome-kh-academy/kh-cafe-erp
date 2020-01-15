@@ -12,6 +12,30 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 
+<script type="text/javascript">
+$(document).ready( function () {
+	
+	//파이 차트 가져오기
+	$.ajax({
+		  url: "/dashboard/pieChart",
+		  method: "GET",
+		  success: function (result) {
+			  getPieChart(result.pieChart);
+		  }
+	});
+	
+	//막대 차트 가져오기
+	$.ajax({
+		  url: "/dashboard/barChart",
+		  method: "GET",
+		  success: function (result) {
+			  getBarChart(result.barChart);
+		  }
+	});
+});
+
+</script>
+
 <style type="text/css">
 /* 헤더 css 지우기 */
 #wrapper{
@@ -244,4 +268,10 @@
 <!-- Demo scripts for this page-->
 <script src="/resources/js/chart/chart-bar-demo.js"></script>
 <script src="/resources/js/chart/chart-pie-demo.js"></script>
+
+
+
+
+
+
 

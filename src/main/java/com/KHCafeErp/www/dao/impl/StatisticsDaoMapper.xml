@@ -36,4 +36,39 @@
 		order by paymentDate
 	</select>
 	
+	<select id="selectWeekStatistics" parameterType="int" resultType="hashmap">
+	<![CDATA[
+		select week, sumPrice
+		from(
+			select p.paymentDate, sum(p.paymentPrice) sumPrice
+			from orderBase o, payment p
+			where 1=1
+			AND o.orderNo = p.orderNo
+			AND o.orderStatus = 2
+        	AND p.paymentDate BETWEEN SYSDATE-7 AND SYSDATE
+        	AND o.shopNo = #{shopNo}
+			group by o.shopNo, paymentDate
+			order by paymentDate) A
+		RIGHT OUTER JOIN (
+			SELECT TO_CHAR(SYSDATE - LEVEL, 'YYYY-MM-DD') week
+			FROM DUAL
+			WHERE 1=1
+			CONNECT BY LEVEL <= 7 ) B
+		ON A.paymentdate = B.week
+		ORDER BY week
+	]]>
+	</select>
+	
+	<select id="selectBestPrd3Statistics" parameterType="int" resultType="hashmap">
+		select pr.productName, sum(op.productCnt) cnt
+		from orderBase o, payment p, orderProduct op, product pr
+		where 1=1
+		AND o.orderNo = p.orderNo
+        AND o.orderNo = op.orderno
+        AND op.productNo = pr.productNo
+		AND o.orderStatus = 2
+        AND o.shopNo = #{shopNo}
+		group by productName
+	</select>
+	
 </mapper>
