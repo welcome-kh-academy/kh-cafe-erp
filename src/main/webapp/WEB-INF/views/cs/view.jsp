@@ -60,7 +60,7 @@ td {
         	상담 내역을 삭제하시겠습니까?
       </div>
       <div class="modal-footer">      		
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href='/cs/delete?cBoardNo=${view.cBoardNo}';">삭제</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="location.href='/cs/delete?cBoardNo=${view.cBoardNo}';">삭제</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
     </div>
