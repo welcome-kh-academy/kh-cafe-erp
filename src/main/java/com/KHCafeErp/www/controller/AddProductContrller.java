@@ -135,6 +135,8 @@ public class AddProductContrller {
 		addProduct.put("storedName", imgFile.getStoredName());
 		addProduct.put("originPrice",product.getOriginPrice());
 		addProduct.put("price",product.getPrice());
+		addProduct.put("selStartDate", product.getSelStartDate());
+		addProduct.put("selEndDate", product.getSelEndDate());
 
 		System.out.println("++++++++++++++++++++++++-*** "+imgFile.getOriginName()+imgFile.getStoredName());
 		
