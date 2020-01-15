@@ -91,4 +91,15 @@ public class StatisticsServiceImpl implements StatisticsService {
 		
 		return statisticsDao.selectStatisticsCondition(map);
 	}
+
+	@Override
+	public List<Map> getWeekSalesStatistics(int shopNo) {
+		
+		return statisticsDao.selectWeekStatistics(shopNo);
+	}
+
+	@Override
+	public List<Map> getBest3SalesStatistics(int shopNo) {
+		return statisticsDao.selectBestPrd3Statistics(shopNo);
+	}
 }

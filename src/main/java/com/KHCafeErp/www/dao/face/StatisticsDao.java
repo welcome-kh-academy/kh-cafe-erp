@@ -26,4 +26,21 @@ public interface StatisticsDao {
 	 */
 	List<Map> selectStatisticsCondition(Map map);
 
+	/**
+	 * 최근 일주일 통계자료 가져오기
+	 * 2020-01-15 서현석
+	 * 
+	 * @return
+	 */
+	List<Map> selectWeekStatistics(int shopNo);
+
+	/**
+	 * 지점별 베스트 3 상품목록 가져오기
+	 * 2020-01-15 서현석
+	 * 
+	 * @param shopNo
+	 * @return
+	 */
+	List<Map> selectBestPrd3Statistics(int shopNo);
+
 }

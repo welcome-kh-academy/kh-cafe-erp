@@ -121,18 +121,6 @@ getStatistics();
            		어제 11:59 PM에 업데이트
            	</div>
         </div>
-    
-        <div class="card mb-3">
-           <div class="card-header text-white bg-primary">
-             <i class="fas fa-chart-bar"></i>주간 매출 통계
-           </div>
-           <div class="card-body">
-             <canvas id="myBarChart2" width="300px" height="100"></canvas>
-           </div>
-           <div class="card-footer small text-muted text-white bg-primary">
-           		어제 11:59 PM에 업데이트
-           	</div>
-        </div>
         
         <div class="card mb-3">
            <div class="card-header text-white bg-primary">
@@ -151,7 +139,6 @@ getStatistics();
 //Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
-
 
 var i = 0;
 // var myLineChart = {};
@@ -184,7 +171,7 @@ function getStatistics() {
 // 		myLineChart.destroy();
 		  
 		  
-		  console.log("--- detroy myLineChart---");
+		console.log("--- detroy myLineChart---");
 		console.log(myLineChartMonthly);
 		console.log(myLineChartDaily);
 // 		console.log(myLineChart);
@@ -323,6 +310,3 @@ function getStatistics() {
 }
 
 </script>
-
- <!-- Demo scripts for this page -->
- <script type="text/javascript" src="/resources/js/weekly.js"></script>

@@ -13,6 +13,30 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 
+<script type="text/javascript">
+$(document).ready( function () {
+	
+	//파이 차트 가져오기
+	$.ajax({
+		  url: "/dashboard/pieChart",
+		  method: "GET",
+		  success: function (result) {
+			  getPieChart(result.pieChart);
+		  }
+	});
+	
+	//막대 차트 가져오기
+	$.ajax({
+		  url: "/dashboard/barChart",
+		  method: "GET",
+		  success: function (result) {
+			  getBarChart(result.barChart);
+		  }
+	});
+});
+
+</script>
+
 <style type="text/css">
 /* 헤더 css 지우기 */
 #wrapper{
@@ -135,15 +159,42 @@
         </div>
 
         <!-- Area Chart Example-->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-chart-area"></i>
-            차트 서비스 준비중</div>
-          <div class="card-body">
-            <canvas id="myAreaChart" width="100%" height="30"></canvas>
+        <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Charts</li>
+        </ol>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-chart-bar"></i>
+                	최근 7일 판매량</div>
+              <div class="card-body">
+                <canvas id="myBarChart" width="100%" height="50"></canvas>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
           </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          <div class="col-lg-4">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-chart-pie"></i>
+                Best 판매상품</div>
+              <div class="card-body">
+                <canvas id="myPieChart" width="100%" height="100"></canvas>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+          </div>
         </div>
+
+      </div>
 
         <!-- DataTables Example -->
         <div class="card mb-3">
@@ -212,5 +263,16 @@
       </div>
     </div>
   </div>
-
+  
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+
+<!-- Demo scripts for this page-->
+<script src="/resources/js/chart/chart-bar-demo.js"></script>
+<script src="/resources/js/chart/chart-pie-demo.js"></script>
+
+
+
+
+
+
+
