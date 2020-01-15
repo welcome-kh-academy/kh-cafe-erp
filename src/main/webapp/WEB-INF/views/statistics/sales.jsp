@@ -184,7 +184,7 @@ function getStatistics() {
 // 		myLineChart.destroy();
 		  
 		  
-		  console.log("--- detroy myLineChart---");
+		console.log("--- detroy myLineChart---");
 		console.log(myLineChartMonthly);
 		console.log(myLineChartDaily);
 // 		console.log(myLineChart);
