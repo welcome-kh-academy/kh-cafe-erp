@@ -16,5 +16,7 @@ public class DashboardController {
 	@RequestMapping(value="/dashboard/index")
 	public void getPage(HttpSession session, HttpServletRequest req) {
 			logger.info("대쉬보드 접속");
+			
+			
 	}
 }
