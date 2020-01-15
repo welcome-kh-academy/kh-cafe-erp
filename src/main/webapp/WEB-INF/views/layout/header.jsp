@@ -142,6 +142,7 @@ li{
         </ul>
         </div>
       </li>
+      <c:if test="${position eq '3' }">
       <li class="nav-item dropdown">
         <a class="nav-link" href="/release/list">출&nbsp;&nbsp;&nbsp;고</a>
         <div class="dropdown-menu">
@@ -151,6 +152,7 @@ li{
         </ul>
         </div>
       </li>
+      </c:if>
       <li class="nav-item">
         <a class="nav-link" href="/statistics/sales">매출 통계</a>
       </li>    

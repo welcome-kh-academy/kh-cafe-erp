@@ -26,7 +26,7 @@
 		<security:intercept-url pattern="/order/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/notice/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/manageProduct/**" access="isAuthenticated()" />
-		<security:intercept-url pattern="/release/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/release/**" access="hasAnyRole('ROLE_3')" />
 		<security:intercept-url pattern="/product/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/placingOrder/**" access="isAuthenticated()" />
     	<security:intercept-url pattern="/upload/**" access="isAuthenticated()" />
