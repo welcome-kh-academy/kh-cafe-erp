@@ -60,7 +60,7 @@ public class StatisticsController {
 			
 		else {
 			int shopNo = (int)session.getAttribute("shopNo");
-			dailyStatisticsList = statisticsService.getStatistics(shopNo);
+			dailyStatisticsList = statisticsService.getStatistics(shopNo, dateTerm);
 		}
 		
 		//빈 해쉬맵
