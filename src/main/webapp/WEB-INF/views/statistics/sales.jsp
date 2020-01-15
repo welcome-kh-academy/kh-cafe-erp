@@ -152,6 +152,12 @@ getStatistics();
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
+
+var i = 0;
+// var myLineChart = {};
+var myLineChartMonthly = null;
+var myLineChartDaily = null;
+
 //ajax
 function getStatistics() {
 
@@ -160,7 +166,30 @@ function getStatistics() {
 	  method: "GET",
 	  data : $("#statisticsForm").serialize(),
 	  success: function (result) {
+
+		  console.log("--- before myLineChart---");
+// 		  console.log(myLineChart);
+		  console.log(myLineChartMonthly);
+		  console.log(myLineChartDaily);
 		  
+		//기존 데이터 삭제
+		if( myLineChartMonthly != null) {
+			myLineChartMonthly.destroy();
+			myLineChartMonthly = null;
+		}
+		if( myLineChartDaily != null) {
+			myLineChartDaily.destroy();
+			myLineChartDaily = null;
+		}
+// 		myLineChart.destroy();
+		  
+		  
+		  console.log("--- detroy myLineChart---");
+		console.log(myLineChartMonthly);
+		console.log(myLineChartDaily);
+// 		console.log(myLineChart);
+		
+		//Monthly
 	  	//색상지정
 		var datasets = [];
 		var paymentDateS = new Set();
@@ -185,7 +214,8 @@ function getStatistics() {
 	    var paymentDate = Array.from(paymentDateS);
 	    var ctx = document.getElementById("myBarChart3");
 	      
-	    var myLineChart = new Chart(ctx, {
+	    myLineChartMonthly = new Chart(ctx, {
+// 	    myLineChart = new Chart(ctx, {
 	        type: 'bar',
 	        data: {
 	            labels: paymentDate,
@@ -220,10 +250,13 @@ function getStatistics() {
 	          }
 	        }
 	      });
-	      
 	    
-	      //monthly
-	    var datasets = [];
+	    console.log("--- new myLineChartMonthly ---");
+	    console.log(myLineChartMonthly);
+// 	    console.log(myLineChart);
+	    
+	      //daily
+	    var datasets2 = [];
 	  	var paymentDateS2 = new Set();
 	  	
 	  	for (var shopNo in result.monthlyStatistics) {
@@ -237,20 +270,21 @@ function getStatistics() {
 	    		sumPrice2.push(resObject[i].SUMPRICE);
 	    	}
 
-			 datasets.push({label:  $("#shopNoArr option[value="+shopNo+"]").text(),
+			 datasets2.push({label:  $("#shopNoArr option[value="+shopNo+"]").text(),
 	           		backgroundColor: getRandomColor(),
-	           		data: sumPrice});
+	           		data: sumPrice2});
 			
 	      }
 	  	
 	  	 //중복 제거한 set을 배열로 다시 변환
 	    var paymentDate2 = Array.from(paymentDateS2);
 	      var ctx = document.getElementById("myBarChart");
-	      var myLineChart = new Chart(ctx, {
+	      myLineChartDaily = new Chart(ctx, {
+// 	      myLineChart = new Chart(ctx, {
 	        type: 'bar',
 	        data: {
 	            labels: paymentDate2,
-	            datasets: datasets
+	            datasets: datasets2
 	         },
 	        options: {
 	          scales: {
@@ -281,9 +315,14 @@ function getStatistics() {
 	          }
 	        }
 	      });
+	      
+	      console.log("--- new myLineChartDaily ---");
+	      console.log(myLineChartDaily);
+// 	      console.log(myLineChart);
 	  }
 	});
 }
+
 </script>
 
  <!-- Demo scripts for this page -->
