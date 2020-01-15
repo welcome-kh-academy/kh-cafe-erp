@@ -16,7 +16,7 @@ public interface StatisticsService {
 	 * @param shopNo
 	 * @return 통계자료
 	 */
-	List<Map> getStatistics(int shopNo);
+	List<Map> getStatistics(int shopNo, DateTerm dateTerm);
 
 	/**
 	 * 월별 통계자료 가져오기

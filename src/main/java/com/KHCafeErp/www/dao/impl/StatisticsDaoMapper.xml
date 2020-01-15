@@ -32,6 +32,7 @@
 				</foreach>
 			</when>
 		</choose>
+		AND p.paymentDate BETWEEN #{startDate} AND #{endDate}
 		group by o.shopNo, paymentDate
 		order by paymentDate
 	</select>
@@ -61,9 +62,8 @@
 	
 	<select id="selectBestPrd3Statistics" parameterType="int" resultType="hashmap">
 		select pr.productName, sum(op.productCnt) cnt
-		from orderBase o, payment p, orderProduct op, product pr
+		from orderBase o, orderProduct op, product pr
 		where 1=1
-		AND o.orderNo = p.orderNo
         AND o.orderNo = op.orderno
         AND op.productNo = pr.productNo
 		AND o.orderStatus = 2

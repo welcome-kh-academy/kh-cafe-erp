@@ -24,9 +24,18 @@ public class StatisticsServiceImpl implements StatisticsService {
 	@Autowired StatisticsDao statisticsDao;
 	
 	@Override
-	public List<Map> getStatistics(int shopNo) {
+	public List<Map> getStatistics(int shopNo, DateTerm dateTerm) {
 
-		return statisticsDao.selectStatistics(shopNo);
+		Map<String, Object> map = new HashMap<>(); 
+		
+		int[] shopNoArr = new int[1];
+		shopNoArr[0] = shopNo;
+		
+		map.put("shopNoArr", shopNoArr);
+		map.put("startDate", dateTerm.getStartDate());
+		map.put("endDate", dateTerm.getEndDate());
+		
+		return statisticsDao.selectStatisticsCondition(map);
 	}
 
 	@Override
@@ -51,26 +60,35 @@ public class StatisticsServiceImpl implements StatisticsService {
 		    for(int i=0; i<dailyStatistics.size(); i++) {
 				
 				Map dailyMap = (Map) dailyStatistics.get(i);
+				Map beforeMap = new HashMap();
+				
+				if(i>0) beforeMap = (Map) dailyStatistics.get(i-1);
 				
 				String month = ((String) dailyMap.get("PAYMENTDATE")).substring(0, 7);
-				
-				monthMap.put("PAYMENTDATE",month);
 				String sumPriceStr = dailyMap.get("SUMPRICE")+"";
+				sumPrice = Integer.parseInt(sumPriceStr);
 				
 				if(i==0) {
-					sumPrice = Integer.parseInt(sumPriceStr);
+					
+					monthMap.put("PAYMENTDATE",month);
 					monthMap.put("SUMPRICE", sumPrice);
-					monthlyStatistics.add(monthMap);
-				} else if(((String)dailyMap.get("PAYMENTDATE")).substring(0, 7).equals(month)) {
-					sumPrice += Integer.parseInt(sumPriceStr);
-					monthMap.put("SUMPRICE", sumPrice);
+					sumPrice = 0;
+					
+				} else if(((String)beforeMap.get("PAYMENTDATE")).substring(0, 7).equals(month)) {
+					
+					monthMap.put("SUMPRICE", (int) monthMap.get("SUMPRICE") + sumPrice);
 					
 				} else {
-					sumPrice = Integer.parseInt(sumPriceStr);
-					monthMap.put("SUMPRICE", sumPrice);
+					
 					monthlyStatistics.add(monthMap);
+					monthMap = new HashMap();
+					
+					monthMap.put("PAYMENTDATE",month);
+					monthMap.put("SUMPRICE", sumPrice);
+					sumPrice = 0;
+					
 				}
-				
+				logger.info(monthMap.toString());
 			}
 		    
 			monthlyStatisticsMap.put(key,monthlyStatistics);

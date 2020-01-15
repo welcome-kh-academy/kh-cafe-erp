@@ -171,7 +171,7 @@ li{
   </div>
 	<ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
+        <a class="nav-link" data-toggle="modal" data-target="#logoutModal" style="cursor:pointer;">로그아웃</a>
       </li>    
  	</ul>
  	

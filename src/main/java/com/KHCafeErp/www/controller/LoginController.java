@@ -62,8 +62,6 @@ public class LoginController {
 			model.addAttribute("login", false);
 			return "redirect:/login/logout";
 		}
-		
-		
 	}
 	
 	@RequestMapping(value="/login/logout")
