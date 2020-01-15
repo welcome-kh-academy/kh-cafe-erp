@@ -26,7 +26,7 @@ td div{
 	margin : 0px 20px;
 	margin-bottom:5px;
 }
-fieldset, #optionList, #product{
+fieldset{
 	margin : 18px 20px;
 }
 .form-check-input{
@@ -144,7 +144,7 @@ $(document).ready(function(){
 <!-- 	</div> -->
 </div>
 
-<div id="product" class= "left" style="margin-top:30px; overflow:auto; height:440px">
+<div id="product" class= "left" style="overflow:auto; height:440px">
 	<fieldset>
 		<legend class="text-primary">상품 정보</legend>
 		<table class="table">
