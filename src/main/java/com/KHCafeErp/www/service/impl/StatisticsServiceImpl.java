@@ -112,7 +112,6 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 	@Override
 	public List<Map> getWeekSalesStatistics(int shopNo) {
-		
 		return statisticsDao.selectWeekStatistics(shopNo);
 	}
 
